@@ -102,8 +102,56 @@ set undofile
 " Vim command aliases
 cmap tw tabnew
 
-" Make sure Vim saves to the system clipboard
-set clipboard=unnamed
-
 " Ale config
 let g:ale_fix_on_save = 1
+
+" Startify config
+" This is the header that shows every time I open Vim. Pretty sweet if I do
+" say so myself.
+" Got it from asciiart.eu
+let g:ascii = [
+	\ '                    / \							',
+	\ '                   / | \  Three Rings for the Elvin-Kings under the sky.	',
+	\ '                  /  |  \ Seven for the DwarfLords in their halls of stone.	',
+	\ '                 |   |   |    Nine for the Mortal Men doomed to die.		',
+	\ '                 |   |   |    One for the Dark Lord on his dark throne.	',
+	\ '                 |   |   |In the Land of Mordor where the Shadow Lies.	',
+	\ '                 |   |   |							',
+	\ '                 |   |   |  One Ring to rule them all,One Ring to find them,	',
+	\ '                 |   |   |One Ring to bring them all and in the Darkness	',
+	\ '                 |   |   |   Bind Them					',
+	\ '                 |   |   |  In the Land of Mordor where the Shadows Lie.	',
+	\ '                 |   |   |							',
+	\ '                 |   |   |							',
+	\ '                 |   |   |							',
+	\ '                 |   |   |                        "Lord Of The Rings"	',
+	\ '                 |   |   |                              by J.R.R. Tolkien	',
+	\ '                 |   |   |							',
+	\ '                 |   |   |							',
+	\ '                 |   |   |							',
+	\ '                 |   |   |							',
+	\ '                 |   |   |                      .____---^^     ^^---____.	',
+	\ '                 |   |   |                      TI      *       *      IT	',
+	\ '                 |   |   |                      !I          *          I!	',
+	\ '                 |  / \  |                       X                     X	',
+	\ '/\               |/     \|               /\      XL         ?         JX	',
+	\ '\ \_____________/         \_____________/ /      II    ?   / \   ?    II	',
+	\ ' \______________\         /______________/       II   / \ /   \ / \   II	',
+	\ '                 \       /                        X  /   v     v   \  X	',
+	\ '                 |\\   //|                        ``/    _     _    \''	',
+	\ '                 |//\ ///|                         \\- _-_ -_- _-_ -//	',
+	\ '                 |///////|                           \\_-  -_-  -_//		',
+	\ '                 |///////|                             ``       ''		',
+	\ '                 |///////|                               ``-_-''		',
+	\ '                 |///////|							',
+	\ '                 |///////|							',
+	\ '                 |///////|							',
+	\ '                / \/\_/\/ \							',
+	\ '               |\_/\/ \/\_/|							',
+	\ '               |/ \/\ /\/ \|							',
+	\ '                \_/\/_\/\_/							',
+	\ '                  \_/_\_/							',
+	\]
+let g:startify_custom_header =
+          \ 'startify#pad(g:ascii + startify#fortune#boxed())'
+
