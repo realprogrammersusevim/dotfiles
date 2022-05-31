@@ -43,7 +43,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
+alias mvim="open -a \"MacVim\""
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH

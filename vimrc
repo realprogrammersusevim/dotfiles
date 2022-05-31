@@ -1,3 +1,10 @@
+" This is my vimrc for my Mac.
+" It may suit you or it may not. Hopefully you find something useful in it
+" that you can adapt to your own needs. Above all Vim is meant to be
+" infinitally customizable, so it would be a shame to use someone else's
+" config file if it didn't actually suit you. Adapt it to your own needs.
+
+
 if v:progname =~? "evim"
 	finish
 endif
@@ -26,6 +33,7 @@ endif
 if has('syntax') && has('eval')
 	packadd! matchit
 endif
+filetype plugin on
 
 " This is my vim-plug section. To add something just say 'Plug' and then the
 " link that follows github.com. The link has to be in single quotes. Then save
@@ -44,13 +52,14 @@ Plug 'Valloric/YouCompleteMe'  " Code completion
 Plug 'sonph/onehalf', { 'rtp': 'vim' }  " My theme
 Plug 'preservim/nerdtree'  " File browser and manager
 Plug 'Xuyuanp/nerdtree-git-plugin'  " Show git changes in the Nerdtree
-Plug 'Chiel92/vim-autoformat'  " Automatically format code on save (replaced by ALE?)
 Plug 'dense-analysis/ale'  " Asynchronous Code Linting, it's checking code while I type
 Plug 'kien/ctrlp.vim'  " Fuzzy searching in Vim
 Plug 'airblade/vim-gitgutter'  " Show git changes in the gutter
 Plug 'tpope/vim-fugitive'  " A git interface so awesome it should be illegal
 Plug 'tpope/vim-commentary'  " Easily comment out parts of code
 Plug 'mhinz/vim-startify'  " Cool Vim start screen. Is it useful? No. But why not?
+Plug 'vim-airline/vim-airline' " That nice little status bar at the bottow of the screen
+Plug 'vim-airline/vim-airline-themes' " Makes the bar match the theme
 
 call plug#end()
 
@@ -89,9 +98,6 @@ let g:SimpylFold_docstring_preview = 1
 
 " Make sure I'm always viewing my text documents in UTF-8 mode
 set encoding=UTF-8
-
-" Autoformat Python code when a file is saved
-au BufWrite *.py :Autoformat
 
 " Make undo history persistent between Vim sessions
 set undofile
@@ -155,3 +161,16 @@ let g:ascii = [
 let g:startify_custom_header =
           \ 'startify#pad(g:ascii + startify#fortune#boxed())'
 
+" Set the Vim command memory to 200
+set history=200
+
+" MacVim configuration
+set guicursor+=a:blinkon0  " Make the cursor stop blinking
+set guioptions=  " Take away all the scrollbars
+
+" Airline configuration
+set noshowmode
+let g:airline_theme='deus'
+
+" Show hidden files by default with NERDTree
+let NERDTreeShowHidden=1
