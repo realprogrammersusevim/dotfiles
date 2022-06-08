@@ -5,21 +5,6 @@
 " config file if it didn't actually suit you. Adapt it to your own needs.
 
 
-if v:progname =~? "evim"
-	finish
-endif
-
-" Get the defaults that most users want.
-source $VIMRUNTIME/defaults.vim
-
-" Put these in an autocmd group, so that we can delete them easily.
-augroup vimrcEx
-	au!
-
-	" For all text files set 'textwidth' to 78 characters.
-	autocmd FileType text setlocal textwidth=78
-augroup END
-
 if has('mouse')
 	set mouse=a
 endif
@@ -43,23 +28,37 @@ call plug#begin()
 
 Plug 'junegunn/vim-easy-align'  " Python alignment
 Plug 'yggdroot/indentline'  " Correct Python identation
-Plug 'nvie/vim-flake8'  " Python linting
+Plug 'nvie/vim-flake8', { 'for': 'python' }  " Python linting
 Plug 'Raimondi/delimitMate'  " Auto quotation marks and bracket completion
-Plug 'davidhalter/jedi-vim', { 'for': 'python'}  " Language server
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }  " Language server
 Plug 'mikecoder/quickrun.vim'  " Quickly run code without exiting Vim
 Plug 'tmhedberg/SimpylFold'  " Code folding
-Plug 'Valloric/YouCompleteMe'  " Code completion
+" Great code completion, if I start working with another programming language
+" in Vim I'll just need to install another Coc plugin and add that language to
+" the list coc will be loaded for
+Plug 'neoclide/coc.nvim',  {'branch': 'release', 'for': ['python', 'vim']}
 Plug 'sonph/onehalf', { 'rtp': 'vim' }  " My theme
 Plug 'preservim/nerdtree'  " File browser and manager
 Plug 'Xuyuanp/nerdtree-git-plugin'  " Show git changes in the Nerdtree
-Plug 'dense-analysis/ale'  " Asynchronous Code Linting, it's checking code while I type
-Plug 'kien/ctrlp.vim'  " Fuzzy searching in Vim
+Plug 'dense-analysis/ale'  " Asynchronous Code Linting, it's checking code
+" while I type
 Plug 'airblade/vim-gitgutter'  " Show git changes in the gutter
 Plug 'tpope/vim-fugitive'  " A git interface so awesome it should be illegal
 Plug 'tpope/vim-commentary'  " Easily comment out parts of code
-Plug 'mhinz/vim-startify'  " Cool Vim start screen. Is it useful? No. But why not?
-Plug 'vim-airline/vim-airline' " That nice little status bar at the bottow of the screen
+Plug 'mhinz/vim-startify'  " Cool Vim start screen. Is it useful? Maybe. But
+" why not?
+Plug 'vim-airline/vim-airline' " That nice little status bar at the bottow of
+" the screen
 Plug 'vim-airline/vim-airline-themes' " Makes the bar match the theme
+Plug 'sheerun/vim-polyglot'  " Adds (hopefully) better syntax highlighting
+Plug 'wincent/terminus'  " Better cursor
+Plug 'errata-ai/vale', {'for': ['text', 'markdown']}
+Plug 'jose-elias-alvarez/null-ls.nvim'  " Vale integration with Vim
+Plug 'github/copilot.vim'  " Code suggestions using GPT-3
+Plug 'junegunn/fzf.vim'  " Fuzzy file searching
+Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}  " Better markdown syntax highlighting
+Plug 'dkarter/bullets.vim'  " Finally stopped typing out my own numbered lists
+" like a fucking peasant
 
 call plug#end()
 
@@ -77,12 +76,7 @@ set t_Co=256
 
 " This makes sure that line numbers are always enabled when I open a file with
 " vim.
-:set number
-
-" Get rid of those annoying swap and backup files by moving them.
-set backupdir=.backup/,~/.backup?,/tmp//
-set directory=.swp/,~/.swp/,/tmp//
-set undodir=.undo/,~/.undo/,/tmp//
+set number
 
 " Configure the QuickRun plugin
 let g:quickrun_known_file_types = {
@@ -103,7 +97,7 @@ set encoding=UTF-8
 set undofile
 
 " Make sure the wrap doesn't cut midway through a word
-:set wrap linebreak nolist
+set wrap linebreak nolist
 
 " Vim command aliases
 cmap tw tabnew
@@ -164,13 +158,46 @@ let g:startify_custom_header =
 " Set the Vim command memory to 200
 set history=200
 
-" MacVim configuration
-set guicursor+=a:blinkon0  " Make the cursor stop blinking
-set guioptions=  " Take away all the scrollbars
-
 " Airline configuration
 set noshowmode
 let g:airline_theme='deus'
 
 " Show hidden files by default with NERDTree
 let NERDTreeShowHidden=1
+
+" Break myself of the habit of using the arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Down> <Nop>
+
+" Always use the hjkl keys to move by display lines rather than real lines
+noremap j gj
+noremap gj j
+noremap k gk
+noremap gk k
+
+" COC Configuration
+set hidden  " TextEdit might fail without this setting
+set nobackup
+set nowritebackup
+set completeopt=longest,menuone  " Automatically select the first option
+
+" Hooray for fuzzy wuzzy ever so soft file completion!
+set rtp+=/opt/homebrew/opt/fzf
+
+" Make sure Markdown lists and other stuff gets automatically indented
+" correctly and doesn't wrap around bullet points
+set autoindent
+
+" Show search results in real time
+set incsearch
+
+" Bullets plugin config
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]  " Only allow Bullets to work on these filetypes
+let g:bullet_line_spacing = 2  " One empty space between bullets
