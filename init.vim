@@ -20,42 +20,50 @@ if has('syntax') && has('eval')
 endif
 filetype plugin on
 
+" This function makes sure that if this config file is loaded by the VSCode
+" neovim plugin than the plugins I won't need aren't loaded.
+" I got it from https://github.com/vscode-neovim/vscode-neovim/issues/415
+function! Cond(Cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 " This is my vim-plug section. To add something just say 'Plug' and then the
 " link that follows github.com. The link has to be in single quotes. Then save
 " the .vimrc file and quit vim. Reenter and put in the command ':PlugInstall'.
 " From there you should be good to go.
 call plug#begin()
 
-Plug 'junegunn/vim-easy-align'  " Python alignment
-Plug 'yggdroot/indentline'  " Correct Python identation
-Plug 'nvie/vim-flake8', { 'for': 'python' }  " Python linting
-Plug 'Raimondi/delimitMate'  " Auto quotation marks and bracket completion
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }  " Language server
-Plug 'mikecoder/quickrun.vim'  " Quickly run code without exiting Vim
-Plug 'tmhedberg/SimpylFold'  " Code folding
+Plug 'junegunn/vim-easy-align', Cond(!exists('g:vscode'))  " Python alignment
+Plug 'yggdroot/indentline', Cond(!exists('g:vscode'))  " Correct Python identation
+Plug 'nvie/vim-flake8',  Cond(!exists('g:vscode'), { 'for': 'python' })  " Python linting
+Plug 'Raimondi/delimitMate', Cond(!exists('g:vscode'))  " Auto quotation marks and bracket completion
+Plug 'davidhalter/jedi-vim', Cond(!exists('g:vscode'), { 'for': 'python' })  " Language server
+Plug 'mikecoder/quickrun.vim', Cond(!exists('g:vscode'), { 'on': 'QuickRun' })  " Quickly run code without exiting Vim
+Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))  " Code folding
 " Great code completion, if I start working with another programming language
 " in Vim I'll just need to install another Coc plugin and add that language to
 " the list coc will be loaded for
-Plug 'neoclide/coc.nvim',  {'branch': 'release', 'for': ['python', 'vim']}
-Plug 'sonph/onehalf', { 'rtp': 'vim' }  " My theme
-Plug 'preservim/nerdtree'  " File browser and manager
-Plug 'Xuyuanp/nerdtree-git-plugin'  " Show git changes in the Nerdtree
-Plug 'dense-analysis/ale'  " Asynchronous Code Linting, it's checking code
+Plug 'neoclide/coc.nvim',  Cond(!exists('g:vscode'), {'branch': 'release', 'for': ['python', 'vim']})
+Plug 'sonph/onehalf', Cond(!exists('g:vscode'), { 'rtp': 'vim' })  " My theme
+Plug 'preservim/nerdtree', Cond(!exists('g:vscode'), { 'on': 'NERDTree' })  " File browser and manager
+Plug 'Xuyuanp/nerdtree-git-plugin', Cond(!exists('g:vscode'), {'on': 'NERDTree'})  " Show git changes in the Nerdtree
+Plug 'dense-analysis/ale', Cond(!exists('g:vscode'))  " Asynchronous Code Linting, it's checking code
 " while I type
-Plug 'airblade/vim-gitgutter'  " Show git changes in the gutter
-Plug 'tpope/vim-fugitive'  " A git interface so awesome it should be illegal
+Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))  " Show git changes in the gutter
+Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))  " A git interface so awesome it should be illegal
 Plug 'tpope/vim-commentary'  " Easily comment out parts of code
-Plug 'mhinz/vim-startify'  " Cool Vim start screen. Is it useful? Maybe. But
+Plug 'mhinz/vim-startify', Cond(!exists('g:vscode'))  " Cool Vim start screen. Is it useful? Maybe. But
 " why not?
-Plug 'vim-airline/vim-airline' " That nice little status bar at the bottow of
+Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode')) " That nice little status bar at the bottow of
 " the screen
-Plug 'vim-airline/vim-airline-themes' " Makes the bar match the theme
-Plug 'sheerun/vim-polyglot'  " Adds (hopefully) better syntax highlighting
+Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode')) " Makes the bar match the theme
+Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))  " Adds (hopefully) better syntax highlighting
 Plug 'wincent/terminus'  " Better cursor
 Plug 'errata-ai/vale', {'for': ['text', 'markdown']}
-Plug 'jose-elias-alvarez/null-ls.nvim'  " Vale integration with Vim
-Plug 'github/copilot.vim'  " Code suggestions using GPT-3
-Plug 'junegunn/fzf.vim'  " Fuzzy file searching
+Plug 'jose-elias-alvarez/null-ls.nvim', {'for': ['text', 'markdown']}  " Vale integration with Vim
+Plug 'github/copilot.vim', Cond(!exists('g:vscode'))  " Code suggestions using GPT-3
+Plug 'junegunn/fzf.vim', {'on': 'FZF'}  " Fuzzy file searching
 Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}  " Better markdown syntax highlighting
 Plug 'dkarter/bullets.vim'  " Finally stopped typing out my own numbered lists
 " like a fucking peasant
