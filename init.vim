@@ -209,3 +209,6 @@ let g:bullets_enabled_file_types = [
     \ 'scratch'
     \]  " Only allow Bullets to work on these filetypes
 let g:bullet_line_spacing = 2  " One empty space between bullets
+
+" Clear the search highlighting after I'm done searching
+nnoremap <silent> \ :noh<return>
