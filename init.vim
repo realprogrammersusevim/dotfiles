@@ -1,4 +1,4 @@
-" This is my vimrc for my Mac.
+" This is my NeoVim configuration for my Mac.
 " It may suit you or it may not. Hopefully you find something useful in it
 " that you can adapt to your own needs. Above all Vim is meant to be
 " infinitally customizable, so it would be a shame to use someone else's
@@ -44,7 +44,7 @@ Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))  " Code folding
 " Great code completion, if I start working with another programming language
 " in Vim I'll just need to install another Coc plugin and add that language to
 " the list coc will be loaded for
-Plug 'neoclide/coc.nvim',  Cond(!exists('g:vscode'), {'branch': 'release', 'for': ['python', 'vim']})
+Plug 'neoclide/coc.nvim',  Cond(!exists('g:vscode'), {'branch': 'release', 'for': ['python', 'vim', 'rust']})
 Plug 'sonph/onehalf', Cond(!exists('g:vscode'), { 'rtp': 'vim' })  " My theme
 Plug 'preservim/nerdtree', Cond(!exists('g:vscode'), { 'on': 'NERDTree' })  " File browser and manager
 Plug 'Xuyuanp/nerdtree-git-plugin', Cond(!exists('g:vscode'), {'on': 'NERDTree'})  " Show git changes in the Nerdtree
@@ -67,6 +67,8 @@ Plug 'junegunn/fzf.vim', {'on': 'FZF'}  " Fuzzy file searching
 Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}  " Better markdown syntax highlighting
 Plug 'dkarter/bullets.vim'  " Finally stopped typing out my own numbered lists
 " like a fucking peasant
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " Markdown preview in the browser
+Plug 'soywod/himalaya', Cond(!exists('g:vscode'), {'rtp': 'vim', 'on': 'Himalaya'})  " Email client
 
 call plug#end()
 
@@ -187,7 +189,7 @@ noremap gk k
 
 " COC Configuration
 set hidden  " TextEdit might fail without this setting
-set nobackup
+set nobackup  " I live on the wild side
 set nowritebackup
 set completeopt=longest,menuone  " Automatically select the first option
 
@@ -212,3 +214,9 @@ let g:bullet_line_spacing = 2  " One empty space between bullets
 
 " Clear the search highlighting after I'm done searching
 nnoremap <silent> \ :noh<return>
+let mapleader = ","
+
+set splitright  " I prefer splitting right and below
+set splitbelow
+
+set scrolloff=3 " Keep three lines between the cursor and the edge of the screen
