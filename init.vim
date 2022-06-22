@@ -5,6 +5,8 @@
 " config file if it didn't actually suit you. Adapt it to your own needs.
 
 
+" Yes, yes, I know all of the hardcore touch typists will hate this. But it is
+" useful.
 if has('mouse')
 	set mouse=a
 endif
@@ -38,7 +40,6 @@ Plug 'junegunn/vim-easy-align', Cond(!exists('g:vscode'))  " Python alignment
 Plug 'yggdroot/indentline', Cond(!exists('g:vscode'))  " Correct Python identation
 Plug 'nvie/vim-flake8',  Cond(!exists('g:vscode'), { 'for': 'python' })  " Python linting
 Plug 'Raimondi/delimitMate', Cond(!exists('g:vscode'))  " Auto quotation marks and bracket completion
-Plug 'davidhalter/jedi-vim', Cond(!exists('g:vscode'), { 'for': 'python' })  " Language server
 Plug 'mikecoder/quickrun.vim', Cond(!exists('g:vscode'), { 'on': 'QuickRun' })  " Quickly run code without exiting Vim
 Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))  " Code folding
 " Great code completion, if I start working with another programming language
@@ -69,12 +70,14 @@ Plug 'dkarter/bullets.vim'  " Finally stopped typing out my own numbered lists
 " like a fucking peasant
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " Markdown preview in the browser
 Plug 'soywod/himalaya', Cond(!exists('g:vscode'), {'rtp': 'vim', 'on': 'Himalaya'})  " Email client
+Plug 'mileszs/ack.vim', Cond(!exists('g:vscode'), {'on': 'Ack'})  " Search for things in files
+Plug 'numirias/semshi', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins', 'for': 'python' })  " Better Python syntax highlighting
 
 call plug#end()
 
 " I believe this means that sytax highlighting is on which helps when you
 " write code.
-let python_highlight_all=1
+let python_highlight_all=0
 syntax on
 
 " This is the color scheme that's applied from the plugin I installed.
@@ -95,6 +98,7 @@ let g:quickrun_known_file_types = {
 			\"php": ["!php %"],
 			\"vim": ["source %"],
 			\"py": ["!python3 %"],
+			\"rt": ["cargo run --release %"],
 			\}
 
 " Set up previewing with Simpyl Fold
@@ -108,9 +112,6 @@ set undofile
 
 " Make sure the wrap doesn't cut midway through a word
 set wrap linebreak nolist
-
-" Vim command aliases
-cmap tw tabnew
 
 " Ale config
 let g:ale_fix_on_save = 1
@@ -166,7 +167,7 @@ let g:startify_custom_header =
           \ 'startify#pad(g:ascii + startify#fortune#boxed())'
 
 " Set the Vim command memory to 200
-set history=200
+set history=1000
 
 " Airline configuration
 set noshowmode
@@ -191,17 +192,16 @@ noremap gk k
 set hidden  " TextEdit might fail without this setting
 set nobackup  " I live on the wild side
 set nowritebackup
-set completeopt=longest,menuone  " Automatically select the first option
+set completeopt=longest,menuone  " Automatically select the first autocomplete option
+nmap <leader>rn <Plug>(coc-rename)
 
-" Hooray for fuzzy wuzzy ever so soft file completion!
-set rtp+=/opt/homebrew/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf " Hooray for fuzzy wuzzy ever so soft file completion!
 
 " Make sure Markdown lists and other stuff gets automatically indented
 " correctly and doesn't wrap around bullet points
 set autoindent
 
-" Show search results in real time
-set incsearch
+set incsearch  " Show search results in real time
 
 " Bullets plugin config
 let g:bullets_enabled_file_types = [
@@ -220,3 +220,9 @@ set splitright  " I prefer splitting right and below
 set splitbelow
 
 set scrolloff=3 " Keep three lines between the cursor and the edge of the screen
+
+set signcolumn=yes  " Always show the sign column
+
+if executable('ag')  " Use ag instead of ack for the backend search if it's available
+  let g:ackprg = 'ag --vimgrep'
+endif
