@@ -37,8 +37,7 @@ endfunction
 call plug#begin()
 
 Plug 'junegunn/vim-easy-align', Cond(!exists('g:vscode'))  " Python alignment
-Plug 'yggdroot/indentline', Cond(!exists('g:vscode'))  " Correct Python identation
-Plug 'nvie/vim-flake8',  Cond(!exists('g:vscode'), { 'for': 'python' })  " Python linting
+Plug 'lukas-reineke/indent-blankline.nvim', Cond(!exists('g:vscode'))  " Show indentation
 Plug 'Raimondi/delimitMate', Cond(!exists('g:vscode'))  " Auto quotation marks and bracket completion
 Plug 'mikecoder/quickrun.vim', Cond(!exists('g:vscode'), { 'on': 'QuickRun' })  " Quickly run code without exiting Vim
 Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))  " Code folding
@@ -54,30 +53,46 @@ Plug 'dense-analysis/ale', Cond(!exists('g:vscode'))  " Asynchronous Code Lintin
 Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))  " Show git changes in the gutter
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))  " A git interface so awesome it should be illegal
 Plug 'tpope/vim-commentary'  " Easily comment out parts of code
-Plug 'mhinz/vim-startify', Cond(!exists('g:vscode'))  " Cool Vim start screen. Is it useful? Maybe. But
-" why not?
 Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode')) " That nice little status bar at the bottow of
 " the screen
 Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode')) " Makes the bar match the theme
-Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))  " Adds (hopefully) better syntax highlighting
 Plug 'wincent/terminus'  " Better cursor
 Plug 'errata-ai/vale', {'for': ['text', 'markdown']}
 Plug 'jose-elias-alvarez/null-ls.nvim', {'for': ['text', 'markdown']}  " Vale integration with Vim
 Plug 'github/copilot.vim', Cond(!exists('g:vscode'))  " Code suggestions using GPT-3
 Plug 'junegunn/fzf.vim', {'on': 'FZF'}  " Fuzzy file searching
-Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}  " Better markdown syntax highlighting
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown', {'for': 'markdown'}  " Better markdown syntax highlighting
 Plug 'dkarter/bullets.vim'  " Finally stopped typing out my own numbered lists
 " like a fucking peasant
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " Markdown preview in the browser
 Plug 'soywod/himalaya', Cond(!exists('g:vscode'), {'rtp': 'vim', 'on': 'Himalaya'})  " Email client
 Plug 'mileszs/ack.vim', Cond(!exists('g:vscode'), {'on': 'Ack'})  " Search for things in files
-Plug 'numirias/semshi', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins', 'for': 'python' })  " Better Python syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'), {'do': ':TSUpdate'})	" Syntax highlighting
+Plug 'nvim-lua/plenary.nvim', Cond(!exists('g:vscode'))  " Not sure what this does, but it's a requirement for telescope
+Plug 'nvim-telescope/telescope.nvim', Cond(!exists('g:vscode'))  " A file explorer
+Plug 'kyazdani42/nvim-web-devicons', Cond(!exists('g:vscode'))  " Web devicons
+Plug 'rcarriga/nvim-notify', Cond(!exists('g:vscode'))  " Awesome GUI notifications
+if has('nvim')
+  function! UpdateRemotePlugins(...)
+    " Needed to refresh runtime files
+    let &rtp=&rtp
+    UpdateRemotePlugins
+  endfunction
+
+  Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+else
+  Plug 'gelguy/wilder.nvim'
+
+  " To use Python remote plugin features in Vim, can be skipped
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
 " I believe this means that sytax highlighting is on which helps when you
 " write code.
-let python_highlight_all=0
 syntax on
 
 " This is the color scheme that's applied from the plugin I installed.
@@ -116,56 +131,6 @@ set wrap linebreak nolist
 " Ale config
 let g:ale_fix_on_save = 1
 
-" Startify config
-" This is the header that shows every time I open Vim. Pretty sweet if I do
-" say so myself.
-" Got it from asciiart.eu
-let g:ascii = [
-	\ '                    / \							',
-	\ '                   / | \  Three Rings for the Elvin-Kings under the sky.	',
-	\ '                  /  |  \ Seven for the DwarfLords in their halls of stone.	',
-	\ '                 |   |   |    Nine for the Mortal Men doomed to die.		',
-	\ '                 |   |   |    One for the Dark Lord on his dark throne.	',
-	\ '                 |   |   |In the Land of Mordor where the Shadow Lies.	',
-	\ '                 |   |   |							',
-	\ '                 |   |   |  One Ring to rule them all,One Ring to find them,	',
-	\ '                 |   |   |One Ring to bring them all and in the Darkness	',
-	\ '                 |   |   |   Bind Them					',
-	\ '                 |   |   |  In the Land of Mordor where the Shadows Lie.	',
-	\ '                 |   |   |							',
-	\ '                 |   |   |							',
-	\ '                 |   |   |							',
-	\ '                 |   |   |                        "Lord Of The Rings"	',
-	\ '                 |   |   |                              by J.R.R. Tolkien	',
-	\ '                 |   |   |							',
-	\ '                 |   |   |							',
-	\ '                 |   |   |							',
-	\ '                 |   |   |							',
-	\ '                 |   |   |                      .____---^^     ^^---____.	',
-	\ '                 |   |   |                      TI      *       *      IT	',
-	\ '                 |   |   |                      !I          *          I!	',
-	\ '                 |  / \  |                       X                     X	',
-	\ '/\               |/     \|               /\      XL         ?         JX	',
-	\ '\ \_____________/         \_____________/ /      II    ?   / \   ?    II	',
-	\ ' \______________\         /______________/       II   / \ /   \ / \   II	',
-	\ '                 \       /                        X  /   v     v   \  X	',
-	\ '                 |\\   //|                        ``/    _     _    \''	',
-	\ '                 |//\ ///|                         \\- _-_ -_- _-_ -//	',
-	\ '                 |///////|                           \\_-  -_-  -_//		',
-	\ '                 |///////|                             ``       ''		',
-	\ '                 |///////|                               ``-_-''		',
-	\ '                 |///////|							',
-	\ '                 |///////|							',
-	\ '                 |///////|							',
-	\ '                / \/\_/\/ \							',
-	\ '               |\_/\/ \/\_/|							',
-	\ '               |/ \/\ /\/ \|							',
-	\ '                \_/\/_\/\_/							',
-	\ '                  \_/_\_/							',
-	\]
-let g:startify_custom_header =
-          \ 'startify#pad(g:ascii + startify#fortune#boxed())'
-
 " Set the Vim command memory to 200
 set history=1000
 
@@ -196,21 +161,14 @@ set completeopt=longest,menuone  " Automatically select the first autocomplete o
 nmap <leader>rn <Plug>(coc-rename)
 
 set rtp+=/opt/homebrew/opt/fzf " Hooray for fuzzy wuzzy ever so soft file completion!
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
 " Make sure Markdown lists and other stuff gets automatically indented
 " correctly and doesn't wrap around bullet points
 set autoindent
 
 set incsearch  " Show search results in real time
-
-" Bullets plugin config
-let g:bullets_enabled_file_types = [
-    \ 'markdown',
-    \ 'text',
-    \ 'gitcommit',
-    \ 'scratch'
-    \]  " Only allow Bullets to work on these filetypes
-let g:bullet_line_spacing = 2  " One empty space between bullets
 
 " Clear the search highlighting after I'm done searching
 nnoremap <silent> \ :noh<return>
@@ -226,3 +184,35 @@ set signcolumn=yes  " Always show the sign column
 if executable('ag')  " Use ag instead of ack for the backend search if it's available
   let g:ackprg = 'ag --vimgrep'
 endif
+
+let g:vim_markdown_folding_disabled = 1  " Disable Markdown folding
+
+" Load my Lua customization for Lua only config options
+luafile $HOME/.config/nvim/nvim_init.lua
+
+set cursorline  " Highlight the current line
+
+call wilder#setup({'modes': [':', '/', '?']})	" Setup wilder triggers
+
+" Fuzzy command searching
+call wilder#set_option('pipeline', [
+      \   wilder#branch(
+      \     wilder#cmdline_pipeline({
+      \       'language': 'python',
+      \       'fuzzy': 1,
+      \     }),
+      \     wilder#python_search_pipeline({
+      \       'pattern': wilder#python_fuzzy_pattern(),
+      \       'sorter': wilder#python_difflib_sorter(),
+      \       'engine': 're',
+      \     }),
+      \   ),
+      \ ])
+
+" Configure Wilder menu to show command completion in the status bar
+call wilder#set_option('renderer', wilder#wildmenu_renderer(
+      \ wilder#wildmenu_airline_theme({
+      \   'highlights': {},
+      \   'highlighter': wilder#basic_highlighter(),
+      \   'separator': ' · ',
+      \ })))
