@@ -88,6 +88,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))  " Icons and glyphs
 
 call plug#end()
 
@@ -216,3 +217,5 @@ call wilder#set_option('renderer', wilder#wildmenu_renderer(
       \   'highlighter': wilder#basic_highlighter(),
       \   'separator': ' · ',
       \ })))
+
+set guifont=Cascadia\ Code,Symbols\ Nerd\ Font\ Mono\ Light:h12  " Required for Reovim
