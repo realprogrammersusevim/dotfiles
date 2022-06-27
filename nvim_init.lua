@@ -108,4 +108,10 @@ return {
       col = { vim.opt.columns:get() },
     }
   end,
+},
+
+require('telescope').setup{
+	defaults = {
+		file_ignore_patterns = { "venv/*", "__pycache__/*", "Library/*", "Pictures/*", "Applications/*" },
+	}
 }

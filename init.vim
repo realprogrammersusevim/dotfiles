@@ -71,7 +71,6 @@ Plug 'mileszs/ack.vim', Cond(!exists('g:vscode'), {'on': 'Ack'})  " Search for t
 Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'), {'do': ':TSUpdate'})	" Syntax highlighting
 Plug 'nvim-lua/plenary.nvim', Cond(!exists('g:vscode'))  " Not sure what this does, but it's a requirement for telescope
 Plug 'nvim-telescope/telescope.nvim', Cond(!exists('g:vscode'))  " A file explorer
-Plug 'kyazdani42/nvim-web-devicons', Cond(!exists('g:vscode'))  " Web devicons
 Plug 'rcarriga/nvim-notify', Cond(!exists('g:vscode'))  " Awesome GUI notifications
 if has('nvim')
   function! UpdateRemotePlugins(...)
@@ -89,6 +88,9 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))  " Icons and glyphs
+Plug 'ajmwagar/vim-deus', Cond(!exists('g:vscode'))  " Deus colorscheme
+Plug 'arcticicestudio/nord-vim', Cond(!exists('g:vscode'))  " Nord colorscheme
+
 
 call plug#end()
 
@@ -97,7 +99,7 @@ call plug#end()
 syntax on
 
 " This is the color scheme that's applied from the plugin I installed.
-colorscheme onehalfdark
+colorscheme nord
 
 " Not completely sure what this does. I think it's making more colors
 " available
@@ -219,3 +221,11 @@ call wilder#set_option('renderer', wilder#wildmenu_renderer(
       \ })))
 
 set guifont=Cascadia\ Code,Symbols\ Nerd\ Font\ Mono\ Light:h12  " Required for Reovim
+
+function! PlugSync()  " Function called by PlugSync command to sync my plugins
+	PlugClean
+	PlugUpdate
+	PlugInstall
+endfunction
+
+command -nargs=0 PlugSync call PlugSync()  " Define my PlugSync command
