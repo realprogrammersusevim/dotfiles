@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
-alias mvim="open -a \"MacVim\""
+alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -120,9 +120,6 @@ export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 
 # Set command line to Vi mode
 bindkey -v
-
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -139,3 +136,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export TERM=xterm-256color-italic
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source $HOME/.cargo/env
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+
+source $HOME/.personal_commands.sh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
