@@ -4,6 +4,8 @@
 " infinitally customizable, so it would be a shame to use someone else's
 " config file if it didn't actually suit you. Adapt it to your own needs.
 
+" Only loads these options if I'm not using the vscode-neovim plugin.
+if !exists('g:vscode')
 
 " Yes, yes, I know all of the hardcore touch typists will hate this. But it is
 " useful.
@@ -36,11 +38,11 @@ endfunction
 " From there you should be good to go.
 call plug#begin()
 
-Plug 'junegunn/vim-easy-align', Cond(!exists('g:vscode'))  " Python alignment
-Plug 'lukas-reineke/indent-blankline.nvim', Cond(!exists('g:vscode'))  " Show indentation
-Plug 'Raimondi/delimitMate', Cond(!exists('g:vscode'))  " Auto quotation marks and bracket completion
-Plug 'mikecoder/quickrun.vim', Cond(!exists('g:vscode'), { 'on': 'QuickRun' })  " Quickly run code without exiting Vim
-Plug 'tmhedberg/SimpylFold', Cond(!exists('g:vscode'))  " Code folding
+Plug 'junegunn/vim-easy-align'  " Python alignment
+Plug 'lukas-reineke/indent-blankline.nvim'  " Show indentation
+Plug 'Raimondi/delimitMate'  " Auto quotation marks and bracket completion
+Plug 'mikecoder/quickrun.vim', { 'on': 'QuickRun' }  " Quickly run code without exiting Vim
+Plug 'tmhedberg/SimpylFold'  " Code folding
 " Great code completion, if I start working with another programming language
 " in Vim I'll just need to install another Coc plugin and add that language to
 " the list coc will be loaded for
@@ -90,7 +92,7 @@ endif
 Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))  " Icons and glyphs
 Plug 'ajmwagar/vim-deus', Cond(!exists('g:vscode'))  " Deus colorscheme
 Plug 'arcticicestudio/nord-vim', Cond(!exists('g:vscode'))  " Nord colorscheme
-
+Plug 'vlime/vlime', Cond(!exists('g:vscode'), {'rtp': 'vim'})  " Lisp coding
 
 call plug#end()
 
@@ -116,7 +118,11 @@ let g:quickrun_known_file_types = {
 			\"php": ["!php %"],
 			\"vim": ["source %"],
 			\"py": ["!python3 %"],
-			\"rt": ["cargo run --release %"],
+			\"rt": ["!cargo run --release %"],
+			\"rs": ["!rustc %", "./a.out"],
+			\"sh": ["!bash %"],
+			\"js": ["!node %"],
+			\"lisp": ["!clisp %"],
 			\}
 
 " Set up previewing with Simpyl Fold
@@ -229,3 +235,11 @@ function! PlugSync()  " Function called by PlugSync command to sync my plugins
 endfunction
 
 command -nargs=0 PlugSync call PlugSync()  " Define my PlugSync command
+
+function! VlimeServer()
+	!sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp
+endfunction
+
+command -nargs=0 VlimeServer call VlimeServer()  " Start the Vlime server
+
+endif
