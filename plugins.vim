@@ -1,0 +1,1 @@
+/Users/jonathanmilligan/-config/nvim/plugins.vim

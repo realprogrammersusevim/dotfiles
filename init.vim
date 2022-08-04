@@ -1,1 +1,1 @@
-/Users/jonathanmilligan/config/nvim/init.vim
+/Users/jonathanmilligan/.config/nvim/init.vim
