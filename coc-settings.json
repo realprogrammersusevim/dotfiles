@@ -1,1 +1,11 @@
-/Users/jonathanmilligan/.config/nvim/coc-settings.json
+{
+"suggest.noselect": false,
+"suggest.maxCompleteItemCount": 10,
+"diagnostics.enable": false,
+"diagnostic.displayByAle": true,
+"diagnostic.enableSign": false,
+"suggest.floatConfig": {
+  "border": true,
+  "rounded": true,
+},
+}
