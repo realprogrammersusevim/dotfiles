@@ -106,6 +106,7 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
 alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
+alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -114,12 +115,15 @@ export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
 
 # Set command line to Vi mode
 bindkey -v
+set editing-mode vi
+set show-mode-in-prompt on
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -143,6 +147,8 @@ source $HOME/.cargo/env
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 source $HOME/.personal_commands.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
