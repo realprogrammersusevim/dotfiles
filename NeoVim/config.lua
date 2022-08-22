@@ -20,7 +20,9 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["gj"] = "j"
 lvim.keys.normal_mode["k"] = "gk"
+lvim.keys.normal_mode["gk"] = "k"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -148,21 +150,23 @@ linters.setup {
 -- Additional Plugins
 lvim.plugins = {
   --     {"folke/tokyonight.nvim"},
-  { "github/copilot.vim" },
+  { "github/copilot.vim" }, -- GitHub Copilot extension
   --{ "zbirenbaum/copilot-cmp" },
-  { "lukas-reineke/indent-blankline.nvim" },
-  { "xuyuanp/scrollbar.nvim" },
-  { "nacro90/numb.nvim" },
-  { "kevinhwang91/rnvimr" },
-  { "apzelos/blamer.nvim" },
+  { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
+  { "nacro90/numb.nvim" }, -- Peek lines as you type in line numbers
+  { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
   {
-    "folke/zen-mode.nvim",
+    "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
+    cmd = { "ZenMode" },
     options = {
       number = true,
     },
   },
-  { "folke/todo-comments.nvim" },
-  { "folke/twilight.nvim" },
+  { "folke/todo-comments.nvim" }, -- Highlights TODO and other special comments
+  {
+    "folke/twilight.nvim", -- Goes with Zen Mode to dim text I'm not focused on
+    cmd = { "Twilight", "ZenMode" },
+  },
   --     {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
@@ -195,8 +199,3 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
   "                                                     ",
 }
-
-vim.cmd([[
-noremap j gj
-noremap k gk
-]])
