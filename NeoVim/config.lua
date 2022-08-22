@@ -19,6 +19,8 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["k"] = "gk"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -152,6 +154,15 @@ lvim.plugins = {
   { "xuyuanp/scrollbar.nvim" },
   { "nacro90/numb.nvim" },
   { "kevinhwang91/rnvimr" },
+  { "apzelos/blamer.nvim" },
+  {
+    "folke/zen-mode.nvim",
+    options = {
+      number = true,
+    },
+  },
+  { "folke/todo-comments.nvim" },
+  { "folke/twilight.nvim" },
   --     {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
@@ -172,68 +183,6 @@ lvim.plugins = {
 --   end,
 -- })
 
--- Scrollbar Config
-vim.cmd([[
-augroup ScrollbarInit
-  autocmd!
-  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
-augroup end
-]])
-
-vim.cmd("command! -nargs=0 ZkIndex :lua require'lspconfig'.zk.index()")
-vim.cmd("command! -nargs=? ZkNew :lua require'lspconfig'.zk.new(<args>)")
-
-
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig/configs'
-
-configs.zk = {
-  default_config = {
-    cmd = { 'zk', 'lsp' };
-    filetypes = { 'markdown' };
-    root_dir = lspconfig.util.root_pattern('.zk');
-    settings = {};
-  };
-}
-
-configs.zk.index = function()
-  vim.lsp.buf.execute_command({
-    command = "zk.index",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  })
-end
-
-configs.zk.new = function(...)
-  vim.lsp.buf_request(0, 'workspace/executeCommand',
-    {
-      command = "zk.new",
-      arguments = {
-        vim.api.nvim_buf_get_name(0),
-        ...
-      },
-    },
-    function(_, _, result)
-      if not (result and result.path) then return end
-      vim.cmd("edit " .. result.path)
-    end
-  )
-end
-
-lspconfig.zk.setup({
-  on_attach = function(client, bufnr)
-    -- Key mappings
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-    local opts = { noremap = true, silent = true }
-    buf_set_keymap("n", "<CR>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>zi", ":ZkIndex<CR>", opts)
-    buf_set_keymap("v", "<leader>zn", ":'<,'dir = 'log'}<CR>", opts)
-  end
-})
-
 vim.o.guifont = "FiraMono Nerd Font Mono:h12"
 
 lvim.builtin.alpha.dashboard.section.header.val = {
@@ -246,3 +195,8 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
   "                                                     ",
 }
+
+vim.cmd([[
+noremap j gj
+noremap k gk
+]])
