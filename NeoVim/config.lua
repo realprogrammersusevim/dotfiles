@@ -157,16 +157,13 @@ lvim.plugins = {
   { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
   {
     "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
-    cmd = { "ZenMode" },
     options = {
       number = true,
     },
   },
   { "folke/todo-comments.nvim" }, -- Highlights TODO and other special comments
-  {
-    "folke/twilight.nvim", -- Goes with Zen Mode to dim text I'm not focused on
-    cmd = { "Twilight", "ZenMode" },
-  },
+  { "folke/twilight.nvim", }, -- Goes with Zen Mode to dim text I'm not focused on
+  { "JamshedVesuna/vim-markdown-preview" },
   --     {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
@@ -199,3 +196,5 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
   "                                                     ",
 }
+
+vim.cmd("let vim_markdown_preview_github = 1")

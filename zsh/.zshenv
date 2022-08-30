@@ -5,3 +5,5 @@ BAT_THEME="OneHalfDark"
 . "$HOME/.cargo/env"
 TERM=xterm
 EDITOR=nvim
+VISUAL=nvim
+GIT_EDITOR=nvim
