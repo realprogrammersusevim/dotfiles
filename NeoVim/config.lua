@@ -149,11 +149,22 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  --     {"folke/tokyonight.nvim"},
+  { "folke/tokyonight.nvim" },
   { "github/copilot.vim" }, -- GitHub Copilot extension
   --{ "zbirenbaum/copilot-cmp" },
   { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
-  { "nacro90/numb.nvim" }, -- Peek lines as you type in line numbers
+  { -- Peek lines as you type in line numbers
+    "nacro90/numb.nvim",
+    event = "BufRead",
+    config = function()
+      require("numb").setup() {
+        show_numbers = true, -- Enable 'number' for the window while peeking
+        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+        number_only = true, -- Peek only the line numbers
+        centered_peeking = true,
+      }
+    end,
+  },
   { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
   {
     "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
@@ -161,13 +172,26 @@ lvim.plugins = {
       number = true,
     },
   },
-  { "folke/todo-comments.nvim" }, -- Highlights TODO and other special comments
+  { -- Highlights TODO and other special comments
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
   { "folke/twilight.nvim", }, -- Goes with Zen Mode to dim text I'm not focused on
-  { "JamshedVesuna/vim-markdown-preview" },
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
+  {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -197,4 +221,10 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   "                                                     ",
 }
 
-vim.cmd("let vim_markdown_preview_github = 1")
+-- Configure Tokyo Night colorscheme
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Load the colorscheme
+vim.cmd [[colorscheme tokyonight]]
