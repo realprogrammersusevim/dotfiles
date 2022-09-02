@@ -107,6 +107,9 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
 alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias ea="exa --all --long --git --header --icons"
+alias ls="ea"
+alias cd="z"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
