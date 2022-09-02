@@ -150,21 +150,10 @@ linters.setup {
 -- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
+  { "arcticicestudio/nord-vim" },
   { "github/copilot.vim" }, -- GitHub Copilot extension
   --{ "zbirenbaum/copilot-cmp" },
   { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
-  { -- Peek lines as you type in line numbers
-    "nacro90/numb.nvim",
-    event = "BufRead",
-    config = function()
-      require("numb").setup() {
-        show_numbers = true, -- Enable 'number' for the window while peeking
-        show_cursorline = true, -- Enable 'cursorline' for the window while peeking
-        number_only = true, -- Peek only the line numbers
-        centered_peeking = true,
-      }
-    end,
-  },
   { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
   {
     "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
@@ -228,3 +217,4 @@ vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Load the colorscheme
 vim.cmd [[colorscheme tokyonight]]
+vim.cmd("colorscheme nord")
