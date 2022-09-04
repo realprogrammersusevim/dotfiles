@@ -150,7 +150,6 @@ linters.setup {
 -- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
-  { "arcticicestudio/nord-vim" },
   { "github/copilot.vim" }, -- GitHub Copilot extension
   --{ "zbirenbaum/copilot-cmp" },
   { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
@@ -216,5 +215,4 @@ vim.g.tokyonight_italic_functions = true
 vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Load the colorscheme
-vim.cmd [[colorscheme tokyonight]]
-vim.cmd("colorscheme nord")
+lvim.colorscheme = "tokyonight"
