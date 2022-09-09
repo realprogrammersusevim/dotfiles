@@ -226,6 +226,5 @@ vim.api.nvim_create_user_command(
   function()
     vim.cmd("ZenMode")
     vim.cmd("Ditto")
-    vim.cmd("Wordy")
   end,
   { bang = true, desc = 'Toggle Zen Mode, Ditto, and Wordy' })
