@@ -180,6 +180,9 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  { "dbmrq/vim-ditto" }, -- Highlight often repeated words when writing.
+  { "preservim/vim-wordy" }, -- Catch bad writing style like weak or weasel words
+  { "Ron89/thesaurus_query.vim" }, -- Have access to a Thesaures to replace words
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -216,3 +219,13 @@ vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 
 -- Load the colorscheme
 lvim.colorscheme = "tokyonight"
+
+-- Writing custom comand to toggle Zen Mode, Ditto, and Wordy
+vim.api.nvim_create_user_command(
+  "WritingMode",
+  function()
+    vim.cmd("ZenMode")
+    vim.cmd("Ditto")
+    vim.cmd("Wordy")
+  end,
+  { bang = true, desc = 'Toggle Zen Mode, Ditto, and Wordy' })
