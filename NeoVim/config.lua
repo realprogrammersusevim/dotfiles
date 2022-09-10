@@ -185,6 +185,9 @@ lvim.plugins = {
   { "Ron89/thesaurus_query.vim" }, -- Have access to a Thesaures to replace words
   { "wfxr/minimap.vim" }, -- Have the option to show a minimap on the right side
   { "karb94/neoscroll.nvim" }, -- Nice smooth scrolling
+  -- { "jakewvincent/mkdnflow.nvim" }, -- Complete zettelkasten markdown workflow
+  { "renerocksai/telekasten.nvim" }, -- Awsome zettelkasten plugin
+  { "pwntester/octo.nvim" }, -- GitHub integration
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
