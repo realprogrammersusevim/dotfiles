@@ -168,7 +168,7 @@ lvim.plugins = {
     end,
   },
   { "folke/twilight.nvim", }, -- Goes with Zen Mode to dim text I'm not focused on
-  {
+  { -- Incredible markdown preview in the browser
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
     ft = "markdown",
@@ -183,6 +183,8 @@ lvim.plugins = {
   { "dbmrq/vim-ditto" }, -- Highlight often repeated words when writing.
   { "preservim/vim-wordy" }, -- Catch bad writing style like weak or weasel words
   { "Ron89/thesaurus_query.vim" }, -- Have access to a Thesaures to replace words
+  { "wfxr/minimap.vim" }, -- Have the option to show a minimap on the right side
+  { "karb94/neoscroll.nvim" }, -- Nice smooth scrolling
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
