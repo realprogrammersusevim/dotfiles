@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="eastwood"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -73,14 +73,13 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	python
+  python
   git
   brew
-	sudo
+  sudo
   macos
-	zsh-autosuggestions
+  zsh-autosuggestions
   zsh-autocomplete
-  zsh-activate-py-environment
   alias-tips
   zsh-syntax-highlighting
 )
@@ -117,6 +116,7 @@ alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {
 alias ea="exa --all --long --git --header --icons"
 alias ls="ea"
 alias cd="z"
+alias gui="gitui"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
