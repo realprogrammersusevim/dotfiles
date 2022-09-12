@@ -269,3 +269,6 @@ wilder.set_option('renderer', wilder.renderer_mux({
     highlighter = wilder.lua_fzy_highlighter(),
   }),
 }))
+
+-- Configure Blamer
+vim.g.blamer_enabled = 1 -- Enable Blamer by default
