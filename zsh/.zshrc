@@ -74,8 +74,15 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	python
+  git
+  brew
 	sudo
+  macos
 	zsh-autosuggestions
+  zsh-autocomplete
+  zsh-activate-py-environment
+  alias-tips
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
