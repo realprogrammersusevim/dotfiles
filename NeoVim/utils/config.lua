@@ -19,6 +19,10 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["j"] = "gj"
+lvim.keys.normal_mode["gj"] = "j"
+lvim.keys.normal_mode["k"] = "gk"
+lvim.keys.normal_mode["gk"] = "k"
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -145,17 +149,48 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  --     {"folke/tokyonight.nvim"},
-  { "github/copilot.vim" },
+  { "folke/tokyonight.nvim" },
+  { "github/copilot.vim" }, -- GitHub Copilot extension
   --{ "zbirenbaum/copilot-cmp" },
-  { "lukas-reineke/indent-blankline.nvim" },
-  { "xuyuanp/scrollbar.nvim" },
-  { "nacro90/numb.nvim" },
-  { "kevinhwang91/rnvimr" },
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
+  { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
+  { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
+  {
+    "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
+    options = {
+      number = true,
+    },
+  },
+  { -- Highlights TODO and other special comments
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+  { "folke/twilight.nvim", }, -- Goes with Zen Mode to dim text I'm not focused on
+  { -- Incredible markdown preview in the browser
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
+  { "dbmrq/vim-ditto" }, -- Highlight often repeated words when writing.
+  { "preservim/vim-wordy" }, -- Catch bad writing style like weak or weasel words
+  { "Ron89/thesaurus_query.vim" }, -- Have access to a Thesaures to replace words
+  { "wfxr/minimap.vim" }, -- Have the option to show a minimap on the right side
+  { "karb94/neoscroll.nvim" }, -- Nice smooth scrolling
+  -- { "jakewvincent/mkdnflow.nvim" }, -- Complete zettelkasten markdown workflow
+  { "renerocksai/telekasten.nvim" }, -- Awsome zettelkasten plugin
+  { "pwntester/octo.nvim" }, -- GitHub integration
+  { "nixprime/cpsm" }, -- Required for Wilder
+  { "romgrk/fzy-lua-native" }, -- Required for Wilder menu
+  { "gelguy/wilder.nvim" }, -- Fuzzy completion for ex commands
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -172,68 +207,6 @@ lvim.plugins = {
 --   end,
 -- })
 
--- Scrollbar Config
-vim.cmd([[
-augroup ScrollbarInit
-  autocmd!
-  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
-augroup end
-]])
-
-vim.cmd("command! -nargs=0 ZkIndex :lua require'lspconfig'.zk.index()")
-vim.cmd("command! -nargs=? ZkNew :lua require'lspconfig'.zk.new(<args>)")
-
-
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig/configs'
-
-configs.zk = {
-  default_config = {
-    cmd = { 'zk', 'lsp' };
-    filetypes = { 'markdown' };
-    root_dir = lspconfig.util.root_pattern('.zk');
-    settings = {};
-  };
-}
-
-configs.zk.index = function()
-  vim.lsp.buf.execute_command({
-    command = "zk.index",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  })
-end
-
-configs.zk.new = function(...)
-  vim.lsp.buf_request(0, 'workspace/executeCommand',
-    {
-      command = "zk.new",
-      arguments = {
-        vim.api.nvim_buf_get_name(0),
-        ...
-      },
-    },
-    function(_, _, result)
-      if not (result and result.path) then return end
-      vim.cmd("edit " .. result.path)
-    end
-  )
-end
-
-lspconfig.zk.setup({
-  on_attach = function(client, bufnr)
-    -- Key mappings
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
-    local opts = { noremap = true, silent = true }
-    buf_set_keymap("n", "<CR>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "<leader>zi", ":ZkIndex<CR>", opts)
-    buf_set_keymap("v", "<leader>zn", ":'<,'dir = 'log'}<CR>", opts)
-  end
-})
-
 vim.o.guifont = "FiraMono Nerd Font Mono:h12"
 
 lvim.builtin.alpha.dashboard.section.header.val = {
@@ -246,3 +219,56 @@ lvim.builtin.alpha.dashboard.section.header.val = {
   "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
   "                                                     ",
 }
+
+-- Configure Tokyo Night colorscheme
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Load the colorscheme
+lvim.colorscheme = "tokyonight"
+
+-- Writing custom comand to toggle Zen Mode, Ditto, and Wordy
+vim.api.nvim_create_user_command(
+  "WritingMode",
+  function()
+    vim.cmd("ZenMode")
+    vim.cmd("Ditto")
+  end,
+  { bang = true, desc = 'Toggle Zen Mode, Ditto, and Wordy' })
+
+-- Configure Wilder
+local wilder = require('wilder')
+wilder.setup({ modes = { ':', '/', '?' } })
+-- Disable Python remote plugin
+wilder.set_option('use_python_remote_plugin', 0)
+
+wilder.set_option('pipeline', {
+  wilder.branch(
+    wilder.cmdline_pipeline({
+      fuzzy = 1,
+      fuzzy_filter = wilder.lua_fzy_filter(),
+    }),
+    wilder.vim_search_pipeline()
+  )
+})
+
+wilder.set_option('renderer', wilder.renderer_mux({
+  [':'] = wilder.popupmenu_renderer({
+    highlighter = wilder.lua_fzy_highlighter(),
+    left = {
+      ' ',
+      wilder.popupmenu_devicons()
+    },
+    right = {
+      ' ',
+      wilder.popupmenu_scrollbar()
+    },
+  }),
+  ['/'] = wilder.wildmenu_renderer({
+    highlighter = wilder.lua_fzy_highlighter(),
+  }),
+}))
+
+-- Configure Blamer
+vim.g.blamer_enabled = 1 -- Enable Blamer by default
