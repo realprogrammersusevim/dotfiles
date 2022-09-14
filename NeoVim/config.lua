@@ -191,6 +191,36 @@ lvim.plugins = {
   { "nixprime/cpsm" }, -- Required for Wilder
   { "romgrk/fzy-lua-native" }, -- Required for Wilder menu
   { "gelguy/wilder.nvim" }, -- Fuzzy completion for ex commands
+  { -- A quickrun plugin
+    "is0n/jaq-nvim",
+    require("jaq-nvim").setup {
+      cmds = {
+        internal = {
+          lua = "luafile %",
+          vim = "source %",
+        },
+        external = {
+          python = "python3 %",
+          ruby = "ruby %",
+          bash = "bash %",
+          sh = "sh %",
+          zsh = "zsh %",
+          perl = "perl %",
+          php = "php %",
+          node = "node %",
+          go = "go run %",
+          rust = "rustc run %",
+          c = "gcc % -o %< && ./%<",
+          cpp = "g++ % -o %< && ./%<",
+          java = "javac % && java %<",
+          lua = "lua %",
+          clojure = "clojure %",
+          swift = "swift %",
+        },
+      }
+    }
+  },
+  { "realprogrammersusevim/md-to-html.nvim" } -- My own plugin to convert markdown to html
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -234,6 +264,9 @@ vim.api.nvim_create_user_command(
   function()
     vim.cmd("ZenMode")
     vim.cmd("Ditto")
+    vim.o.wrap = true
+    vim.o.linebreak = true
+    vim.o.list = true
   end,
   { bang = true, desc = 'Toggle Zen Mode, Ditto, and Wordy' })
 

@@ -84,6 +84,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+source $ZSH/oh-my-zsh.sh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -111,10 +113,10 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
 alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias ea="exa --all --long --git --header --icons"
-alias ls="ea"
+alias ls="exa --all --long --git --header --icons"
 alias cd="z"
 alias gui="gitui"
+alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -161,5 +163,3 @@ eval "$(zoxide init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-source $ZSH/oh-my-zsh.sh
