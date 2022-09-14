@@ -65,7 +65,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -132,7 +132,10 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { command = "black", filetypes = { "python" } },
+
+  { command = "black", filetypes = { "python" }, args = { "--quiet" } },
+  { command = "alex", filetypes = { "markdown" }, args = { "--quiet", "--stdin" } },
+  { command = "commitlint", filetypes = "gitcommit", args = { "--color", "never" } },
   {
     --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
@@ -146,6 +149,7 @@ linters.setup {
   --     filetypes = { "javascript", "python" },
   --   },
 }
+
 
 -- Additional Plugins
 lvim.plugins = {
@@ -220,7 +224,8 @@ lvim.plugins = {
       }
     }
   },
-  { "realprogrammersusevim/md-to-html.nvim" } -- My own plugin to convert markdown to html
+  { "realprogrammersusevim/md-to-html.nvim" }, -- My own plugin to convert markdown to html
+  { "dkarter/bullets.vim" }, -- Make Markdown lists easier
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -262,13 +267,13 @@ lvim.colorscheme = "tokyonight"
 vim.api.nvim_create_user_command(
   "WritingMode",
   function()
-    vim.cmd("ZenMode")
+    vim.cmd("TwilightEnable")
     vim.cmd("Ditto")
     vim.o.wrap = true
     vim.o.linebreak = true
     vim.o.list = true
   end,
-  { bang = true, desc = 'Toggle Zen Mode, Ditto, and Wordy' })
+  { bang = true, desc = 'Toggle Twilight, word wrapping, and Wordy' })
 
 -- Configure Wilder
 local wilder = require('wilder')
