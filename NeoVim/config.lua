@@ -132,10 +132,9 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-
-  { command = "black", filetypes = { "python" }, args = { "--quiet" } },
+  { command = "black", filetypes = { "python" } },
   { command = "alex", filetypes = { "markdown" }, args = { "--quiet", "--stdin" } },
-  { command = "commitlint", filetypes = "gitcommit", args = { "--color", "never" } },
+  -- { command = "commitlint", filetypes = "gitcommit", args = { "--color", "never" } },
   {
     --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "shellcheck",
@@ -186,12 +185,21 @@ lvim.plugins = {
   },
   { "dbmrq/vim-ditto" }, -- Highlight often repeated words when writing.
   { "preservim/vim-wordy" }, -- Catch bad writing style like weak or weasel words
-  { "Ron89/thesaurus_query.vim" }, -- Have access to a Thesaures to replace words
   { "wfxr/minimap.vim" }, -- Have the option to show a minimap on the right side
   { "karb94/neoscroll.nvim" }, -- Nice smooth scrolling
   -- { "jakewvincent/mkdnflow.nvim" }, -- Complete zettelkasten markdown workflow
   { "renerocksai/telekasten.nvim" }, -- Awsome zettelkasten plugin
-  { "pwntester/octo.nvim" }, -- GitHub integration
+  { -- GitHub integration
+    "pwntester/octo.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "kyazdani42/nvim-web-devicons",
+    },
+    config = function()
+      require("octo").setup()
+    end,
+  },
   { "nixprime/cpsm" }, -- Required for Wilder
   { "romgrk/fzy-lua-native" }, -- Required for Wilder menu
   { "gelguy/wilder.nvim" }, -- Fuzzy completion for ex commands
@@ -224,8 +232,11 @@ lvim.plugins = {
       }
     }
   },
-  { "realprogrammersusevim/md-to-html.nvim" }, -- My own plugin to convert markdown to html
+  -- { "realprogrammersusevim/md-to-html.nvim" }, -- My own plugin to convert markdown to html
   { "dkarter/bullets.vim" }, -- Make Markdown lists easier
+  { "bfredl/nvim-luadev" }, -- Interact with Lua code in plugins
+  { "voldikss/vim-floaterm" }, -- Get a nice floating terminal in Vim
+  { "kristijanhusak/vim-carbon-now-sh" }, -- Export code snippets into sweet images
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -310,3 +321,12 @@ wilder.set_option('renderer', wilder.renderer_mux({
 
 -- Configure Blamer
 vim.g.blamer_enabled = 1 -- Enable Blamer by default
+
+-- Set my runtime path
+vim.o.runtimepath = vim.o.runtimepath .. ",/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim"
+
+-- Set up Neoscroll
+require('neoscroll').setup()
+
+-- Set up a local thesaurus
+vim.opt.thesaurus = "/Users/jonathanmilligan/.config/nvim/mthesaur.txt"
