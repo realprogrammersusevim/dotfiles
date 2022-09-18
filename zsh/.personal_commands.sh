@@ -61,6 +61,16 @@ function zen() {
   python3 -c "import this"
 }
 
+function snake() {
+  # Convert a folder or file to snake case
+  if [ "$1" != "" ]; then
+    echo $1 | sed -e "s/\([A-Z]\)/-\L\1/g" -e "s/^-//"
+  else
+    echo "Usage: snake <name>"
+    exit 1
+  fi
+}
+
 # function hacking() {
 #     tmux new -s hacking
 #     tmux send-keys -t "hacking" "cmatrix"
