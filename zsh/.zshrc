@@ -117,6 +117,7 @@ alias ls="exa --all --long --git --header --icons"
 alias cd="z"
 alias gui="gitui"
 alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
+alias n="nvim"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
