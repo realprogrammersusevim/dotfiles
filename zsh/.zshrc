@@ -127,6 +127,7 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
+export PATH=$PATH:/Users/jonathanmilligan/Documents/GitHub/Coding/Python/Miscellaneous_Scripts
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
@@ -135,6 +136,10 @@ export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
 bindkey -v
 set editing-mode vi
 set show-mode-in-prompt on
+
+# zplug section
+# zplug "hlissner/zsh-autopair", defer:2
+# zplug "zsh-users/zsh-autosuggestions", defer:2
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -161,6 +166,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Zoxide stuff
 eval "$(zoxide init zsh)"
+
+source /Users/jonathanmilligan/.config/broot/launcher/bash/br
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

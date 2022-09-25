@@ -98,7 +98,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
--- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
+-- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- vim.tbl_map(function(server)
 --   return server ~= "emmet_ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
@@ -117,7 +117,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "black", filetypes = { "python" } },
-  --   { command = "isort", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
   --   {
   --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
   --     command = "prettier",
@@ -237,6 +237,11 @@ lvim.plugins = {
   { "bfredl/nvim-luadev" }, -- Interact with Lua code in plugins
   { "voldikss/vim-floaterm" }, -- Get a nice floating terminal in Vim
   { "kristijanhusak/vim-carbon-now-sh" }, -- Export code snippets into sweet images
+  { "dhruvasagar/vim-open-url" }, -- Open URLs
+  {
+    "glacambre/firenvim", -- Use NeoVim in every textbox on the internet
+    run = function() vim.fn["firenvim#install"](0) end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -330,3 +335,6 @@ require('neoscroll').setup()
 
 -- Set up a local thesaurus
 vim.opt.thesaurus = "/Users/jonathanmilligan/.config/nvim/mthesaur.txt"
+
+-- Open urls in the browser
+vim.g.open_url_browser_command = "open -a Brave"
