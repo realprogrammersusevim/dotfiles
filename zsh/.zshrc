@@ -118,6 +118,8 @@ alias cd="z"
 alias gui="gitui"
 alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
 alias n="nvim"
+alias rgf="rg --files | rg"
+alias ipy="ipython3"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
