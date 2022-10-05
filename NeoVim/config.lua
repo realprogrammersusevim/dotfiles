@@ -7,11 +7,9 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -114,54 +112,37 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
-  --   {
-  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-  --     command = "prettier",
-  --     ---@usage arguments to pass to the formatter
-  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --     extra_args = { "--print-with", "100" },
-  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --     filetypes = { "typescript", "typescriptreact" },
-  --   },
+local null_ls = require "null-ls"
+local sources = {
+  null_ls.builtins.formatting.black,
+  null_ls.builtins.diagnostics.shellcheck,
+  null_ls.builtins.formatting.isort,
+  null_ls.builtins.code_actions.proselint,
+  null_ls.builtins.diagnostics.alex,
+  null_ls.builtins.diagnostics.checkmake,
+  null_ls.builtins.diagnostics.chktex,
+  null_ls.builtins.diagnostics.gitlint,
+  null_ls.builtins.diagnostics.luacheck,
+  null_ls.builtins.diagnostics.vale,
+  null_ls.builtins.diagnostics.yamllint,
+  null_ls.builtins.diagnostics.zsh,
+  null_ls.builtins.formatting.lua_format,
+  null_ls.builtins.formatting.prettierd,
+  null_ls.builtins.formatting.rustfmt,
+  null_ls.builtins.formatting.stylua,
 }
-
--- -- set additional linters
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "alex", filetypes = { "markdown" }, args = { "--quiet", "--stdin" } },
-  -- { command = "commitlint", filetypes = "gitcommit", args = { "--color", "never" } },
-  {
-    --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "shellcheck",
-    --     ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--severity", "warning" },
-  },
-  --   {
-  --     command = "codespell",
-  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --     filetypes = { "javascript", "python" },
-  --   },
-}
-
+null_ls.register { sources = sources }
 
 -- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
   { "github/copilot.vim" }, -- GitHub Copilot extension
-  --{ "zbirenbaum/copilot-cmp" },
+  -- { "zbirenbaum/copilot-cmp" },
   { "lukas-reineke/indent-blankline.nvim" }, -- Make sure you start editing at the correct indentation
   { "apzelos/blamer.nvim" }, -- See who wrote lines and when in Git while editing
   {
     "folke/zen-mode.nvim", -- Zen mode for Vim for razor focus
-    options = {
-      number = true,
-    },
+    options = { number = true },
   },
   { -- Highlights TODO and other special comments
     "folke/todo-comments.nvim",
@@ -170,7 +151,7 @@ lvim.plugins = {
       require("todo-comments").setup()
     end,
   },
-  { "folke/twilight.nvim", }, -- Goes with Zen Mode to dim text I'm not focused on
+  { "folke/twilight.nvim" }, -- Goes with Zen Mode to dim text I'm not focused on
   { -- Incredible markdown preview in the browser
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
@@ -179,10 +160,7 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end,
   },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
+  { "folke/trouble.nvim", cmd = "TroubleToggle" },
   { "dbmrq/vim-ditto" }, -- Highlight often repeated words when writing.
   { "preservim/vim-wordy" }, -- Catch bad writing style like weak or weasel words
   { "wfxr/minimap.vim" }, -- Have the option to show a minimap on the right side
@@ -207,10 +185,7 @@ lvim.plugins = {
     "is0n/jaq-nvim",
     require("jaq-nvim").setup {
       cmds = {
-        internal = {
-          lua = "luafile %",
-          vim = "source %",
-        },
+        internal = { lua = "luafile %", vim = "source %" },
         external = {
           python = "python3 %",
           ruby = "ruby %",
@@ -229,8 +204,8 @@ lvim.plugins = {
           clojure = "clojure %",
           swift = "swift %",
         },
-      }
-    }
+      },
+    },
   },
   -- { "realprogrammersusevim/md-to-html.nvim" }, -- My own plugin to convert markdown to html
   { "dkarter/bullets.vim" }, -- Make Markdown lists easier
@@ -240,8 +215,11 @@ lvim.plugins = {
   { "dhruvasagar/vim-open-url" }, -- Open URLs
   {
     "glacambre/firenvim", -- Use NeoVim in every textbox on the internet
-    run = function() vim.fn["firenvim#install"](0) end,
+    run = function()
+      vim.fn["firenvim#install"](0)
+    end,
   },
+  { "kovisoft/slimv" }, -- Common Lisp server
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -280,49 +258,43 @@ vim.g.tokyonigh_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 lvim.colorscheme = "tokyonight"
 
 -- Writing custom comand to toggle Zen Mode, Ditto, and Wordy
-vim.api.nvim_create_user_command(
-  "WritingMode",
-  function()
-    vim.cmd("TwilightEnable")
-    vim.cmd("Ditto")
-    vim.o.wrap = true
-    vim.o.linebreak = true
-    vim.o.list = true
-  end,
-  { bang = true, desc = 'Toggle Twilight, word wrapping, and Wordy' })
+vim.api.nvim_create_user_command("WritingMode", function()
+  vim.cmd "TwilightEnable"
+  vim.cmd "Ditto"
+  vim.o.wrap = true
+  vim.o.linebreak = true
+  vim.o.list = true
+end, { bang = true, desc = "Toggle Twilight, word wrapping, and Wordy" })
 
 -- Configure Wilder
-local wilder = require('wilder')
-wilder.setup({ modes = { ':', '/', '?' } })
+local wilder = require "wilder"
+wilder.setup { modes = { ":", "/", "?" } }
 -- Disable Python remote plugin
-wilder.set_option('use_python_remote_plugin', 0)
+wilder.set_option("use_python_remote_plugin", 0)
 
-wilder.set_option('pipeline', {
+wilder.set_option("pipeline", {
   wilder.branch(
-    wilder.cmdline_pipeline({
+    wilder.cmdline_pipeline {
       fuzzy = 1,
       fuzzy_filter = wilder.lua_fzy_filter(),
-    }),
+    },
     wilder.vim_search_pipeline()
-  )
+  ),
 })
 
-wilder.set_option('renderer', wilder.renderer_mux({
-  [':'] = wilder.popupmenu_renderer({
-    highlighter = wilder.lua_fzy_highlighter(),
-    left = {
-      ' ',
-      wilder.popupmenu_devicons()
+wilder.set_option(
+  "renderer",
+  wilder.renderer_mux {
+    [":"] = wilder.popupmenu_renderer {
+      highlighter = wilder.lua_fzy_highlighter(),
+      left = { " ", wilder.popupmenu_devicons() },
+      right = { " ", wilder.popupmenu_scrollbar() },
     },
-    right = {
-      ' ',
-      wilder.popupmenu_scrollbar()
+    ["/"] = wilder.wildmenu_renderer {
+      highlighter = wilder.lua_fzy_highlighter(),
     },
-  }),
-  ['/'] = wilder.wildmenu_renderer({
-    highlighter = wilder.lua_fzy_highlighter(),
-  }),
-}))
+  }
+)
 
 -- Configure Blamer
 vim.g.blamer_enabled = 1 -- Enable Blamer by default
@@ -331,10 +303,13 @@ vim.g.blamer_enabled = 1 -- Enable Blamer by default
 vim.o.runtimepath = vim.o.runtimepath .. ",/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim"
 
 -- Set up Neoscroll
-require('neoscroll').setup()
+require("neoscroll").setup()
 
 -- Set up a local thesaurus
 vim.opt.thesaurus = "/Users/jonathanmilligan/.config/nvim/mthesaur.txt"
 
 -- Open urls in the browser
 vim.g.open_url_browser_command = "open -a Brave"
+
+-- Configure Slimv
+vim.g.slimv_swank_command = "sbcl --load ~/.local/share/nvim/site/pack/packer/start/slimv/slime/start-swank.lisp"
