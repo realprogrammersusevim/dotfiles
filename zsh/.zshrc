@@ -118,8 +118,13 @@ alias cd="z"
 alias gui="gitui"
 alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
 alias n="nvim"
-alias rgf="rg --files | rg"
+alias rg="rg --hidden --follow --glob '!.git/*'"
+alias fd="fd --hidden --follow --exclude '.git'"
 alias ipy="ipython3"
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -129,7 +134,9 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
-export PATH=$PATH:/Users/jonathanmilligan/Documents/GitHub/Coding/Python/Miscellaneous_Scripts
+export PATH=$PATH:"/Users/jonathanmilligan/Documents/GitHub/Coding/Python/Miscellaneous_Scripts"
+export PATH=$PATH:"/Users/jonathanmilligan/Documents/GitHub/Coding/Shell/"
+export PATH=$PATH:"/Users/jonathanmilligan/.bin"
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
