@@ -134,8 +134,7 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
-export PATH=$PATH:"/Users/jonathanmilligan/Documents/GitHub/Coding/Python/Miscellaneous_Scripts"
-export PATH=$PATH:"/Users/jonathanmilligan/Documents/GitHub/Coding/Shell/"
+export PATH="$PATH:/Users/jonathanmilligan/Documents/GitHub/cli-tools/scripts"
 export PATH=$PATH:"/Users/jonathanmilligan/.bin"
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
