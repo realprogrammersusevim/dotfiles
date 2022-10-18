@@ -130,6 +130,8 @@ alias pddm="pandoc -f docx -t markdown --markdown-headings atx"
 alias pdmh="pandoc -f markdown -t html"
 alias pdmd="pandoc -f markdown -t docx"
 alias pdmp="pandoc -f markdown -t pdf --mathjax"
+alias sed="gsed"
+alias time="gtime"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
