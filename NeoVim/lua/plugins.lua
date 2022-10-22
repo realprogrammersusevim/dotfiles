@@ -133,4 +133,18 @@ return require("packer").startup(function(use)
     },
     config = get_setup("null-ls"),
   }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = get_setup("gitsigns"),
+  }
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+      opt = true,
+    },
+    config = get_setup("lualine"),
+  }
 end)

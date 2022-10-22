@@ -1,22 +1,20 @@
 require('null-ls').setup({
-  local null_ls = require('null-ls')
-
   sources = {
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.alex,
-    null_ls.builtins.diagnostics.checkmake,
-    null_ls.builtins.diagnostics.selene
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.proselint,
-    null_ls.builtins.diagnostics.vale,
-    null_ls.builtins.diagnostics.vint,
-    null_ls.builtins.diagnostics.yamllint,
-    null_ls.builtins.formatting.beautysh,
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.lua_format,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.hover.dictionary,
-    null_ls.builtins.hover.printenv,
-  }
+    require('null-ls').builtins.diagnostics.shellcheck,
+    require('null-ls').builtins.diagnostics.alex,
+    require('null-ls').builtins.diagnostics.checkmake,
+    require('null-ls').builtins.diagnostics.selene,
+    require('null-ls').builtins.diagnostics.mypy,
+    require('null-ls').builtins.diagnostics.proselint,
+    require('null-ls').builtins.diagnostics.vale,
+    require('null-ls').builtins.diagnostics.vint,
+    require('null-ls').builtins.diagnostics.yamllint,
+    require('null-ls').builtins.formatting.beautysh,
+    require('null-ls').builtins.formatting.black,
+    require('null-ls').builtins.formatting.isort,
+    require('null-ls').builtins.formatting.lua_format,
+    require('null-ls').builtins.formatting.stylua,
+    require('null-ls').builtins.hover.dictionary,
+    require('null-ls').builtins.hover.printenv,
+  },
 })
