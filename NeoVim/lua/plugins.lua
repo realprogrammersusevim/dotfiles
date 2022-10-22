@@ -122,4 +122,15 @@ return require("packer").startup(function(use)
     'folke/todo-comments.nvim',
     config = get_setup("todo"),
   }
+
+  use 'neovim/nvim-lspconfig'
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    config = get_setup("null-ls"),
+  }
 end)
