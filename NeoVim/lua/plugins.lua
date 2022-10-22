@@ -41,7 +41,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"folke/which-key.nvim",
-		config = get_setup("which-key-conf"),
+		config = get_setup("which-key"),
 	})
 
 	use({
