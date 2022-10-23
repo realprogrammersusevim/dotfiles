@@ -152,9 +152,24 @@ bindkey -v
 set editing-mode vi
 set show-mode-in-prompt on
 
+# zplug
+export ZPLUG_HOME=$(brew --prefix)/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+# Actually install plugins, prompt user input
+if ! zplug check --verbose; then
+    printf "Install zplug plugins? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
 # zplug section
-# zplug "hlissner/zsh-autopair", defer:2
-# zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "hlissner/zsh-autopair", from:github, defer:2
+zplug "marlonrichert/zsh-autocomplete", from:github, defer:2
+
+# Load plugins
+zplug load
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
