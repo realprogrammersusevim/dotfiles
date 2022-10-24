@@ -54,6 +54,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"nvim-tree/nvim-tree.lua", -- File explorer
+    commands = "NvimTreeToggle", -- I only ever use the keybind to this command
 		requires = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -87,8 +88,6 @@ return require("packer").startup(function(use)
 		"numToStr/Comment.nvim", -- Comment stuff out
 		config = get_setup("comment"),
 	})
-
-  use 'github/copilot.vim' -- Copilot for Neovim
 
   use {
     'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
@@ -137,6 +136,12 @@ return require("packer").startup(function(use)
   use 'hrsh7th/cmp-cmdline' -- cmp source
 
   use {
+    'zbirenbaum/copilot-cmp',
+    requires = 'zbirenbaum/copilot.lua',
+    config = get_setup('copilot-cmp'),
+  }
+
+  use {
     'folke/todo-comments.nvim', -- Highlight TODO/FIXME/BUG/NOTE tags
     config = get_setup("todo"),
   }
@@ -168,21 +173,12 @@ return require("packer").startup(function(use)
 
   use 'onsails/lspkind.nvim' -- Pictograms for LSP completion items
 
-  use {
-    'williamboman/mason.nvim', -- Package manager for LSP servers
-    requires = {
-      'neovim/nvim-lspconfig',
-      'williamboman/mason-lspconfig.nvim',
-    },
-  }
-
-  use 'williamboman/mason-lspconfig.nvim' -- LSP server configurations for Mason
-
   use 'folke/lsp-colors.nvim' -- Colors for LSP diagnostics
 
   use { -- GitHub integration
     'pwntester/octo.nvim',
     config = get_setup("octo"),
+    command = "Octo",
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
@@ -193,4 +189,16 @@ return require("packer").startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Indent guides
 
   use 'ibhagwan/smartyank.nvim' -- Smart yank (don't pollute the clipboard)
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = get_setup("trouble"),
+  }
+
+  use {
+    'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
+    event = 'InsertEnter',
+    config = get_setup("copilot"),
+  }
 end)

@@ -17,8 +17,8 @@ wk.register({
 	},
 
 	['/'] = {
-	name = 'Comment',
-	{'gcc', 'Comment'},
+	  name = 'Comment',
+	  {'gcc', 'Comment'},
 	},
 
 	h = {
@@ -48,5 +48,10 @@ wk.register({
     t = { "<cmd>Telescope live_grep<cr>", "Text" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
-  }
+  },
+
+  t = {
+    name = 'Trouble',
+    { "<cmd>TroubleToggle<cr>", "Toggle" },
+  },
 }, { prefix = "<leader>" })

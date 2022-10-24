@@ -30,6 +30,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
+    { name = 'copilot'}
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -41,7 +42,36 @@ cmp.setup({
         nvim_lua = '[Lua]',
         path = '[PATH]',
         vsnip = '[VSNIP]',
+        copilot = '[COPILOT]'
       }),
     }),
   },
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
 })
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Setup lspconfig
+-- Python
+require('lspconfig').pyright.setup({
+  capabilities = capabilities,
+})
+
+-- Lua
+require('lspconfig').sumneko_lua.setup({
+  capabilities = capabilities,
+})
+
+-- Bash
+require('lspconfig').bashls.setup({
+  capabilities = capabilities,
+})
+
+-- Rust
+require('lspconfig').rust_analyzer.setup({
+  capabilities = capabilities,
+})
+
+--
