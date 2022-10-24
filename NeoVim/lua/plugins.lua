@@ -3,36 +3,57 @@ function get_setup(name)
 end
 
 return require("packer").startup(function(use)
-	use "wbthomason/packer.nvim"
+	use "wbthomason/packer.nvim" -- Packer can manage itself
 
-	use "folke/lua-dev.nvim"
+	use "folke/neodev.nvim" -- Set up Neovim development environment
 
-	use "antoinemadec/FixCursorHold.nvim"
-
-	use "nvim-lua/plenary.nvim"
+	use "nvim-lua/plenary.nvim" -- Misc. Lua functions for Neovim plugins
 
 	use({
-		"nvim-telescope/telescope.nvim",
+		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
 	})
 
 	use({
-		"windwp/nvim-autopairs",
+		"windwp/nvim-autopairs", -- Insert or delete brackets, parens, quotes in pair
 		config = get_setup("autopairs"),
 	})
 
 	use({
-		"nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting
 		run = ":TSUpdate",
 		config = get_setup("treesitter"),
 	})
 
-	use "nvim-tree/nvim-web-devicons"
+  use({
+    "nvim-treesitter/nvim-treesitter-textobjects", -- Text objects for treesitter
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  })
+
+  use({
+    "nvim-treesitter/nvim-treesitter-refactor", -- Refactoring using treesitter
+    config = get_setup("treesitter_refactor"),
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  })
+
+  use({
+    "nvim-treesitter/nvim-treesitter-context", -- Show the current context
+    config = get_setup("treesitter_context"),
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  })
+
+	use "nvim-tree/nvim-web-devicons" -- Fancy icons for Neovim plugins
 
 	use({
-		"nvim-tree/nvim-tree.lua",
+		"nvim-tree/nvim-tree.lua", -- File explorer
 		requires = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -40,43 +61,43 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"folke/which-key.nvim",
+		"folke/which-key.nvim", -- Remembers your keybindings
 		config = get_setup("which-key"),
 	})
 
 	use({
-		"goolord/alpha-nvim",
+		"goolord/alpha-nvim", -- Fancy start screen
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = get_setup("alpha-dash"),
 	})
 
 	use({
-		"folke/tokyonight.nvim",
+		"folke/tokyonight.nvim", -- Color scheme
 		config = get_setup("tokyonight"),
 	})
 
 	use({
-		"glacambre/firenvim",
+		"glacambre/firenvim", -- Use Neovim as an editor in any text field on the web
 		run = function()
 			vim.fn["firenvim#install"](0)
 		end,
 	})
 
 	use({
-		"numToStr/Comment.nvim",
+		"numToStr/Comment.nvim", -- Comment stuff out
 		config = get_setup("comment"),
 	})
 
-  use 'github/copilot.vim'
+  use 'github/copilot.vim' -- Copilot for Neovim
 
   use {
-    'iamcco/markdown-preview.nvim',
+    'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
     run = 'cd app && yarn install',
     config = get_setup("markdown-preview"),
   }
 
   use {
-    'hrsh7th/nvim-cmp',
+    'hrsh7th/nvim-cmp', -- Autocompletion plugin
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
@@ -90,43 +111,40 @@ return require("packer").startup(function(use)
       'saadparwaiz1/cmp_luasnip',
       'L3MON4D3/LuaSnip',
       'hrsh7th/cmp-cmdline',
+      'onsails/lspkind.nvim',
     },
     config = get_setup("cmp"),
   }
 
-  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lsp' -- cmp source
 
-  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-buffer' -- cmp source
 
-  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-path' -- cmp source
 
-  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-nvim-lua' -- cmp source
 
-  use 'hrsh7th/cmp-calc'
+  use 'hrsh7th/cmp-calc' -- cmp source
 
-  use 'hrsh7th/cmp-emoji'
+  use 'hrsh7th/cmp-emoji' -- cmp source
 
-  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/cmp-vsnip' -- cmp source
 
-  use 'hrsh7th/vim-vsnip'
+  use 'saadparwaiz1/cmp_luasnip' -- cmp source
 
-  use 'hrsh7th/vim-vsnip-integ'
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
-  use 'saadparwaiz1/cmp_luasnip'
-
-  use 'L3MON4D3/LuaSnip'
-
-  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-cmdline' -- cmp source
 
   use {
-    'folke/todo-comments.nvim',
+    'folke/todo-comments.nvim', -- Highlight TODO/FIXME/BUG/NOTE tags
     config = get_setup("todo"),
   }
 
-  use 'neovim/nvim-lspconfig'
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
+    'jose-elias-alvarez/null-ls.nvim', -- Automatic code actions (diagnotics, formatting, etc.)
     requires = {
       'nvim-lua/plenary.nvim',
       'neovim/nvim-lspconfig',
@@ -135,16 +153,30 @@ return require("packer").startup(function(use)
   }
 
   use {
-    'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim', -- Git signs in the gutter
     config = get_setup("gitsigns"),
   }
 
   use {
-    'nvim-lualine/lualine.nvim',
+    'nvim-lualine/lualine.nvim', -- Status line
     requires = {
       'kyazdani42/nvim-web-devicons',
       opt = true,
     },
     config = get_setup("lualine"),
   }
+
+  use 'onsails/lspkind.nvim' -- Pictograms for LSP completion items
+
+  use {
+    'williamboman/mason.nvim', -- Package manager for LSP servers
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason-lspconfig.nvim',
+    },
+  }
+
+  use 'williamboman/mason-lspconfig.nvim' -- LSP server configurations for Mason
+
+  use 'folke/lsp-colors.nvim' -- Colors for LSP diagnostics
 end)

@@ -20,6 +20,7 @@ vim.o.conceallevel = 0
 vim.o.fileencoding = "utf-8"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd('autocmd BufReadPost,FileReadPost * normal zR')
 vim.o.hidden = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true

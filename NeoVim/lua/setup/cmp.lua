@@ -1,5 +1,8 @@
 local cmp = require'cmp'
 
+-- Setup icons
+local lspkind = require('lspkind')
+
 -- Select first item by default
 vim.opt.completeopt = 'menuone,noselect'
 
@@ -27,5 +30,18 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
-  }
+  },
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = false,
+      menu = ({
+        nvim_lsp = '[LSP]',
+        buffer = '[BUF]',
+        luasnip = '[Lua]',
+        nvim_lua = '[Lua]',
+        path = '[PATH]',
+        vsnip = '[VSNIP]',
+      }),
+    }),
+  },
 })
