@@ -6,6 +6,7 @@ require('null-ls').setup({
     require('null-ls').builtins.diagnostics.mypy,
     require('null-ls').builtins.diagnostics.vint,
     require('null-ls').builtins.diagnostics.yamllint,
+    require('null-ls').builtins.diagnostics.proselint,
     require('null-ls').builtins.formatting.beautysh,
     require('null-ls').builtins.formatting.black,
     require('null-ls').builtins.formatting.isort,

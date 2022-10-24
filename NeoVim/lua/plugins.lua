@@ -189,4 +189,8 @@ return require("packer").startup(function(use)
       'kyazdani42/nvim-web-devicons',
     },
   }
+
+  use 'lukas-reineke/indent-blankline.nvim' -- Indent guides
+
+  use 'ibhagwan/smartyank.nvim' -- Smart yank (don't pollute the clipboard)
 end)
