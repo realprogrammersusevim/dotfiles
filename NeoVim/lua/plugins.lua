@@ -179,4 +179,14 @@ return require("packer").startup(function(use)
   use 'williamboman/mason-lspconfig.nvim' -- LSP server configurations for Mason
 
   use 'folke/lsp-colors.nvim' -- Colors for LSP diagnostics
+
+  use { -- GitHub integration
+    'pwntester/octo.nvim',
+    config = get_setup("octo"),
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+  }
 end)

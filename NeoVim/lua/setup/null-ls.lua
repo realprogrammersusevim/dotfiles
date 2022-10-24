@@ -1,12 +1,9 @@
 require('null-ls').setup({
   sources = {
     require('null-ls').builtins.diagnostics.shellcheck,
-    require('null-ls').builtins.diagnostics.alex,
     require('null-ls').builtins.diagnostics.checkmake,
     require('null-ls').builtins.diagnostics.selene,
     require('null-ls').builtins.diagnostics.mypy,
-    require('null-ls').builtins.diagnostics.proselint,
-    require('null-ls').builtins.diagnostics.vale,
     require('null-ls').builtins.diagnostics.vint,
     require('null-ls').builtins.diagnostics.yamllint,
     require('null-ls').builtins.formatting.beautysh,
