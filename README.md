@@ -13,6 +13,14 @@ These are my configuration files for Zsh and NeoVim. Above all, please do not ju
 7. Run `$ zplug install`
 8. Run `:PackerInstall` from inside NeoVim
 
+## Screenshots
+
+<img width="1280" alt="Screenshot 2022-10-25 at 4 42 38 PM" src="https://user-images.githubusercontent.com/93488695/197888062-f3496952-f86f-4ea3-86eb-56668e7872b5.png">
+
+![Screenshot 2022-10-25 at 4 41 44 PM](https://user-images.githubusercontent.com/93488695/197888095-cbbe5e4e-f48b-43f4-bec6-f146df96d459.png)
+
+![Screenshot 2022-10-25 at 4 40 33 PM](https://user-images.githubusercontent.com/93488695/197888152-a74306cc-8c16-4e39-85a9-788fdc2d4425.png)
+
 ## Layout
 
 The scheme of my NeoVim config layout is rather simple once you understand it.
