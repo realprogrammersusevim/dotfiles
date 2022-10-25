@@ -1,31 +1,31 @@
 function get_setup(name)
-	return string.format('require("setup.%s")', name)
+  return string.format('require("setup.%s")', name)
 end
 
 return require("packer").startup(function(use)
-	use "wbthomason/packer.nvim" -- Packer can manage itself
+  use "wbthomason/packer.nvim" -- Packer can manage itself
 
-	use "folke/neodev.nvim" -- Set up Neovim development environment
+  use "folke/neodev.nvim" -- Set up Neovim development environment
 
-	use "nvim-lua/plenary.nvim" -- Misc. Lua functions for Neovim plugins
+  use "nvim-lua/plenary.nvim" -- Misc. Lua functions for Neovim plugins
 
-	use({
-		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-	})
+  use({
+    "nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
 
-	use({
-		"windwp/nvim-autopairs", -- Insert or delete brackets, parens, quotes in pair
-		config = get_setup("autopairs"),
-	})
+  use({
+    "windwp/nvim-autopairs", -- Insert or delete brackets, parens, quotes in pair
+    config = get_setup("autopairs"),
+  })
 
-	use({
-		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting
-		run = ":TSUpdate",
-		config = get_setup("treesitter"),
-	})
+  use({
+    "nvim-treesitter/nvim-treesitter", -- Syntax highlighting
+    run = ":TSUpdate",
+    config = get_setup("treesitter"),
+  })
 
   use({
     "nvim-treesitter/nvim-treesitter-textobjects", -- Text objects for treesitter
@@ -50,44 +50,44 @@ return require("packer").startup(function(use)
     },
   })
 
-	use "nvim-tree/nvim-web-devicons" -- Fancy icons for Neovim plugins
+  use "nvim-tree/nvim-web-devicons" -- Fancy icons for Neovim plugins
 
-	use({
-		"nvim-tree/nvim-tree.lua", -- File explorer
+  use({
+    "nvim-tree/nvim-tree.lua", -- File explorer
     commands = "NvimTreeToggle", -- I only ever use the keybind to this command
-		requires = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = get_setup("nvim-tree"),
-	})
+    requires = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = get_setup("nvim-tree"),
+  })
 
-	use({
-		"folke/which-key.nvim", -- Remembers your keybindings
-		config = get_setup("which-key"),
-	})
+  use({
+    "folke/which-key.nvim", -- Remembers your keybindings
+    config = get_setup("which-key"),
+  })
 
-	use({
-		"goolord/alpha-nvim", -- Fancy start screen
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = get_setup("alpha-dash"),
-	})
+  use({
+    "goolord/alpha-nvim", -- Fancy start screen
+    requires = { "kyazdani42/nvim-web-devicons" },
+    config = get_setup("alpha-dash"),
+  })
 
-	use({
-		"folke/tokyonight.nvim", -- Color scheme
-		config = get_setup("tokyonight"),
-	})
+  use({
+    "folke/tokyonight.nvim", -- Color scheme
+    config = get_setup("tokyonight"),
+  })
 
-	use({
-		"glacambre/firenvim", -- Use Neovim as an editor in any text field on the web
-		run = function()
-			vim.fn["firenvim#install"](0)
-		end,
-	})
+  use({
+    "glacambre/firenvim", -- Use Neovim as an editor in any text field on the web
+    run = function()
+      vim.fn["firenvim#install"](0)
+    end,
+  })
 
-	use({
-		"numToStr/Comment.nvim", -- Comment stuff out
-		config = get_setup("comment"),
-	})
+  use({
+    "numToStr/Comment.nvim", -- Comment stuff out
+    config = get_setup("comment"),
+  })
 
   use {
     'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
@@ -201,4 +201,6 @@ return require("packer").startup(function(use)
     event = 'InsertEnter',
     config = get_setup("copilot"),
   }
+
+  use '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/'
 end)
