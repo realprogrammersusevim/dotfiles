@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+# [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -73,15 +73,14 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  python
-  git
-  brew
-  sudo
-  macos
-  zsh-autosuggestions
-  zsh-autocomplete
-  alias-tips
-  zsh-syntax-highlighting
+    python
+    git
+    brew
+    sudo
+    macos
+    zsh-autosuggestions
+    alias-tips
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,6 +131,7 @@ alias pdmd="pandoc -f markdown -t docx"
 alias pdmp="pandoc -f markdown -t pdf --mathjax"
 alias sed="gsed"
 alias time="gtime"
+alias nd="neovide"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -200,4 +200,4 @@ eval "$(zoxide init zsh)"
 source /Users/jonathanmilligan/.config/broot/launcher/bash/br
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
