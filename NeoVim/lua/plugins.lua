@@ -188,4 +188,6 @@ return require("packer").startup(function(use)
 	use("/Users/jonathanmilligan/Documents/GitHub/readability.nvim/")
 
 	use({ "dkarter/bullets.vim", config = get_setup("bullets") })
+
+	use("lewis6991/impatient.nvim")
 end)
