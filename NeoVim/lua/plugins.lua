@@ -12,7 +12,10 @@ return require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
 		requires = { "nvim-lua/plenary.nvim" },
+		config = get_setup("telescope"),
 	})
+
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 	use({
 		"windwp/nvim-autopairs", -- Insert or delete brackets, parens, quotes in pair
@@ -101,6 +104,7 @@ return require("packer").startup(function(use)
 			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-cmdline",
 			"onsails/lspkind.nvim",
+			"petertriho/cmp-git",
 		},
 		config = get_setup("cmp"),
 	})
@@ -117,13 +121,17 @@ return require("packer").startup(function(use)
 
 	use("hrsh7th/cmp-emoji") -- cmp source
 
-	use("hrsh7th/cmp-vsnip") -- cmp source
-
 	use("saadparwaiz1/cmp_luasnip") -- cmp source
 
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 
 	use("hrsh7th/cmp-cmdline") -- cmp source
+
+	use({
+		"petertriho/cmp-git",
+		requires = "nvim-lua/plenary.nvim",
+		config = get_setup("cmp-get"),
+	}) -- cmp source
 
 	use({
 		"zbirenbaum/copilot-cmp",
