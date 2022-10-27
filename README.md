@@ -27,13 +27,18 @@ The scheme of my NeoVim config layout is rather simple once you understand it.
 
 ```
 .
+├── ftplugin
+│   └── markdown.lua
 ├── init.lua
 ├── lua
+    ├── autocmds.lua
     ├── mappings.lua
     ├── plugins.lua
     ├── setup
     │   ├── alpha-dash.lua
     │   ├── autopairs.lua
+    │   ├── barbar.lua
+    │   ├── bullets.lua
     │   ├── cmp.lua
     │   ├── comment.lua
     │   ├── copilot-cmp.lua
