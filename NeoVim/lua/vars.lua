@@ -1,5 +1,5 @@
 -- Turn on file type detection
-vim.cmd('filetype plugin indent on')
+vim.cmd("filetype plugin indent on")
 vim.o.guifont = "FiraMono Nerd Font Mono:h12"
 vim.o.number = true
 vim.g.loaded_perl_provider = false
@@ -20,7 +20,7 @@ vim.o.conceallevel = 0
 vim.o.fileencoding = "utf-8"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.cmd('autocmd BufReadPost,FileReadPost * normal zR')
+vim.cmd("autocmd BufReadPost,FileReadPost * normal zR")
 vim.o.hidden = true
 vim.o.hlsearch = true
 vim.o.ignorecase = true
@@ -48,4 +48,4 @@ vim.opt.thesaurus = "/Users/jonathanmilligan/.config/nvim/mthesaur.txt"
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("I")
 vim.opt.whichwrap:append("<,>,[,],h,l")
-vim.cmd('colorscheme tokyonight')
+vim.cmd("colorscheme tokyonight")

@@ -190,4 +190,10 @@ return require("packer").startup(function(use)
 	use({ "dkarter/bullets.vim", config = get_setup("bullets") })
 
 	use("lewis6991/impatient.nvim")
+
+	use({
+		"romgrk/barbar.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = get_setup("barbar"),
+	})
 end)
