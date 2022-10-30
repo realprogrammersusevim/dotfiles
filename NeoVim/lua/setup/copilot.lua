@@ -1,13 +1,13 @@
-require("copilot").setup({
+require('copilot').setup({
   panel = {
     enabled = true,
     auto_refresh = false,
     keymap = {
-      jump_prev = "[[",
-      jump_next = "]]",
-      accept = "<CR>",
-      refresh = "gr",
-      open = "<M-CR>",
+      jump_prev = '[[',
+      jump_next = ']]',
+      accept = '<CR>',
+      refresh = 'gr',
+      open = '<M-CR>',
     },
   },
   suggestion = {
@@ -15,10 +15,10 @@ require("copilot").setup({
     auto_trigger = false,
     debounce = 75,
     keymap = {
-      accept = "<M-l>",
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
+      accept = '<M-l>',
+      next = '<M-]>',
+      prev = '<M-[>',
+      dismiss = '<C-]>',
     },
   },
   filetypes = {
@@ -30,11 +30,9 @@ require("copilot").setup({
     hgcommit = false,
     svn = false,
     cvs = false,
-    ["."] = false,
+    ['.'] = false,
   },
-  copilot_node_command = "node", -- Node version must be < 18
-  plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
+  copilot_node_command = 'node', -- Node version must be < 18
+  plugin_manager_path = vim.fn.stdpath('data') .. '/site/pack/packer',
   server_opts_overrides = {},
 })
-
--- To sum everything up,
