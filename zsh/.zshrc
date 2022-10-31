@@ -132,7 +132,7 @@ alias pdmp="pandoc -f markdown -t pdf --mathjax"
 alias sed="gsed"
 alias time="gtime"
 alias nd="neovide"
-alias f="$EDITOR $(fd -t f | fzf)"
+# alias nf="nvim $(fd -t f | fzf)"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH

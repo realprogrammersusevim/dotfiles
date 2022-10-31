@@ -202,4 +202,8 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = get_setup('barbar'),
   })
+
+  use({ 'folke/zen-mode.nvim', config = get_setup('zen-mode') })
+
+  use({ 'folke/twilight.nvim', config = get_setup('twilight') })
 end)
