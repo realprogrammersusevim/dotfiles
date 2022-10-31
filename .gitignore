@@ -1,3 +1,3 @@
 .DS_Store
-NeoVim/plugin/*
-Neovim/spell/*
+nvim/plugin/*
+nvim/spell/*
