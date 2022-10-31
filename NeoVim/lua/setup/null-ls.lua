@@ -23,7 +23,7 @@ require('null-ls').setup({
     require('null-ls').builtins.diagnostics.yamllint,
     require('null-ls').builtins.diagnostics.proselint,
     require('null-ls').builtins.diagnostics.write_good.with({
-      extra_args = { '--tooWordy' },
+      extra_args = { '--tooWordy', '--cliches' },
     }),
     require('null-ls').builtins.formatting.beautysh,
     require('null-ls').builtins.formatting.black,
@@ -34,7 +34,10 @@ require('null-ls').setup({
         '--config-path',
         vim.fn.expand('~/.config/nvim/utils/linter-config/.stylua.toml'),
       },
-    }),
+    }), -- require('null-ls').builtins.formatting.prettier.with({
+    --   filetypes = { 'markdown' },
+    --   extra_args = { '--prose-wrap', 'always' },
+    -- }),
     require('null-ls').builtins.hover.dictionary,
     require('null-ls').builtins.hover.printenv,
   },
