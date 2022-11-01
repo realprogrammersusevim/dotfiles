@@ -103,6 +103,7 @@ return require('packer').startup(function(use)
       'onsails/lspkind.nvim',
       'petertriho/cmp-git',
       'zbirenbaum/copilot-cmp',
+      'neovim/nvim-lspconfig',
     },
     config = get_setup('cmp'),
   })
@@ -142,7 +143,13 @@ return require('packer').startup(function(use)
     config = get_setup('todo'),
   })
 
-  use('neovim/nvim-lspconfig') -- Collection of configurations for built-in LSP client
+  use({
+    'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+  }) -- Collection of configurations for built-in LSP client
 
   use({
     'jose-elias-alvarez/null-ls.nvim', -- Automatic code actions (diagnotics, formatting, etc.)
@@ -206,4 +213,8 @@ return require('packer').startup(function(use)
   use({ 'folke/zen-mode.nvim', config = get_setup('zen-mode') })
 
   use({ 'folke/twilight.nvim', config = get_setup('twilight') })
+
+  use({ 'williamboman/mason.nvim', config = get_setup('mason') })
+
+  use('williamboman/mason-lspconfig.nvim')
 end)

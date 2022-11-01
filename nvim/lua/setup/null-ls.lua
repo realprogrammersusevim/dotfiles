@@ -34,10 +34,11 @@ require('null-ls').setup({
         '--config-path',
         vim.fn.expand('~/.config/nvim/utils/linter-config/.stylua.toml'),
       },
-    }), -- require('null-ls').builtins.formatting.prettier.with({
-    --   filetypes = { 'markdown' },
-    --   extra_args = { '--prose-wrap', 'always' },
-    -- }),
+    }),
+    require('null-ls').builtins.formatting.prettier.with({
+      filetypes = { 'markdown', 'yaml' },
+      extra_args = { '--prose-wrap', 'always' },
+    }),
     require('null-ls').builtins.hover.dictionary,
     require('null-ls').builtins.hover.printenv,
   },

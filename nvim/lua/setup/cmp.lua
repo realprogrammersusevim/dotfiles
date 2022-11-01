@@ -30,7 +30,8 @@ cmp.setup({
     }),
   },
   sources = {
-    { name = 'nvim_lsp' }, -- { name = "buffer" },
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
     { name = 'copilot' },
@@ -44,7 +45,7 @@ cmp.setup({
       with_text = false,
       menu = {
         nvim_lsp = 'Lsp',
-        -- buffer = "Buf",
+        buffer = 'Buf',
         luasnip = 'Snip',
         nvim_lua = 'Lua',
         path = 'Path',
@@ -71,6 +72,9 @@ cmp.setup({
   -- { "gitcommit" },
 })
 
+require('mason').setup()
+require('mason-lspconfig').setup()
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Setup lspconfig
@@ -86,6 +90,7 @@ require('lspconfig').bashls.setup({ capabilities = capabilities })
 -- Rust
 require('lspconfig').rust_analyzer.setup({ capabilities = capabilities })
 
+-- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
