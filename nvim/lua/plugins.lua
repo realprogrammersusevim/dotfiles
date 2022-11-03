@@ -1,6 +1,9 @@
-function get_setup(name)
+local function get_setup(name)
   return string.format('require("setup.%s")', name)
 end
+
+-- Load packer
+-- vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim') -- Packer can manage itself
@@ -14,8 +17,6 @@ return require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
     config = get_setup('telescope'),
   })
-
-  use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
   use({
     'windwp/nvim-autopairs', -- Insert or delete brackets, parens, quotes in pair
@@ -217,4 +218,6 @@ return require('packer').startup(function(use)
   use({ 'williamboman/mason.nvim', config = get_setup('mason') })
 
   use('williamboman/mason-lspconfig.nvim')
+
+  use('skywind3000/asyncrun.vim')
 end)

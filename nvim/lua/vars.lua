@@ -43,7 +43,7 @@ vim.o.relativenumber = false -- Absolute numbers
 vim.o.signcolumn = 'yes' -- Always show the sign column so it doesn't jump back and forth
 vim.o.shadafile = '/Users/jonathanmilligan/.local/share/nvim/shada/main.shada'
 vim.o.updatetime = 300
-vim.o.thesaurus = '/Users/jonathanmilligan/.config/nvim/mthesaur.txt' -- Get thesaurus word changes
+vim.o.thesaurus = '/Users/jonathanmilligan/.config/nvim/utils/thesaurii.txt' -- Get thesaurus word changes
 vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')
