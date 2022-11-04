@@ -17,8 +17,8 @@ vim.o.colorcolumn = '99999'
 -- vim.o.completeopt = { "menuone", "noselect" }
 vim.o.conceallevel = 0 -- Turn off conceal
 vim.o.fileencoding = 'utf-8'
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()' -- Use Treesitter for folding
+-- vim.o.foldmethod = 'expr'
+-- vim.o.foldexpr = 'nvim_treesitter#foldexpr()' -- Use Treesitter for folding
 vim.cmd('autocmd BufReadPost,FileReadPost * normal zR') -- Open all folds by default
 vim.o.hidden = true
 vim.o.hlsearch = true -- Highlight all search matches
