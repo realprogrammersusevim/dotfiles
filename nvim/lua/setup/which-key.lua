@@ -1,7 +1,9 @@
 local wk = require('which-key')
 
 wk.register({
-  e = { name = 'Toggle File Tree', { '<cmd>NvimTreeToggle<cr>', 'File Tree' } },
+  [';'] = { name = 'Dashboard', { '<cmd>Alpha<cr>', 'Dashboard' } },
+
+  e = { name = 'File Tree', { '<cmd>NvimTreeToggle<cr>', 'File Tree' } },
 
   w = { name = 'Save', { '<cmd>w!<cr>', 'Save' } },
 
@@ -53,5 +55,6 @@ wk.register({
     ['0'] = { '<cmd>BufferLast<cr>', 'Last Buffer' },
     i = { '<cmd>BufferPin<cr>', 'Pin Buffer' },
     c = { '<cmd>BufferClose<cr>', 'Close Buffer' },
+    s = { '<cmd>Telescope buffers<cr>', 'Search Buffers' },
   },
 }, { prefix = '<leader>' })
