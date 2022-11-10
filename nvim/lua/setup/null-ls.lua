@@ -14,6 +14,7 @@ require('null-ls').setup({
 
   sources = {
     require('null-ls').builtins.diagnostics.shellcheck,
+    require('null-ls').builtins.diagnostics.gitlint,
     require('null-ls').builtins.diagnostics.checkmake,
     require('null-ls').builtins.diagnostics.luacheck.with({
       extra_args = { '--config' },
