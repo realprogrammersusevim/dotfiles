@@ -247,6 +247,8 @@ return require('packer').startup(
         'rcarriga/nvim-notify',
       },
     })
+
+    use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten') })
   end -- ,
   -- config = {
   --   display = {

@@ -9,26 +9,26 @@ function pynew() {
         echo "Initializing project $1"
         mkdir -p $1
 
-	# Create the Python files
-       	touch $1/__init__.py
+        # Create the Python files
+        touch $1/__init__.py
         touch $1/__main__.py
         echo "print('Hello, world!')" >> $1/__main__.py
         touch $1/requirements.txt
 
-	# Initialize the git repository
+        # Initialize the git repository
         git init $1 >> /dev/null
         touch $1/.gitignore
         echo "**/__pycache__" >> $1/.gitignore
 
-	# Create the virtual environment
-	python3 -m venv $1/venv
-	source $1/venv/bin/activate
-	echo "venv/**" >> $1/.gitignore
+        # Create the virtual environment
+        python3 -m venv $1/venv
+        source $1/venv/bin/activate
+        echo "venv/**" >> $1/.gitignore
 
-	# Create the license file
-	touch $1/LICENSE
-	YEAR=$(date +%Y)
-	echo """MIT License
+        # Create the license file
+        touch $1/LICENSE
+        YEAR=$(date +%Y)
+        echo """MIT License
 
 Copyright (c) $YEAR Jonathan Milligan
 
@@ -48,9 +48,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.""" >> $1/LICENSE
+        SOFTWARE.""" >> $1/LICENSE
 
-    cd $1
+        cd $1
     else
         echo "Usage: pynew <name of project>"
         exit 1
@@ -58,17 +58,58 @@ SOFTWARE.""" >> $1/LICENSE
 }
 
 function zen() {
-  python3 -c "import this"
+    python3 -c "import this"
 }
 
 function snake() {
-  # Convert a folder or file to snake case
-  if [ "$1" != "" ]; then
-    echo $1 | sed -e "s/\([A-Z]\)/-\L\1/g" -e "s/^-//"
-  else
-    echo "Usage: snake <name>"
-    exit 1
-  fi
+    # Convert a folder or file to snake case
+    if [ "$1" != "" ]; then
+        echo $1 | sed -e "s/\([A-Z]\)/-\L\1/g" -e "s/^-//"
+    else
+        echo "Usage: snake <name>"
+        exit 1
+    fi
+}
+
+# fif() {
+#     if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+#     local file
+#     file="$(rga --max-count=1 --ignore-case --files-with-matches --no-messages "$*" | fzf-tmux +m --preview="rga --ignore-case --pretty --context 10 '"$*"' {}")" && echo "opening $file" && open "$file" || return 1;
+#     }
+# grep --line-buffered --color=never -r "" * | fzf
+
+# with ag - respects .agignore and .gitignore
+# ag --nobreak --nonumbers --noheading . | fzf
+
+# using ripgrep combined with preview
+# find-in-file - usage: fif <searchTerm>
+fif() {
+    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+##
+# Interactive search.
+# Usage: `ff` or `ff <folder>`.
+#
+ff() {
+    [[ -n $1 ]] && cd $1 # go to provided folder or noop
+    RG_DEFAULT_COMMAND="rg -i -l --hidden --no-ignore-vcs"
+
+    selected=$(
+        FZF_DEFAULT_COMMAND="rg --files" fzf \
+            -m \
+            -e \
+            --ansi \
+            --disabled \
+            --reverse \
+            --bind "ctrl-a:select-all" \
+            --bind "f12:execute-silent:(subl -b {})" \
+            --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
+            --preview "rg -i --pretty --context 2 {q} {}" | cut -d":" -f1,2
+    )
+
+    [[ -n $selected ]] && nvim $selected # open multiple files in editor
 }
 
 # function hacking() {
