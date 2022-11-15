@@ -80,6 +80,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Setup lspconfig
 -- Python
 require('lspconfig').pyright.setup({ capabilities = capabilities })
+require('lspconfig').pylsp.setup({ capabilities = capabilities })
 
 -- Lua
 require('lspconfig').sumneko_lua.setup({ capabilities = capabilities })
@@ -89,6 +90,18 @@ require('lspconfig').bashls.setup({ capabilities = capabilities })
 
 -- Rust
 require('lspconfig').rust_analyzer.setup({ capabilities = capabilities })
+
+-- Markdown
+require('lspconfig').marksman.setup({ capabilities = capabilities })
+
+-- LaTex
+require('lspconfig').texlab.setup({ capabilities = capabilities })
+
+-- Grammarly
+require('lspconfig').grammarly.setup({ capabilities = capabilities })
+
+-- Vim
+require('lspconfig').vimls.setup({ capabilities = capabilities })
 
 -- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }

@@ -106,7 +106,7 @@ ff() {
             --bind "ctrl-a:select-all" \
             --bind "f12:execute-silent:(subl -b {})" \
             --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
-            --preview "rg -i --pretty --context 2 {q} {}" | cut -d":" -f1,2
+            --preview "rg -i --pretty --context 10 {q} {}" | cut -d":" -f1,2
     )
 
     [[ -n $selected ]] && nvim $selected # open multiple files in editor
