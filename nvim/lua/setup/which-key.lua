@@ -7,10 +7,7 @@ wk.register({
 
   w = { name = 'Save', { '<cmd>w!<cr>', 'Save' } },
 
-  q = {
-    name = 'Quit',
-    { '<cmd>lua require("functions").smart_quit()<cr>', 'Quit' },
-  },
+  q = { name = 'Quit', { '<cmd>q<cr>', 'Quit' } },
 
   ['/'] = { name = 'Comment', { 'gcc', 'Comment' } },
 

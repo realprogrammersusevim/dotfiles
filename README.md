@@ -79,11 +79,11 @@ The scheme of my NeoVim config layout is rather simple once you understand it.
     └── thesaurii.txt
 ```
 
-The `init.lua` file loads my key mappings, variables, internal functions, and
-plugins. Each plugin has a configuration file in the setup directory. No matter
-how small the configuration a plugin needs, I still want it in its own file so
-it's easier to find later. It also keeps a hard rule to make sure my plugin file
-doesn't get too long.
+The `init.lua` file loads my key mappings, variables, and plugins. Each plugin
+has a configuration file in the setup directory. No matter how small the
+configuration a plugin needs, I still want it in its own file so it's easier to
+find later. It also keeps a hard rule to make sure my plugin file doesn't get
+too long.
 
 The `utils` folder has the configuration files for my Lua linters. I copied them
 from the Neovim repository.

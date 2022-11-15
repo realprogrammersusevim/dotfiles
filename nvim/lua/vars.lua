@@ -48,3 +48,4 @@ vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')
 vim.cmd('colorscheme tokyonight') -- Set my beautiful colorscheme
+vim.o.confirm = true -- Confirm before quitting
