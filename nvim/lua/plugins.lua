@@ -248,4 +248,10 @@ return require('packer').startup(function(use)
   })
 
   use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten') })
+
+  use({
+    'TimUntersberger/neogit',
+    config = get_setup('neogit'),
+    requires = 'nvim-lua/plenary.nvim',
+  })
 end)
