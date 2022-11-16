@@ -80,7 +80,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Setup lspconfig
 -- Python
 require('lspconfig').pyright.setup({ capabilities = capabilities })
-require('lspconfig').pylsp.setup({ capabilities = capabilities })
+-- require('lspconfig').pylsp.setup({ capabilities = capabilities })
 
 -- Lua
 require('lspconfig').sumneko_lua.setup({ capabilities = capabilities })
