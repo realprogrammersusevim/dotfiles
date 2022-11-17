@@ -57,4 +57,17 @@ wk.register({
     c = { '<cmd>BufferClose<cr>', 'Close Buffer' },
     s = { '<cmd>Telescope buffers<cr>', 'Search Buffers' },
   },
+
+  g = {
+    name = 'Git',
+    b = { '<cmd>Telescope git_branches<cr>', 'Checkout branch' },
+    c = { '<cmd>Telescope git_commits<cr>', 'Checkout commit' },
+    C = {
+      '<cmd>Telescope git_bcommits<cr>',
+      'Checkout commit(for current file)',
+    },
+    s = { '<cmd>Telescope git_status<cr>', 'Git status' },
+    g = { '<cmd>Neogit kind=vsplit<cr>', 'Neogit' },
+    k = { '<cmd>Neogit commit<cr>', 'Commit' },
+  },
 }, { prefix = '<leader>' })

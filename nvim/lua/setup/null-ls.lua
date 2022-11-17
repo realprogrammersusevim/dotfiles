@@ -18,8 +18,7 @@ require('null-ls').setup({
     require('null-ls').builtins.diagnostics.checkmake,
     require('null-ls').builtins.diagnostics.luacheck.with({
       extra_args = { '--config' },
-    }),
-    require('null-ls').builtins.diagnostics.mypy,
+    }), -- require('null-ls').builtins.diagnostics.mypy,
     require('null-ls').builtins.diagnostics.vint,
     require('null-ls').builtins.diagnostics.yamllint,
     require('null-ls').builtins.diagnostics.proselint,

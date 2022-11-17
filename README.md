@@ -17,8 +17,11 @@ own needs, not mine.
 6. Install Packer
 7. Run `$ zplug install`
 8. Run `:PackerInstall` from inside NeoVim
+9. Install the LSPs, formatters, and diagnostics with `:Mason`
 
-## Screenshots
+## (Outdated) Screenshots
+
+I'll update these soon, but my configs look much better now.
 
 <img width="1280" alt="Screenshot 2022-10-25 at 4 42 38 PM" src="https://user-images.githubusercontent.com/93488695/197888062-f3496952-f86f-4ea3-86eb-56668e7872b5.png">
 
