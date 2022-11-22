@@ -8,3 +8,4 @@ BAT_THEME="OneHalfDark"
 EDITOR=nvim
 VISUAL=nvim
 GIT_EDITOR=nvim
+export LUA_PATH="/Users/jonathanmilligan/.luarocks/share/lua/5.1/?.lua;;"
