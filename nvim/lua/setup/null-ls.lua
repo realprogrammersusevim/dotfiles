@@ -39,6 +39,7 @@ require('null-ls').setup({
       filetypes = { 'markdown', 'yaml' },
       extra_args = { '--prose-wrap', 'always' },
     }),
+    require('null-ls').builtins.formatting.rustfmt,
     require('null-ls').builtins.hover.dictionary,
     require('null-ls').builtins.hover.printenv,
   },
