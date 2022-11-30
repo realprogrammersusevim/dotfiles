@@ -133,6 +133,7 @@ alias sed="gsed"
 alias time="gtime"
 alias nd="neovide"
 # alias nf="nvim $(fd -t f | fzf)"
+alias :q="exit"
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
