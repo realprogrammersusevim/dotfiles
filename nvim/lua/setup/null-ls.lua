@@ -43,4 +43,6 @@ require('null-ls').setup({
     require('null-ls').builtins.hover.dictionary,
     require('null-ls').builtins.hover.printenv,
   },
+
+  update_in_insert = true,
 })
