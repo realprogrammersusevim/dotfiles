@@ -1,0 +1,11 @@
+# Locations of all Zsh files
+zsh = ["~/.zshrc", "~/.zshenv", "~/.zprofile"]
+
+# Location of NeoVim config
+neovim = "~/.config/nvim/"
+
+# Location of kitty config
+kitty = "~/.config/kitty/kitty.conf"
+
+# Location of this repository
+dotfiles = "~/Documents/GitHub/dotfiles/"

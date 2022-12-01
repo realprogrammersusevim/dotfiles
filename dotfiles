@@ -1,0 +1,52 @@
+#!python3.11
+import argparse
+import os
+
+import tomllib
+
+parser = argparse.ArgumentParser("Automate dotfile management")
+parser.add_argument(
+    "action", choices=["pull", "push"], nargs=1, type=str, help="The action to take"
+)
+parser.add_argument(
+    "-c",
+    "--config_path",
+    default="config.toml",
+    type=str,
+    help="Path to the TOML config",
+)
+args = parser.parse_args()
+
+with open(args.config_path, "rb") as f:
+    config = tomllib.load(f)
+
+repo_loc = config["dotfiles"]
+if not repo_loc.endswith("/"):
+    repo_loc += "/"
+
+if args.action[0] == "pull":
+    print("Syncing dotfile changes into this repo...")
+    print("Kitty...")
+    os.system(
+        f"rsync --no-perms --no-owner --no-group {config['kitty']} {repo_loc}kitty/"
+    )
+    print("Neovim...")
+    os.system(
+        f"rsync -r --no-perms --no-owner --no-group {config['neovim']} {repo_loc}nvim/"
+    )
+    print("Zsh...")
+    for file in config["zsh"]:
+        os.system(f"rsync --no-perms --no-owner --no-group {file} {repo_loc}zsh/")
+elif args.action[0] == "push":
+    print("Syncing dotfile changes from this repo...")
+    print("Kitty...")
+    os.system(
+        f"rsync --no-perms --no-owner --no-group {repo_loc}kitty/* {config['kitty']}"
+    )
+    print("Neovim...")
+    os.system(
+        f"rsync -r --no-perms --no-owner --no-group {repo_loc}nvim/* {config['neovim']}"
+    )
+    print("Zsh...")
+    for file in config["zsh"]:
+        os.system(f"rsync --no-perms --no-owner --no-group {repo_loc}zsh/* {file}")
