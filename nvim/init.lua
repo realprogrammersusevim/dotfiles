@@ -21,7 +21,6 @@ end
 
 -- Make sure the plugins that are absolutely required for everything else to function are installed
 ensure('wbthomason', 'packer.nvim')
-ensure('Olical', 'aniseed')
 ensure('lewis6991', 'impatient.nvim')
 
 -- Impatient pre-compiles and caches all my Lua modules

@@ -150,6 +150,7 @@ return require('packer').startup(function(use)
 
   use({
     'neovim/nvim-lspconfig',
+    config = get_setup('lspconfig'),
     requires = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -207,53 +208,72 @@ return require('packer').startup(function(use)
   })
 
   use({
-    '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/',
+    '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
+    config = get_setup('readability'),
     cmd = 'Readability',
   })
 
-  use({ 'dkarter/bullets.vim', config = get_setup('bullets') })
+  use({ 'dkarter/bullets.vim', config = get_setup('bullets') }) -- Handle Markdown bullets better
 
-  use('lewis6991/impatient.nvim')
+  use('lewis6991/impatient.nvim') -- Load Neovim faster
 
   use({
-    'romgrk/barbar.nvim',
+    'romgrk/barbar.nvim', -- Nice buffer bar
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = get_setup('barbar'),
   })
 
-  use({ 'folke/zen-mode.nvim', cmd = 'ZenMode', config = get_setup('zen-mode') })
+  use({ 'folke/zen-mode.nvim', cmd = 'ZenMode', config = get_setup('zen-mode') }) -- Zen mode to block out distractions
 
-  use({ 'folke/twilight.nvim', config = get_setup('twilight') })
-
-  use({ 'williamboman/mason.nvim', config = get_setup('mason') })
-
-  use('williamboman/mason-lspconfig.nvim')
-
-  use({ 'skywind3000/asyncrun.vim', cmd = 'AsyncRun' })
-
-  use({ 'rcarriga/nvim-notify' })
-
-  use({ 'MunifTanjim/nui.nvim' })
-
-  -- use({
-  --   'folke/noice.nvim',
-  --   config = get_setup('noice'),
-  --   requires = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     'MunifTanjim/nui.nvim', -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     'rcarriga/nvim-notify',
-  --   },
-  -- })
-
-  use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten') })
+  use({ 'folke/twilight.nvim', config = get_setup('twilight') }) -- Grey out inactive portions of text
 
   use({
-    'TimUntersberger/neogit',
-    config = get_setup('neogit'),
-    requires = 'nvim-lua/plenary.nvim',
+    'williamboman/mason.nvim',
+    config = get_setup('mason'),
+    requires = { 'neovim/lspconfig' },
+  }) -- Install code related tools
+
+  use('williamboman/mason-lspconfig.nvim') -- Configure LSP config to use Mason
+
+  use({ 'skywind3000/asyncrun.vim', cmd = 'AsyncRun' }) -- Asynchronously run commands
+
+  use({ 'rcarriga/nvim-notify' }) -- Nice notifications
+
+  use({ 'MunifTanjim/nui.nvim' }) -- Required for Noice
+
+  -- Only load Noice if we're not in a GUI or firenvim
+  if not vim.g.neovide or not vim.g.started_by_firenvim or not vim.g.goneovim then
+    use({
+      'folke/noice.nvim',
+      config = get_setup('noice'),
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        'MunifTanjim/nui.nvim', -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        'rcarriga/nvim-notify',
+      },
+    })
+  end
+
+  use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten') }) -- Zettelkasten stuff
+
+  use({
+    'mfussenegger/nvim-dap',
+    config = get_setup('dap'),
+    requires = { 'theHamsta/nvim-dap-virtual-text' },
   })
 
-  use('Olical/conjure')
+  use({ 'theHamsta/nvim-dap-virtual-text', config = get_setup('dap-virt') })
+
+  use({
+    'rcarriga/nvim-dap-ui',
+    config = get_setup('dap-ui'),
+    requires = { 'mfussenegger/nvim-dap' },
+  })
+
+  use({
+    'jbyuki/one-small-step-for-vimkind',
+    requires = { 'mfussenegger/nvim-dap' },
+  })
 end)
