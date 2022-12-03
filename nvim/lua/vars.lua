@@ -1,4 +1,4 @@
-vim.cmd('filetype plugin indent on') -- Turn on file type detection
+vim.cmd('filetype plugin on') -- Turn on file type detection
 vim.o.guifont = 'FiraMono Nerd Font Mono:h12'
 vim.o.number = true
 -- vim.o.loaded_perl_provider = false -- This is needed to stop errors in :checkhealth
