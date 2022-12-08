@@ -110,24 +110,6 @@ return require('packer').startup(function(use)
     config = get_setup('cmp'),
   })
 
-  use('hrsh7th/cmp-nvim-lsp') -- cmp source
-
-  use('hrsh7th/cmp-buffer') -- cmp source
-
-  use('hrsh7th/cmp-path') -- cmp source
-
-  use('hrsh7th/cmp-nvim-lua') -- cmp source
-
-  use('hrsh7th/cmp-calc') -- cmp source
-
-  use('hrsh7th/cmp-emoji') -- cmp source
-
-  use('saadparwaiz1/cmp_luasnip') -- cmp source
-
-  use('L3MON4D3/LuaSnip') -- Snippets plugin
-
-  use('hrsh7th/cmp-cmdline') -- cmp source
-
   use({
     'petertriho/cmp-git',
 
@@ -174,10 +156,6 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = get_setup('lualine'),
   })
-
-  use('onsails/lspkind.nvim') -- Pictograms for LSP completion items
-
-  use('folke/lsp-colors.nvim') -- Colors for LSP diagnostics
 
   use({ -- GitHub integration
     'pwntester/octo.nvim',
@@ -233,13 +211,7 @@ return require('packer').startup(function(use)
     requires = { 'neovim/lspconfig' },
   }) -- Install code related tools
 
-  use('williamboman/mason-lspconfig.nvim') -- Configure LSP config to use Mason
-
   use({ 'skywind3000/asyncrun.vim', cmd = 'AsyncRun' }) -- Asynchronously run commands
-
-  use({ 'rcarriga/nvim-notify' }) -- Nice notifications
-
-  use({ 'MunifTanjim/nui.nvim' }) -- Required for Noice
 
   -- Only load Noice if we're not in a GUI or firenvim
   if not vim.g.neovide or not vim.g.started_by_firenvim or not vim.g.goneovim then

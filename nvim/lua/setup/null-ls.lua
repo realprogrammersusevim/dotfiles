@@ -44,5 +44,5 @@ require('null-ls').setup({
     require('null-ls').builtins.hover.printenv,
   },
 
-  update_in_insert = true,
+  update_in_insert = false,
 })
