@@ -8,15 +8,16 @@ vim.diagnostic.config({
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Setup lspconfig
 -- Python
-require('lspconfig').pyright.setup({ capabilities = capabilities })
--- require('lspconfig').pylsp.setup({ capabilities = capabilities })
+lspconfig.pyright.setup({ capabilities = capabilities })
+-- lspconfig.pylsp.setup({ capabilities = capabilities })
 
 -- Lua
-require('lspconfig').sumneko_lua.setup({
+lspconfig.sumneko_lua.setup({
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -29,25 +30,27 @@ require('lspconfig').sumneko_lua.setup({
 })
 
 -- Bash
-require('lspconfig').bashls.setup({ capabilities = capabilities })
+lspconfig.bashls.setup({ capabilities = capabilities })
 
 -- Rust
-require('lspconfig').rust_analyzer.setup({ capabilities = capabilities })
+lspconfig.rust_analyzer.setup({
+  capabilities = capabilities,
+  settings = { checkOnSave = { command = 'clippy' } },
+})
 
 -- Markdown
-require('lspconfig').marksman.setup({ capabilities = capabilities })
+lspconfig.marksman.setup({ capabilities = capabilities })
 
 -- LaTex
-require('lspconfig').texlab.setup({ capabilities = capabilities })
+lspconfig.texlab.setup({ capabilities = capabilities })
 
 -- Grammarly
--- require('lspconfig').grammarly.setup({ capabilities = capabilities })
+-- lspconfig.grammarly.setup({ capabilities = capabilities })
 
 -- Vim
-require('lspconfig').vimls.setup({ capabilities = capabilities })
+lspconfig.vimls.setup({ capabilities = capabilities })
 
 -- Fennel
-local lspconfig = require('lspconfig')
 require('lspconfig.configs').fennel_language_server = {
   default_config = {
     -- replace it with true path

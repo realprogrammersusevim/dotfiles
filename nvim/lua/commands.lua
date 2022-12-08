@@ -7,3 +7,10 @@ vim.api.nvim_create_user_command('AutoMake', function(opts)
     command = 'silent AsyncRun make ' .. vim.fn.expand('%:t:r'), -- Remove 'r' here if make targets include extensions
   })
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('AutoCompile', function(opts)
+  vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+    pattern = { '*' },
+    command = 'AsyncRun ' .. opts.args,
+  })
+end, { nargs = 1 })

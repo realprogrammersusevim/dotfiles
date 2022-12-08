@@ -48,15 +48,15 @@ vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { silent = true })
 -- Visual mode	             |
 ------------------------------
 -- Move selected line / block of text in visual mode
-vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv")
-vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv")
+vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv", { silent = true })
+vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv", { silent = true })
 
 ------------------------------
 -- Visual block mode         |
 ------------------------------
 -- Move selected line / block of text in visual mode
-vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv")
-vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv")
+vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv", { silent = true })
+vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv", { silent = true })
 
 ------------------------------
 -- Exceptions for Mac        |
