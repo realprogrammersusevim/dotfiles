@@ -3,7 +3,7 @@ local function get_setup(name)
 end
 
 -- Load packer
--- vim.cmd([[packadd packer.nvim]])
+vim.cmd([[packadd packer.nvim]])
 
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim') -- Packer can manage itself
@@ -69,6 +69,11 @@ return require('packer').startup(function(use)
   use({
     'folke/tokyonight.nvim', -- Color scheme
     config = get_setup('tokyonight'),
+  })
+
+  use({
+    'rebelot/kanagawa.nvim',
+    -- config = get_setup('kanagawa')
   })
 
   use({
@@ -185,6 +190,8 @@ return require('packer').startup(function(use)
     config = get_setup('copilot'),
   })
 
+  use('/User/jonathanmilligan/Documents/GitHub/md-to-html.nvim')
+
   use({
     '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
     config = get_setup('readability'),
@@ -248,4 +255,6 @@ return require('packer').startup(function(use)
     'jbyuki/one-small-step-for-vimkind',
     requires = { 'mfussenegger/nvim-dap' },
   })
+
+  use({ 'terror/chatgpt.nvim', run = 'pip3 install -r requirements.txt' }) -- Talk with ChatGPT directly from NeoVim
 end)

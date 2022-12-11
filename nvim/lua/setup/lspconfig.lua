@@ -50,6 +50,9 @@ lspconfig.texlab.setup({ capabilities = capabilities })
 -- Vim
 lspconfig.vimls.setup({ capabilities = capabilities })
 
+-- Go
+lspconfig.gopls.setup({ capabilities = capabilities })
+
 -- Fennel
 require('lspconfig.configs').fennel_language_server = {
   default_config = {

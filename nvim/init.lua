@@ -10,7 +10,7 @@ local fn = vim.fn
 local pack_path = fn.stdpath('data') .. '/site/pack'
 local fmt = string.format
 
-function ensure(user, repo)
+local function ensure(user, repo)
   -- Ensures a given github.com/USER/REPO is cloned in the pack/packer/start directory.
   local install_path = fmt('%s/packer/start/%s', pack_path, repo)
   if fn.empty(fn.glob(install_path)) > 0 then

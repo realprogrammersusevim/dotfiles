@@ -30,8 +30,7 @@ cmp.setup({
     }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
+    { name = 'nvim_lsp' }, -- { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
     { name = 'copilot' },
@@ -45,7 +44,7 @@ cmp.setup({
       with_text = false,
       menu = {
         nvim_lsp = 'Lsp',
-        buffer = 'Buf',
+        -- buffer = 'Buf',
         luasnip = 'Snip',
         nvim_lua = 'Lua',
         path = 'Path',

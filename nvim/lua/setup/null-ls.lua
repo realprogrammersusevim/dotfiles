@@ -1,4 +1,7 @@
-require('null-ls').setup({
+require('mason')
+local null_ls = require('null_ls')
+
+null_ls.setup({
   on_attach = function(client, bufnr)
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -13,35 +16,35 @@ require('null-ls').setup({
   end,
 
   sources = {
-    require('null-ls').builtins.diagnostics.shellcheck,
-    require('null-ls').builtins.diagnostics.gitlint,
-    require('null-ls').builtins.diagnostics.checkmake,
-    require('null-ls').builtins.diagnostics.luacheck.with({
-      extra_args = { '--config' },
-    }), -- require('null-ls').builtins.diagnostics.mypy,
-    require('null-ls').builtins.diagnostics.vint,
-    require('null-ls').builtins.diagnostics.yamllint,
-    require('null-ls').builtins.diagnostics.proselint,
-    require('null-ls').builtins.diagnostics.write_good.with({
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.gitlint,
+    null_ls.builtins.diagnostics.checkmake,
+    null_ls.builtins.diagnostics.luacheck.with({ extra_args = { '--config' } }), -- null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.diagnostics.vint,
+    null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.proselint,
+    null_ls.builtins.diagnostics.write_good.with({
       extra_args = { '--tooWordy', '--cliches' },
     }),
-    require('null-ls').builtins.formatting.beautysh,
-    require('null-ls').builtins.formatting.black,
-    require('null-ls').builtins.formatting.isort,
-    require('null-ls').builtins.formatting.lua_format,
-    require('null-ls').builtins.formatting.stylua.with({
+    null_ls.builtins.formatting.beautysh,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.lua_format,
+    null_ls.builtins.formatting.stylua.with({
       extra_args = {
         '--config-path',
         vim.fn.expand('~/.config/nvim/utils/linter-config/.stylua.toml'),
       },
     }),
-    require('null-ls').builtins.formatting.prettier.with({
+    null_ls.builtins.formatting.prettier.with({
       filetypes = { 'markdown', 'yaml' },
       extra_args = { '--prose-wrap', 'always' },
     }),
-    require('null-ls').builtins.formatting.rustfmt,
-    require('null-ls').builtins.hover.dictionary,
-    require('null-ls').builtins.hover.printenv,
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.hover.dictionary,
+    null_ls.builtins.hover.printenv,
   },
 
   update_in_insert = false,

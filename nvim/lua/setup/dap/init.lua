@@ -1,1 +1,1 @@
-require("setup.dap.lua").setup()
+require('setup.dap.daps')

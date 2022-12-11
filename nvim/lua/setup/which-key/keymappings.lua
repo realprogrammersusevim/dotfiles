@@ -103,4 +103,6 @@ wk.register({
     x = { "<cmd>lua require'dap'.terminate()<cr>", 'Terminate' },
     u = { "<cmd>lua require'dap'.step_out()<cr>", 'Step Out' },
   },
+
+  r = { name = 'Reveal', '<cmd>lua vim.lsp.buf.hover()<cr>', 'Hover' },
 }, { prefix = '<leader>' })
