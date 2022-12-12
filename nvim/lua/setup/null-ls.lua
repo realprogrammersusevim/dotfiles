@@ -1,5 +1,5 @@
 require('mason')
-local null_ls = require('null_ls')
+local null_ls = require('null-ls')
 
 null_ls.setup({
   on_attach = function(client, bufnr)
@@ -37,7 +37,7 @@ null_ls.setup({
       },
     }),
     null_ls.builtins.formatting.prettier.with({
-      filetypes = { 'markdown', 'yaml' },
+      filetypes = { 'markdown', 'yaml', 'html' },
       extra_args = { '--prose-wrap', 'always' },
     }),
     null_ls.builtins.formatting.rustfmt,
