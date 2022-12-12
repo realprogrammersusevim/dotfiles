@@ -1,52 +1,87 @@
-#!python3.11
-import argparse
-import os
+#!luajit
 
-import tomllib
+local toml = require('toml')
+local argparse = require('argparse')
 
-parser = argparse.ArgumentParser("Automate dotfile management")
-parser.add_argument(
-    "action", choices=["pull", "push"], nargs=1, type=str, help="The action to take"
-)
-parser.add_argument(
-    "-c",
-    "--config_path",
-    default="config.toml",
-    type=str,
-    help="Path to the TOML config",
-)
-args = parser.parse_args()
+local parser = argparse()({ name = 'dotfiles', description = 'Manage dotfiles' })
+parser:argument('action', 'The action to take.'):choices({ 'pull', 'push' }):default('pull')
+parser:option('-c --config', 'The config file to use.'):default('config.toml')
+parser:flag('-d --delete', 'Sync deletions.')
+parser:flag('-v --verbose', 'Verbose output.')
+local args = parser:parse()
 
-with open(args.config_path, "rb") as f:
-    config = tomllib.load(f)
+local function log(logee)
+  if args.verbose then
+    print(logee)
+  end
+end
 
-repo_loc = config["dotfiles"]
-if not repo_loc.endswith("/"):
-    repo_loc += "/"
+local config_text = io.open(args.config, 'r'):read('a')
+local config = toml.parse(config_text)
 
-if args.action[0] == "pull":
-    print("Syncing dotfile changes into this repo...")
-    print("Kitty...")
-    os.system(
-        f"rsync --no-perms --no-owner --no-group {config['kitty']} {repo_loc}kitty/"
-    )
-    print("Neovim...")
-    os.system(
-        f"rsync -r --no-perms --no-owner --no-group {config['neovim']} {repo_loc}nvim/"
-    )
-    print("Zsh...")
-    for file in config["zsh"]:
-        os.system(f"rsync --no-perms --no-owner --no-group {file} {repo_loc}zsh/")
-elif args.action[0] == "push":
-    print("Syncing dotfile changes from this repo...")
-    print("Kitty...")
-    os.system(
-        f"rsync --no-perms --no-owner --no-group {repo_loc}kitty/* {config['kitty']}"
-    )
-    print("Neovim...")
-    os.system(
-        f"rsync -r --no-perms --no-owner --no-group {repo_loc}nvim/* {config['neovim']}"
-    )
-    print("Zsh...")
-    for file in config["zsh"]:
-        os.system(f"rsync --no-perms --no-owner --no-group {repo_loc}zsh/* {file}")
+local repo_loc = config.dotfiles
+if repo_loc:sub(-1) ~= '/' then
+  repo_loc = repo_loc .. '/'
+end
+
+if args.action == 'pull' then
+  log('Syncing local dotfile changes into this repo...')
+  log('Kitty...')
+  local kitty_command = 'rsync --no-perms --no-owner --no-group '
+    .. config.kitty
+    .. ' '
+    .. repo_loc
+    .. 'kitty/'
+  log(kitty_command)
+  os.execute(kitty_command)
+
+  log('Neovim...')
+  local nvim_command = 'rsync -r --no-perms --no-owner --no-group '
+    .. config.neovim
+    .. ' '
+    .. repo_loc
+    .. 'nvim/'
+  if args.delete then
+    nvim_command = nvim_command .. ' --delete'
+  end
+  log(nvim_command)
+  os.execute(nvim_command)
+
+  log('Zsh...')
+  for _, file in ipairs(config.zsh) do
+    local zsh_commmand = 'rsync --no-perms --no-owner --no-group '
+      .. file
+      .. ' '
+      .. repo_loc
+      .. 'zsh/'
+    log(zsh_commmand)
+    os.execute(zsh_commmand)
+  end
+elseif args.action == 'push' then
+  log('Syncing repo dotfile changes into local...')
+  log('Kitty...')
+  local kitty_command = 'rsync --no-perms --no-owner --no-group '
+    .. repo_loc
+    .. 'kitty/* '
+    .. config.kitty
+  log(kitty_command)
+  os.execute(kitty_command)
+
+  log('Neovim...')
+  local nvim_command = 'rsync -r --no-perms --no-owner --no-group '
+    .. repo_loc
+    .. 'nvim/* '
+    .. config.nvim
+  if args.delete then
+    nvim_command = nvim_command .. ' --delete'
+  end
+  log(nvim_command)
+  os.execute(nvim_command)
+
+  log('Zsh...')
+  for _, file in ipairs(config.zsh) do
+    local zsh_commmand = 'rsync --no-perms --no-owner --no-group ' .. repo_loc .. 'zsh/* ' .. file
+    log(zsh_commmand)
+    os.execute(zsh_commmand)
+  end
+end
