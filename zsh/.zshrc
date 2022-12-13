@@ -107,34 +107,8 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias activate="source venv/bin/activate"
-alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
-alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias ls="exa --all --long --git --header --icons"
-alias cd="z"
-alias gui="gitui"
-alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
-alias n="nvim"
-alias rg="rg --hidden --follow --glob '!.git/*'"
-alias fd="fd --hidden --follow --exclude '.git'"
-alias ipy="ipython3"
-alias bathelp='bat --plain --language=help'
-help() {
-    "$@" --help 2>&1 | bathelp
-}
-alias pd="pandoc"
-alias pddm="pandoc -f docx -t markdown --markdown-headings atx"
-alias pdmh="pandoc -f markdown -t html"
-alias pdmd="pandoc -f markdown -t docx"
-alias pdmp="pandoc -f markdown -t pdf"
-alias sed="gsed"
-alias time="gtime"
-alias nd="neovide"
-# alias nf="nvim $(fd -t f | fzf)"
-alias :q="exit"
-alias exe="chmod +x"
+
+source ~/.aliases
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
