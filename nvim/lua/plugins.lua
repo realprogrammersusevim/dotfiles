@@ -235,7 +235,11 @@ return require('packer').startup(function(use)
     })
   end
 
-  use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten') }) -- Zettelkasten stuff
+  use({
+    'renerocksai/telekasten.nvim',
+    config = get_setup('telekasten'),
+    command = 'Telekasten',
+  }) -- Zettelkasten stuff
 
   use({
     'mfussenegger/nvim-dap',
@@ -255,6 +259,4 @@ return require('packer').startup(function(use)
     'jbyuki/one-small-step-for-vimkind',
     requires = { 'mfussenegger/nvim-dap' },
   })
-
-  use({ 'terror/chatgpt.nvim', run = 'pip3 install -r requirements.txt' }) -- Talk with ChatGPT directly from NeoVim
 end)
