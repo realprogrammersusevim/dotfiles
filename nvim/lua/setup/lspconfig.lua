@@ -10,15 +10,21 @@ require('mason-lspconfig').setup()
 
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local navic = require('nvim-navic')
+local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
+end
 
 -- Setup lspconfig
 -- Python
-lspconfig.pyright.setup({ capabilities = capabilities })
--- lspconfig.pylsp.setup({ capabilities = capabilities })
+lspconfig.pyright.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Lua
 lspconfig.sumneko_lua.setup({
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
@@ -30,31 +36,32 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- Bash
-lspconfig.bashls.setup({ capabilities = capabilities })
+lspconfig.bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = { checkOnSave = { command = 'clippy' } },
 })
 
 -- Markdown
-lspconfig.marksman.setup({ capabilities = capabilities })
+lspconfig.marksman.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- LaTex
-lspconfig.texlab.setup({ capabilities = capabilities })
+lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Grammarly
 -- lspconfig.grammarly.setup({ capabilities = capabilities })
 
 -- Vim
-lspconfig.vimls.setup({ capabilities = capabilities })
+lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Go
-lspconfig.gopls.setup({ capabilities = capabilities })
+lspconfig.gopls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- HTML
-lspconfig.html.setup({ capabilities = capabilities })
+lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Fennel
 require('lspconfig.configs').fennel_language_server = {

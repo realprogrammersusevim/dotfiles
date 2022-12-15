@@ -40,12 +40,6 @@ return require('packer').startup(function(use)
     requires = { 'nvim-treesitter/nvim-treesitter' },
   })
 
-  use({
-    'nvim-treesitter/nvim-treesitter-context', -- Show the current context
-    config = get_setup('treesitter_context'),
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-  })
-
   use('nvim-tree/nvim-web-devicons') -- Fancy icons for Neovim plugins
 
   use({
@@ -190,12 +184,11 @@ return require('packer').startup(function(use)
     config = get_setup('copilot'),
   })
 
-  use('/User/jonathanmilligan/Documents/GitHub/md-to-html.nvim')
+  use('/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim')
 
   use({
     '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
-    config = get_setup('readability'),
-    cmd = 'Readability',
+    -- cmd = 'Readability',
   })
 
   use({ 'dkarter/bullets.vim', config = get_setup('bullets') }) -- Handle Markdown bullets better
@@ -258,5 +251,11 @@ return require('packer').startup(function(use)
   use({
     'jbyuki/one-small-step-for-vimkind',
     requires = { 'mfussenegger/nvim-dap' },
+  })
+
+  use({
+    'SmiteshP/nvim-navic',
+    requires = { 'neovim/nvim-lspconfig' },
+    config = get_setup('navic'),
   })
 end)

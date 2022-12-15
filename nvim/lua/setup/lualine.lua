@@ -1,3 +1,5 @@
+local navic = require('nvim-navic')
+
 require('lualine').setup({
   options = {
     theme = 'auto',
@@ -8,7 +10,7 @@ require('lualine').setup({
   sections = {
     lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
     lualine_b = { 'filename', 'branch' },
-    lualine_c = {},
+    lualine_c = { { navic.get_location, cond = navic.is_available } },
     lualine_x = {},
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
