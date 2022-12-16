@@ -156,27 +156,27 @@ return require('packer').startup(function(use)
     config = get_setup('lualine'),
   })
 
-  use({ -- GitHub integration
-    'pwntester/octo.nvim',
-    config = get_setup('octo'),
-    command = 'Octo',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-  })
+  -- use({ -- GitHub integration
+  --   'pwntester/octo.nvim',
+  --   config = get_setup('octo'),
+  --   command = 'Octo',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --     'kyazdani42/nvim-web-devicons',
+  --   },
+  -- })
 
   use('lukas-reineke/indent-blankline.nvim') -- Indent guides
 
   use('ibhagwan/smartyank.nvim') -- Smart yank (don't pollute the clipboard)
 
-  use({
-    'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    cmd = 'TroubleToggle',
-    config = get_setup('trouble'),
-  })
+  -- use({
+  --   'folke/trouble.nvim',
+  --   requires = 'kyazdani42/nvim-web-devicons',
+  --   cmd = 'TroubleToggle',
+  --   config = get_setup('trouble'),
+  -- })
 
   use({
     'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
@@ -201,9 +201,9 @@ return require('packer').startup(function(use)
     config = get_setup('barbar'),
   })
 
-  use({ 'folke/zen-mode.nvim', cmd = 'ZenMode', config = get_setup('zen-mode') }) -- Zen mode to block out distractions
+  -- use({ 'folke/zen-mode.nvim', cmd = 'ZenMode', config = get_setup('zen-mode') }) -- Zen mode to block out distractions
 
-  use({ 'folke/twilight.nvim', config = get_setup('twilight') }) -- Grey out inactive portions of text
+  -- use({ 'folke/twilight.nvim', config = get_setup('twilight') }) -- Grey out inactive portions of text
 
   use({
     'williamboman/mason.nvim',
@@ -228,30 +228,30 @@ return require('packer').startup(function(use)
     })
   end
 
-  use({
-    'renerocksai/telekasten.nvim',
-    config = get_setup('telekasten'),
-    command = 'Telekasten',
-  }) -- Zettelkasten stuff
+  -- use({
+  --   'renerocksai/telekasten.nvim',
+  --   config = get_setup('telekasten'),
+  --   command = 'Telekasten',
+  -- }) -- Zettelkasten stuff
 
-  use({
-    'mfussenegger/nvim-dap',
-    config = get_setup('dap'),
-    requires = { 'theHamsta/nvim-dap-virtual-text' },
-  })
+  -- use({
+  --   'mfussenegger/nvim-dap',
+  --   config = get_setup('dap'),
+  --   requires = { 'theHamsta/nvim-dap-virtual-text' },
+  -- })
 
-  use({ 'theHamsta/nvim-dap-virtual-text', config = get_setup('dap-virt') })
+  -- use({ 'theHamsta/nvim-dap-virtual-text', config = get_setup('dap-virt') })
 
-  use({
-    'rcarriga/nvim-dap-ui',
-    config = get_setup('dap-ui'),
-    requires = { 'mfussenegger/nvim-dap' },
-  })
+  -- use({
+  --   'rcarriga/nvim-dap-ui',
+  --   config = get_setup('dap-ui'),
+  --   requires = { 'mfussenegger/nvim-dap' },
+  -- })
 
-  use({
-    'jbyuki/one-small-step-for-vimkind',
-    requires = { 'mfussenegger/nvim-dap' },
-  })
+  -- use({
+  --   'jbyuki/one-small-step-for-vimkind',
+  --   requires = { 'mfussenegger/nvim-dap' },
+  -- })
 
   use({
     'SmiteshP/nvim-navic',
