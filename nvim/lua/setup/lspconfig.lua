@@ -31,6 +31,17 @@ lspconfig.sumneko_lua.setup({
         -- Shut up about the vim global
         globals = { 'vim' },
       },
+      runtime = {
+        -- Tell the language server where to look for Lua libraries
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = { enable = false },
     },
   },
 })
@@ -62,30 +73,6 @@ lspconfig.gopls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- HTML
 lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
-
--- Fennel
-require('lspconfig.configs').fennel_language_server = {
-  default_config = {
-    -- replace it with true path
-    cmd = { '/Users/jonathanmilligan/.cargo/bin/fennel-language-server' },
-    filetypes = { 'fennel' },
-    single_file_support = true,
-    -- source code resides in directory `fnl/`
-    root_dir = lspconfig.util.root_pattern('fnl'),
-    settings = {
-      fennel = {
-        workspace = {
-          -- If you are using hotpot.nvim or aniseed,
-          -- make the server aware of neovim runtime files.
-          library = vim.api.nvim_list_runtime_paths(),
-        },
-        diagnostics = { globals = { 'vim' } },
-      },
-    },
-  },
-}
-
-lspconfig.fennel_language_server.setup({})
 
 -- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }

@@ -120,6 +120,7 @@ export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
 export PATH="$PATH:/Users/jonathanmilligan/Documents/GitHub/cli-tools/scripts"
 export PATH=$PATH:"/Users/jonathanmilligan/.bin"
+eval $(luarocks path)
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
