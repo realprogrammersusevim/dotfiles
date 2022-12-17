@@ -31,7 +31,7 @@ I'll update these soon, but my configs look much better now.
 
 ## Layout
 
-The scheme of my NeoVim config layout is rather simple once you understand it.
+The scheme of my Neovim configuration is rather simple once you understand it.
 
 ```
 .
@@ -41,7 +41,6 @@ The scheme of my NeoVim config layout is rather simple once you understand it.
 ├── lua
 │   ├── autocmds.lua
 │   ├── commands.lua
-│   ├── functions.lua
 │   ├── mappings.lua
 │   ├── plugins.lua
 │   ├── setup
@@ -55,9 +54,11 @@ The scheme of my NeoVim config layout is rather simple once you understand it.
 │   │   ├── copilot-cmp.lua
 │   │   ├── copilot.lua
 │   │   ├── gitsigns.lua
+│   │   ├── lspconfig.lua
 │   │   ├── lualine.lua
 │   │   ├── markdown-preview.lua
 │   │   ├── mason.lua
+│   │   ├── navic.lua
 │   │   ├── noice.lua
 │   │   ├── null-ls.lua
 │   │   ├── nvim-tree.lua
@@ -67,18 +68,16 @@ The scheme of my NeoVim config layout is rather simple once you understand it.
 │   │   ├── todo.lua
 │   │   ├── tokyonight.lua
 │   │   ├── treesitter.lua
-│   │   ├── treesitter_context.lua
 │   │   ├── treesitter_refactor.lua
 │   │   ├── trouble.lua
-│   │   ├── twilight.lua
-│   │   ├── which-key.lua
-│   │   └── zen-mode.lua
+│   │   ├── webtools.lua
+│   │   ├── which-key
+│   │   │   ├── config.lua
+│   │   │   ├── init.lua
+│   │   │   └── keymappings.lua
 │   └── vars.lua
 └── utils
     ├── linter-config
-    │   ├── .luacheckrc
-    │   └── .stylua.toml
-    ├── mthesaur.txt
     └── thesaurii.txt
 ```
 

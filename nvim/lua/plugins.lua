@@ -158,25 +158,12 @@ require('packer').startup({
       config = get_setup('lualine'),
     })
 
-    use({ -- GitHub integration
-      'pwntester/octo.nvim',
-      disable = true,
-      config = get_setup('octo'),
-      command = 'Octo',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-        'kyazdani42/nvim-web-devicons',
-      },
-    })
-
     use('lukas-reineke/indent-blankline.nvim') -- Indent guides
 
     use('ibhagwan/smartyank.nvim') -- Smart yank (don't pollute the clipboard)
 
     use({
       'folke/trouble.nvim',
-      disable = true,
       requires = 'kyazdani42/nvim-web-devicons',
       cmd = 'TroubleToggle',
       config = get_setup('trouble'),
@@ -210,19 +197,6 @@ require('packer').startup({
     })
 
     use({
-      'folke/zen-mode.nvim',
-      disable = true,
-      cmd = 'ZenMode',
-      config = get_setup('zen-mode'),
-    }) -- Zen mode to block out distractions
-
-    use({
-      'folke/twilight.nvim',
-      disable = true,
-      config = get_setup('twilight'),
-    }) -- Grey out inactive portions of text
-
-    use({
       'williamboman/mason.nvim',
       config = get_setup('mason'),
       requires = { 'neovim/lspconfig' },
@@ -247,48 +221,12 @@ require('packer').startup({
     })
 
     use({
-      'renerocksai/telekasten.nvim',
-      disable = true,
-      config = get_setup('telekasten'),
-      command = 'Telekasten',
-    }) -- Zettelkasten stuff
-
-    use({
-      'mfussenegger/nvim-dap',
-      disable = true,
-      config = get_setup('dap'),
-      requires = { 'theHamsta/nvim-dap-virtual-text' },
-    })
-
-    use({
-      'theHamsta/nvim-dap-virtual-text',
-      disable = true,
-      config = get_setup('dap-virt'),
-    })
-
-    use({
-      'rcarriga/nvim-dap-ui',
-      disable = true,
-      config = get_setup('dap-ui'),
-      requires = { 'mfussenegger/nvim-dap' },
-    })
-
-    use({
-      'jbyuki/one-small-step-for-vimkind',
-      disable = true,
-      requires = { 'mfussenegger/nvim-dap' },
-    })
-
-    use({
       'SmiteshP/nvim-navic',
       requires = { 'neovim/nvim-lspconfig' },
       config = get_setup('navic'),
     })
 
-    use({
-      'ray-x/web-tools.nvim',
-      -- config = get_setup('webtools.lua')
-    })
+    use({ 'ray-x/web-tools.nvim', config = function() require('web-tools.').setup() end})
   end,
   config = {
     display = {
