@@ -24,6 +24,7 @@ wk.register({
 
   s = {
     name = 'Search',
+    s = { '<CMD>Telescope<CR>', 'Search' },
     b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
     c = { '<CMD>Telescope colorscheme<CR>', 'Colorscheme' },
     f = { '<CMD>Telescope find_files<CR>', 'Find File' },
@@ -35,6 +36,7 @@ wk.register({
     t = { '<CMD>Telescope live_grep<CR>', 'Text' },
     k = { '<CMD>Telescope keymaps<CR>', 'Keymaps' },
     C = { '<CMD>Telescope commands<CR>', 'Commands' },
+    p = { '<CMD>Telescope planets<CR>', 'Planets' },
   },
 
   t = { name = 'Trouble', { '<CMD>TroubleToggle<CR>', 'Toggle' } },
