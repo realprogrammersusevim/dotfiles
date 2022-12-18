@@ -24,57 +24,40 @@ if repo_loc:sub(-1) ~= '/' then
   repo_loc = repo_loc .. '/'
 end
 
-local function command(name, recursive, sources, destination)
+local function command(name, recursive, source, destination)
   log(name .. ' ...')
-  for _, source in ipairs(sources) do
-    local cmd = 'rsync --no-perms --no-owner --no-group '
-    if recursive then
-      cmd = cmd .. '-r '
-    end
-    if args.delete then
-      cmd = cmd .. '--delete '
-    end
-    if args.verbose then
-      cmd = cmd .. '-v '
-    end
-    cmd = cmd .. source .. ' ' .. repo_loc .. destination
-    log('Running command: ' .. cmd)
-    os.execute(cmd)
+  local cmd = 'rsync --no-perms --no-owner --no-group '
+  if recursive then
+    cmd = cmd .. '-r '
   end
+  if args.delete then
+    cmd = cmd .. '--delete '
+  end
+  if args.verbose then
+    cmd = cmd .. '-v '
+  end
+  cmd = cmd .. source .. ' ' .. destination
+  log('Running command: ' .. cmd)
+  os.execute(cmd)
 end
 
 if args.action == 'pull' then
   log('Syncing local dotfile changes into this repo...')
-  command('Kitty', false, { config.kitty }, 'kitty/')
+  command('Kitty', false, config.kitty, repo_loc .. 'kitty/')
 
-  command('Neovim', true, { config.nvim }, 'nvim/')
+  command('Neovim', true, config.neovim, repo_loc .. 'nvim/')
 
-  command('Zsh', false, config.zsh, 'zsh/')
+  for _, file in ipairs(config.zsh) do
+    command('Zsh', false, file, repo_loc .. 'zsh/')
+  end
 elseif args.action == 'push' then
   log('Syncing repo dotfile changes into local...')
   log('Kitty...')
-  local kitty_command = 'rsync --no-perms --no-owner --no-group '
-    .. repo_loc
-    .. 'kitty/* '
-    .. config.kitty
-  log(kitty_command)
-  os.execute(kitty_command)
+  command('Kitty', false, repo_loc .. 'kitty/*', config.kitty)
 
-  log('Neovim...')
-  local nvim_command = 'rsync -r --no-perms --no-owner --no-group '
-    .. repo_loc
-    .. 'nvim/* '
-    .. config.neovim
-  if args.delete then
-    nvim_command = nvim_command .. ' --delete'
-  end
-  log(nvim_command)
-  os.execute(nvim_command)
+  command('Neovim', true, repo_loc .. 'nvim/*', config.neovim)
 
-  log('Zsh...')
   for _, file in ipairs(config.zsh) do
-    local zsh_commmand = 'rsync --no-perms --no-owner --no-group ' .. repo_loc .. 'zsh/* ' .. file
-    log(zsh_commmand)
-    os.execute(zsh_commmand)
+    command('Zsh', false, repo_loc .. 'zsh/', file)
   end
 end
