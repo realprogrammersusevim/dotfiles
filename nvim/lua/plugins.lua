@@ -226,7 +226,14 @@ require('packer').startup({
       config = get_setup('navic'),
     })
 
-    use({ 'ray-x/web-tools.nvim', config = function() require('web-tools.').setup() end})
+    use({
+      'ray-x/web-tools.nvim',
+      config = function()
+        require('web-tools.').setup()
+      end,
+    })
+
+    use({ 'Eandrju/cellular-automaton.nvim' })
   end,
   config = {
     display = {

@@ -1,6 +1,4 @@
-local wk = require('which-key')
-
-wk.register({
+require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
 
   e = { name = 'File Tree', { '<CMD>NvimTreeToggle<CR>', 'File Tree' } },
@@ -106,5 +104,14 @@ wk.register({
     u = { "<CMD>lua require'dap'.step_out()<CR>", 'Step Out' },
   },
 
-  r = { name = 'Reveal', '<CMD>lua vim.lsp.buf.hover()<CR>', 'Hover' },
+  l = {
+    name = 'LSP',
+    r = { '<CMD>lua vim.lsp.buf.rename()<CR>', 'Rename' },
+    i = { '<CMD>lua vim.lsp.buf.hover()<CR>', 'Information' },
+    d = { '<CMD>lua vim.lsp.buf.definition()<CR>', 'Definition' },
+    D = { '<CMD>lua vim.lsp.buf.declaration()<CR>', 'Declaration' }, -- Some servers don't implement this feature
+    m = { '<CMD>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+    q = { '<CMD>lua vim.lsp.buf.references()<CR>', 'Quickfix' },
+    e = { '<CMD>lua vim.diagnostic.open_float()<CR>', 'Diagnostics' },
+  },
 }, { prefix = '<leader>' })

@@ -4,14 +4,21 @@ local cmp = require('cmp')
 local lspkind = require('lspkind')
 
 -- Select first item by default
-vim.opt.completeopt = 'menuone,noselect'
+-- vim.opt.completeopt = 'menuone,preview,noselect'
 
 cmp.setup({
-  -- Disable cmp in code comments
-  -- enabled = function()
-  -- disable completion if the cursor is `Comment` syntax group.
-  -- return not cmp.config.context.in_syntax_group("Comment")
-  -- end,
+  enabled = function()
+    local in_prompt = vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+    if in_prompt then -- Disable CMP in the Telescope window
+      return false
+    end
+    local context = require('cmp.config.context')
+    return
+      not (
+          context.in_treesitter_capture('comment') == true -- Disable CMP in code comments
+          or context.in_syntax_group('Comment')
+        )
+  end,
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -24,13 +31,13 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
+    ['<S-CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     }),
   },
   sources = {
-    { name = 'nvim_lsp' }, -- { name = 'buffer' },
+    { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'luasnip' },
     { name = 'copilot' },
@@ -44,7 +51,6 @@ cmp.setup({
       with_text = false,
       menu = {
         nvim_lsp = 'Lsp',
-        -- buffer = 'Buf',
         luasnip = 'Snip',
         nvim_lua = 'Lua',
         path = 'Path',
@@ -61,12 +67,16 @@ cmp.setup({
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  -- filetype = { "markdown", "text", "org" },
-  -- {
-  -- 	sources = { name = "luasnip" },
-  -- 	{ name = "path" },
-  -- 	{ name = "buffer" },
-  -- 	{ name = "copilot" },
-  -- },
-  -- { "gitcommit" },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 })
