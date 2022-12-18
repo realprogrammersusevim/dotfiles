@@ -10,12 +10,12 @@ require('bufferline').setup({
   tabpages = true,
 
   -- Enable/disable close button
-  closable = true,
+  closable = false,
 
   -- Enables/disable clickable tabs
   --  - left-click: go to buffer
   --  - middle-click: delete buffer
-  clickable = true,
+  clickable = false,
 
   -- Excludes buffers from the tabline
   exclude_ft = { 'javascript' },
@@ -69,5 +69,5 @@ require('bufferline').setup({
 
   -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
   -- where X is the buffer number. But only a static string is accepted here.
-  no_name_title = nil,
+  no_name_title = 'Unnamed',
 })
