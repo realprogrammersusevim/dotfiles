@@ -1,5 +1,5 @@
 # Locations of all Zsh files
-zsh = ["~/.zshrc", "~/.zshenv", "~/.zprofile", "~/.personal_commands.sh", "~/.aliases"]
+zsh = ["~/.zshrc", "~/.zshenv", "~/.zprofile", "~/.personal_commands.sh", "~/.aliases.sh"]
 
 # Location of NeoVim config
 neovim = "~/.config/nvim/"

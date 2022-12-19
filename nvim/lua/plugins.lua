@@ -236,6 +236,8 @@ require('packer').startup({
     use({ 'Eandrju/cellular-automaton.nvim' })
 
     use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
+
+    use('tamton-aquib/duck.nvim')
   end,
   config = {
     display = {

@@ -29,9 +29,9 @@ local function command(name, recursive, source, destination)
   local cmd = 'rsync --no-perms --no-owner --no-group '
   if recursive then
     cmd = cmd .. '-r '
-  end
-  if args.delete then
-    cmd = cmd .. '--delete '
+    if args.delete then -- Delete option only works when recursive is enabled
+      cmd = cmd .. '--delete '
+    end
   end
   if args.verbose then
     cmd = cmd .. '-v '
