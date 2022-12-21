@@ -25,7 +25,7 @@ if repo_loc:sub(-1) ~= '/' then
 end
 
 local function command(name, recursive, source, destination)
-  log(name .. ' ...')
+  log(name .. '...')
   local cmd = 'rsync --no-perms --no-owner --no-group '
   if recursive then
     cmd = cmd .. '-r '

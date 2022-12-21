@@ -98,5 +98,6 @@ require('which-key').register({
     m = { vim.lsp.buf.implementation, 'Implementation' },
     q = { vim.lsp.buf.references, 'Quickfix' },
     e = { vim.diagnostic.open_float, 'Diagnostics' },
+    a = { vim.lsp.buf.code_action, 'Code Action' },
   },
 }, { prefix = '<leader>' })

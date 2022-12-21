@@ -64,6 +64,11 @@ lspconfig.sumneko_lua.setup({
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = { enable = false },
+
+      semantic = {
+        -- Treesitter highlighting is better
+        enable = false,
+      },
     },
   },
 })
@@ -95,6 +100,10 @@ lspconfig.gopls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- HTML
 lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.tailwindcss.setup({ capabilities = capabilities, on_attach = on_attach })
+
+-- Yaml
+lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
