@@ -52,6 +52,7 @@ require('which-key').register({
     r = { builtin.oldfiles, 'Open Recent File' },
     R = { builtin.registers, 'Registers' },
     t = { builtin.live_grep, 'Text' },
+    T = { '<CMD>TodoTelescope<CR>', 'Todos' },
     k = { builtin.keymaps, 'Keymaps' },
     C = { builtin.commands, 'Commands' },
     p = { builtin.planets, 'Planets' },
