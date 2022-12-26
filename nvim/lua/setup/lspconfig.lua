@@ -105,6 +105,9 @@ lspconfig.tailwindcss.setup({ capabilities = capabilities, on_attach = on_attach
 -- Yaml
 lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 
+-- Swift
+lspconfig.sourcekit.setup({ capabilities = capabilities, on_attach = on_attach })
+
 -- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do

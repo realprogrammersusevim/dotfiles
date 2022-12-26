@@ -238,6 +238,8 @@ require('packer').startup({
     use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
     use('tamton-aquib/duck.nvim')
+
+    use('nvim-treesitter/playground')
   end,
   config = {
     display = {
