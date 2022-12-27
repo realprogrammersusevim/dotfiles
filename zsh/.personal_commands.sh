@@ -4,7 +4,7 @@
 # It is sourced by the main zshrc file.
 # If you want another command simply create a new function
 
-function zen() {
+zen() {
     python3 -c "import this"
 }
 
@@ -20,7 +20,7 @@ fif() {
 # Usage: `ff` or `ff <folder>`.
 #
 ff() {
-    [[ -n $1 ]] && cd $1 # go to provided folder or noop
+    [[ -n $1 ]] && cd "$1" # go to provided folder or noop
     RG_DEFAULT_COMMAND="rg -i -l --hidden --no-ignore-vcs"
 
     selected=$(
@@ -33,8 +33,8 @@ ff() {
             --bind "ctrl-a:select-all" \
             --bind "f12:execute-silent:(subl -b {})" \
             --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
-            --preview "rg -i --pretty --context 10 {q} {}" | cut -d":" -f1,2
+            --preview "rg -i --context 10 {q} {} | bat --file-name {} -f --plain -H 11"
     )
 
-    [[ -n $selected ]] && nvim $selected # open multiple files in editor
+    [[ -n $selected ]] && nvim "$selected" # open multiple files in editor
 }
