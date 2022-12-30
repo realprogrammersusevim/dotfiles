@@ -33,7 +33,7 @@ ff() {
             --bind "ctrl-a:select-all" \
             --bind "f12:execute-silent:(subl -b {})" \
             --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
-            --preview "rg -i --context 10 {q} {} | bat --file-name {} -f --plain -H 11"
+            --preview "rg -i --context 10 {q} {} | bat --file-name {} -f --plain -H 11 2>/dev/null"
     )
 
     [[ -n $selected ]] && nvim "$selected" # open multiple files in editor
