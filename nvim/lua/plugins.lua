@@ -243,7 +243,10 @@ require('packer').startup({
 
     use({ 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' })
 
-    use({ 'karb94/neoscroll.nvim', config = get_setup('neoscroll') })
+    use({
+      'declancm/cinnamon.nvim',
+      config = get_setup('cinnamon'),
+    })
   end,
   config = {
     display = {
