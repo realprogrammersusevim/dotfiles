@@ -22,6 +22,7 @@ require('packer').startup({
     use({
       'windwp/nvim-autopairs', -- Insert or delete brackets, parens, quotes in pair
       config = get_setup('autopairs'),
+      on = { 'InsertEnter', 'InsertLeave' },
     })
 
     use({
@@ -45,7 +46,6 @@ require('packer').startup({
 
     use({
       'nvim-tree/nvim-tree.lua', -- File explorer
-      commands = 'NvimTreeToggle', -- I only ever use the keybind to this command
       requires = { 'nvim-tree/nvim-web-devicons' },
       config = get_setup('nvim-tree'),
     })
@@ -68,7 +68,8 @@ require('packer').startup({
 
     use({
       'rebelot/kanagawa.nvim',
-      -- config = get_setup('kanagawa')
+      config = get_setup('kanagawa'),
+      disable = true,
     })
 
     use({
@@ -92,7 +93,6 @@ require('packer').startup({
 
     use({
       'hrsh7th/nvim-cmp', -- Autocompletion plugin
-      -- event = 'InsertEnter',
       requires = {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-nvim-lsp',
@@ -116,6 +116,7 @@ require('packer').startup({
 
       requires = 'nvim-lua/plenary.nvim',
       config = get_setup('cmp-git'),
+      opt = true,
     }) -- cmp source
 
     use({
@@ -123,6 +124,7 @@ require('packer').startup({
 
       requires = 'zbirenbaum/copilot.lua',
       config = get_setup('copilot-cmp'),
+      opt = true,
     })
 
     use({
@@ -179,7 +181,7 @@ require('packer').startup({
 
     use({
       '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
-      -- cmd = 'Readability',
+      cmd = { 'ReadabilitySmog', 'ReadabilityFlesch' },
     })
 
     use({
@@ -199,7 +201,7 @@ require('packer').startup({
     use({
       'williamboman/mason.nvim',
       config = get_setup('mason'),
-      requires = { 'neovim/lspconfig' },
+      requires = { 'neovim/nvim-lspconfig' },
     }) -- Install code related tools
 
     use({ 'skywind3000/asyncrun.vim', cmd = 'AsyncRun' }) -- Asynchronously run commands
@@ -233,13 +235,15 @@ require('packer').startup({
       end,
     })
 
-    use({ 'Eandrju/cellular-automaton.nvim' })
+    use({ 'Eandrju/cellular-automaton.nvim', cmd = 'CellularAutomoton' })
 
     use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
-    use('tamton-aquib/duck.nvim')
+    use({ 'tamton-aquib/duck.nvim', opt = true })
 
-    use('nvim-treesitter/playground')
+    use({ 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' })
+
+    use({ 'karb94/neoscroll.nvim', config = get_setup('neoscroll') })
   end,
   config = {
     display = {
