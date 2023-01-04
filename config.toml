@@ -5,7 +5,7 @@ zsh = ["~/.zshrc", "~/.zshenv", "~/.zprofile", "~/.personal_commands.sh", "~/.al
 neovim = "~/.config/nvim/"
 
 # Location of kitty config
-kitty = "~/.config/kitty/kitty.conf"
+kitty = "~/.config/kitty/*.conf"
 
 # Location of this repository
 dotfiles = "~/Documents/GitHub/dotfiles/"
