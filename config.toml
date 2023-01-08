@@ -1,14 +1,14 @@
 # Locations of all Zsh files
-zsh = ["~/.zshrc", "~/.zshenv", "~/.zprofile", "~/.personal_commands.sh", "~/.aliases.sh"]
+zsh = [".zshrc", ".zshenv", ".zprofile", ".personal_commands.sh", ".aliases.sh"]
 
 # Location of NeoVim config
 neovim = "~/.config/nvim/"
 
 # Location of kitty config
-kitty = "~/.config/kitty/*.conf"
+kitty = "~/.config/kitty/*"
 
 # Location of gitui config
-gitui = "~/.config/gitui/*.ron"
+gitui = "~/.config/gitui/*"
 
 # Location of this repository
 dotfiles = "~/Documents/GitHub/dotfiles/"

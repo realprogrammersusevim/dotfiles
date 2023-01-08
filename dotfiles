@@ -48,7 +48,7 @@ if args.action == 'pull' then
   command('Neovim', true, config.neovim, repo_loc .. 'nvim/')
 
   for _, file in ipairs(config.zsh) do
-    command('Zsh', false, file, repo_loc .. 'zsh/')
+    command('Zsh', false, '~/' .. file, repo_loc .. 'zsh/')
   end
 
   command('gitui', false, config.gitui, repo_loc .. 'gitui/')
@@ -59,8 +59,8 @@ elseif args.action == 'push' then
   command('Neovim', true, repo_loc .. 'nvim/*', config.neovim)
 
   for _, file in ipairs(config.zsh) do
-    command('Zsh', false, repo_loc .. 'zsh/', file)
+    command('Zsh', false, repo_loc .. 'zsh/' .. file, '~/' .. file)
   end
 
-  command('gitui', false, repo_loc .. 'gitui/*.conf', config.gitui)
+  command('gitui', false, repo_loc .. 'gitui/*', config.gitui)
 end
