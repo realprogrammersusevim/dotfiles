@@ -94,37 +94,24 @@ require('packer').startup({
     use({
       'hrsh7th/nvim-cmp', -- Autocompletion plugin
       requires = {
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lua',
-        'hrsh7th/cmp-calc',
-        'hrsh7th/cmp-emoji',
-        'saadparwaiz1/cmp_luasnip',
-        'L3MON4D3/LuaSnip',
-        'hrsh7th/cmp-cmdline',
-        'onsails/lspkind.nvim',
-        'petertriho/cmp-git',
-        'zbirenbaum/copilot-cmp',
-        'neovim/nvim-lspconfig',
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-nvim-lua' },
+        { 'hrsh7th/cmp-calc' },
+        { 'hrsh7th/cmp-emoji' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'L3MON4D3/LuaSnip' },
+        { 'hrsh7th/cmp-cmdline' },
+        { 'onsails/lspkind.nvim' },
+        {
+          'petertriho/cmp-git',
+          requires = 'nvim-lua/plenary.nvim',
+          config = get_setup('cmp-git'),
+        },
+        { 'zbirenbaum/copilot-cmp', config = get_setup('copilot-cmp') },
+        { 'neovim/nvim-lspconfig' },
       },
       config = get_setup('cmp'),
-    })
-
-    use({
-      'petertriho/cmp-git',
-
-      requires = 'nvim-lua/plenary.nvim',
-      config = get_setup('cmp-git'),
-      opt = true,
-    }) -- cmp source
-
-    use({
-      'zbirenbaum/copilot-cmp',
-
-      requires = 'zbirenbaum/copilot.lua',
-      config = get_setup('copilot-cmp'),
-      opt = true,
     })
 
     use({
