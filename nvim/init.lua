@@ -26,11 +26,11 @@ ensure('lewis6991', 'impatient.nvim')
 -- Impatient pre-compiles and caches all my Lua modules
 require('impatient')
 
--- Load my plugin file
-require('plugins')
-
 -- Load the general variable settings
 require('vars')
+
+-- Load my plugin file
+require('plugins')
 
 -- Load all my key mappings
 require('mappings')

@@ -1,4 +1,6 @@
 local opt = vim.o
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.cmd('filetype plugin on') -- Turn on file type detection
 opt.guifont = 'JetBrainsMono Nerd Font Mono:13'
 opt.number = true
