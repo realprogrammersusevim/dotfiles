@@ -29,17 +29,20 @@ require('packer').startup({
       'nvim-treesitter/nvim-treesitter', -- Syntax highlighting
       run = ':TSUpdate',
       config = get_setup('treesitter'),
+      on = 'BufRead',
     })
 
     use({
       'nvim-treesitter/nvim-treesitter-textobjects', -- Text objects for treesitter
       requires = { 'nvim-treesitter/nvim-treesitter' },
+      on = 'BufRead',
     })
 
     use({
       'nvim-treesitter/nvim-treesitter-refactor', -- Refactoring using treesitter
       config = get_setup('treesitter_refactor'),
       requires = { 'nvim-treesitter/nvim-treesitter' },
+      on = 'BufRead',
     })
 
     use('nvim-tree/nvim-web-devicons') -- Fancy icons for Neovim plugins
@@ -82,6 +85,7 @@ require('packer').startup({
     use({
       'numToStr/Comment.nvim', -- Comment stuff out
       config = get_setup('comment'),
+      on = 'BufRead',
     })
 
     use({
@@ -164,7 +168,10 @@ require('packer').startup({
       config = get_setup('copilot'),
     })
 
-    use('/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim')
+    use({
+      '/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim',
+      cmd = { 'MarkdownToHTML', 'NewMarkdownToHTML' },
+    })
 
     use({
       '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
@@ -183,6 +190,7 @@ require('packer').startup({
       'romgrk/barbar.nvim', -- Nice buffer bar
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = get_setup('barbar'),
+      on = 'TabNew',
     })
 
     use({
@@ -233,6 +241,7 @@ require('packer').startup({
     use({
       'declancm/cinnamon.nvim',
       config = get_setup('cinnamon'),
+      on = 'CursorMove',
     })
   end,
   config = {
