@@ -11,46 +11,44 @@ require('packer').startup({
 
     use('folke/neodev.nvim') -- Set up Neovim development environment
 
-    use('nvim-lua/plenary.nvim') -- Misc. Lua functions for Neovim plugins
-
     use({
       'nvim-telescope/telescope.nvim', -- Fuzzy finder over lists
-      requires = { 'nvim-lua/plenary.nvim' },
+      requires = {
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      },
       config = get_setup('telescope'),
+      cmd = 'Telescope',
     })
 
     use({
       'windwp/nvim-autopairs', -- Insert or delete brackets, parens, quotes in pair
       config = get_setup('autopairs'),
-      on = { 'InsertEnter', 'InsertLeave' },
+      event = { 'InsertEnter', 'InsertLeave' },
     })
 
     use({
       'nvim-treesitter/nvim-treesitter', -- Syntax highlighting
       run = ':TSUpdate',
       config = get_setup('treesitter'),
-      on = 'BufRead',
     })
 
     use({
       'nvim-treesitter/nvim-treesitter-textobjects', -- Text objects for treesitter
       requires = { 'nvim-treesitter/nvim-treesitter' },
-      on = 'BufRead',
     })
 
     use({
       'nvim-treesitter/nvim-treesitter-refactor', -- Refactoring using treesitter
       config = get_setup('treesitter_refactor'),
       requires = { 'nvim-treesitter/nvim-treesitter' },
-      on = 'BufRead',
     })
-
-    use('nvim-tree/nvim-web-devicons') -- Fancy icons for Neovim plugins
 
     use({
       'nvim-tree/nvim-tree.lua', -- File explorer
       requires = { 'nvim-tree/nvim-web-devicons' },
       config = get_setup('nvim-tree'),
+      cmd = 'NvimTreeToggle',
     })
 
     use({
@@ -85,7 +83,7 @@ require('packer').startup({
     use({
       'numToStr/Comment.nvim', -- Comment stuff out
       config = get_setup('comment'),
-      on = 'BufRead',
+      event = 'BufRead',
     })
 
     use({
@@ -93,6 +91,7 @@ require('packer').startup({
       run = 'cd app && yarn install',
       config = get_setup('markdown-preview'),
       ft = 'markdown',
+      cmd = 'MarkdownPreviewToggle',
     })
 
     use({
@@ -119,19 +118,19 @@ require('packer').startup({
     })
 
     use({
-      'folke/todo-comments.nvim', -- Highlight TODO/FIXME/BUG/NOTE tags
-      event = 'BufRead',
-      config = get_setup('todo'),
-    })
-
-    use({
       'neovim/nvim-lspconfig',
       config = get_setup('lspconfig'),
       requires = {
         'williamboman/mason.nvim',
         'williamboman/mason-lspconfig.nvim',
       },
-    }) -- Collection of configurations for built-in LSP client
+    })
+
+    use({
+      'folke/todo-comments.nvim', -- Highlight TODO/FIXME/BUG/NOTE tags
+      event = 'BufRead',
+      config = get_setup('todo'),
+    })
 
     use({
       'jose-elias-alvarez/null-ls.nvim', -- Automatic code actions (diagnotics, formatting, etc.)
@@ -147,8 +146,16 @@ require('packer').startup({
 
     use({
       'nvim-lualine/lualine.nvim', -- Status line
-      requires = { 'kyazdani42/nvim-web-devicons' },
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        {
+          'SmiteshP/nvim-navic',
+          requires = { 'neovim/nvim-lspconfig' },
+          config = get_setup('navic'),
+        },
+      },
       config = get_setup('lualine'),
+      event = 'BufRead',
     })
 
     use('lukas-reineke/indent-blankline.nvim') -- Indent guides
@@ -164,7 +171,6 @@ require('packer').startup({
 
     use({
       'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
-
       config = get_setup('copilot'),
     })
 
@@ -190,7 +196,6 @@ require('packer').startup({
       'romgrk/barbar.nvim', -- Nice buffer bar
       requires = { 'kyazdani42/nvim-web-devicons' },
       config = get_setup('barbar'),
-      on = 'TabNew',
     })
 
     use({
@@ -218,21 +223,14 @@ require('packer').startup({
     })
 
     use({
-      'SmiteshP/nvim-navic',
-      requires = { 'neovim/nvim-lspconfig' },
-      config = get_setup('navic'),
-    })
-
-    use({
       'ray-x/web-tools.nvim',
       config = function()
         require('web-tools.').setup()
       end,
+      ft = { 'html', 'javascript', 'css' },
     })
 
     use({ 'Eandrju/cellular-automaton.nvim', cmd = 'CellularAutomoton' })
-
-    use({ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' })
 
     use({ 'tamton-aquib/duck.nvim', opt = true })
 
@@ -241,7 +239,7 @@ require('packer').startup({
     use({
       'declancm/cinnamon.nvim',
       config = get_setup('cinnamon'),
-      on = 'CursorMove',
+      event = 'CursorMoved',
     })
   end,
   config = {

@@ -2,7 +2,7 @@ local navic = require('nvim-navic')
 
 require('lualine').setup({
   options = {
-    theme = 'auto',
+    theme = 'auto', -- Needed so lazy loading isn't screwed up
     component_separators = '|',
     section_separators = { left = '', right = '' },
     globalstatus = true,

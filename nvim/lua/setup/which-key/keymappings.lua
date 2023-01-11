@@ -1,24 +1,4 @@
-local builtin = require('telescope.builtin')
 local packer = require('packer')
-local nvim_tree_events = require('nvim-tree.events')
-local bufferline_api = require('bufferline.api')
-
--- These event functions ensure that BarBar and nvim-tree never overlap
-local function get_tree_size()
-  return require('nvim-tree.view').View.width
-end
-
-nvim_tree_events.subscribe('TreeOpen', function()
-  bufferline_api.set_offset(get_tree_size())
-end)
-
-nvim_tree_events.subscribe('Resize', function()
-  bufferline_api.set_offset(get_tree_size())
-end)
-
-nvim_tree_events.subscribe('TreeClose', function()
-  bufferline_api.set_offset(0)
-end)
 
 require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
@@ -43,19 +23,19 @@ require('which-key').register({
   s = {
     name = 'Search',
     s = { '<CMD>Telescope<CR>', 'Search' },
-    b = { builtin.git_branches, 'Checkout branch' },
-    c = { builtin.colorscheme, 'Colorscheme' },
-    f = { builtin.find_files, 'Find File' },
-    h = { builtin.help_tags, 'Find Help' },
-    H = { builtin.highlights, 'Find highlight groups' },
-    M = { builtin.man_pages, 'Man Pages' },
-    r = { builtin.oldfiles, 'Open Recent File' },
-    R = { builtin.registers, 'Registers' },
-    t = { builtin.live_grep, 'Text' },
+    b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
+    c = { '<CMD>Telescope colorscheme<CR>', 'Colorscheme' },
+    f = { '<CMD>Telescope find_files<CR>', 'Find File' },
+    h = { '<CMD>Telescope help_tags<CR>', 'Find Help' },
+    H = { '<CMD>Telescope highlights<CR>', 'Find highlight groups' },
+    M = { '<CMD>Telescope man_pages<CR>', 'Man Pages' },
+    r = { '<CMD>Telescope oldfiles<CR>', 'Open Recent File' },
+    R = { '<CMD>Telescope registers<CR>', 'Registers' },
+    t = { '<CMD>Telescope live_grep<CR>', 'Text' },
     T = { '<CMD>TodoTelescope<CR>', 'Todos' },
-    k = { builtin.keymaps, 'Keymaps' },
-    C = { builtin.commands, 'Commands' },
-    p = { builtin.planets, 'Planets' },
+    k = { '<CMD>Telescope keymaps<CR>', 'Keymaps' },
+    C = { '<CMD>Telescope commands<CR>', 'Commands' },
+    p = { '<CMD>Telescope planets<CR>', 'Planets' },
   },
 
   t = { name = 'Trouble', { '<CMD>TroubleToggle<CR>', 'Toggle' } },
