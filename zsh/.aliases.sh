@@ -27,6 +27,7 @@ alias nd="neovide"
 # alias nf="nvim $(fd -t f | fzf)"
 alias :q="exit"
 alias exe="chmod +x"
+alias emailer="~/Documents/GitHub/emailer/emailer"
 
 alias bi="brew install"
 alias bic="brew install --cask"

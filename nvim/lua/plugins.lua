@@ -83,7 +83,6 @@ require('packer').startup({
     use({
       'numToStr/Comment.nvim', -- Comment stuff out
       config = get_setup('comment'),
-      event = 'BufRead',
     })
 
     use({
@@ -111,7 +110,10 @@ require('packer').startup({
           requires = 'nvim-lua/plenary.nvim',
           config = get_setup('cmp-git'),
         },
-        { 'zbirenbaum/copilot-cmp', config = get_setup('copilot-cmp') },
+        {
+          'zbirenbaum/copilot-cmp',
+          config = get_setup('copilot-cmp'),
+        },
         { 'neovim/nvim-lspconfig' },
       },
       config = get_setup('cmp'),
@@ -134,7 +136,6 @@ require('packer').startup({
 
     use({
       'jose-elias-alvarez/null-ls.nvim', -- Automatic code actions (diagnotics, formatting, etc.)
-      event = 'BufRead',
       requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
       config = get_setup('null-ls'),
     })
@@ -155,7 +156,6 @@ require('packer').startup({
         },
       },
       config = get_setup('lualine'),
-      event = 'BufRead',
     })
 
     use('lukas-reineke/indent-blankline.nvim') -- Indent guides
@@ -241,6 +241,8 @@ require('packer').startup({
       config = get_setup('cinnamon'),
       event = 'CursorMoved',
     })
+
+    use({ 'rafcamlet/nvim-luapad', ft = 'lua' })
   end,
   config = {
     display = {
