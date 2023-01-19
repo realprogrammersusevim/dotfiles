@@ -86,5 +86,6 @@ require('which-key').register({
     name = 'Markdown',
     p = { '<CMD>MarkdownPreviewToggle<CR>', 'Preview' },
     h = { '<CMD>MarkdownToHTML<CR>', 'Convert to HTML' },
+    n = { '<CMD>NewMarkdownToHTML<CR>', 'Convert to HTML in a new file' },
   },
 }, { prefix = '<leader>' })

@@ -9,7 +9,7 @@ own needs, not mine.
 
 1. Clone the repository
 2. Move the files in the `zsh/` folder to your home directory
-3. Move the `NeoVim/` files to your NeoVim config location (on macOS that's
+3. Move the `nvim/` files to your NeoVim config location (on macOS that's
    `~/.config/nvim/`)
 4. Edit the NeoVim plugins that point to filepaths to instead point to the
    correct URL
