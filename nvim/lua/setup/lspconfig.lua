@@ -100,7 +100,59 @@ lspconfig.gopls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- HTML
 lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
-lspconfig.tailwindcss.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.tailwindcss.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  -- Exclude Markdown files
+  filetypes = {
+    'aspnetcorerazor',
+    'astro',
+    'astro-markdown',
+    'blade',
+    'django-html',
+    'htmldjango',
+    'edge',
+    'eelixir',
+    'elixir',
+    'ejs',
+    'erb',
+    'eruby',
+    'gohtml',
+    'haml',
+    'handlebars',
+    'hbs',
+    'html',
+    'html-eex',
+    'heex',
+    'jade',
+    'leaf',
+    'liquid',
+    -- 'markdown',
+    'mdx',
+    'mustache',
+    'njk',
+    'nunjucks',
+    'php',
+    'razor',
+    'slim',
+    'twig',
+    'css',
+    'less',
+    'postcss',
+    'sass',
+    'scss',
+    'stylus',
+    'sugarss',
+    'javascript',
+    'javascriptreact',
+    'reason',
+    'rescript',
+    'typescript',
+    'typescriptreact',
+    'vue',
+    'svelte',
+  },
+})
 
 -- Yaml
 lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })

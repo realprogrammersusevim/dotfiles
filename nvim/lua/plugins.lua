@@ -89,7 +89,6 @@ require('packer').startup({
       'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
       run = 'cd app && yarn install',
       config = get_setup('markdown-preview'),
-      ft = 'markdown',
       cmd = 'MarkdownPreviewToggle',
     })
 
@@ -211,7 +210,7 @@ require('packer').startup({
       'folke/noice.nvim',
       config = get_setup('noice'),
       cond = function()
-        return not vim.g.neovide and not vim.g.started_by_firenvim and not vim.g.goneovim
+        return not vim.g.started_by_firenvim and not vim.g.goneovim
       end,
       requires = {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

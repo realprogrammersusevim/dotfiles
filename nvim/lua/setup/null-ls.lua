@@ -21,7 +21,7 @@ null_ls.setup({
     null_ls.builtins.code_actions.shellcheck,
 
     -- Completion
-    null_ls.builtins.completion.spell.with({ filetypes = { 'markdown' } }),
+    -- null_ls.builtins.completion.spell.with({ filetypes = { 'markdown' } }),
 
     -- Diagnostics
     null_ls.builtins.diagnostics.shellcheck,
@@ -31,7 +31,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.diagnostics.proselint,
     null_ls.builtins.diagnostics.write_good.with({
-      extra_args = { '--tooWordy', '--cliches' },
+      extra_args = { '--tooWordy' },
     }),
     null_ls.builtins.diagnostics.jsonlint,
 
