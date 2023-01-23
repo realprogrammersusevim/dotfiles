@@ -8,18 +8,11 @@ zen() {
     python3 -c "import this"
 }
 
-# using ripgrep combined with preview
-# find-in-file - usage: fif <searchTerm>
-fif() {
-    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
-}
-
 ##
-# Interactive search.
-# Usage: `ff` or `ff <folder>`.
+# Interactive Find In File search.
+# Usage: `fif` or `fif <folder>`.
 #
-ff() {
+fif() {
     [[ -n $1 ]] && cd "$1" # go to provided folder or noop
     RG_DEFAULT_COMMAND="rg -i -l --hidden --no-ignore-vcs"
 
@@ -34,6 +27,30 @@ ff() {
             --bind "f12:execute-silent:(subl -b {})" \
             --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
             --preview "rg -i --context 10 {q} {} | bat --file-name {} -f --plain -H 11 2>/dev/null"
+    )
+
+    [[ -n $selected ]] && nvim "$selected" # open multiple files in editor
+}
+
+##
+# Interactive Find File search.
+# Usage: `ff` or `fif <folder>`.
+ff() {
+    [[ -n $1 ]] && cd "$1" # go to provided folder or noop
+    RG_DEFAULT_COMMAND="rg -i"
+    FILES="fd -t f -H"
+
+    selected=$(
+        FZF_DEFAULT_COMMAND="fd -t f -H" fzf \
+            -m \
+            -e \
+            --ansi \
+            --disabled \
+            --reverse \
+            --bind "ctrl-a:select-all" \
+            --bind "f12:execute-silent:(subl -b {})" \
+            --bind "change:reload:$FILES | $RG_DEFAULT_COMMAND {q} || true" \
+            --preview "bat {} -f --plain 2>/dev/null"
     )
 
     [[ -n $selected ]] && nvim "$selected" # open multiple files in editor
