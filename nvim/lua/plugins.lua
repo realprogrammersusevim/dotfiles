@@ -15,7 +15,6 @@ require('packer').startup({
       'nvim-telescope/telescope.nvim', -- Fuzzy finder over lists
       requires = {
         'nvim-lua/plenary.nvim',
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       },
       config = get_setup('telescope'),
       cmd = 'Telescope',
@@ -100,8 +99,15 @@ require('packer').startup({
         { 'hrsh7th/cmp-nvim-lua' },
         { 'hrsh7th/cmp-calc' },
         { 'hrsh7th/cmp-emoji' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'L3MON4D3/LuaSnip' },
+
+        {
+          'L3MON4D3/LuaSnip',
+          config = get_setup('luasnip'),
+          requires = {
+            'saadparwaiz1/cmp_luasnip',
+            'rafamadriz/friendly-snippets',
+          },
+        },
         { 'hrsh7th/cmp-cmdline' },
         { 'onsails/lspkind.nvim' },
         {
