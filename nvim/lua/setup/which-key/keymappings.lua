@@ -68,6 +68,13 @@ require('which-key').register({
       'Checkout commit(for current file)',
     },
     s = { '<CMD>Telescope git_status<CR>', 'Git status' },
+    h = {
+      s = { '<CMD>Gitsigns stage_hunk<CR>', 'Stage Hunk' },
+      u = { '<CMD>Gitsigns undo_stage_hunk<CR>', 'Undo Stage Hunk' },
+      p = { '<CMD>Gitsigns preview_hunk<CR>', 'Preview Hunk' },
+      n = { '<CMD>Gitsigns next_hunk<CR>', 'Next Hunk' },
+      b = { '<CMD>Gitsigns prev_hunk<CR>', 'Prev Hunk' },
+    },
   },
 
   l = {

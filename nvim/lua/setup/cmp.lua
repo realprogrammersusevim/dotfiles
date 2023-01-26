@@ -2,6 +2,7 @@ local cmp = require('cmp')
 
 -- Setup icons
 local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 
 -- Select first item by default
 -- vim.opt.completeopt = 'menuone,preview,noselect'
@@ -13,23 +14,38 @@ cmp.setup({
       return false
     end
     local context = require('cmp.config.context')
-    return
-      not (
-          context.in_treesitter_capture('comment') == true -- Disable CMP in code comments
-          or context.in_syntax_group('Comment')
+    return not (
+        context.in_treesitter_capture('comment') == true -- Disable CMP in code comments
+            or context.in_syntax_group('Comment')
         )
   end,
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = {
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    -- ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<S-CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
@@ -43,7 +59,7 @@ cmp.setup({
     { name = 'copilot' },
     { name = 'calc' },
     { name = 'emoji' },
-    { name = 'nvim_lua' },
+    -- { name = 'nvim_lua' },
     { name = 'git' },
   },
   formatting = {
