@@ -74,6 +74,12 @@
       <p><a href="https://stackoverflow.com">stackoverflow</a></p>
       <p><a href="chat.openai.com">chatgpt</a></p>
     </ul>
+
+    <ul>
+      <h3>nostr</h3>
+      <p><a href="https://nostr.build">nostr.build</a></p>
+      <p><a href="https://giphy.com">giphy</a></p>
+    </ul>
   </div>
 </body>
 
@@ -114,6 +120,7 @@
     var currentTime = formatAMPM(d);
     document.getElementById("date").innerHTML = dateDMY + " " + currentTime;
   }
+  setInterval(updateTime, 1000);
 </script>
 
 </html>
