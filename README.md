@@ -1,9 +1,9 @@
 # dotfiles
 
-These are my configuration files for Zsh and NeoVim. Above all, please do not
-just copy and paste them into your own configuration files. They are meant to be
-used as inspiration for your own configuration. Your tools should reflect your
-own needs, not mine.
+These are my configuration files for Zsh, gitui, my browser new tab page, and
+NeoVim. Above all, please do not just copy and paste them into your own
+configuration files. They are meant to be used as inspiration for your own
+configuration. Your tools should reflect your own needs, not mine.
 
 ## Installation
 
@@ -18,16 +18,7 @@ own needs, not mine.
 7. Run `$ zplug install`
 8. Run `:PackerInstall` from inside NeoVim
 9. Install the LSPs, formatters, and diagnostics with `:Mason`
-
-## (Outdated) Screenshots
-
-I'll update these soon, but my configs look much better now.
-
-<img width="1280" alt="Screenshot 2022-10-25 at 4 42 38 PM" src="https://user-images.githubusercontent.com/93488695/197888062-f3496952-f86f-4ea3-86eb-56668e7872b5.png">
-
-![Screenshot 2022-10-25 at 4 41 44 PM](https://user-images.githubusercontent.com/93488695/197888095-cbbe5e4e-f48b-43f4-bec6-f146df96d459.png)
-
-![Screenshot 2022-10-25 at 4 40 33 PM](https://user-images.githubusercontent.com/93488695/197888152-a74306cc-8c16-4e39-85a9-788fdc2d4425.png)
+10. Use the `browser/new_tab.html` page as your new tab page in your browser
 
 ## Layout
 
