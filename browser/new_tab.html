@@ -1,126 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>New Tab</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+      ul {
+        display: inline-block;
+        color: #33635c;
+        padding: 50px;
+      }
 
-<head>
-  <title>New Tab</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="css/style.css" rel="stylesheet" />
-  <style>
-    ul {
-      display: inline-block;
-      color: #33635c;
-      padding: 50px;
+      ul li {
+        color: #9aa5ce;
+      }
+
+      a {
+        color: #9aa5ce;
+        text-decoration: none;
+      }
+
+      p {
+        color: #9aa5ce;
+      }
+
+      h2 {
+        text-align: center;
+        color: #7dcfff;
+      }
+
+      h3 {
+        text-align: center;
+        color: #bb9af7;
+      }
+
+      body {
+        background-color: #24283b;
+        font-family: "Fira Code";
+      }
+
+      form {
+        text-align: center;
+      }
+
+      .divlists {
+        display: flex;
+        justify-content: center;
+      }
+
+      .search {
+        /* border: 1px solid black; */
+        margin: 1rem;
+        padding: 2rem 2rem;
+        text-align: center;
+      }
+
+      .text {
+        display: inline-block;
+        /* border: 1px solid red; */
+        padding: 1px;
+        vertical-align: middle;
+      }
+
+      .box {
+        display: inline-block;
+        /* border: 1px solid red; */
+        padding: 1px;
+        vertical-align: middle;
+      }
+
+      input[type="text"],
+      textarea {
+        background-color: #24283b;
+        border: 0;
+        outline: none;
+        color: #9aa5ce;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 id="date" ; style="text-align: left"></h2>
+    <div class="search">
+      <div class="text">
+        <h2><code>jonathan $</code></h2>
+      </div>
+
+      <div class="box">
+        <form
+          target="\_blank"
+          method="get"
+          action="http://search.brave.com/search"
+        >
+          <input type="text" name="q" size="15" maxlength="255" autofocus />
+        </form>
+      </div>
+    </div>
+
+    <div class="divlists">
+      <ul>
+        <h3>personal</h3>
+        <p><a href="https://wikipedia.com">wikipedia</a></p>
+        <p>
+          <a
+            href="https://app.hotschedules.com/hs/menuParser.hs?screen=employeeHome&firstTime=true#/home"
+            >hotschedules</a
+          >
+        </p>
+        <p><a href="https://etsy.com">etsy</a></p>
+      </ul>
+
+      <ul>
+        <h3>school</h3>
+        <p><a href="https://canvas.mccneb.edu">canvas</a></p>
+      </ul>
+
+      <ul>
+        <h3>dev</h3>
+        <p><a href="https://github.com">github</a></p>
+        <p><a href="https://stackoverflow.com">stackoverflow</a></p>
+        <p><a href="chat.openai.com">chatgpt</a></p>
+      </ul>
+
+      <ul>
+        <h3>nostr</h3>
+        <p><a href="https://nostr.build">nostr.build</a></p>
+        <p><a href="https://giphy.com">giphy</a></p>
+      </ul>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    window.onload = setInterval(clock);
+
+    function formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      var strTime = hours + ":" + minutes + " " + ampm;
+      return strTime;
     }
 
-    ul li {
-      color: #9aa5ce;
+    function clock() {
+      var d = new Date();
+      var date = d.getDate();
+      var month = d.getMonth();
+      var monthArr = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      month = monthArr[month];
+      var dateDMY = month + " " + date;
+      var currentTime = formatAMPM(d);
+      document.getElementById("date").innerHTML = dateDMY + " " + currentTime;
     }
-
-    a {
-      color: #9aa5ce;
-      text-decoration: none;
-    }
-
-    p {
-      color: #9aa5ce;
-    }
-
-    h2 {
-      text-align: center;
-      color: #7dcfff;
-    }
-
-    h3 {
-      text-align: center;
-      color: #bb9af7;
-    }
-
-    body {
-      background-color: #24283b;
-      font-family: "Fira Code";
-    }
-
-    .divlists {
-      display: flex;
-      justify-content: center;
-    }
-  </style>
-</head>
-
-<body>
-  <h2 id="date" ; style="text-align: left"></h2>
-  <h2><code>jonathan $</code></h2>
-
-  <div class="divlists">
-    <ul>
-      <h3>personal</h3>
-      <p><a href="https://wikipedia.com">wikipedia</a></p>
-      <p>
-        <a
-          href="https://app.hotschedules.com/hs/menuParser.hs?screen=employeeHome&firstTime=true#/home">hotschedules</a>
-      </p>
-      <p><a href="https://etsy.com">etsy</a></p>
-    </ul>
-
-    <ul>
-      <h3>school</h3>
-      <p><a href="https://canvas.mccneb.edu">canvas</a></p>
-    </ul>
-
-    <ul>
-      <h3>dev</h3>
-      <p><a href="https://github.com">github</a></p>
-      <p><a href="https://stackoverflow.com">stackoverflow</a></p>
-      <p><a href="chat.openai.com">chatgpt</a></p>
-    </ul>
-
-    <ul>
-      <h3>nostr</h3>
-      <p><a href="https://nostr.build">nostr.build</a></p>
-      <p><a href="https://giphy.com">giphy</a></p>
-    </ul>
-  </div>
-</body>
-
-<script type="text/javascript">
-  window.onload = setInterval(clock);
-
-  function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    var strTime = hours + ":" + minutes + " " + ampm;
-    return strTime;
-  }
-
-  function clock() {
-    var d = new Date();
-    var date = d.getDate();
-    var month = d.getMonth();
-    var monthArr = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    month = monthArr[month];
-    var dateDMY = month + " " + date;
-    var currentTime = formatAMPM(d);
-    document.getElementById("date").innerHTML = dateDMY + " " + currentTime;
-  }
-  setInterval(updateTime, 1000);
-</script>
-
+    setInterval(updateTime, 1000);
+  </script>
 </html>
