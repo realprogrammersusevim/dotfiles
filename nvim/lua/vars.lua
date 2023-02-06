@@ -51,3 +51,4 @@ vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')
 opt.confirm = true -- Confirm before quitting
+vim.g.neovide_hide_mouse_when_typing = true

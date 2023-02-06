@@ -1,12 +1,12 @@
+require('mason').setup()
+require('mason-lspconfig').setup()
+
 vim.diagnostic.config({
   underline = true,
   virtual_text = true,
   signs = true,
   update_in_insert = false,
 })
-
-require('mason').setup()
-require('mason-lspconfig').setup()
 
 require('neodev').setup({
   library = {
@@ -89,9 +89,6 @@ lspconfig.marksman.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- LaTex
 lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
-
--- Grammarly
--- lspconfig.grammarly.setup({ capabilities = capabilities })
 
 -- Vim
 lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })

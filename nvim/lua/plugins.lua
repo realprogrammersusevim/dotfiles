@@ -88,7 +88,8 @@ require('packer').startup({
       'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
       run = 'cd app && yarn install',
       config = get_setup('markdown-preview'),
-      cmd = 'MarkdownPreviewToggle',
+      -- cmd = 'MarkdownPreviewToggle',
+      ft = 'markdown',
     })
 
     use({
@@ -181,12 +182,12 @@ require('packer').startup({
 
     use({
       '/Users/jonathanmilligan/Documents/GitHub/md-to-html.nvim',
-      cmd = { 'MarkdownToHTML', 'NewMarkdownToHTML' },
+      -- cmd = { 'MarkdownToHTML', 'NewMarkdownToHTML' },
     })
 
     use({
       '/Users/jonathanmilligan/Documents/GitHub/readability.nvim/', -- My own plugin to gauge the readability of your writing
-      cmd = { 'ReadabilitySmog', 'ReadabilityFlesch' },
+      -- cmd = { 'ReadabilitySmog', 'ReadabilityFlesch' },
     })
 
     use({
@@ -248,6 +249,8 @@ require('packer').startup({
     })
 
     use({ 'rafcamlet/nvim-luapad', ft = 'lua' })
+
+    use({ 'renerocksai/telekasten.nvim', config = get_setup('telekasten'), ft = 'markdown' })
   end,
   config = {
     display = {
