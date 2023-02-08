@@ -1,4 +1,4 @@
-local home = vim.fn.expand('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes')
+local home = vim.fn.expand('~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Zettelkasten/')
 
 require('telekasten').setup({
   home = home,

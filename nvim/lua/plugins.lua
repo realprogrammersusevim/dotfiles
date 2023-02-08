@@ -15,6 +15,7 @@ require('packer').startup({
       'nvim-telescope/telescope.nvim', -- Fuzzy finder over lists
       requires = {
         'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
       },
       config = get_setup('telescope'),
       cmd = 'Telescope',
@@ -155,11 +156,6 @@ require('packer').startup({
       'nvim-lualine/lualine.nvim', -- Status line
       requires = {
         'kyazdani42/nvim-web-devicons',
-        {
-          'SmiteshP/nvim-navic',
-          requires = { 'neovim/nvim-lspconfig' },
-          config = get_setup('navic'),
-        },
       },
       config = get_setup('lualine'),
     })
