@@ -2,15 +2,10 @@ local packer = require('packer')
 
 require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
-
   e = { name = 'File Tree', { '<CMD>NvimTreeToggle<CR>', 'File Tree' } },
-
   w = { name = 'Save', { '<CMD>w!<CR>', 'Save' } },
-
   Q = { name = 'Quit', { '<CMD>q<CR>', 'Quit' } }, -- Uppercase makes it harder to bump next to w
-
   h = { name = 'No Highlight', { '<CMD>nohl<CR>', 'No Highlight' } },
-
   p = {
     name = 'Packer',
     c = { packer.compile, '[c]ompile' },
@@ -19,7 +14,6 @@ require('which-key').register({
     S = { packer.status, '[S]tatus' },
     u = { packer.update, '[u]pdate' },
   },
-
   s = {
     name = 'Search',
     s = { '<CMD>Telescope<CR>', 'Search' },
@@ -37,9 +31,7 @@ require('which-key').register({
     C = { '<CMD>Telescope commands<CR>', '[C]ommands' },
     p = { '<CMD>Telescope planets<CR>', '[p]lanets' },
   },
-
   t = { name = 'Trouble', { '<CMD>TroubleToggle<CR>', '[t]oggle' } },
-
   b = {
     name = 'BarBar',
     p = { '<CMD>BufferPrevious<CR>', 'Previous Buffer' },
@@ -58,7 +50,6 @@ require('which-key').register({
     c = { '<CMD>BufferClose<CR>', '[c]lose Buffer' },
     s = { '<CMD>Telescope buffers<CR>', '[s]earch buffers' },
   },
-
   g = {
     name = 'Git',
     b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
@@ -78,7 +69,6 @@ require('which-key').register({
       b = { '<CMD>Gitsigns prev_hunk<CR>', '[back] hunk' },
     },
   },
-
   l = {
     name = 'LSP',
     r = { vim.lsp.buf.rename, '[R]ename' },
@@ -90,7 +80,6 @@ require('which-key').register({
     e = { vim.diagnostic.open_float, 'Diagnostics' },
     a = { vim.lsp.buf.code_action, 'Code [a]ction' },
   },
-
   m = {
     name = 'Markdown',
     p = { '<CMD>MarkdownPreviewToggle<CR>', '[p]review' },
@@ -104,6 +93,7 @@ require('which-key').register({
     n = { '<CMD>Telekasten new_note<CR>', '[n]ew note' },
     f = { '<CMD>Telekasten find_notes<CR>', '[f]ind notes' },
     s = { '<CMD>Telekasten search_notes<CR>', '[s]earch notes' },
+    z = { '<CMD>ZoteroCite<CR>', '[z]otero cite' },
     -- p = { '<CMD>Telekasten panel<CR>', '[p]anel' },
   },
 }, { prefix = '<leader>' })

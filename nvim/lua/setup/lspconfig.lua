@@ -35,12 +35,11 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup lspconfig
 -- Python
-lspconfig.pyright.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.pyright.setup({ capabilities = capabilities })
 
 -- Lua
 lspconfig.sumneko_lua.setup({
   capabilities = capabilities,
-  on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
@@ -69,32 +68,30 @@ lspconfig.sumneko_lua.setup({
 })
 
 -- Bash
-lspconfig.bashls.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.bashls.setup({ capabilities = capabilities })
 
 -- Rust
 lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
-  on_attach = on_attach,
   settings = { checkOnSave = { command = 'clippy' } },
 })
 
 -- Markdown
-lspconfig.marksman.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.marksman.setup({ capabilities = capabilities })
 
 -- LaTex
-lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.texlab.setup({ capabilities = capabilities })
 
 -- Vim
-lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.vimls.setup({ capabilities = capabilities })
 
 -- Go
-lspconfig.gopls.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.gopls.setup({ capabilities = capabilities })
 
 -- HTML
-lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.html.setup({ capabilities = capabilities })
 lspconfig.tailwindcss.setup({
   capabilities = capabilities,
-  on_attach = on_attach,
   -- Exclude Markdown files
   filetypes = {
     'aspnetcorerazor',
@@ -147,10 +144,10 @@ lspconfig.tailwindcss.setup({
 })
 
 -- Yaml
-lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.yamlls.setup({ capabilities = capabilities })
 
 -- Swift
-lspconfig.sourcekit.setup({ capabilities = capabilities, on_attach = on_attach })
+lspconfig.sourcekit.setup({ capabilities = capabilities })
 
 -- Make sure the gutter diagnostic signs are nice symbols rather than letters
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }

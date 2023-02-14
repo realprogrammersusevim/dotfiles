@@ -15,9 +15,9 @@ cmp.setup({
     end
     local context = require('cmp.config.context')
     return not (
-        context.in_treesitter_capture('comment') == true -- Disable CMP in code comments
-            or context.in_syntax_group('Comment')
-        )
+      context.in_treesitter_capture('comment') == true -- Disable CMP in code comments
+      or context.in_syntax_group('Comment')
+    )
   end,
   snippet = {
     expand = function(args)
