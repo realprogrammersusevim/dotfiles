@@ -18,7 +18,6 @@ null_ls.setup({
       })
     end
   end,
-
   sources = {
     -- Code actions
     actions.proselint,
@@ -63,6 +62,5 @@ null_ls.setup({
     hover.dictionary,
     hover.printenv,
   },
-
   update_in_insert = false,
 })

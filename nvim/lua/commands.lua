@@ -63,3 +63,8 @@ vim.api.nvim_create_user_command('ZoteroCite', function()
   local ref = vim.fn.system('curl -s "' .. api_call .. '"')
   vim.cmd('normal! i' .. ref)
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('Sig', function()
+  vim.cmd('r !echo ",\\n\\n\\nSincerely,\\nJonathan Milligan"')
+  vim.cmd('r !/Users/jonathanmilligan/Documents/Email\\ Format/quotes')
+end, { nargs = 0 })
