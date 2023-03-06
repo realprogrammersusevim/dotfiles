@@ -1,19 +1,9 @@
-local packer = require('packer')
-
 require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
   e = { name = 'File Tree', { '<CMD>NvimTreeToggle<CR>', 'File Tree' } },
   w = { name = 'Save', { '<CMD>w!<CR>', 'Save' } },
   Q = { name = 'Quit', { '<CMD>q<CR>', 'Quit' } }, -- Uppercase makes it harder to bump next to w
   h = { name = 'No Highlight', { '<CMD>nohl<CR>', 'No Highlight' } },
-  p = {
-    name = 'Packer',
-    c = { packer.compile, '[c]ompile' },
-    i = { packer.install, '[i]nstall' },
-    s = { packer.sync, '[s]ync' },
-    S = { packer.status, '[S]tatus' },
-    u = { packer.update, '[u]pdate' },
-  },
   s = {
     name = 'Search',
     s = { '<CMD>Telescope<CR>', 'Search' },
