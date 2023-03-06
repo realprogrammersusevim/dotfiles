@@ -2,6 +2,7 @@ return {
   'folke/neodev.nvim',
   {
     'neovim/nvim-lspconfig',
+    event = 'BufRead',
     dependencies = {
       {
         'williamboman/mason.nvim',

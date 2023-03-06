@@ -11,5 +11,6 @@ return {
   {
     'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
     build = 'cd app && yarn install',
+    ft = 'markdown',
   },
 }

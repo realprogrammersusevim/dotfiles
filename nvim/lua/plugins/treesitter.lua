@@ -1,7 +1,6 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false,
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
@@ -49,6 +48,7 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter-refactor',
+    event = 'BufRead',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('nvim-treesitter.configs').setup({
