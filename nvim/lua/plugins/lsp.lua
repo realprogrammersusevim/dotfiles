@@ -2,7 +2,6 @@ return {
   'folke/neodev.nvim',
   {
     'neovim/nvim-lspconfig',
-    event = 'BufRead',
     dependencies = {
       {
         'williamboman/mason.nvim',
@@ -44,16 +43,16 @@ return {
         lspconfig = true,
       })
 
-      local lspconfig = require('lspconfig')
+      local lsp = require('lspconfig')
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Setup lspconfig
       -- Python
-      lspconfig.pyright.setup({ capabilities = capabilities })
+      lsp.pyright.setup({ capabilities = capabilities })
 
       -- Lua
-      lspconfig.lua_ls.setup({
+      lsp.lua_ls.setup({
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -93,29 +92,29 @@ return {
       })
 
       -- Bash
-      lspconfig.bashls.setup({ capabilities = capabilities })
+      lsp.bashls.setup({ capabilities = capabilities })
 
       -- Rust
-      lspconfig.rust_analyzer.setup({
+      lsp.rust_analyzer.setup({
         capabilities = capabilities,
         settings = { checkOnSave = { command = 'clippy' } },
       })
 
       -- Markdown
-      lspconfig.marksman.setup({ capabilities = capabilities })
+      lsp.marksman.setup({ capabilities = capabilities })
 
       -- LaTex
-      lspconfig.texlab.setup({ capabilities = capabilities })
+      lsp.texlab.setup({ capabilities = capabilities })
 
       -- Vim
-      lspconfig.vimls.setup({ capabilities = capabilities })
+      lsp.vimls.setup({ capabilities = capabilities })
 
       -- Go
-      lspconfig.gopls.setup({ capabilities = capabilities })
+      lsp.gopls.setup({ capabilities = capabilities })
 
       -- HTML
-      lspconfig.html.setup({ capabilities = capabilities })
-      lspconfig.tailwindcss.setup({
+      lsp.html.setup({ capabilities = capabilities })
+      lsp.tailwindcss.setup({
         capabilities = capabilities,
         -- Exclude Markdown files
         filetypes = {
@@ -169,10 +168,10 @@ return {
       })
 
       -- Yaml
-      lspconfig.yamlls.setup({ capabilities = capabilities })
+      lsp.yamlls.setup({ capabilities = capabilities })
 
       -- Swift
-      lspconfig.sourcekit.setup({ capabilities = capabilities })
+      lsp.sourcekit.setup({ capabilities = capabilities })
 
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }

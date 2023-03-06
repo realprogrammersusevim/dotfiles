@@ -23,6 +23,6 @@ return {
       dim_inactive = false, -- dims inactive windows
     })
 
-    vim.cmd('colorscheme tokyonight')
+    vim.cmd.colorscheme('tokyonight')
   end,
 }

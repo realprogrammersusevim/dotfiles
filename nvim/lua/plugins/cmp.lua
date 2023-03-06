@@ -103,7 +103,7 @@ return {
         format = lspkind.cmp_format({
           with_text = false,
           menu = {
-            nvim_lsp = 'Lsp',
+            nvim_lsp = 'LSP',
             luasnip = 'Snip',
             nvim_lua = 'Lua',
             path = 'Path',

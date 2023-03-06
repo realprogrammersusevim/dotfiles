@@ -1,6 +1,7 @@
 return {
   {
     'romgrk/barbar.nvim',
+    lazy = false,
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     },
