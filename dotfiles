@@ -45,7 +45,7 @@ if args.action == 'pull' then
   log('Syncing local dotfile changes into this repo...')
   command('Kitty', false, config.kitty, repo_loc .. 'kitty/')
 
-  -- command('Neovim', true, config.neovim, repo_loc .. 'nvim/')
+  command('Neovim', true, config.neovim, repo_loc .. 'nvim/')
 
   for _, file in ipairs(config.zsh) do
     command('Zsh', false, '~/' .. file, repo_loc .. 'zsh/')
