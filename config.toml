@@ -5,10 +5,16 @@ zsh = [".zshrc", ".zshenv", ".zprofile", ".personal_commands.sh", ".aliases.sh"]
 neovim = "~/.config/nvim/"
 
 # Location of kitty config
-kitty = "~/.config/kitty/*"
+kitty = "~/.config/kitty/"
 
 # Location of gitui config
-gitui = "~/.config/gitui/*"
+gitui = "~/.config/gitui/"
+
+# Location of yabai window manager config
+yabai = "~/.config/yabai/yabairc"
+
+# Location of skhd config
+skhd = "~/.config/skhd/skhdrc"
 
 # Location of this repository
 dotfiles = "~/Documents/GitHub/dotfiles/"
