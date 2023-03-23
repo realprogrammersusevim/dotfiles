@@ -58,15 +58,15 @@ if args.action == 'pull' then
   command('skhd', false, config.skhd, repo_loc .. 'skhd/')
 elseif args.action == 'push' then
   log('Syncing repo dotfile changes into local...')
-  command('Kitty', false, repo_loc .. 'kitty/*', config.kitty)
+  command('Kitty', false, repo_loc .. 'kitty/', config.kitty)
 
-  command('Neovim', true, repo_loc .. 'nvim/*', config.neovim)
+  command('Neovim', true, repo_loc .. 'nvim/', config.neovim)
 
   for _, file in ipairs(config.zsh) do
     command('Zsh', false, repo_loc .. 'zsh/' .. file, '~/' .. file)
   end
 
-  command('gitui', false, repo_loc .. 'gitui/*', config.gitui)
+  command('gitui', false, repo_loc .. 'gitui/', config.gitui)
 
   command('yabai', false, repo_loc .. 'yabai/yabairc', config.yabai)
 
