@@ -17,13 +17,13 @@ return {
     -- ft = 'markdown',
   },
 
-  {
-    'lukas-reineke/headlines.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = true,
-    -- ft = 'markdown',
-    event = 'VeryLazy',
-  },
+  -- {
+  --   'lukas-reineke/headlines.nvim',
+  --   dependencies = 'nvim-treesitter/nvim-treesitter',
+  --   config = true,
+  --   -- ft = 'markdown',
+  --   event = 'VeryLazy',
+  -- },
 
   {
     'epwalsh/obsidian.nvim',

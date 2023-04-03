@@ -90,6 +90,7 @@ return {
           { name = 'copilot' },
           { name = 'calc' },
           { name = 'emoji' },
+          { name = 'neorg' },
         },
         formatting = {
           format = lspkind.cmp_format({
@@ -187,7 +188,7 @@ return {
           diagnostics.yamllint,
           diagnostics.proselint,
           diagnostics.write_good.with({
-            extra_args = { '--tooWordy', '--so', '--cliches', '--adverb' },
+            extra_args = { '--tooWordy', '--so', '--cliches' },
           }),
           diagnostics.jsonlint,
           diagnostics.ruff,
