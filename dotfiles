@@ -4,7 +4,10 @@ local toml = require('toml')
 local argparse = require('argparse')
 
 local parser = argparse()({ name = 'dotfiles', description = 'Manage dotfiles' })
-parser:argument('action', 'The action to take.'):choices({ 'pull', 'push' }):default('pull')
+parser
+  :argument('action', 'The action to take.')
+  :choices({ 'pull', 'push', 'plugins' })
+  :default('pull')
 parser:option('-c --config', 'The config file to use.'):default('config.toml')
 parser:flag('-d --delete', 'Sync deletions.')
 parser:flag('-v --verbose', 'Verbose output.')
@@ -71,4 +74,12 @@ elseif args.action == 'push' then
   command('yabai', false, repo_loc .. 'yabai/yabairc', config.yabai)
 
   command('skhd', false, repo_loc .. 'skhd/skhdrc', config.skhd)
+elseif args.action == 'plugins' then
+  local json = require('json')
+  local json_plugins = io.open('nvim/lazy-lock.json', 'r'):read('*a')
+  local parsed_plugins = json.decode(json_plugins)
+
+  for i, _ in pairs(parsed_plugins) do
+    print(i)
+  end
 end
