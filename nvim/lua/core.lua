@@ -1,10 +1,7 @@
 local opt = vim.o
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 vim.cmd('filetype plugin on') -- Turn on file type detection
 opt.guifont = 'JetBrainsMono Nerd Font Mono:13'
 opt.number = true
--- opt.loaded_perl_provider = false -- This is needed to stop errors in :checkhealth
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
@@ -17,7 +14,6 @@ opt.sidescrolloff = 8
 opt.clipboard = 'unnamedplus' -- Set clipboard to use system clipboard
 opt.cmdheight = 1 -- Keep the command height nice and low for more space
 opt.colorcolumn = '99999'
--- opt.completeopt = { "menuone", "noselect" }
 opt.conceallevel = 0 -- Turn off conceal
 opt.fileencoding = 'utf-8'
 opt.foldmethod = 'expr'
@@ -29,7 +25,7 @@ opt.ignorecase = true -- Ignore search case
 opt.mouse = '' -- Disable mouse support to break bad habits
 opt.pumheight = 10 -- Set popup menu height
 opt.showmode = false
-opt.showtabline = 2 -- Always show tabs
+opt.showtabline = 1 -- Show tabs when more than one
 opt.smartcase = true
 opt.smartindent = true -- Use smart indentation
 opt.splitbelow = true -- Horizontal splits will automatically be below

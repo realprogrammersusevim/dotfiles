@@ -33,24 +33,21 @@ require('which-key').register({
     p = { '<CMD>Telescope planets<CR>', '[p]lanets' },
     n = { '<CMD>Telescope neoclip<CR>', '[n]eoclip' },
   },
-  t = { name = '[t]rouble', { '<CMD>TroubleToggle<CR>', '[t]rouble' } },
-  b = {
-    name = 'BarBar',
-    p = { '<CMD>BufferPrevious<CR>', 'Previous Buffer' },
-    n = { '<CMD>BufferNext<CR>', 'Next Buffer' },
-    ['1'] = { '<CMD>BufferGoto [1]<CR>', 'Goto Buffer [1]' },
-    ['2'] = { '<CMD>BufferGoto [2]<CR>', 'Goto Buffer [2]' },
-    ['3'] = { '<CMD>BufferGoto [3]<CR>', 'Goto Buffer [3]' },
-    ['4'] = { '<CMD>BufferGoto [4]<CR>', 'Goto Buffer [4]' },
-    ['5'] = { '<CMD>BufferGoto [5]<CR>', 'Goto Buffer [5]' },
-    ['6'] = { '<CMD>BufferGoto [6]<CR>', 'Goto Buffer [6]' },
-    ['7'] = { '<CMD>BufferGoto [7]<CR>', 'Goto Buffer [7]' },
-    ['8'] = { '<CMD>BufferGoto [8]<CR>', 'Goto Buffer [8]' },
-    ['9'] = { '<CMD>BufferGoto [9]<CR>', 'Goto Buffer [9]' },
-    ['0'] = { '<CMD>BufferLast<CR>', 'Last Buffer' },
-    i = { '<CMD>BufferPin<CR>', 'P[i]n Buffer' },
-    c = { '<CMD>BufferClose<CR>', '[c]lose Buffer' },
-    s = { '<CMD>Telescope buffers<CR>', '[s]earch buffers' },
+  t = {
+    name = '[t]rouble',
+    t = { '<CMD>TroubleToggle<CR>', '[t]rouble' },
+    n = {
+      function()
+        require('trouble').next({ skip_groups = true, jump = true })
+      end,
+      '[n]ext',
+    },
+    p = {
+      function()
+        require('trouble').previous({ skip_groups = true, jump = true })
+      end,
+      '[p]revious',
+    },
   },
   g = {
     name = '[g]it',
