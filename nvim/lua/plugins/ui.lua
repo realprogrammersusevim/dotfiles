@@ -19,11 +19,6 @@ return {
   },
 
   {
-    'sunjon/shade.nvim',
-    config = false,
-  },
-
-  {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()

@@ -1,6 +1,6 @@
 # dotfiles
 
-[Neovim config](https://github.com/realprogrammersusevim/dotfiles/nvim)
+[Neovim config](https://github.com/realprogrammersusevim/dotfiles/tree/main/nvim)
 
 These are my configuration files for Neovim, Zsh, gitui, and my browser new tab
 page. Above all, please do not just copy and paste them into your own
