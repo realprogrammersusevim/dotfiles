@@ -16,7 +16,33 @@ if not vim.g.started_by_firenvim then
 
   require('keymaps')
 
-  require('lazy').setup('plugins')
+  require('lazy').setup('plugins', {
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          '2html_plugin',
+          'tohtml',
+          'logipat',
+          'netrw',
+          'netrwPlugin',
+          'netrwSettings',
+          'netrwFileHandlers',
+          'tar',
+          'tarPlugin',
+          'rrhelper',
+          'vimball',
+          'vimballPlugin',
+          'tutor',
+          'rplugin',
+          'syntax',
+          'synmenu',
+          'optwin',
+          'compiler',
+          'bugreport',
+        },
+      },
+    },
+  })
 
   require('commands')
 else

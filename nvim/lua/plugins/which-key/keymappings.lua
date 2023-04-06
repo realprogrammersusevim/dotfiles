@@ -86,4 +86,14 @@ require('which-key').register({
       'Follow Markdown Link',
     },
   },
+  r = {
+    '[r]estore session',
+    s = { require('persistence').load, '[s]ession for current directory' },
+    l = {
+      function()
+        require('persistence').load({ last = true })
+      end,
+      '[l]ast session',
+    },
+  },
 }, { prefix = '<leader>' })

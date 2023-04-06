@@ -30,10 +30,10 @@ vim.keymap.set('n', '[q', ':cprev<CR>', { silent = true })
 vim.keymap.set('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true })
 
 -- Move visually
-vim.keymap.set('n', 'j', 'gj', { silent = true })
-vim.keymap.set('n', 'gj', 'j', { silent = true })
-vim.keymap.set('n', 'k', 'gk', { silent = true })
-vim.keymap.set('n', 'gk', 'k', { silent = true })
+-- vim.keymap.set('n', 'j', 'gj', { silent = true })
+-- vim.keymap.set('n', 'gj', 'j', { silent = true })
+-- vim.keymap.set('n', 'k', 'gk', { silent = true })
+-- vim.keymap.set('n', 'gk', 'k', { silent = true })
 
 ------------------------------
 -- Terminal mode             |
