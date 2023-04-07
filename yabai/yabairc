@@ -48,4 +48,7 @@ yabai -m config                                 \
 # window_animation_duration    0.0
 yabai -m rule --add app="Stats" manage=off
 
+# For SketchyBar
+yabai -m config external_bar all:35:0
+
 echo "yabai configuration loaded.."

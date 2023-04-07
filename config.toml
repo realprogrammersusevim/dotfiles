@@ -1,7 +1,7 @@
 # Locations of all Zsh files
 zsh = [".zshrc", ".zshenv", ".zprofile", ".personal_commands.sh", ".aliases.sh"]
 
-# Location of NeoVim config
+# Location of Neovim config
 neovim = "~/.config/nvim/"
 
 # Location of kitty config
@@ -15,6 +15,9 @@ yabai = "~/.config/yabai/yabairc"
 
 # Location of skhd config
 skhd = "~/.config/skhd/skhdrc"
+
+# Location of SketchyBar config
+sketchybar = "~/.config/sketchybar/"
 
 # Location of this repository
 dotfiles = "~/Documents/GitHub/dotfiles/"

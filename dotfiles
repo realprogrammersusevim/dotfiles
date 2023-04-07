@@ -59,6 +59,8 @@ if args.action == 'pull' then
   command('yabai', false, config.yabai, repo_loc .. 'yabai/')
 
   command('skhd', false, config.skhd, repo_loc .. 'skhd/')
+
+  command('SketchyBar', true, config.sketchybar, repo_loc .. 'sketchybar/')
 elseif args.action == 'push' then
   log('Syncing repo dotfile changes into local...')
   command('Kitty', false, repo_loc .. 'kitty/', config.kitty)
@@ -74,6 +76,8 @@ elseif args.action == 'push' then
   command('yabai', false, repo_loc .. 'yabai/yabairc', config.yabai)
 
   command('skhd', false, repo_loc .. 'skhd/skhdrc', config.skhd)
+
+  command('SketchyBar', true, repo_loc .. 'sketchybar/', config.sketchybar)
 elseif args.action == 'plugins' then
   local json = require('json')
   local json_plugins = io.open('nvim/lazy-lock.json', 'r'):read('*a')
