@@ -1,14 +1,6 @@
 # Neovim configuration
 
-## What is this?
-
 My handcrafted Neovim configuration written purely in Lua.
-
-## How can I use it?
-
-Move it to the `~/.config/nvim` directory. You'll need to install some LSPs and
-linters for some languages to work properly but my plugin manager should take
-care of the rest.
 
 ## Plugins
 
@@ -71,47 +63,48 @@ The scheme of my Neovim configuration is rather simple once you understand it.
 
 ```
 .
-├── README.md
-├── ftplugin
-│   └── markdown.lua
-├── init.lua
-├── lazy-lock.json
-├── lua
-│   ├── commands.lua
-│   ├── core.lua
-│   ├── keymaps.lua
-│   ├── plain.lua
-│   └── plugins
-│       ├── autopairs.lua
-│       ├── code.lua
-│       ├── colorscheme.lua
-│       ├── copilot.lua
-│       ├── firenvim.lua
-│       ├── lsp.lua
-│       ├── lualine.lua
-│       ├── markdown.lua
-│       ├── misc.lua
-│       ├── neorg.lua
-│       ├── noice.lua
-│       ├── telescope.lua
-│       ├── todo.lua
-│       ├── treesitter.lua
-│       ├── trouble.lua
-│       ├── ui.lua
-│       └── which-key
-│           ├── config.lua
-│           ├── init.lua
-│           └── keymappings.lua
-├── spell
-│   ├── en.utf-8.add
-│   ├── en.utf-8.add.spl
-│   ├── nl.utf-8.spl
-│   └── nl.utf-8.sug
-└── utils
-    ├── thesaurii.txt
-    └── linter-config
-        ├── .luacheckrc
-        └── .stylua.toml
+|-- ftplugin
+|   `-- markdown.lua
+|-- init.lua
+|-- lazy-lock.json
+|-- lua
+|   |-- core
+|   |   |-- autocmds.lua
+|   |   |-- init.lua
+|   |   `-- vars.lua
+|   |-- keymaps.lua
+|   `-- plugins
+|       |-- alpha.lua
+|       |-- autopairs.lua
+|       |-- barbar.lua
+|       |-- bullets.lua
+|       |-- cmp.lua
+|       |-- colorscheme.lua
+|       |-- comment.lua
+|       |-- copilot.lua
+|       |-- general.lua
+|       |-- gitsigns.lua
+|       |-- lspconfig.lua
+|       |-- lualine.lua
+|       |-- markdown.lua
+|       |-- noice.lua
+|       |-- null-ls.lua
+|       |-- nvim-tree.lua
+|       |-- telekasten.lua
+|       |-- telescope.lua
+|       |-- todo.lua
+|       |-- treesitter.lua
+|       |-- trouble.lua
+|       `-- which-key
+|           |-- config.lua
+|           |-- init.lua
+|           `-- keymappings.lua
+|-- spell
+|   |-- en.utf-8.add
+|   `-- en.utf-8.add.spl
+`-- utils
+    |-- linter-config
+    `-- thesaurii.txt
 ```
 
 The `init.lua` file is the main configuration file. It bootstraps my plugin
