@@ -192,7 +192,7 @@ return {
           }),
           diagnostics.jsonlint,
           diagnostics.ruff,
-          diagnostics.markdownlint.with({ extra_args = { '--disable MD041 MD051' } }),
+          diagnostics.codespell,
 
           -- Formatters
           formatting.beautysh,

@@ -53,8 +53,8 @@ return {
           '  >  Settings',
           ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'
         ),
-        dashboard.button('p', '󱑁  >  Persistence', '<CMD>lua require("persistence").load()<CR>'),
-        dashboard.button('q', '  >  Quit NVIM', ':qa<CR>'),
+        dashboard.button('p', '󱑁  > Persistence', '<CMD>lua require("persistence").load()<CR>'),
+        dashboard.button('q', '  > Quit NVIM', ':qa<CR>'),
       }
 
       -- Set footer
