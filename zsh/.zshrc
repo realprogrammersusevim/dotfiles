@@ -81,6 +81,7 @@ plugins=(
     zsh-autosuggestions
     alias-tips
     zsh-syntax-highlighting
+    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,11 +125,6 @@ eval $(luarocks path)
 
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
-
-# Set command line to Vi mode
-bindkey -v
-set editing-mode vi
-set show-mode-in-prompt on
 
 # zplug
 export ZPLUG_HOME=$(brew --prefix)/opt/zplug

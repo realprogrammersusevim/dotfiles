@@ -55,3 +55,17 @@ ff() {
 
     [[ -n $selected ]] && nvim "$selected" # open multiple files in editor
 }
+
+nvims() {
+    items=("personal" "default" "plain" "lazy")
+    config=$(printf "%s\n" "${items[@]}" | /opt/homebrew/bin/fzf --prompt="  Neovim config > " --height=~50% --layout=reverse --border --exit-0)
+
+    if [[ -z $config ]]; then
+        echo "Nothing selected"
+        return 0
+    elif  [[ $config == "default" ]]; then
+        config=""
+    fi
+
+    NVIM_APPNAME=$config nvim $@
+}
