@@ -57,13 +57,13 @@ ff() {
 }
 
 nvims() {
-    items=("personal" "default" "plain" "lazy")
+    items=("personal" "plain" "lazy")
     config=$(printf "%s\n" "${items[@]}" | /opt/homebrew/bin/fzf --prompt="  Neovim config > " --height=~50% --layout=reverse --border --exit-0)
 
     if [[ -z $config ]]; then
         echo "Nothing selected"
         return 0
-    elif  [[ $config == "default" ]]; then
+    elif  [[ $config == "personal" ]]; then
         config=""
     fi
 
