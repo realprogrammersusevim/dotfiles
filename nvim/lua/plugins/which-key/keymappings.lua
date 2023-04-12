@@ -1,9 +1,9 @@
 require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
   w = { name = 'Save', { '<CMD>w!<CR>', 'Save' } },
-  Q = { name = 'Quit', { '<CMD>q<CR>', '[Q]uit' } }, -- Uppercase makes it harder to bump next to w
+  Q = { name = 'Quit', { '<CMD>qa<CR>', '[Q]uit' } }, -- Uppercase makes it harder to bump next to w
   h = { name = 'No [h]ighlight', { '<CMD>nohl<CR>', 'No [h]ighlight' } },
-  e = { name = 'File Tree', { '<CMD>NvimTreeToggle<CR>', 'File Tree' } },
+  e = { name = 'File Tree', { '<CMD>Neotree filesystem toggle left<CR>', 'File Tree' } },
   p = {
     name = 'Lazy [p]lugins',
     h = { '<CMD>Lazy home<CR>', 'Lazy [h]ome' },
@@ -62,6 +62,7 @@ require('which-key').register({
     p = { '<CMD>Gitsigns preview_hunk<CR>', '[p]review hunk' },
     n = { '<CMD>Gitsigns next_hunk<CR>', '[n]ext hunk' },
     b = { '<CMD>Gitsigns prev_hunk<CR>', '[back] hunk' },
+    S = { '<CMD>Neotree git_status<CR>', '[S]tatus' },
     g = { '<CMD>Neogit<CR>', '[g]it' },
   },
   l = {

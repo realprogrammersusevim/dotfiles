@@ -1,24 +1,5 @@
 return {
   {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'kyazdani42/nvim-web-devicons',
-    },
-    cmd = 'NvimTreeToggle',
-    opts = {
-      view = {
-        adaptive_size = true,
-      },
-      renderer = {
-        group_empty = true,
-      },
-      filters = {
-        dotfiles = true,
-      },
-    },
-  },
-
-  {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
@@ -45,21 +26,39 @@ return {
 
       -- Set menu
       dashboard.section.buttons.val = {
-        dashboard.button('e', '  > New file', '<CMD>ene <BAR> startinsert <CR>'),
+        dashboard.button('n', '  > New file', '<CMD>ene <BAR> startinsert <CR>'),
         dashboard.button('f', '  > Find file', '<CMD>Telescope find_files<CR>'),
         dashboard.button('r', '  > Recent', '<CMD>Telescope oldfiles<CR>'),
         dashboard.button(
-          's',
+          'c',
           '  > Settings',
           ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'
         ),
-        dashboard.button('p', '󱑁  > Persistence', '<CMD>lua require("persistence").load()<CR>'),
+        dashboard.button(
+          's',
+          '  > Restore Session',
+          '<CMD>lua require("persistence").load()<CR>'
+        ),
         dashboard.button('q', '  > Quit NVIM', ':qa<CR>'),
       }
 
       -- Set footer
-      local fortune = require('alpha.fortune')
-      dashboard.section.footer.val = fortune()
+      -- local fortune = require('alpha.fortune')
+      -- dashboard.section.footer.val = fortune()
+
+      vim.api.nvim_create_autocmd({ 'User' }, {
+        pattern = { 'LazyVimStarted' },
+        callback = function()
+          local stats = require('lazy').stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          dashboard.section.footer.val = '⚡ Neovim loaded '
+            .. stats.count
+            .. ' plugins in '
+            .. ms
+            .. 'ms'
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
 
       -- Send config to alpha
       alpha.setup(dashboard.opts)
@@ -88,15 +87,5 @@ return {
         'toggleterm',
       },
     },
-  },
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-  },
-  {
-    'folke/todo-comments.nvim',
-    event = 'BufRead',
-    config = true,
   },
 }
