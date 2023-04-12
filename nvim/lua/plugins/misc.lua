@@ -1,5 +1,8 @@
 return {
-  { 'lukas-reineke/indent-blankline.nvim', event = 'BufRead' },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'BufRead',
+  },
   { 'skywind3000/asyncrun.vim', cmd = 'AsyncRun' },
   {
     'ray-x/web-tools.nvim',

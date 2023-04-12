@@ -185,14 +185,11 @@ return {
       end
     end,
   },
+
   {
-    url = 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    enabled = false,
-    config = function()
-      vim.diagnostic.config({
-        virtual_text = false,
-      })
-      require('lsp_lines').setup()
-    end,
+    'folke/trouble.nvim',
+    dependencies = 'kyazdani42/nvim-web-devicons',
+    cmd = 'TroubleToggle',
+    opts = { use_diagnostic_signs = true },
   },
 }

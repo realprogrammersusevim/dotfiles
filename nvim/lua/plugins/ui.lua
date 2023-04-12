@@ -47,10 +47,10 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button('e', '  > New file', '<CMD>ene <BAR> startinsert <CR>'),
         dashboard.button('f', '  > Find file', '<CMD>Telescope find_files<CR>'),
-        dashboard.button('r', '  >  Recent', '<CMD>Telescope oldfiles<CR>'),
+        dashboard.button('r', '  > Recent', '<CMD>Telescope oldfiles<CR>'),
         dashboard.button(
           's',
-          '  >  Settings',
+          '  > Settings',
           ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'
         ),
         dashboard.button('p', '󱑁  > Persistence', '<CMD>lua require("persistence").load()<CR>'),
@@ -92,6 +92,11 @@ return {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
+    config = true,
+  },
+  {
+    'folke/todo-comments.nvim',
+    event = 'BufRead',
     config = true,
   },
 }
