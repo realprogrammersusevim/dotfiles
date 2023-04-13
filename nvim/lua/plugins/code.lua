@@ -27,6 +27,9 @@ return {
         },
       },
       { 'neovim/nvim-lspconfig' },
+      { 'ray-x/cmp-treesitter' },
+      { 'jc-doyle/cmp-pandoc-references' },
+      { 'chrisgrieser/cmp-nerdfont' },
     },
     config = function()
       local cmp = require('cmp')
@@ -91,18 +94,16 @@ return {
           { name = 'calc' },
           { name = 'emoji' },
           { name = 'neorg' },
+          { name = 'treesitter' },
+          { name = 'pandoc-references' },
+          { name = 'nerdfont' },
         },
         formatting = {
           format = lspkind.cmp_format({
-            with_text = false,
-            menu = {
-              nvim_lsp = 'LSP',
-              luasnip = 'Snip',
-              path = 'Path',
-              copilot = 'Copilot',
-              calc = 'Calc',
-              emoji = 'Emoji',
-            },
+            preset = 'codicons',
+            mode = 'symbol',
+            maxwidth = 50,
+            ellipsis = '…',
           }),
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
@@ -117,13 +118,19 @@ return {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
+            cmp.config.recently_used,
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
-            cmp.config.compare.length,
+            -- cmp.config.compare.length,
             cmp.config.compare.order,
           },
         },
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' },
+        },
       })
+
+      cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
     end,
   },
 
@@ -135,7 +142,7 @@ return {
 
   {
     'lewis6991/gitsigns.nvim', -- Git signs in the gutter
-    event = 'BufReadPost',
+    event = 'VeryLazy',
     -- cond = function()
     --   if vim.fn.system('git rev-parse --is-inside-work-tree 2>/dev/null') == 'true' then
     --     return true

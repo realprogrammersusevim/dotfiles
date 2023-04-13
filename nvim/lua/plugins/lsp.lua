@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       {
         'williamboman/mason.nvim',
@@ -9,8 +9,23 @@ return {
           require('mason').setup()
         end,
       },
-      'williamboman/mason-lspconfig.nvim',
-      'folke/neodev.nvim',
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'folke/neodev.nvim' },
+      {
+        'utilyre/barbecue.nvim',
+        name = 'barbecue',
+        dependencies = {
+          'SmiteshP/nvim-navic',
+          'kyazdani42/nvim-web-devicons',
+        },
+        config = true,
+        opts = {
+          exclude_filetypes = {
+            'alpha',
+            'toggleterm',
+          },
+        },
+      },
     },
     config = function()
       require('mason').setup()
@@ -189,7 +204,7 @@ return {
   {
     'folke/trouble.nvim',
     dependencies = 'kyazdani42/nvim-web-devicons',
-    cmd = 'TroubleToggle',
+    cmd = { 'TroubleToggle', 'Trouble' },
     opts = { use_diagnostic_signs = true },
   },
 }

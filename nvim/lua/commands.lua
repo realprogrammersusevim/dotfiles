@@ -57,18 +57,6 @@ vim.api.nvim_create_user_command('Daily', function()
   put_text(bar(90, os.date('%Y') - 2006, 'Life'))
 end, { nargs = 0 })
 
-vim.api.nvim_create_user_command('ZoteroCite', function()
-  local format = 'pandoc'
-  local api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format=' .. format .. '&brackets=1'
-  local ref = vim.fn.system('curl -s "' .. api_call .. '"')
-  vim.cmd('normal! i' .. ref)
-end, { nargs = 0 })
-
-vim.api.nvim_create_user_command('Sig', function()
-  vim.cmd('r !echo ",\\n\\n\\nSincerely,\\nJonathan Milligan"')
-  vim.cmd('r !/Users/jonathanmilligan/Documents/Email\\ Format/quotes')
-end, { nargs = 0 })
-
 vim.api.nvim_create_user_command('MarkdownFollowLink', function()
   local scan = require('plenary.scandir')
 
