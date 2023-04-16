@@ -89,12 +89,7 @@ require('which-key').register({
   },
   r = {
     '[r]estore session',
-    s = { require('persistence').load, '[s]ession for current directory' },
-    l = {
-      function()
-        require('persistence').load({ last = true })
-      end,
-      '[l]ast session',
-    },
+    s = { 'lua require("persistence").load()', '[s]ession for current directory' },
+    l = { '<CMD>lua require("persistence").load({ last = true })<CR>', '[l]ast session' },
   },
 }, { prefix = '<leader>' })

@@ -11,21 +11,6 @@ return {
       },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'folke/neodev.nvim' },
-      {
-        'utilyre/barbecue.nvim',
-        name = 'barbecue',
-        dependencies = {
-          'SmiteshP/nvim-navic',
-          'kyazdani42/nvim-web-devicons',
-        },
-        config = true,
-        opts = {
-          exclude_filetypes = {
-            'alpha',
-            'toggleterm',
-          },
-        },
-      },
     },
     config = function()
       require('mason').setup()

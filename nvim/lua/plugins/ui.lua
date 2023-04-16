@@ -71,6 +71,6 @@ return {
     end,
   },
 
-  { 'folke/zen-mode.nvim', config = true },
-  { 'folke/twilight.nvim', config = true },
+  { 'folke/zen-mode.nvim', cmd = { 'ZenMode' }, config = true },
+  { 'folke/twilight.nvim', cmd = { 'Twilight', 'TwilightEnable' }, config = true },
 }
