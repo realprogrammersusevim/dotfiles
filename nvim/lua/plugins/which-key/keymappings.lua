@@ -92,4 +92,17 @@ require('which-key').register({
     s = { 'lua require("persistence").load()', '[s]ession for current directory' },
     l = { '<CMD>lua require("persistence").load({ last = true })<CR>', '[l]ast session' },
   },
+  d = {
+    name = '[d]ebug',
+    c = { '<CMD>lua require("dap").continue()<CR>', '[c]ontinue' },
+    i = { '<CMD>lua require("dap").step_into()<CR>', 'Step [i]nto' },
+    o = { '<CMD>lua require("dap").step_over()<CR>', 'Step [o]ver' },
+    O = { '<CMD>lua require("dap").step_out()<CR>', 'Step [o]ut' },
+    b = { '<CMD>lua require("dap").toggle_breakpoint()<CR>', 'Toggle [b]reakpoint' },
+    B = {
+      '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+      'Set breakpoint',
+    },
+    t = { '<CMD>lua require("dapui").toggle()<CR>', 'DapUI [t]oggle' },
+  },
 }, { prefix = '<leader>' })

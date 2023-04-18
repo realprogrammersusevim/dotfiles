@@ -27,20 +27,20 @@ return {
 
       -- Set menu
       dashboard.section.buttons.val = {
-        dashboard.button('n', '  > New file', '<CMD>ene <BAR> startinsert <CR>'),
-        dashboard.button('f', '  > Find file', '<CMD>Telescope find_files<CR>'),
-        dashboard.button('r', '  > Recent', '<CMD>Telescope oldfiles<CR>'),
+        dashboard.button('n', '  󰶻 New file', '<CMD>ene <BAR> startinsert <CR>'),
+        dashboard.button('f', '  󰶻 Find file', '<CMD>Telescope find_files<CR>'),
+        dashboard.button('r', '  󰶻 Recent', '<CMD>Telescope oldfiles<CR>'),
         dashboard.button(
           'c',
-          '  > Settings',
+          '  󰶻 Settings',
           ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'
         ),
         dashboard.button(
           's',
-          '  > Restore Session',
+          '  󰶻 Restore Session',
           '<CMD>lua require("persistence").load()<CR>'
         ),
-        dashboard.button('q', '  > Quit NVIM', ':qa<CR>'),
+        dashboard.button('q', '  󰶻 Quit NVIM', ':qa<CR>'),
       }
 
       -- Set footer
