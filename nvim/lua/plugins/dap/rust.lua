@@ -1,9 +1,10 @@
 local dap = require('dap')
+
 dap.adapters.codelldb = {
   type = 'server',
   port = '${port}',
   executable = {
-    command = os.getenv('HOME') .. '/.local/share/nvim/mason/bin/codelldb',
+    command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
     args = { '--port', '${port}' },
   },
 }

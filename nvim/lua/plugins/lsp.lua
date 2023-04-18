@@ -50,7 +50,7 @@ return {
 
       -- Setup lspconfig
       -- Python
-      -- lsp.pyright.setup({ capabilities = capabilities })
+      lsp.pyright.setup({ capabilities = capabilities })
       -- lsp.pylyzer.setup({ capabilities = capabilities })
 
       -- Lua
