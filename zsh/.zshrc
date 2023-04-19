@@ -141,6 +141,7 @@ fi
 # zplug section
 zplug "hlissner/zsh-autopair", from:github, defer:2
 zplug "marlonrichert/zsh-autocomplete", from:github, defer:2
+zplug "jeffreytse/zsh-vi-mode"
 
 # Load plugins
 zplug load
