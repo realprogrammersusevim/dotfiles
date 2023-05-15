@@ -199,7 +199,9 @@ return {
           }),
           diagnostics.jsonlint,
           diagnostics.ruff,
-          diagnostics.codespell,
+          diagnostics.codespell.with({
+            extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
+          }),
 
           -- Formatters
           formatting.beautysh,

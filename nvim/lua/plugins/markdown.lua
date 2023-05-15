@@ -1,18 +1,18 @@
 return {
   {
     'dkarter/bullets.vim',
-    event = 'VeryLazy',
+    -- event = 'InsertEnter',
     config = function()
-      vim.g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'scratch' }
       vim.g.bullets_delete_last_bullet_if_empty = 1
       vim.g.bullets_pad_right = 0
     end,
   },
 
   {
-    'iamcco/markdown-preview.nvim', -- Markdown preview in a browser
-    build = 'cd app && yarn install',
-    cmd = 'MarkdownPreviewToggle',
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    lazy = true,
+    build = 'cd app && npm install && git reset --hard',
   },
 
   {

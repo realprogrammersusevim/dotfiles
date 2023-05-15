@@ -73,4 +73,13 @@ return {
 
   { 'folke/zen-mode.nvim', cmd = { 'ZenMode' }, config = true },
   { 'folke/twilight.nvim', cmd = { 'Twilight', 'TwilightEnable' }, config = true },
+
+  {
+    'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+    opts = {
+      input = { enabled = true, insert_only = false, start_in_insert = true },
+      select = { enabled = true },
+    },
+  },
 }
