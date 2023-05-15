@@ -25,3 +25,6 @@ lctrl + alt - e : yabai -m space --balance
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# Restart yabai
+shift + alt - r : yabai --restart-service
