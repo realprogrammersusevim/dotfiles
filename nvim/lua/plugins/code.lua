@@ -93,7 +93,6 @@ return {
           { name = 'copilot' },
           { name = 'calc' },
           { name = 'emoji' },
-          { name = 'neorg' },
           { name = 'treesitter' },
           { name = 'pandoc-references' },
           { name = 'nerdfont' },
