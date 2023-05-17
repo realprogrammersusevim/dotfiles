@@ -4,14 +4,14 @@
 vim.api.nvim_create_user_command('AutoMake', function()
   vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     pattern = { '*' },
-    command = 'silent AsyncRun make',
+    command = 'call jobstart("make")',
   })
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('AutoCompile', function(opts)
   vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     pattern = { '*' },
-    command = 'AsyncRun ' .. opts.args,
+    command = 'call jobstart("' .. opts.command .. '")',
   })
 end, { nargs = 1 })
 

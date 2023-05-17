@@ -231,22 +231,4 @@ return {
       })
     end,
   },
-
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
-  },
-
-  {
-    'folke/todo-comments.nvim',
-    event = 'BufRead',
-    config = true,
-  },
-
-  {
-    'turbio/bracey.vim',
-    cmd = 'Bracey',
-    build = 'npm install --prefix server',
-  },
 }
