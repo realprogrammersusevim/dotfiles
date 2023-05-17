@@ -58,8 +58,6 @@ vim.api.nvim_create_user_command('Daily', function()
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('MarkdownFollowLink', function()
-  local scan = require('plenary.scandir')
-
   local current_line = vim.api.nvim_get_current_line()
   local _, cur_col = unpack(vim.api.nvim_win_get_cursor(0))
 
@@ -86,7 +84,22 @@ vim.api.nvim_create_user_command('MarkdownFollowLink', function()
     note_file_name = note_file_name .. '.md'
   end
 
-  vim.cmd('e ' .. note_file_name)
+  vim.ui.select({ 'current', 'new tab', 'split', 'vsplit' }, {
+    prompt = 'How would you like to open the link?',
+    format_item = function(item)
+      return 'Open in ' .. item
+    end,
+  }, function(choice)
+    if choice == 'current' then
+      vim.cmd.e(note_file_name)
+    elseif choice == 'new tab' then
+      vim.cmd.tabnew(note_file_name)
+    elseif choice == 'split' then
+      vim.cmd.split(note_file_name)
+    elseif choice == 'vsplit' then
+      vim.cmd.vsplit(note_file_name)
+    end
+  end)
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('ZoteroCite', function()

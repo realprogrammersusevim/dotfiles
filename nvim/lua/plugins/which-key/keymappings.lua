@@ -31,7 +31,6 @@ require('which-key').register({
     k = { '<CMD>Telescope keymaps<CR>', '[k]eymaps' },
     C = { '<CMD>Telescope commands<CR>', '[C]ommands' },
     p = { '<CMD>Telescope planets<CR>', '[p]lanets' },
-    n = { '<CMD>Telescope neoclip<CR>', '[n]eoclip' },
   },
   t = {
     name = '[t]rouble',
@@ -63,7 +62,7 @@ require('which-key').register({
     n = { '<CMD>Gitsigns next_hunk<CR>', '[n]ext hunk' },
     b = { '<CMD>Gitsigns prev_hunk<CR>', '[back] hunk' },
     S = { '<CMD>Neotree git_status<CR>', '[S]tatus' },
-    g = { '<CMD>Neogit<CR>', '[g]it' },
+    g = { '<CMD>Neogit kind=floating<CR>', '[g]it' },
   },
   l = {
     name = 'LSP',

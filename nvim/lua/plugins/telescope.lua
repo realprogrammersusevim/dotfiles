@@ -8,6 +8,19 @@ return {
     cmd = 'Telescope',
     config = function()
       require('telescope').setup({
+        defaults = {
+          mappings = {
+            i = {
+              ['<C-m>'] = function(prompt_bufnr)
+                local entry = require('telescope.actions.state').get_selected_entry()
+                require('telescope.actions').close(prompt_bufnr)
+                local stripped_filename = entry.filename:match('^(.+)%..+$')
+                vim.api.nvim_put({ '[[' .. stripped_filename .. ']]' }, '', false, true)
+              end,
+            },
+          },
+        },
+
         extensions = {
           fzf = {
             fuzzy = true, -- false will only do exact matching
