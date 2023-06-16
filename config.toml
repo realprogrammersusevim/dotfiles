@@ -20,4 +20,4 @@ skhd = "~/.config/skhd/skhdrc"
 sketchybar = "~/.config/sketchybar/"
 
 # Location of this repository
-dotfiles = "~/Documents/GitHub/dotfiles/"
+dotfiles = "~/code/dotfiles/"

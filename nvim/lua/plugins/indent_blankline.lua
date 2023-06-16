@@ -1,7 +1,7 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     opts = {
       show_current_context = true,
       filetype_exclude = {
@@ -10,6 +10,7 @@ return {
         'help',
         'TelescopePrompt',
         'TelescopeResults',
+        'gitcommit',
         '',
       },
       show_current_context_start = true,
