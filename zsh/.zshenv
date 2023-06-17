@@ -1,6 +1,5 @@
 TERM=xterm-kitty
 export PATH=$PATH:/Applications/Safari
-export PATH=$PATH:/Users/jonathanmilligan/Documents/GitHub/Coding/Python/Miscellaneous_Scripts
 export PATH=$PATH:/Users/jonathanmilligan/.bin
 BAT_COLOR=always
 BAT_STYLE=numbers

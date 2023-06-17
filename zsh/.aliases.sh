@@ -26,7 +26,7 @@ alias time="gtime"
 alias nd="neovide"
 alias :q="exit"
 alias exe="chmod +x"
-alias emailer="~/Documents/GitHub/emailer/emailer"
+alias emailer="~/code/emailer/emailer"
 
 alias b="brew"
 alias bi="brew install"

@@ -48,6 +48,7 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 yabai -m rule --add app="Stats" manage=off
+yabai -m rule --add app="Mullvad VPN" manage=off
 
 # For SketchyBar
 # yabai -m config external_bar all:35:0

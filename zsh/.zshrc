@@ -119,7 +119,7 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
-export PATH="$PATH:/Users/jonathanmilligan/Documents/GitHub/cli-tools/scripts"
+export PATH="$PATH:/Users/jonathanmilligan/code/cli-tools/scripts"
 export PATH=$PATH:"/Users/jonathanmilligan/.bin"
 eval $(luarocks path)
 
@@ -176,3 +176,4 @@ source /Users/jonathanmilligan/.config/broot/launcher/bash/br
 
 # Fig post block. Keep at the bottom of this file.
 # [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
