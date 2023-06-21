@@ -10,7 +10,7 @@ return {
       component_separators = '|',
       section_separators = { left = '', right = '' },
       globalstatus = true,
-      disabled_filetypes = { 'neo-tree', 'alpha' },
+      disabled_filetypes = { 'neo-tree', 'alpha', 'lazy' },
     },
     sections = {
       lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },

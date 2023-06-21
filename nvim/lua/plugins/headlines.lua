@@ -1,7 +1,7 @@
 return {
   {
     'lukas-reineke/headlines.nvim',
-    event = 'VeryLazy',
+    ft = { 'markdown' },
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = true,
   },

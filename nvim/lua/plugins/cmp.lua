@@ -30,7 +30,7 @@ return {
       { 'ray-x/cmp-treesitter' },
       -- { 'jc-doyle/cmp-pandoc-references' },
       {
-        dir = '/Users/jonathanmilligan/Documents/GitHub/cmp-pandoc-references',
+        dir = '/Users/jonathanmilligan/code/cmp-pandoc-references',
         branch = 'feat_api',
       },
       { 'chrisgrieser/cmp-nerdfont' },

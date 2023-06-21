@@ -9,8 +9,7 @@ require('which-key').register({
     h = { '<CMD>Lazy home<CR>', 'Lazy [h]ome' },
     s = {
       function()
-        local stats = require('lazy').stats()
-        print('Loaded ' .. stats.loaded .. ' plugins in ' .. stats.startuptime .. ' milleseconds.')
+        print(require('utils').plugin_time())
       end,
       'Lazy [s]tats',
     },
