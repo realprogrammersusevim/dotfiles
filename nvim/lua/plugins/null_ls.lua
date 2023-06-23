@@ -1,7 +1,7 @@
 return {
   {
     'jose-elias-alvarez/null-ls.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'BufWritePre',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'neovim/nvim-lspconfig',

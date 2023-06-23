@@ -1,8 +1,12 @@
 return {
   {
     'lukas-reineke/headlines.nvim',
-    ft = { 'markdown' },
+    event = 'VeryLazy',
     dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = true,
+    config = function()
+      if vim.bo.filetype == 'markdown' then
+        require('headlines').setup()
+      end
+    end,
   },
 }
