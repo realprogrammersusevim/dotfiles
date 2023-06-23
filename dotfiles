@@ -11,6 +11,7 @@ parser
 parser:option('-c --config', 'The config file to use.'):default('config.toml')
 parser:flag('-d --delete', 'Sync deletions.')
 parser:flag('-v --verbose', 'Verbose output.')
+parser:flag('-m --markdown', 'Markdown output of plugins.')
 local args = parser:parse()
 
 local function log(logee)
@@ -80,10 +81,22 @@ elseif args.action == 'push' then
   command('SketchyBar', true, repo_loc .. 'sketchybar/', config.sketchybar)
 elseif args.action == 'plugins' then
   local json = require('json')
+
   local json_plugins = io.open('nvim/lazy-lock.json', 'r'):read('*a')
   local parsed_plugins = json.decode(json_plugins)
 
-  for i, _ in pairs(parsed_plugins) do
-    print(i)
+  if args.markdown then
+    print('')
+    print('## Plugins')
+    print('')
+    print([[| Plugin | Commit |
+| ------ | ------- |]])
+    for plugin, version in pairs(parsed_plugins) do
+      print('| ' .. plugin .. ' | `' .. version.commit .. '` |')
+    end
+  else
+    for plugin, _ in pairs(parsed_plugins) do
+      print(plugin)
+    end
   end
 end
