@@ -5,7 +5,8 @@ alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias ls="exa --all --long --git --header --icons"
 alias cd="z"
-alias gui="gitui"
+# alias gui="gitui"
+alias gui="nvim -c 'Neogit kind=replace'"
 alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
 alias n="/opt/homebrew/bin/nvim"
 alias nn="/usr/local/bin/nvim" # Neovim built from source
