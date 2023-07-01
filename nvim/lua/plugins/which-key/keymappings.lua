@@ -1,6 +1,7 @@
 require('which-key').register({
   [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
   w = { name = 'Save', { '<CMD>w!<CR>', 'Save' } },
+  W = { name = 'Save without formatting', { '<CMD>noautocmd w<CR>', 'Save without formatting' } }, -- When you don't want the formatter to fire while saving
   Q = { name = 'Quit', { '<CMD>qa<CR>', '[Q]uit' } }, -- Uppercase makes it harder to bump next to w
   h = { name = 'No [h]ighlight', { '<CMD>nohl<CR>', 'No [h]ighlight' } },
   e = { name = 'File Tree', { '<CMD>Neotree filesystem toggle left<CR>', 'File Tree' } },
@@ -35,15 +36,11 @@ require('which-key').register({
     name = '[t]rouble',
     t = { '<CMD>TroubleToggle<CR>', '[t]rouble' },
     n = {
-      function()
-        require('trouble').next({ skip_groups = true, jump = true })
-      end,
+      '<CMD>lua require("trouble").next({ skip_groups = true, jump = true })<CR>',
       '[n]ext',
     },
     p = {
-      function()
-        require('trouble').previous({ skip_groups = true, jump = true })
-      end,
+      '<CMD>lua require("trouble").previous({ skip_groups = true, jump = true })<CR>',
       '[p]revious',
     },
   },
@@ -65,14 +62,14 @@ require('which-key').register({
   },
   l = {
     name = 'LSP',
-    r = { vim.lsp.buf.rename, '[R]ename' },
-    i = { vim.lsp.buf.hover, '[I]nformation' },
-    d = { vim.lsp.buf.definition, '[d]efinition' },
-    D = { vim.lsp.buf.declaration, '[D]eclaration' }, -- Some servers don't implement this feature
-    m = { vim.lsp.buf.implementation, 'I[m]plementation' },
-    q = { vim.lsp.buf.references, '[q]uickfix' },
-    e = { vim.diagnostic.open_float, 'Diagnostics' },
-    a = { vim.lsp.buf.code_action, 'Code [a]ction' },
+    r = { '<CMD>lua vim.lsp.buf.rename()<CR>', '[R]ename' },
+    i = { '<CMD>lua vim.lsp.buf.hover()<CR>', '[I]nformation' },
+    d = { '<CMD>lua vim.lsp.buf.definition()<CR>', '[d]efinition' },
+    D = { '<CMD>lua vim.lsp.buf.declaration()<CR>', '[D]eclaration' }, -- Some servers don't implement this feature
+    m = { '<CMD>lua vim.lsp.buf.implementation()<CR>', 'I[m]plementation' },
+    q = { '<CMD>lua vim.lsp.buf.references()<CR>', '[q]uickfix' },
+    e = { '<CMD>lua vim.diagnostic.open_float()<CR>', 'Diagnostics' },
+    a = { '<CMD>lua vim.lsp.buf.code_action()<CR>', 'Code [a]ction' },
   },
   m = {
     name = 'Markdown',
@@ -103,4 +100,5 @@ require('which-key').register({
     },
     t = { '<CMD>lua require("dapui").toggle()<CR>', 'DapUI [t]oggle' },
   },
+  f = { name = '[f]loating terminal', { '<CMD>lua require("FTerm").toggle()<CR>', '[t]oggle' } },
 }, { prefix = '<leader>' })

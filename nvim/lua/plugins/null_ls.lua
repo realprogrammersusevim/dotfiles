@@ -44,7 +44,7 @@ return {
             extra_args = { '--tooWordy', '--so', '--cliches' },
           }),
           diagnostics.jsonlint,
-          diagnostics.ruff,
+          -- diagnostics.ruff,
           diagnostics.codespell.with({
             extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
           }),

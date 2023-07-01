@@ -5,7 +5,7 @@ return {
     opts = {
       filetypes = {
         yaml = false,
-        markdown = true, -- Overrode the defaults here. Not as annoying since I only use it through cmp
+        markdown = false,
         help = false,
         gitcommit = false,
         gitrebase = false,
