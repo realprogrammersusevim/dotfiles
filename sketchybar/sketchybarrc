@@ -15,11 +15,14 @@ UTILS="$HOME/.config/sketchybar/utils"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 sketchybar --bar height=32        \
-                 blur_radius=30   \
                  position=top     \
                  sticky=off       \
                  padding_left=10  \
                  padding_right=10 \
+                 margin=10        \
+                 corner_radius=10 \
+                 y_offset=8       \
+                 blur_radius=30   \
                  color=0x15ffffff
 
 ##### Changing Defaults #####
@@ -66,6 +69,7 @@ source $ITEMS/clock.sh
 source $ITEMS/wifi.sh
 source $ITEMS/volume.sh
 source $ITEMS/battery.sh
+# source $ITEMS/vpn.sh
 source $ITEMS/system.sh
 source $ITEMS/music.sh
 # source $ITEMS/btc.sh

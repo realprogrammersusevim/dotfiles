@@ -13,19 +13,25 @@ sketchybar 	--add event 				hide_stats   					                                  
 source "$UTILS/colors.sh"
 source "$UTILS/icons.sh"
 
+FONT="Hack Nerd Font"
+NERD_FONT="Hack Nerd Font"
+
 cpu_percent=(
     label.font="$FONT:Heavy:12"
-    label=CPU%
     label.color="$TEXT"
     icon="$CPU"
     icon.color="$BLUE"
     update_freq=2
     mach_helper="$HELPER"
+    script="$PLUGINS/cpu.sh"
+    label.width=50
+    # width=75
+    label.align=right
+    icon.align=left
 )
 
 sketchybar 	--add item cpu.percent right 					\
     --set cpu.percent "${cpu_percent[@]}"
-
 
 memory=(label.font="$FONT:Heavy:12"
     label.color="$TEXT"

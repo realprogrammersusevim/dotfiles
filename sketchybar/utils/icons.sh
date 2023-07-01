@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+export FONT="Hack Nerd Font"
+
 # General Icons
 export LOADING=􀖇
 export APPLE=􀣺
@@ -15,7 +17,7 @@ export BELL_DOT=􀝗
 
 export BATTERY=
 export CPU=
-export DISK=
+export DISK=󱊞
 export MEMORY=﬙
 export NETWORK=
 export NETWORK_DOWN=
@@ -42,3 +44,6 @@ export YABAI_FULLSCREEN_ZOOM=􀏜
 export YABAI_PARENT_ZOOM=􀥃
 export YABAI_FLOAT=􀢌
 export YABAI_GRID=􀧍
+
+export LOCKED=
+export UNLOCKED=
