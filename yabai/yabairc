@@ -19,11 +19,11 @@ yabai -m config                                 \
     window_placement             second_child   \
     window_topmost               off            \
     window_shadow                0.5            \
-    window_opacity_duration      0.3            \
+    window_opacity_duration      0.2            \
     active_window_opacity        1.0            \
     normal_window_opacity        0.9            \
     window_opacity               on             \
-    window_animation_duration    0.0            \
+    window_animation_duration    0.3            \
     window_animation_frame_rate  30             \
     insert_feedback_color        0xffd75f5f     \
     active_window_border_color   0xff775759     \
@@ -45,12 +45,11 @@ yabai -m config                                 \
     mouse_modifier               fn             \
     mouse_action1                move           \
     mouse_action2                resize         \
-    mouse_drop_action            swap
+    mouse_drop_action            swap           \
+    external_bar all:35:0
+
 
 yabai -m rule --add app="Stats" manage=off
 yabai -m rule --add app="Mullvad VPN" manage=off
-
-# For SketchyBar
-yabai -m config external_bar all:35:0
 
 echo "yabai configuration loaded.."
