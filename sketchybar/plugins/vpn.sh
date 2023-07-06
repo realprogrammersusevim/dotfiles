@@ -1,11 +1,14 @@
 #!/bin/sh
 
-if [ "$(mullvad status | rg "^Connected")" ]; then
-    ICON="locked"
-    COLOR=0xffa6da95
+source "$HOME/.config/sketchybar/utils/icons.sh"
+source "$HOME/.config/sketchybar/utils/colors.sh"
+
+if [ "$(mullvad status)" = "Disconnected" ]; then
+    ICON=$UNLOCKED
+    COLOR=$RED
 else
-    ICON="unlocked"
-    COLOR=0xffed8796
+    ICON=$LOCKED
+    COLOR=$GREEN
 fi
 
 sketchybar --set vpn icon="$ICON" icon.color="$COLOR"

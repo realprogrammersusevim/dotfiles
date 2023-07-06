@@ -1,56 +1,57 @@
 #!/usr/bin/env bash
 
+source "$HOME/.config/sketchybar/utils/icons.sh"
+
 stats=(
-	cpu.percent
-	memory
-	disk
-	network
+    cpu.percent
+    memory
+    disk
+    network
 )
 
 hide_stats() {
-	args=()
-	for item in "${stats[@]}"; do
-		args+=(--set "$item" drawing=off)
-	done
+    args=()
+    for item in "${stats[@]}"; do
+        args+=(--set "$item" drawing=off)
+    done
 
-	sketchybar "${args[@]}" \
-		--set separator_right \
-		icon=
+    sketchybar "${args[@]}" \
+        --set separator_right \
+        icon="$CHEVRON_RIGHT"
 }
 
 show_stats() {
-	args=()
-	for item in "${stats[@]}"; do
-		args+=(--set "$item" drawing=on)
-	done
+    args=()
+    for item in "${stats[@]}"; do
+        args+=(--set "$item" drawing=on)
+    done
 
-	sketchybar "${args[@]}" \
-		--set separator_right \
-		icon=
+    sketchybar "${args[@]}" \
+        --set separator_right \
+        icon="$CHEVRON_LEFT"
 }
 
 toggle_stats() {
-	state=$(sketchybar --query separator_right | jq -r .icon.value)
+    state=$(sketchybar --query separator_right | jq -r .icon.value)
 
-	case $state in
-	"")
-		show_stats
-		;;
-	"")
-		hide_stats
-		;;
-	esac
+    case $state in
+        "$CHEVRON_RIGHT")
+            show_stats
+            ;;
+        "$CHEVRON_LEFT")
+            hide_stats
+            ;;
+    esac
 }
 
 case "$SENDER" in
-"hide_stats")
-	hide_stats
-	;;
-"show_stats")
-	show_stats
-	;;
-"toggle_stats")
-	toggle_stats
-	;;
+    "hide_stats")
+        hide_stats
+        ;;
+    "show_stats")
+        show_stats
+        ;;
+    "toggle_stats")
+        toggle_stats
+        ;;
 esac
-

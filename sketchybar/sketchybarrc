@@ -30,7 +30,7 @@ sketchybar --bar height=32        \
 # For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 
-sketchybar --default icon.font="Hack Nerd Font:Bold:17.0"  \
+sketchybar --default icon.font="SF Pro:Bold:17.0"  \
                      icon.color=0xffffffff                 \
                      label.font="Hack Nerd Font:Bold:14.0" \
                      label.color=0xffffffff                \
@@ -69,7 +69,7 @@ source $ITEMS/clock.sh
 source $ITEMS/wifi.sh
 source $ITEMS/volume.sh
 source $ITEMS/battery.sh
-# source $ITEMS/vpn.sh
+source $ITEMS/vpn.sh
 source $ITEMS/system.sh
 source $ITEMS/music.sh
 # source $ITEMS/btc.sh

@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
+source "$UTILS/icons.sh"
+
 sketchybar -m --add item space_separator left                         \
-    --set space_separator icon=                            \
+    --set space_separator icon=$CHEVRON_RIGHT                            \
     padding_left=10                   \
     padding_right=10                  \
     label.drawing=off                 \

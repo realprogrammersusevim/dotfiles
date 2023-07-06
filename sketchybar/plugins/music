@@ -6,6 +6,7 @@
 # com.apple.iTunes.playerInfo fires off an event when the player quits
 # so it imediately runs before the process is killed
 sleep 1
+source $UTILS/icons.sh
 
 APP_STATE=$(pgrep -x Music)
 if [[ ! $APP_STATE ]]; then 
@@ -24,23 +25,23 @@ artist=$(osascript -e 'tell application "Music" to get artist of current track')
 # ALBUM=$(osascript -e 'tell application "Music" to get album of current track')
 loved=$(osascript -l JavaScript -e "Application('Music').currentTrack().loved()")
 if [[ $loved ]]; then
-    icon="􀊸"
+    icon=$LOVED
 fi
 
 if [[ $PLAYER_STATE == "paused" ]]; then
-    icon="􀊘"
+    icon=$PLAY
 fi
 
 if [[ $PLAYER_STATE == "playing" ]]; then
-    icon="􀊖"
+    icon=$PAUSE
 fi
 
 if [[ ${#title} -gt 25 ]]; then
-TITLE=$(printf "$(echo $title | cut -c 1-25)…")
+TITLE=$(printf "$(echo \"$title\" | cut -c 1-25)…")
 fi
 
 if [[ ${#artist} -gt 25 ]]; then
-ARTIST=$(printf "$(echo $artist | cut -c 1-25)…")
+ARTIST=$(printf "$(echo \"$artist\" | cut -c 1-25)…")
 fi
 
 # if [[ ${#ALBUM} -gt 25 ]]; then

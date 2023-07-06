@@ -13,11 +13,8 @@ sketchybar 	--add event 				hide_stats   					                                  
 source "$UTILS/colors.sh"
 source "$UTILS/icons.sh"
 
-FONT="Hack Nerd Font"
-NERD_FONT="Hack Nerd Font"
-
 cpu_percent=(
-    label.font="$FONT:Heavy:12"
+    # label.font="$FONT:Heavy:12"
     label.color="$TEXT"
     icon="$CPU"
     icon.color="$BLUE"
@@ -33,7 +30,8 @@ cpu_percent=(
 sketchybar 	--add item cpu.percent right 					\
     --set cpu.percent "${cpu_percent[@]}"
 
-memory=(label.font="$FONT:Heavy:12"
+memory=(
+    # label.font="$FONT:Heavy:12"
     label.color="$TEXT"
     icon="$MEMORY"
     icon.font="$FONT:Bold:16.0"
@@ -46,7 +44,7 @@ sketchybar 	--add item memory right 		\
     --set memory "${memory[@]}"
 
 disk=(
-    label.font="$FONT:Heavy:12"
+    # label.font="$FONT:Heavy:12"
     label.color="$TEXT"
     icon="$DISK"
     icon.color="$MAROON"
@@ -59,10 +57,10 @@ sketchybar --add item disk right 		\
 
 network_down=(
     y_offset=-7
-    label.font="$FONT:Heavy:10"
+    # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_DOWN"
-    icon.font="$NERD_FONT:Bold:16.0"
+    # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
     update_freq=1
@@ -71,10 +69,10 @@ network_down=(
 network_up=(
     background.padding_right=-70
     y_offset=7
-    label.font="$FONT:Heavy:10"
+    # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_UP"
-    icon.font="$NERD_FONT:Bold:16.0"
+    # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
     update_freq=1
@@ -88,8 +86,8 @@ sketchybar 	--add item network.down right 						\
 
 
 separator_right=(
-    icon=
-    icon.font="$NERD_FONT:Regular:16.0"
+    icon=$CHEVRON_LEFT
+    # icon.font="$NERD_FONT:Regular:16.0"
     background.padding_left=10
     background.padding_right=15
     label.drawing=off
