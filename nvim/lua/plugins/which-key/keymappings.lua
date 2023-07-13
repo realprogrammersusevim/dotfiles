@@ -1,10 +1,8 @@
 require('which-key').register({
-  [';'] = { name = 'Dashboard', { '<CMD>Alpha<CR>', 'Dashboard' } },
   w = { name = 'Save', { '<CMD>w!<CR>', 'Save' } },
   W = { name = 'Save without formatting', { '<CMD>noautocmd w<CR>', 'Save without formatting' } }, -- When you don't want the formatter to fire while saving
   Q = { name = 'Quit', { '<CMD>qa<CR>', '[Q]uit' } }, -- Uppercase makes it harder to bump next to w
   h = { name = 'No [h]ighlight', { '<CMD>nohl<CR>', 'No [h]ighlight' } },
-  e = { name = 'File Tree', { '<CMD>Neotree filesystem toggle left<CR>', 'File Tree' } },
   p = {
     name = 'Lazy [p]lugins',
     h = { '<CMD>Lazy home<CR>', 'Lazy [h]ome' },

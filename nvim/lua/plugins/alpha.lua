@@ -3,6 +3,7 @@ return {
     'goolord/alpha-nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     event = 'VimEnter',
+    keys = { { '<leader>;', '<CMD>Alpha<CR>', desc = 'Dashboard' } },
     config = function()
       local alpha = require('alpha')
       local dashboard = require('alpha.themes.dashboard')
@@ -38,7 +39,7 @@ return {
         dashboard.button(
           's',
           '  󰶻 Restore Session',
-          '<CMD>lua require("persistence").load()<CR>'
+          '<CMD>lua require("persistence").load({ last = true })<CR>'
         ),
         dashboard.button('q', '  󰶻 Quit NVIM', ':qa<CR>'),
       }

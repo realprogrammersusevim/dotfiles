@@ -1,7 +1,7 @@
 return {
   {
     'numToStr/Comment.nvim', -- Comment stuff out
-    event = { 'BufRead', 'BufNewFile' },
+    keys = { 'gc', 'gbc' },
     config = true,
   },
 }

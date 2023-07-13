@@ -1,10 +1,13 @@
 return {
   {
-    'TimUntersberger/neogit',
+    'NeogitOrg/neogit',
     cmd = 'Neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
+      {
+        'sindrets/diffview.nvim',
+        keys = { '<leader>gd', 'DiffviewOpen', description = 'Open diff view' },
+      },
     },
     config = function()
       vim.api.nvim_create_augroup('neogit-additions', {})

@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('nvim-treesitter.configs').setup({
         -- A list of parser names, or "all"
@@ -43,6 +43,7 @@ return {
     'nvim-treesitter/nvim-treesitter-refactor',
     event = { 'BufRead', 'BufNewFile' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    keys = { 'gnd', 'gnD', 'g0', '<a-*>', '<a-#>' },
     config = function()
       require('nvim-treesitter.configs').setup({
         refactor = {
