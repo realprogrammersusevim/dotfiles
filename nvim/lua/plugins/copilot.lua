@@ -2,6 +2,7 @@ return {
   {
     'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
     event = 'InsertEnter',
+    enabled = false,
     opts = {
       filetypes = {
         yaml = false,

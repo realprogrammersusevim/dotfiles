@@ -7,7 +7,28 @@ return {
       'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
-    -- cmd = 'Neotree',
+    cmd = 'Neotree',
+    keys = { { '<LEADER>e', '<CMD>Neotree filesystem toggle left<CR>', desc = 'File Tree' } },
+    init = function() -- init is called on startup. i.e. no lazy.
+      vim.g.neo_tree_remove_legacy_commands = 1
+      if vim.fn.argc() >= 1 then
+        vim.api.nvim_create_autocmd('UIEnter', {
+          once = true,
+          callback = function(_)
+            for i = 0, vim.fn.argc() - 1 do -- check for all command line arguments
+              local stat = vim.loop.fs_stat(vim.fn.argv(i))
+              if stat and stat.type == 'directory' then -- only if any of them is a dir
+                require('neo-tree') -- require neo-tree, which asks lazy to load neo-tree which calls setup with `opts` and
+                -- since hijack_netrw_behavior is set there, neo-tree overwrites netrw on setup
+                return
+              end
+            end
+          end,
+        })
+      end
+      -- if no cl args or all are files, neo-tree is not loaded here and will wait lazily
+    end,
+    -- event = 'BufEnter',
     config = function()
       vim.g.neo_tree_remove_legacy_commands = 1
 

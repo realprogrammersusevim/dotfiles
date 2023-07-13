@@ -6,43 +6,39 @@ return {
     dependencies = {
       {
         'williamboman/mason.nvim',
-        config = function()
-          require('mason').setup()
-        end,
+        config = true,
       },
-      { 'williamboman/mason-lspconfig.nvim' },
-      { 'folke/neodev.nvim' },
+      { 'williamboman/mason-lspconfig.nvim', config = true },
+      {
+        'folke/neodev.nvim',
+        opts = {
+          library = {
+            enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+            -- these settings will be used for your Neovim config directory
+            runtime = true, -- runtime path
+            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            plugins = true, -- installed opt or start plugins in packpath
+            -- you can also specify the list of plugins to make available as a workspace library
+            -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+          },
+          setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
+          -- for your Neovim config directory, the config.library settings will be used as is
+          -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
+          -- for any other directory, config.library.enabled will be set to false
+          override = function(root_dir, options) end,
+          -- With lspconfig, Neodev will automatically setup your lua-language-server
+          -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
+          -- in your lsp start options
+          lspconfig = true,
+        },
+      },
     },
     config = function()
-      require('mason').setup()
-      require('mason-lspconfig').setup()
-
       vim.diagnostic.config({
         underline = true,
         -- virtual_text = true,
         signs = true,
         update_in_insert = false,
-      })
-
-      require('neodev').setup({
-        library = {
-          enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-          -- these settings will be used for your Neovim config directory
-          runtime = true, -- runtime path
-          types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-          plugins = true, -- installed opt or start plugins in packpath
-          -- you can also specify the list of plugins to make available as a workspace library
-          -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-        },
-        setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-        -- for your Neovim config directory, the config.library settings will be used as is
-        -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
-        -- for any other directory, config.library.enabled will be set to false
-        override = function(root_dir, options) end,
-        -- With lspconfig, Neodev will automatically setup your lua-language-server
-        -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-        -- in your lsp start options
-        lspconfig = true,
       })
 
       local lsp = require('lspconfig')
@@ -99,7 +95,7 @@ return {
       -- Rust
       lsp.rust_analyzer.setup({
         capabilities = capabilities,
-        settings = { checkOnSave = { command = 'clippy' } },
+        settings = { ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } } },
       })
 
       -- Markdown
@@ -119,64 +115,14 @@ return {
 
       -- HTML
       lsp.html.setup({ capabilities = capabilities })
-      lsp.tailwindcss.setup({
-        capabilities = capabilities,
-        -- Exclude Markdown files
-        filetypes = {
-          'aspnetcorerazor',
-          'astro',
-          'astro-markdown',
-          'blade',
-          'django-html',
-          'htmldjango',
-          'edge',
-          'eelixir',
-          'elixir',
-          'ejs',
-          'erb',
-          'eruby',
-          'gohtml',
-          'haml',
-          'handlebars',
-          'hbs',
-          'html',
-          'html-eex',
-          'heex',
-          'jade',
-          'leaf',
-          'liquid',
-          -- 'markdown',
-          'mdx',
-          'mustache',
-          'njk',
-          'nunjucks',
-          'php',
-          'razor',
-          'slim',
-          'twig',
-          'css',
-          'less',
-          'postcss',
-          'sass',
-          'scss',
-          'stylus',
-          'sugarss',
-          'javascript',
-          'javascriptreact',
-          'reason',
-          'rescript',
-          'typescript',
-          'typescriptreact',
-          'vue',
-          'svelte',
-        },
-      })
-
       -- Yaml
       lsp.yamlls.setup({ capabilities = capabilities })
 
       -- Swift
       lsp.sourcekit.setup({ capabilities = capabilities })
+
+      -- C/C++
+      lsp.clangd.setup({ capabilities = capabilities })
 
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }

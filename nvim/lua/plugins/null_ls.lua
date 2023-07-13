@@ -67,6 +67,7 @@ return {
           formatting.goimports,
           formatting.gofmt,
           formatting.fixjson,
+          formatting.clang_format,
           -- formatting.swiftformat,
 
           -- Hover defs

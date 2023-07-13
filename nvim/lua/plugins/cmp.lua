@@ -22,13 +22,13 @@ return {
       {
         'zbirenbaum/copilot-cmp',
         config = true,
+        enabled = false,
         dependencies = {
           'zbirenbaum/copilot.lua',
         },
       },
       { 'neovim/nvim-lspconfig' },
       { 'ray-x/cmp-treesitter' },
-      -- { 'jc-doyle/cmp-pandoc-references' },
       {
         dir = '/Users/jonathanmilligan/code/cmp-pandoc-references',
         branch = 'feat_api',
@@ -94,7 +94,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'luasnip' },
-          { name = 'copilot' },
+          -- { name = 'copilot' },
           { name = 'calc' },
           { name = 'emoji' },
           { name = 'treesitter' },
@@ -105,31 +105,32 @@ return {
           format = lspkind.cmp_format({
             preset = 'codicons',
             mode = 'symbol',
+            before = function(entry, vim_item)
+              -- Get the full snippet (and only keep first line)
+              local word = entry:get_insert_text()
+              if entry.completion_item.insertTextFormat == require('cmp.types').lsp.InsertTextFormat.Snippet then
+                word = vim.lsp.util.parse_snippet(word)
+              end
+              word = require('cmp.utils.str').oneline(word)
+
+              if
+                entry.completion_item.insertTextFormat == require('cmp.types').lsp.InsertTextFormat.Snippet
+                and string.sub(vim_item.abbr, -1, -1) == '~'
+              then
+                word = word .. '~'
+              end
+              vim_item.abbr = word
+
+              return vim_item
+            end,
             maxwidth = 50,
-            ellipsis = '…',
           }),
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-        experimental = { ghost_text = false }, -- Shows the suggestion in italics. Esp. helpful for seeing the entire Copilot suggestion
+        experimental = { ghost_text = true }, -- Shows the suggestion in italics. Esp. helpful for seeing the entire Copilot suggestion
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
-        },
-        sorting = {
-          priority_weight = 2,
-          comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.recently_used,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            -- cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
-        },
-        view = {
-          entries = { name = 'custom', selection_order = 'near_cursor' },
         },
       })
 
