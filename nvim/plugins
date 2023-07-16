@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+import json
+import re
+
+with open("lazy-lock.json") as f:
+    plugins = json.load(f)
+
+plug_names = [plugin for plugin in plugins]
+plug_hashes = [plugins[plugin]["commit"] for plugin in plugins]
+name_max = len(max(plug_names, key=len))
+hash_max = len(max(plug_hashes, key=len))
+
+new_plugs = [
+    "<!--plugin start-->",
+    "",
+    f"| {'Plugin'.ljust(name_max)} | {'Commit'.ljust(hash_max)} |",
+    f"| {'-' * name_max} | {'-' * hash_max} |",
+]
+
+for i in zip(plug_names, plug_hashes):
+    new_plugs.append(f"| {i[0].ljust(name_max)} | {i[1].ljust(hash_max)} |")
+
+new_plugs.append("")
+new_plugs.append("<!--plugin end-->")
+
+with open("README.md") as f:
+    readme = f.read()
+
+regex = r"^<!--plugin start-->$(.*\n)*^<!--plugin end-->$"
+
+new_readme = re.sub(regex, "\n".join(new_plugs), readme, 0, re.MULTILINE)
+
+with open("README.md", "w") as f:
+    f.write(new_readme)
