@@ -1,7 +1,7 @@
 return {
   {
     'numToStr/Comment.nvim', -- Comment stuff out
-    keys = { 'gc', 'gbc' },
+    keys = { 'gc', 'gbc', 'gcc' },
     config = true,
   },
 }

@@ -11,6 +11,7 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command('AutoCompile', function(opts)
   vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     pattern = { '*' },
+    -- FIXME: This command crashes
     command = 'call jobstart("' .. opts.command .. '")',
   })
 end, { nargs = 1 })
