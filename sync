@@ -1,0 +1,9 @@
+#!/bin/sh
+
+stow -t ~/.config/yabai/ yabai
+stow -t ~/.config/skhd/ skhd
+stow -t ~/.config/sketchybar/ sketchybar
+stow -t ~/ zsh
+stow -t ~/.config/nvim/ nvim
+stow -t ~/.config/kitty/ kitty
+stow -t ~/.config/gitui/ gitui
