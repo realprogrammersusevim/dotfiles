@@ -47,5 +47,6 @@ if not vim.g.started_by_firenvim then
   require('commands')
 else
   require('core')
+  require('keymaps')
   require('lazy').setup('plugins.firenvim')
 end
