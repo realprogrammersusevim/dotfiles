@@ -6,6 +6,7 @@ alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {
 alias ls="exa --all --long --git --header --icons"
 alias cd="z"
 # alias gui="gitui"
+alias lg="lazygit"
 alias gui="nvim -c 'Neogit kind=replace'"
 alias src="source ~/.zshrc ~/.zshenv ~/.zprofile"
 alias n="/opt/homebrew/bin/nvim"

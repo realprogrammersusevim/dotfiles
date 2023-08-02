@@ -123,6 +123,8 @@ export PATH="$PATH:/Users/jonathanmilligan/code/cli-tools/scripts"
 export PATH=$PATH:"/Users/jonathanmilligan/.bin"
 eval $(luarocks path)
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # My custom prompt was 'username@directory previousCommandExitCode $ '
 # PROMPT='%B%n@%~ %? $%b '
 
@@ -177,3 +179,6 @@ source /Users/jonathanmilligan/.config/broot/launcher/bash/br
 # Fig post block. Keep at the bottom of this file.
 # [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+
+# All done show a pretty bonsai tree
+cbonsai -p

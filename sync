@@ -7,3 +7,4 @@ stow -t ~/ zsh
 stow -t ~/.config/nvim/ nvim
 stow -t ~/.config/kitty/ kitty
 stow -t ~/.config/gitui/ gitui
+stow -t ~/.config/lazygit lazygit
