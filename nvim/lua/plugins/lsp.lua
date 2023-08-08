@@ -118,9 +118,19 @@ return {
       -- Yaml
       lsp.yamlls.setup({ capabilities = capabilities })
 
-      -- Swift
-      lsp.sourcekit.setup({ capabilities = capabilities })
-
+      -- Swift/C family
+      -- - Only supports projects using the Swift build system
+      -- - Only enabled for Swift to avoid conflicts with clangd
+      lsp.sourcekit.setup({
+        capabilities = capabilities,
+        filetypes = {
+          'swift',
+          -- 'c',
+          -- 'cpp',
+          -- 'objective-c',
+          -- 'objective-cpp',
+        },
+      })
       -- C/C++
       lsp.clangd.setup({ capabilities = capabilities })
 
