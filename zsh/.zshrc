@@ -1,8 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -118,9 +113,9 @@ export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
-export PATH="/Users/jonathanmilligan/Library/Python/3.10/bin:$PATH"
-export PATH="$PATH:/Users/jonathanmilligan/code/cli-tools/scripts"
-export PATH=$PATH:"/Users/jonathanmilligan/.bin"
+export PATH="$HOME/Library/Python/3.10/bin:$PATH"
+export PATH="$PATH:$HOME/code/cli-tools/scripts"
+export PATH=$PATH:"$HOME/.bin"
 eval $(luarocks path)
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -169,16 +164,12 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 source $HOME/.personal_commands.sh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 # Zoxide stuff
 eval "$(zoxide init zsh)"
 
 source /Users/jonathanmilligan/.config/broot/launcher/bash/br
 
-# Fig post block. Keep at the bottom of this file.
-# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+source $HOME/.config/broot/launcher/bash/br
 
 # All done show a pretty bonsai tree
 cbonsai -p

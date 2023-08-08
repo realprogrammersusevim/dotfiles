@@ -1,6 +1,6 @@
 TERM=xterm-kitty
 export PATH=$PATH:/Applications/Safari
-export PATH=$PATH:/Users/jonathanmilligan/.bin
+export PATH=$PATH:$HOME/.bin
 BAT_COLOR=always
 BAT_STYLE=numbers
 BAT_THEME="OneHalfDark"
@@ -8,4 +8,4 @@ BAT_THEME="OneHalfDark"
 EDITOR=nvim
 VISUAL=nvim
 GIT_EDITOR=nvim
-export LUA_PATH="/Users/jonathanmilligan/.luarocks/share/lua/5.1/?.lua;;"
+export LUA_PATH="$HOME/.luarocks/share/lua/5.1/?.lua;;"

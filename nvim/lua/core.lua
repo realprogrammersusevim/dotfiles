@@ -1,11 +1,12 @@
 local opt = vim.o
+local datapath = vim.fn.stdpath('data')
 vim.cmd('filetype plugin on') -- Turn on file type detection
 opt.guifont = 'JetBrainsMono Nerd Font Mono:13'
 opt.number = true
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
-opt.undodir = '/Users/jonathanmilligan/.local/share/nvim/undodir'
+opt.undodir = datapath .. '/undodir'
 opt.wrap = true -- Set soft word wrap
 opt.linebreak = true
 opt.breakindent = true
@@ -40,9 +41,9 @@ opt.tabstop = 2
 opt.cursorline = false -- Don't highlight the current line
 opt.relativenumber = true -- Try out relative numbers
 opt.signcolumn = 'yes' -- Always show the sign column so it doesn't jump back and forth
-opt.shadafile = '/Users/jonathanmilligan/.local/share/nvim/shada/main.shada'
+opt.shadafile = datapath .. '/shada/main.shada'
 opt.updatetime = 300
-opt.thesaurus = '/Users/jonathanmilligan/.config/nvim/utils/thesaurii.txt' -- Get thesaurus word changes
+opt.thesaurus = datapath .. '/utils/thesaurii.txt' -- Get thesaurus word changes
 vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')
