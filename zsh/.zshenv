@@ -1,4 +1,3 @@
-TERM=xterm-kitty
 export PATH=$PATH:/Applications/Safari
 export PATH=$PATH:$HOME/.bin
 BAT_COLOR=always

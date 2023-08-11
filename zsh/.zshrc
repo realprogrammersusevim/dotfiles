@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
-source ~/.aliases.sh
+source ~/.config/zsh/aliases.sh
 
 # Add Homebrew's executable directory to the front of the PATH
 export PATH=/usr/local/bin:$PATH
@@ -162,12 +162,12 @@ unset __conda_setup
 source $HOME/.cargo/env
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
-source $HOME/.personal_commands.sh
+source $HOME/.config/zsh/personal_commands.sh
 
 # Zoxide stuff
 eval "$(zoxide init zsh)"
 
-source /Users/jonathanmilligan/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 
 source $HOME/.config/broot/launcher/bash/br
 
