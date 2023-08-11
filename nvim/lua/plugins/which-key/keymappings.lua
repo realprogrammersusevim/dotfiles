@@ -60,13 +60,22 @@ require('which-key').register({
   },
   l = {
     name = 'LSP',
-    r = { '<CMD>lua vim.lsp.buf.rename()<CR>', '[R]ename' },
-    i = { '<CMD>lua vim.lsp.buf.hover()<CR>', '[I]nformation' },
+    r = { '<CMD>lua vim.lsp.buf.rename()<CR>', '[r]ename' },
+    i = { '<CMD>lua vim.lsp.buf.hover()<CR>', '[i]nformation' },
+    I = {
+      function()
+        local type = require('nvim-treesitter.ts_utils').get_node_at_cursor():type()
+        type = type:gsub('^%l', string.upper) -- Uppercase the first char
+        type = type:gsub('_', ' ') -- Replace underscores with spaces
+        vim.lsp.util.open_floating_preview({ type }) -- Show our nicely formatted TS node type in an LSP floating window
+      end,
+      'TS [I]nformation',
+    },
     d = { '<CMD>lua vim.lsp.buf.definition()<CR>', '[d]efinition' },
-    D = { '<CMD>lua vim.lsp.buf.declaration()<CR>', '[D]eclaration' }, -- Some servers don't implement this feature
+    D = { '<CMD>lua vim.lsp.buf.declaration()<CR>', '[D]eclaration' },
     m = { '<CMD>lua vim.lsp.buf.implementation()<CR>', 'I[m]plementation' },
     q = { '<CMD>lua vim.lsp.buf.references()<CR>', '[q]uickfix' },
-    e = { '<CMD>lua vim.diagnostic.open_float()<CR>', 'Diagnostics' },
+    e = { '<CMD>lua vim.diagnostic.open_float()<CR>', '[e]rrors' },
     a = { '<CMD>lua vim.lsp.buf.code_action()<CR>', 'Code [a]ction' },
   },
   m = {
