@@ -127,8 +127,8 @@ return {
           'swift',
           -- 'c',
           -- 'cpp',
-          -- 'objective-c',
-          -- 'objective-cpp',
+          'objective-c',
+          'objective-cpp',
         },
       })
       -- C/C++
