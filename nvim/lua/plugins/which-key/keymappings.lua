@@ -80,9 +80,6 @@ require('which-key').register({
   },
   m = {
     name = 'Markdown',
-    p = { '<CMD>MarkdownPreviewToggle<CR>', '[p]review' },
-    h = { '<CMD>MarkdownToHTML<CR>', 'Convert to [h]TML' },
-    H = { '<CMD>NewMarkdownToHTML<CR>', 'Convert to [H]TML in a new file' },
     z = { '<CMD>ZoteroCite<CR>', '[z]otero cite' },
     l = {
       '<CMD>MarkdownFollowLink<CR>',
@@ -107,5 +104,4 @@ require('which-key').register({
     },
     t = { '<CMD>lua require("dapui").toggle()<CR>', 'DapUI [t]oggle' },
   },
-  f = { name = '[f]loating terminal', { '<CMD>lua require("FTerm").toggle()<CR>', '[t]oggle' } },
 }, { prefix = '<leader>' })

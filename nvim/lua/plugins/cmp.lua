@@ -5,8 +5,6 @@ return {
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-calc' },
-      { 'hrsh7th/cmp-emoji' },
       {
         'L3MON4D3/LuaSnip',
         config = function()
@@ -17,7 +15,6 @@ return {
           'rafamadriz/friendly-snippets',
         },
       },
-      { 'hrsh7th/cmp-cmdline' },
       { 'onsails/lspkind.nvim' },
       {
         'zbirenbaum/copilot-cmp',
@@ -28,12 +25,6 @@ return {
         },
       },
       { 'neovim/nvim-lspconfig' },
-      { 'ray-x/cmp-treesitter' },
-      {
-        dir = '/Users/jonathanmilligan/code/cmp-pandoc-references',
-        branch = 'feat_api',
-      },
-      { 'chrisgrieser/cmp-nerdfont' },
     },
     config = function()
       local cmp = require('cmp')
@@ -94,12 +85,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'luasnip' },
-          -- { name = 'copilot' },
-          { name = 'calc' },
-          { name = 'emoji' },
           { name = 'treesitter' },
-          { name = 'pandoc-references' },
-          { name = 'nerdfont' },
         },
         formatting = {
           format = lspkind.cmp_format({
