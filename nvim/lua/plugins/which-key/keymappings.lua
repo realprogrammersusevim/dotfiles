@@ -55,8 +55,6 @@ require('which-key').register({
     p = { '<CMD>Gitsigns preview_hunk<CR>', '[p]review hunk' },
     n = { '<CMD>Gitsigns next_hunk<CR>', '[n]ext hunk' },
     b = { '<CMD>Gitsigns prev_hunk<CR>', '[back] hunk' },
-    S = { '<CMD>Neotree git_status<CR>', '[S]tatus' },
-    g = { '<CMD>Neogit kind=floating<CR>', '[g]it' },
   },
   l = {
     name = 'LSP',

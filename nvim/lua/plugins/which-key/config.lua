@@ -1,10 +1,10 @@
 require('which-key').setup({
   plugins = {
-    marks = true, -- shows a list of your marks on ' and `
+    marks = false, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
     spelling = {
       enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+      suggestions = 10, -- how many suggestions should be shown in the list?
     },
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
@@ -21,13 +21,6 @@ require('which-key').setup({
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   operators = { gc = 'Comments' },
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    -- ["<space>"] = "SPC",
-    -- ["<CR>"] = "RET",
-    -- ["<tab>"] = "TAB",
-  },
   icons = {
     breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
     separator = '➜', -- symbol used between a key and it's label
@@ -56,13 +49,6 @@ require('which-key').setup({
   show_keys = true, -- show the currently pressed key and its label as a message in the command line
   triggers = 'auto', -- automatically setup triggers
   -- triggers = {"<leader>"} -- or specify a list manually
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { 'j', 'k' },
-    v = { 'j', 'k' },
-  },
   -- disable the WhichKey popup for certain buf types and file types.
   -- Disabled by deafult for Telescope
   disable = { buftypes = {}, filetypes = { 'TelescopePrompt' } },

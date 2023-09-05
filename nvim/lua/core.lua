@@ -14,7 +14,6 @@ opt.scrolloff = 8 -- Set scroll offset
 opt.sidescrolloff = 8
 opt.clipboard = 'unnamedplus' -- Set clipboard to use system clipboard
 opt.cmdheight = 1 -- Keep the command height nice and low for more space
-opt.colorcolumn = '88'
 opt.conceallevel = 0 -- Turn off conceal
 opt.fileencoding = 'utf-8'
 opt.foldmethod = 'expr'

@@ -75,13 +75,6 @@ return {
               -- Treesitter highlighting is better
               enable = false,
             },
-            format = {
-              enable = true,
-              defaultConfig = {
-                indent_style = 'space',
-                indent_size = '2',
-              },
-            },
             completion = {
               displayContext = true,
             },
@@ -104,33 +97,12 @@ return {
         -- single_file_support = false,
       })
 
-      -- LaTex
-      lsp.texlab.setup({ capabilities = capabilities })
-
-      -- Vim
-      lsp.vimls.setup({ capabilities = capabilities })
-
       -- Go
       lsp.gopls.setup({ capabilities = capabilities })
 
       -- HTML
       lsp.html.setup({ capabilities = capabilities })
-      -- Yaml
-      lsp.yamlls.setup({ capabilities = capabilities })
 
-      -- Swift/C family
-      -- - Only supports projects using the Swift build system
-      -- - Only enabled for Swift to avoid conflicts with clangd
-      lsp.sourcekit.setup({
-        capabilities = capabilities,
-        filetypes = {
-          'swift',
-          -- 'c',
-          -- 'cpp',
-          'objective-c',
-          'objective-cpp',
-        },
-      })
       -- C/C++
       lsp.clangd.setup({ capabilities = capabilities })
 
