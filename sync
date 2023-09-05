@@ -1,10 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-stow -t ~/.config/yabai/ yabai
-stow -t ~/.config/skhd/ skhd
-stow -t ~/.config/sketchybar/ sketchybar
-stow -t ~/.config/zsh/ zsh
-stow -t ~/.config/nvim/ nvim
-stow -t ~/.config/kitty/ kitty
-stow -t ~/.config/gitui/ gitui
-stow -t ~/.config/lazygit lazygit
+for folder in {yabai,skhd,sketchybar,zsh,nvim,kitty,gitui,lazygit}; do
+    stow -t "$HOME/.config/$folder" "$folder" --ignore "DS_Store"
+done
