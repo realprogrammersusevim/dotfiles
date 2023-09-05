@@ -4,6 +4,9 @@ return {
     build = ':TSUpdate',
     event = { 'BufReadPre', 'BufNewFile' },
     enabled = not require('utils').file_to_big(),
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     config = function()
       require('nvim-treesitter.configs').setup({
         -- A list of parser names, or "all"
@@ -30,6 +33,19 @@ return {
           additional_vim_regex_highlighting = false,
         },
         indent = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['af'] = { query = '@function.outer', desc = 'Select around function' },
+              ['if'] = { query = '@function.inner', desc = 'Select inside function' },
+              ['ac'] = { query = '@class.outer', desc = 'Select around class' },
+              ['ic'] = { query = '@class.inner', desc = 'Select inside class' },
+            },
+          },
+          include_surrounding_whitespace = true,
+        },
       })
     end,
   },
