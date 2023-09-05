@@ -48,29 +48,31 @@ yabai -m config                                 \
     mouse_drop_action            swap           \
     external_bar all:35:0
 
+
+
 # mission-control desktop labels
-yabai -m space 1 --label code
-yabai -m space 2 --label messaging
-yabai -m space 3 --label web
-yabai -m space 4 --label time
-yabai -m space 5 --label media
+yabai -m space 1 --label "code"
+yabai -m space 2 --label "messaging"
+yabai -m space 3 --label "web"
+yabai -m space 4 --label "time"
+yabai -m space 5 --label "media"
 
 # add apps to certain spaces
-yabai -m rule --add app="^MailMate$" space=messaging
-yabai -m rule --add app="^Messages$" space=messaging
-yabai -m rule --add app="^Slack$" space=messaging
+yabai -m rule --add app="^MailMate$" space="messaging"
+yabai -m rule --add app="^Messages$" space="messaging"
+yabai -m rule --add app="^Slack$" space="messaging"
 
-yabai -m rule --add app="^kitty$" space=code
-yabai -m rule --add app="^Xcode$" space=code
+yabai -m rule --add app="^kitty$" space="code"
+yabai -m rule --add app="^Xcode$" space="code"
 
-yabai -m rule --add app="^Safari$" space=web
-yabai -m rule --add app="^Arc$" space=web
-yabai -m rule --add app="^Firefox$" space=web
+yabai -m rule --add app="^Safari$" space="web"
+yabai -m rule --add app="^Arc$" space="web"
+yabai -m rule --add app="^Firefox$" space="web"
 
-yabai -m rule --add app="^Things$" space=time
-yabai -m rule --add app="^Calendar$" space=time
+yabai -m rule --add app="^Things$" space="time"
+yabai -m rule --add app="^Calendar$" space="time"
 
-yabai -m rule --add app="^Music$" space=media
+yabai -m rule --add app="^Music$" space="media"
 
 # turn off management for specific apps
 yabai -m rule --add app="Stats" manage=off
