@@ -2,14 +2,14 @@
 
 # FIXME: Running an osascript on an application target opens that app
 # This sleep is needed to try and ensure that theres enough time to
-# quit the app before the next osascript command is called. I assume 
+# quit the app before the next osascript command is called. I assume
 # com.apple.iTunes.playerInfo fires off an event when the player quits
 # so it imediately runs before the process is killed
 sleep 1
 source $UTILS/icons.sh
 
 APP_STATE=$(pgrep -x Music)
-if [[ ! $APP_STATE ]]; then 
+if [[ ! $APP_STATE ]]; then
     sketchybar -m --set music drawing=off
     exit 0
 fi
@@ -22,7 +22,6 @@ fi
 
 title=$(osascript -e 'tell application "Music" to get name of current track')
 artist=$(osascript -e 'tell application "Music" to get artist of current track')
-# ALBUM=$(osascript -e 'tell application "Music" to get album of current track')
 loved=$(osascript -l JavaScript -e "Application('Music').currentTrack().loved()")
 if [[ $loved ]]; then
     icon=$LOVED
@@ -36,19 +35,14 @@ if [[ $PLAYER_STATE == "playing" ]]; then
     icon=$PAUSE
 fi
 
-if [[ ${#title} -gt 25 ]]; then
-TITLE=$(printf "$(echo \"$title\" | cut -c 1-25)…")
+if [[ ${#title} -gt 20 ]]; then
+    title=$(printf "%s" "$(echo "$title" | cut -c 1-20)…")
 fi
 
-if [[ ${#artist} -gt 25 ]]; then
-ARTIST=$(printf "$(echo \"$artist\" | cut -c 1-25)…")
+if [[ ${#artist} -gt 20 ]]; then
+    artist=$(printf "%s" "$(echo "$artist" | cut -c 1-20)…")
 fi
-
-# if [[ ${#ALBUM} -gt 25 ]]; then
-#   ALBUM=$(printf "$(echo $ALBUM | cut -c 1-12)…")
-# fi
 
 sketchybar -m --set music icon="$icon"          \
     --set music label="${title}  ${artist}"    \
     --set music drawing=on
-
