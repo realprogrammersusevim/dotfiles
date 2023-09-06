@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # FIXME: Running an osascript on an application target opens that app
-# This sleep is needed to try and ensure that theres enough time to
+# This sleep is needed to try and ensure that there's enough time to
 # quit the app before the next osascript command is called. I assume
 # com.apple.iTunes.playerInfo fires off an event when the player quits
 # so it imediately runs before the process is killed
@@ -24,7 +24,7 @@ title=$(osascript -e 'tell application "Music" to get name of current track')
 artist=$(osascript -e 'tell application "Music" to get artist of current track')
 loved=$(osascript -l JavaScript -e "Application('Music').currentTrack().loved()")
 if [[ $loved ]]; then
-    icon=$LOVED
+    icon=$loved
 fi
 
 if [[ $PLAYER_STATE == "paused" ]]; then
@@ -44,5 +44,5 @@ if [[ ${#artist} -gt 20 ]]; then
 fi
 
 sketchybar -m --set music icon="$icon"          \
-    --set music label="${title}  ${artist}"    \
+    --set music label="${icon} ${title}  ${artist}"    \
     --set music drawing=on

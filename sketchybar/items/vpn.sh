@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 
-vpn=(
-    update_freq=30
-    script="$PLUGINS/vpn.sh"
-)
-
 sketchybar --add item vpn right \
-    --set vpn "${vpn[@]}"
+    --set vpn script="$PLUGINS/vpn.sh" update_freq=10 \

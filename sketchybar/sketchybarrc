@@ -69,9 +69,10 @@ source $ITEMS/clock.sh
 source $ITEMS/wifi.sh
 source $ITEMS/volume.sh
 source $ITEMS/battery.sh
-source $ITEMS/vpn.sh
+# source $ITEMS/vpn.sh
 source $ITEMS/system.sh
-source $ITEMS/music.sh
+# source $ITEMS/music.sh
+source $ITEMS/media.sh
 # source $ITEMS/btc.sh
 
 ##### Finalizing Setup #####
