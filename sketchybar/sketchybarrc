@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # This is a demo config to show some of the most important commands more easily.
 # This is meant to be changed and configured, as it is intentionally kept sparse.
 # For a more advanced configuration example see my dotfiles:
@@ -7,6 +9,11 @@ PLUGINS="$HOME/.config/sketchybar/plugins"
 ITEMS="$HOME/.config/sketchybar/items"
 UTILS="$HOME/.config/sketchybar/utils"
 
+# Source these once and all child processes will inherit them instead
+# of each sourcing for themselves
+source "$UTILS/colors.sh"
+source "$UTILS/icons.sh"
+
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar, these are only some of the
 # options available. For all options see:
@@ -15,15 +22,15 @@ UTILS="$HOME/.config/sketchybar/utils"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 sketchybar --bar height=32        \
-                 position=top     \
-                 sticky=off       \
-                 padding_left=10  \
-                 padding_right=10 \
-                 margin=10        \
-                 corner_radius=10 \
-                 y_offset=8       \
-                 blur_radius=30   \
-                 color=0x15ffffff
+    position=top     \
+    sticky=off       \
+    padding_left=10  \
+    padding_right=10 \
+    margin=10        \
+    corner_radius=10 \
+    y_offset=8       \
+    blur_radius=30   \
+    color=0x15ffffff
 
 ##### Changing Defaults #####
 # We now change some default values that are applied to all further items
@@ -31,15 +38,15 @@ sketchybar --bar height=32        \
 # https://felixkratz.github.io/SketchyBar/config/items
 
 sketchybar --default icon.font="SF Pro:Bold:17.0"  \
-                     icon.color=0xffffffff                 \
-                     label.font="Hack Nerd Font:Bold:14.0" \
-                     label.color=0xffffffff                \
-                     padding_left=5                        \
-                     padding_right=5                       \
-                     label.padding_left=4                  \
-                     label.padding_right=4                 \
-                     icon.padding_left=4                   \
-                     icon.padding_right=4
+    icon.color=0xffffffff                 \
+    label.font="Hack Nerd Font:Bold:14.0" \
+    label.color=0xffffffff                \
+    padding_left=5                        \
+    padding_right=5                       \
+    label.padding_left=4                  \
+    label.padding_right=4                 \
+    icon.padding_left=4                   \
+    icon.padding_right=4
 
 ##### Adding Mission Control Space Indicators #####
 # Now we add some mission control spaces:

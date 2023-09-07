@@ -10,9 +10,6 @@ sketchybar 	--add event 				hide_stats   					                                  
     script="$PLUGINS/toggle_stats.sh"   \
     --subscribe        	animator hide_stats show_stats toggle_stats
 
-source "$UTILS/colors.sh"
-source "$UTILS/icons.sh"
-
 cpu_percent=(
     # label.font="$FONT:Heavy:12"
     label.color="$TEXT"

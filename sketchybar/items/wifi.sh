@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-source "$UTILS/icons.sh"
-source "$PLUGINS/wifi.sh"
-
 sketchybar -m --add item           wifi.control right                      \
     \
     --set wifi.control   icon=$WIFI                                \

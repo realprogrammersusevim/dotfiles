@@ -1,7 +1,5 @@
 #!/bin/sh
 
-source "$HOME/.config/sketchybar/utils/icons.sh"
-
 PERCENTAGE=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 IS_CHARGING=$(pmset -g batt | grep 'AC Power')
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source "$HOME/.config/sketchybar/utils/icons.sh"
-
 stats=(
     cpu.percent
     memory

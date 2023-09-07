@@ -6,7 +6,6 @@
 # com.apple.iTunes.playerInfo fires off an event when the player quits
 # so it imediately runs before the process is killed
 sleep 1
-source $UTILS/icons.sh
 
 APP_STATE=$(pgrep -x Music)
 if [[ ! $APP_STATE ]]; then
