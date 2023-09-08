@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-sketchybar 	--add event 				hide_stats   					                                      \
-    --add event 				show_stats 					                                        \
-    --add event 				toggle_stats 					                                      \
+sketchybar 	--add event hide_stats   	\
+    --add event show_stats 					  \
+    --add event toggle_stats 					\
     \
-    --add item         	animator right                									            \
-    --set animator     	drawing=off                  									              \
-    updates=on                   									              \
-    script="$PLUGINS/toggle_stats.sh"   \
-    --subscribe        	animator hide_stats show_stats toggle_stats
+    --add item animator right         \
+    --set animator drawing=off        \
+    updates=on                   		  \
+    script="$PLUGINS/toggle_stats.sh" \
+    --subscribe	animator hide_stats show_stats toggle_stats
 
 cpu_percent=(
     # label.font="$FONT:Heavy:12"
@@ -60,11 +60,11 @@ network_down=(
     # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
-    update_freq=1
+    update_freq=2
 )
 
 network_up=(
-    background.padding_right=-70
+    background.padding_right=-101
     y_offset=7
     # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
@@ -72,7 +72,7 @@ network_up=(
     # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
-    update_freq=1
+    update_freq=2
     script="$PLUGINS/network.sh"
 )
 
@@ -83,7 +83,7 @@ sketchybar 	--add item network.down right 						\
 
 
 separator_right=(
-    icon=$CHEVRON_LEFT
+    icon="$CHEVRON_LEFT"
     # icon.font="$NERD_FONT:Regular:16.0"
     background.padding_left=10
     background.padding_right=15
