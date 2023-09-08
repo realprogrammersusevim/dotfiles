@@ -2,6 +2,6 @@
 
 sketchybar --add item media right \
   --set media                     \
-  script="$PLUGINS/media.sh"      \
+  script="$PLUGINS/media"         \
   updates=on                      \
   --subscribe media media_change
