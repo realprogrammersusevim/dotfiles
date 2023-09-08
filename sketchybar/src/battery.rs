@@ -32,58 +32,66 @@ fn main() {
     };
     let rounded_minutes_left: usize = minutes_left.round() as usize;
 
-    // Now average out the time left
+    // Open the Redis database
     let client =
         redis::Client::open("redis://127.0.0.1:6379").expect("Couldn't open the Redis database");
     let mut con = client
         .get_connection()
         .expect("Couldn't connect to the opened Redis database");
 
+    // Were we charging or discharging before?
     let prev_state: String = redis::cmd("GET")
         .arg("prev_state")
         .query::<String>(&mut con)
         .unwrap_or(curr_state.to_string());
+    // What were our prev time to empty or full?
     let mut prev_times: Vec<usize> = redis::cmd("LRANGE")
         .arg("time_remaining")
         .arg(0)
         .arg(-1) // The end
         .query::<Vec<usize>>(&mut con)
         .unwrap_or(vec![rounded_minutes_left]);
-    println!("{prev_times:?}");
 
-    let avg_minutes: usize;
-    if curr_state == prev_state {
+    // Average out the previous times.
+    // Assigning variables to the output of if statements is so cool
+    let avg_minutes: usize = if curr_state == prev_state {
+        // Whatever we were doing before can continue
         prev_times.push(rounded_minutes_left);
-        avg_minutes = prev_times.iter().sum::<usize>() / prev_times.len();
+        prev_times.iter().sum::<usize>() / prev_times.len()
     } else {
-        // prev_times = vec![rounded_minutes_left];
+        // We either starting charging or discharging and we need a clean slate for our times
         con.set::<&str, String, bool>("prev_state", curr_state.to_string())
             .expect("Couldn't write the state to redis");
-        avg_minutes = rounded_minutes_left;
-    }
+        con.del::<&str, bool>("prev_times")
+            .expect("Couldn't delete the previous times.");
+        rounded_minutes_left
+    };
 
-    // con.del::<&str, bool>("time_remaining")
-    //     .expect("Couldn't delete the time_remaining key");
-    con.lpush::<&str, Vec<usize>, bool>("time_remaining", prev_times)
+    con.lpush::<&str, usize, bool>("time_remaining", rounded_minutes_left)
         .expect("Couldn't write the times to Redis");
-    con.ltrim::<&str, bool>("time_remaining", 0, 10)
+    con.ltrim::<&str, bool>("time_remaining", 0, 5)
         .expect("Couldn't trim list");
-    let hours = avg_minutes % 60;
-    let minutes = avg_minutes / 60;
+    let hours = avg_minutes / 60;
+    let minutes = avg_minutes % 60; // Remainder after you divide by 60
+    println!("{avg_minutes} {hours} {minutes}");
 
     let percentage = battery.state_of_charge().get::<percent>().round() as u32;
 
     let icons = icons::Icons::default();
 
-    let batt_icon = match percentage {
-        90..=100 => icons.battery_100,
-        60..=89 => icons.battery_75,
-        30..=59 => icons.battery_50,
-        10..=29 => icons.battery_25,
-        0..=9 => icons.battery_0,
-        _ => {
-            panic!("Something is really wrong with this battery, just stop the program.")
+    let batt_icon: String = if curr_state == "discharging" {
+        match percentage {
+            90..=100 => icons.battery_100,
+            60..=89 => icons.battery_75,
+            30..=59 => icons.battery_50,
+            10..=29 => icons.battery_25,
+            0..=9 => icons.battery_0,
+            _ => {
+                panic!("Something is really wrong with this battery, just stop the program.")
+            }
         }
+    } else {
+        icons.charging
     };
 
     Command::new("sketchybar")
