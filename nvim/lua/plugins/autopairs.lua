@@ -18,18 +18,21 @@ return {
           'code_span',
           'strong_emphasis',
           'strong_emphasis_delimiter',
+          'latex_block',
         })),
         rule('_', '_', 'markdown'):with_pair(ts_conds.is_not_ts_node({
           'code_fence_content',
           'code_span',
           'emphasis',
           'emphasis_delimiter',
+          'latex_block',
         })),
         rule('~', '~', 'markdown'):with_pair(ts_conds.is_not_ts_node({
           'code_fence_content',
           'code_span',
           'strikethrough',
           'strikethrough_delimiter',
+          'latex_block',
         })),
       })
     end,
