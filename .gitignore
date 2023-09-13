@@ -2,3 +2,6 @@
 nvim/plugin/*
 nvim/spell/*
 sketchybar/target
+sketchybar/plugins/battery
+sketchybar/plugins/clock
+sketchybar/plugins/media

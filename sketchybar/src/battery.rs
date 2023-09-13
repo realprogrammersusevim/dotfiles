@@ -73,7 +73,6 @@ fn main() {
         .expect("Couldn't trim list");
     let hours = avg_minutes / 60;
     let minutes = avg_minutes % 60; // Remainder after you divide by 60
-    println!("{avg_minutes} {hours} {minutes}");
 
     let percentage = battery.state_of_charge().get::<percent>().round() as u32;
 
