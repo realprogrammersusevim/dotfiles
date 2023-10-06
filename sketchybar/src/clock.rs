@@ -7,7 +7,7 @@ fn main() {
         .expect("Something went horribly wrong and Sketchybar didn't create the $NAME env var"); // Just panic and end the program
     let dt = Local::now();
     let formatted = dt.format("%a, %h %e - %l:%M").to_string();
-    println!("{formatted}");
+
     Command::new("sketchybar")
         .arg("--set")
         .arg(name)
