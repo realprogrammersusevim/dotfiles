@@ -11,7 +11,7 @@ alias gui="nvim -c 'Neogit kind=replace'"
 alias src="source ~/.config/zsh/.zshrc ~/.config/.zshenv ~/.config/.zprofile"
 alias n="/opt/homebrew/bin/nvim"
 alias nn="/usr/local/bin/nvim" # Neovim built from source
-alias rg="rg --hidden --follow --glob '!.git/*'"
+alias rg="rg --hidden"
 alias fd="fd --hidden --follow --exclude '.git'"
 alias ipy="ipython3"
 alias bathelp='bat --plain --language=help'

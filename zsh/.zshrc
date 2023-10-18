@@ -74,7 +74,6 @@ plugins=(
     sudo
     macos
     zsh-autosuggestions
-    alias-tips
     zsh-syntax-highlighting
     vi-mode
 )
