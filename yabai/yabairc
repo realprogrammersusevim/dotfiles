@@ -18,21 +18,13 @@ yabai -m config                                 \
     window_origin_display        default        \
     window_placement             second_child   \
     window_topmost               off            \
-    window_shadow                0.5            \
+    window_opacity               on             \
     window_opacity_duration      0.2            \
     active_window_opacity        1.0            \
     normal_window_opacity        0.9            \
-    window_opacity               on             \
     window_animation_duration    0.3            \
     window_animation_frame_rate  30             \
     insert_feedback_color        0xffd75f5f     \
-    active_window_border_color   0xff775759     \
-    normal_window_border_color   0xff555555     \
-    window_border_width          4              \
-    window_border_radius         12             \
-    window_border_blur           on             \
-    window_border_hidpi          on             \
-    window_border                off            \
     split_ratio                  0.50           \
     split_type                   auto           \
     auto_balance                 on             \
@@ -49,15 +41,14 @@ yabai -m config                                 \
     external_bar all:35:0
 
 
-
 # mission-control desktop labels
 yabai -m space 1 --label "code"
 yabai -m space 2 --label "messaging"
 yabai -m space 3 --label "web"
 yabai -m space 4 --label "time"
 yabai -m space 5 --label "media"
-
-# add apps to certain spaces
+#
+# # add apps to certain spaces
 yabai -m rule --add app="^MailMate$" space="messaging"
 yabai -m rule --add app="^Messages$" space="messaging"
 yabai -m rule --add app="^Slack$" space="messaging"
@@ -77,6 +68,10 @@ yabai -m rule --add app="^Music$" space="media"
 # turn off management for specific apps
 yabai -m rule --add app="Stats" manage=off
 yabai -m rule --add app="Mullvad VPN" manage=off
+yabai -m rule --add app="AutoFillPanelService" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 
 # When I close or minimize a window the next window in the stack should be focused
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
