@@ -2,19 +2,19 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufRead', 'BufNewFile' },
+    main = 'ibl',
     opts = {
-      show_current_context = true,
-      filetype_exclude = {
-        'markdown',
-        'text',
-        'help',
-        'TelescopePrompt',
-        'TelescopeResults',
-        'gitcommit',
-        '',
+      exclude = {
+        filetypes = {
+          'markdown',
+          'text',
+          'help',
+          'TelescopePrompt',
+          'TelescopeResults',
+          'gitcommit',
+          '',
+        },
       },
-      show_current_context_start = true,
-      use_treesitter_scope = true,
     },
   },
 }
