@@ -2,8 +2,9 @@
 
 ## What is this?
 
-[Kitty](https://github.com/kovidgoyal/kitty) is a cross-platform, fast, feature-rich, GPU based terminal. This is my
-config file and color schemes.
+[Kitty](https://github.com/kovidgoyal/kitty) is a cross-platform, fast,
+feature-rich, GPU based terminal. This is my config file and color schemes from
+the tokyonight.nvim repo.
 
 ## How can I use it?
 
