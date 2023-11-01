@@ -1,22 +1,14 @@
-alias zshconfig="nvim ~/.config/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias activate="source venv/bin/activate"
-alias vlime="sbcl --load ~/.local/share/nvim/plugged/vlime/lisp/start-vlime.lisp"
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias ls="eza --all --long --git --header --icons"
 alias cd="z"
-# alias gui="gitui"
 alias lg="lazygit"
-alias gui="nvim -c 'Neogit kind=replace'"
 alias src="source ~/.config/zsh/.zshrc ~/.config/.zshenv ~/.config/.zprofile"
 alias n="/opt/homebrew/bin/nvim"
 alias nn="/usr/local/bin/nvim" # Neovim built from source
 alias rg="rg --hidden"
-alias fd="fd --hidden --follow --exclude '.git'"
-alias ipy="ipython3"
-alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
+    "$@" --help 2>&1 | bat --plain --language=help
 }
 alias pd="pandoc"
 alias pddm="pandoc -f docx -t markdown --markdown-headings atx"
