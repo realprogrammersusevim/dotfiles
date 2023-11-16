@@ -21,6 +21,7 @@ alias nd="neovide"
 alias :q="exit"
 alias exe="chmod +x"
 alias emailer="~/code/emailer/emailer"
+alias icat="kitten icat"
 
 alias b="brew"
 alias bi="brew install"

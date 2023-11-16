@@ -16,6 +16,8 @@ source $HOME/.cargo/env # Cargo doing it's Rust stuff
 
 export PATH
 
+export PATH=/opt/homebrew/bin:$PATH
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export BAT_COLOR="always"
