@@ -15,7 +15,7 @@ cpu_percent=(
     label.color="$TEXT"
     icon="$CPU"
     icon.color="$BLUE"
-    update_freq=2
+    update_freq=3
     mach_helper="$HELPER"
     script="$PLUGINS/cpu"
     label.width=30
@@ -33,7 +33,7 @@ memory=(
     icon="$MEMORY"
     icon.font="$FONT:Bold:16.0"
     icon.color="$GREEN"
-    update_freq=15
+    update_freq=10
     script="$PLUGINS/ram.sh"
 )
 
@@ -45,7 +45,7 @@ disk=(
     label.color="$TEXT"
     icon="$DISK"
     icon.color="$MAROON"
-    update_freq=60
+    update_freq=120
     script="$PLUGINS/disk.sh"
 )
 
@@ -60,7 +60,7 @@ network_down=(
     # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
-    update_freq=2
+    update_freq=3
 )
 
 network_up=(
@@ -72,7 +72,7 @@ network_up=(
     # icon.font="$NERD_FONT:Bold:16.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
-    update_freq=2
+    update_freq=3
     script="$PLUGINS/network.sh"
 )
 
