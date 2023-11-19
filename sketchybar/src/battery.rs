@@ -64,7 +64,7 @@ fn main() {
             .expect("Couldn't write the state to redis");
         con.del::<&str, bool>("prev_times")
             .expect("Couldn't delete the previous times.");
-        rounded_minutes_left
+        600 // The time returned is always wildly off so just return 10 hrs
     };
 
     con.lpush::<&str, usize, bool>("time_remaining", rounded_minutes_left)
