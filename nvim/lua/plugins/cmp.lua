@@ -20,7 +20,7 @@ return {
       {
         'zbirenbaum/copilot-cmp',
         config = true,
-        enabled = false,
+        enabled = true,
         dependencies = {
           'zbirenbaum/copilot.lua',
         },
@@ -87,6 +87,7 @@ return {
           { name = 'path' },
           { name = 'luasnip' },
           { name = 'treesitter' },
+          { name = 'copilot' },
         },
         formatting = {
           format = lspkind.cmp_format({
