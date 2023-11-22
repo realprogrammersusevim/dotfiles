@@ -21,7 +21,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export BAT_COLOR="always"
-export BAT_STYLE="numbers"
+export BAT_STYLE="numbers,changes,snip"
 export BAT_THEME="OneHalfDark"
 export EDITOR="nvim"
 export VISUAL="nvim"
