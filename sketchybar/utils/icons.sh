@@ -28,6 +28,7 @@ export NETWORK=􀤆
 export NETWORK_DOWN=􀄩
 export NETWORK_UP=􀄨
 export WIFI=􀙇
+export NO_WIFI=􀙈
 
 # Git Icons
 export GIT_ISSUE=􀍷

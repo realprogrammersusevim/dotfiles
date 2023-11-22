@@ -11,42 +11,39 @@ sketchybar 	--add event hide_stats   	\
     --subscribe	animator hide_stats show_stats toggle_stats
 
 cpu_percent=(
-    # label.font="$FONT:Heavy:12"
-    label.color="$TEXT"
     icon="$CPU"
-    icon.color="$BLUE"
+    icon.color="0xff7aa2f7"
     update_freq=3
     mach_helper="$HELPER"
     script="$PLUGINS/cpu"
-    label.width=30
+    label.width=35
     # width=75
     label.align=right
     icon.align=left
+    background.drawing=off
 )
 
 sketchybar 	--add item cpu.percent right 					\
     --set cpu.percent "${cpu_percent[@]}"
 
 memory=(
-    # label.font="$FONT:Heavy:12"
-    label.color="$TEXT"
     icon="$MEMORY"
-    icon.font="$FONT:Bold:16.0"
-    icon.color="$GREEN"
+    icon.color=0xff9ece6a
     update_freq=10
     script="$PLUGINS/ram.sh"
+    background.drawing=off
 )
 
 sketchybar 	--add item memory right 		\
     --set memory "${memory[@]}"
 
 disk=(
-    # label.font="$FONT:Heavy:12"
     label.color="$TEXT"
     icon="$DISK"
     icon.color="$MAROON"
     update_freq=120
     script="$PLUGINS/disk.sh"
+    background.drawing=off
 )
 
 sketchybar --add item disk right 		\
@@ -57,23 +54,25 @@ network_down=(
     # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_DOWN"
-    # icon.font="$NERD_FONT:Bold:16.0"
+    icon.font="$FONT:Bold:12.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
     update_freq=3
+    background.drawing=off
 )
 
 network_up=(
-    background.padding_right=-101
+    background.padding_right=-100
     y_offset=7
     # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_UP"
-    # icon.font="$NERD_FONT:Bold:16.0"
+    icon.font="$FONT:Bold:12.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
     update_freq=3
     script="$PLUGINS/network.sh"
+    background.drawing=off
 )
 
 sketchybar 	--add item network.down right 						\
@@ -81,16 +80,9 @@ sketchybar 	--add item network.down right 						\
     --add item network.up right 							\
     --set network.up "${network_up[@]}"
 
-
-separator_right=(
-    icon="$CHEVRON_LEFT"
-    # icon.font="$NERD_FONT:Regular:16.0"
-    background.padding_left=10
-    background.padding_right=15
-    label.drawing=off
-    click_script='sketchybar --trigger toggle_stats'
-    icon.color="$TEXT"
+systemstats=(
+    background.color=0xff414868
 )
 
-sketchybar  --add item separator_right right \
-    --set separator_right "${separator_right[@]}"
+sketchybar --add bracket systemstats cpu.percent memory disk network.down network.up battery \
+    --set systemstats "${systemstats[@]}"

@@ -1,6 +1,5 @@
 use serde::Deserialize;
 use std::{env::var, process::Command};
-use unicode_segmentation::UnicodeSegmentation;
 
 #[derive(Deserialize, Debug)]
 struct MediaInfo {
@@ -20,15 +19,15 @@ fn main() {
 
     let name = var("NAME").unwrap();
     let formatted_info = format!(
-        "{}: {}  {}",
+        "{}: {} - {}",
         if info.app == "Music" {
             // If we're playing music show the album instead of the app
-            concat(&info.album, 20)
+            info.album
         } else {
             info.app
         },
-        concat(&info.title, 20),
-        concat(&info.artist, 20)
+        info.title,
+        info.artist,
     );
 
     Command::new("sketchybar")
@@ -37,14 +36,4 @@ fn main() {
         .arg("label=".to_owned() + &formatted_info)
         .output()
         .expect("Could not config sketchybar");
-}
-
-fn concat(input: &str, length: usize) -> String {
-    let mut string: Vec<&str> = input.graphemes(true).collect::<Vec<&str>>(); // Unicode support
-    if string.len() > length {
-        string = string[..length].to_vec();
-        string.push("…");
-    }
-
-    string.join("")
 }
