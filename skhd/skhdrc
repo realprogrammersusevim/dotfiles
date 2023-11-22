@@ -46,5 +46,14 @@ shift + alt - c : yabai -m space --rotate 90
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
 
-# Restart yabai and skhdrc
-shift + alt - r : yabai --restart-service; skhd --restart-service
+# Restart yabai, skhdrc, and reload sketchybar
+shift + alt - r : yabai --restart-service; skhd --restart-service; sketchybar --reload
+
+# float / unfloat window and restore position
+alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# toggle sticky (show on all spaces)
+alt - s : yabai -m window --toggle sticky
+
+# toggle window parent zoom
+alt - d : yabai -m window --toggle zoom-parent
