@@ -51,11 +51,6 @@ sketchybar --default icon.font="$FONT:Bold:17.0"  \
     background.padding_left=5 \
     background.height=32 \
 
-    #     background.color=0x1a1b26             \
-    # background.height=32                  \
-    # background.corner_radius=5            \
-    # background.drawing=off                \
-
     ##### Adding Mission Control Space Indicators #####
 # Now we add some mission control spaces:
 # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
@@ -73,11 +68,9 @@ source $ITEMS/front_app.sh
 source $ITEMS/clock.sh
 source $ITEMS/wifi.sh
 source $ITEMS/volume.sh
+source $ITEMS/vpn.sh
 source $ITEMS/battery.sh
-# source $ITEMS/vpn.sh
 source $ITEMS/system.sh
-# source $ITEMS/music.sh
-# source $ITEMS/btc.sh
 source $ITEMS/media.sh
 
 ##### Finalizing Setup #####
