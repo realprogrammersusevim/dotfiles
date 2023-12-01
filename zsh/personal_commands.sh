@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # This script file is used to define all of my personal commands.
 # It is sourced by the main zshrc file.
@@ -68,6 +68,16 @@ nvims() {
     fi
 
     NVIM_APPNAME=$config nvim "$@"
+}
+
+# Flash the screen until a key is pressed
+flasher() {
+    while true; do
+        printf "\\e[?5h";
+        sleep 0.1;
+        printf "\\e[?5l";
+        read -r -s -t 1 -k && break;
+    done;
 }
 
 # Change the kitty theme
