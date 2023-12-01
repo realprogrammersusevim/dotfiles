@@ -67,5 +67,13 @@ nvims() {
         config=""
     fi
 
-    NVIM_APPNAME=$config nvim $@
+    NVIM_APPNAME=$config nvim "$@"
+}
+
+# Change the kitty theme
+theme() {
+    items=("night" "day" "moon" "storm")
+    theme=$(printf "%s\n" "${items[@]}" | /opt/homebrew/bin/fzf --prompt=" Theme > " --height=~50% --layout=reverse --border --exit-0) # Use fzf as a theme picker
+    cp ~/.config/kitty/themes/tokyonight_"$theme".conf ~/.config/kitty/current.conf # The current.conf is included in the main kitty.conf
+    kill -SIGUSR1 $(pgrep -a kitty) # Sending the SIGUSR1 signal to the kitty process reloads the config
 }
