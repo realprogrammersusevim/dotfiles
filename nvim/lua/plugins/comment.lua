@@ -1,7 +1,7 @@
 return {
   {
-    'numToStr/Comment.nvim', -- Comment stuff out
-    keys = { 'gc', 'gbc', 'gcc' },
+    'echasnovski/mini.comment',
+    event = 'VeryLazy',
     config = true,
   },
 }
