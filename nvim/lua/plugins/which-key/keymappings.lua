@@ -3,7 +3,7 @@ require('which-key').register({
   W = { name = 'Save without formatting', { '<CMD>noautocmd w<CR>', 'Save without formatting' } }, -- When you don't want the formatter to fire while saving
   Q = { name = 'Quit', { '<CMD>qa<CR>', '[Q]uit' } }, -- Uppercase makes it harder to bump next to w
   h = { name = 'No [h]ighlight', { '<CMD>nohl<CR>', 'No [h]ighlight' } },
-  p = {
+  P = {
     name = 'Lazy [p]lugins',
     h = { '<CMD>Lazy home<CR>', 'Lazy [h]ome' },
     s = {
@@ -105,4 +105,6 @@ require('which-key').register({
     },
     t = { '<CMD>lua require("dapui").toggle()<CR>', 'DapUI [t]oggle' },
   },
+  y = { name = '[y]ank', { '"+y', 'Copy to clipboard' } },
+  p = { name = '[p]aste', { '"+p', 'Paste from clipboard' } },
 }, { prefix = '<leader>' })
