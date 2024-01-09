@@ -4,5 +4,4 @@ sketchybar -m --add item battery right      \
     --set battery                           \
     script="$PLUGINS/battery"               \
     update_freq=60                          \
-    background.drawing=off                  \
     --subscribe battery system_woke power_source_change
