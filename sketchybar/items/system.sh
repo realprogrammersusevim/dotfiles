@@ -50,7 +50,7 @@ sketchybar --add item disk right 		\
     --set disk "${disk[@]}"
 
 network_down=(
-    y_offset=-7
+    # y_offset=-7
     # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_DOWN"
@@ -62,15 +62,15 @@ network_down=(
 )
 
 network_up=(
-    background.padding_right=-100
-    y_offset=7
+    # background.padding_right=-100
+    # y_offset=7
     # label.font="$FONT:Heavy:10"
     label.color="$TEXT"
     icon="$NETWORK_UP"
     icon.font="$FONT:Bold:12.0"
     icon.color="$GREEN"
     icon.highlight_color="$BLUE"
-    update_freq=3
+    update_freq=2
     script="$PLUGINS/network.sh"
     background.drawing=off
 )

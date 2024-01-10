@@ -10,5 +10,5 @@ sketchybar --add alias "Mullvad VPN" right \
     alias.update_freq=5                    \
     background.drawing=off                 \
     click_script="open -a Mullvad\ VPN"    \
-    --add bracket other "Mullvad VPN" volume wifi \
+    --add bracket other "Mullvad VPN" volume wifi clock \
     --set other "${other[@]}"

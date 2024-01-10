@@ -5,6 +5,7 @@ wifi=(
     label.width=0
     icon="$WIFI"
     script="$PLUGINS/wifi.sh"
+    background.drawing=off
 )
 
 sketchybar --add item wifi right \

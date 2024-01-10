@@ -5,7 +5,9 @@ media=(
     icon.background.image=media.artwork
     icon.background.image.corner_radius=9
     script="$PLUGINS/media"
-    label.max_chars=30
+    background.border_color=0xff414868
+    background.border_width=2
+    label.max_chars=40
     scroll_texts=on
     updates=on
 )

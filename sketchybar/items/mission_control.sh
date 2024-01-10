@@ -22,6 +22,7 @@ sketchybar -m --add item space_separator left \
     icon="$CHEVRON_RIGHT"                     \
     padding_left=10                           \
     padding_right=10                          \
-    label.drawing=off
+    label.drawing=off                         \
+    background.drawing=off
 
 sketchybar --add bracket spaces '/space\..*/' space_separator \

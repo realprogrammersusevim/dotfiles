@@ -38,17 +38,17 @@ sketchybar --bar height=25        \
 FONT="SF Pro"
 
 sketchybar --default icon.font="$FONT:Bold:17.0"  \
-    label.font="$FONT:Bold:14.0" \
+    label.font="$FONT:Bold:14.0"          \
     label.color=0xffc0caf5                \
     label.padding_left=5                  \
     label.padding_right=5                 \
     icon.padding_left=5                   \
     icon.padding_right=5                  \
-    background.color=0xff1a1b26 \
-    background.corner_radius=10 \
-    background.padding_right=5 \
-    background.padding_left=5 \
-    background.height=25 \
+    background.color=0xff1a1b26           \
+    background.corner_radius=8            \
+    background.padding_right=5            \
+    background.padding_left=5             \
+    background.height=25                  \
 
     ##### Adding Mission Control Space Indicators #####
 # Now we add some mission control spaces:
