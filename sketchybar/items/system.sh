@@ -80,10 +80,10 @@ sketchybar 	--add item network.down right 						\
     --add item network.up right 							\
     --set network.up "${network_up[@]}"
 
-systemstats=(
-    background.border_color=0xff414868
-    background.border_width=2
-)
-
-sketchybar --add bracket systemstats cpu.percent memory disk network.down network.up battery \
-    --set systemstats "${systemstats[@]}"
+# systemstats=(
+#     background.border_color=0xff414868
+#     background.border_width=2
+# )
+#
+# sketchybar --add bracket systemstats cpu.percent memory disk network.down network.up battery \
+#     --set systemstats "${systemstats[@]}"
