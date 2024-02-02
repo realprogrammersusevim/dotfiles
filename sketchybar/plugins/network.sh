@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-UPDOWN=$(ifstat -i "en0" -b 0.1 1 | tail -n1)
+# Default interface is WiFi
+INTERFACE="en0"
+
+# If the ethernet cable is plugged in measure that instead
+if ifconfig -X en9 | grep -q "status: active"; then
+    INTERFACE="en9"
+fi
+
+UPDOWN=$(ifstat -i "$INTERFACE" -b 0.1 1 | tail -n1)
 DOWN=$(echo "$UPDOWN" | awk "{ print \$1 }" | cut -f1 -d ".")
 UP=$(echo "$UPDOWN" | awk "{ print \$2 }" | cut -f1 -d ".")
 
