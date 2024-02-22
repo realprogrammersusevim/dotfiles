@@ -17,14 +17,6 @@ return {
         },
       },
       { 'onsails/lspkind.nvim' },
-      {
-        'zbirenbaum/copilot-cmp',
-        config = true,
-        enabled = true,
-        dependencies = {
-          'zbirenbaum/copilot.lua',
-        },
-      },
       { 'neovim/nvim-lspconfig' },
     },
     config = function()
@@ -87,7 +79,6 @@ return {
           { name = 'path' },
           { name = 'luasnip' },
           { name = 'treesitter' },
-          { name = 'copilot' },
         },
         formatting = {
           format = lspkind.cmp_format({
@@ -119,7 +110,7 @@ return {
           }),
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-        experimental = { ghost_text = true }, -- Shows the suggestion in italics. Esp. helpful for seeing the entire Copilot suggestion
+        experimental = { ghost_text = false }, -- Shows the suggestion in italics
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
