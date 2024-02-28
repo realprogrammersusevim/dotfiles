@@ -5,6 +5,8 @@ vim.g.mapleader = ' '
 -- Insert mode               |
 ------------------------------
 
+vim.keymap.set('i', '<C-Z>', '<CMD>ZoteroCite<CR>', { silent = true })
+
 ------------------------------
 -- Normal mode               |
 ------------------------------

@@ -107,5 +107,5 @@ vim.api.nvim_create_user_command('ZoteroCite', function()
   local format = 'pandoc'
   local api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format=' .. format .. '&brackets'
   local ref = vim.fn.system('curl -s "' .. api_call .. '"')
-  vim.cmd('normal! i' .. ref)
+  vim.cmd('normal! i' .. '[' .. ref .. ']')
 end, { nargs = 0 })
