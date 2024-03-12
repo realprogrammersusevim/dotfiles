@@ -6,3 +6,4 @@ sketchybar/plugins/battery
 sketchybar/plugins/clock
 sketchybar/plugins/media
 sketchybar/plugins/cpu
+sketchybar/.env

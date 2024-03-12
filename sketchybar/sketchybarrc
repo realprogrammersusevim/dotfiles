@@ -71,6 +71,7 @@ source $ITEMS/vpn.sh
 source $ITEMS/battery.sh
 source $ITEMS/system.sh
 source $ITEMS/media.sh
+source $ITEMS/bitcoin.sh
 
 ##### Finalizing Setup #####
 # The below command is only needed at the end of the initial configuration to
