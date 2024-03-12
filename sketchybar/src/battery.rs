@@ -56,8 +56,15 @@ fn main() {
     // Assigning variables to the output of if statements is so cool
     let avg_minutes: usize = if curr_state == prev_state {
         // Whatever we were doing before can continue
+        prev_times.reverse();
         prev_times.push(rounded_minutes_left);
-        prev_times.iter().sum::<usize>() / prev_times.len()
+        let alpha = 2.0 / (prev_times.len() as f64 + 1.0);
+
+        let mut ema = prev_times[0] as f64;
+        for time in prev_times {
+            ema = alpha * (time as f64 - ema) + ema;
+        }
+        ema.round() as usize
     } else {
         // We either starting charging or discharging and we need a clean slate for our times
         con.set::<&str, String, bool>("prev_state", curr_state.to_string())
@@ -69,7 +76,7 @@ fn main() {
 
     con.lpush::<&str, usize, bool>("time_remaining", rounded_minutes_left)
         .expect("Couldn't write the times to Redis");
-    con.ltrim::<&str, bool>("time_remaining", 0, 5)
+    con.ltrim::<&str, bool>("time_remaining", 0, 10)
         .expect("Couldn't trim list");
     let hours = avg_minutes / 60;
     let minutes = avg_minutes % 60; // Remainder after you divide by 60
