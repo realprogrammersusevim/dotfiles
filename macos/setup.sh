@@ -8,10 +8,10 @@ sudo -v
 
 # General UI
 
-sudo scutil --set ComputerName "0x6a6f6e617468616e"
-sudo scutil --set HostName "0x6a6f6e617468616e"
-sudo scutil --set LocalHostName "0x6a6f6e617468616e"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6a6f6e617468616e"
+sudo scutil --set ComputerName "0x6a736d0a"
+sudo scutil --set HostName "0x6a736d0a"
+sudo scutil --set LocalHostName "0x6a736d0a"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6a736d0a"
 
 sudo nvram SystemAudioVolume=" "
 
