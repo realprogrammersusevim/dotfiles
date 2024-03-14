@@ -13,6 +13,7 @@ UTILS="$HOME/.config/sketchybar/utils"
 # of each sourcing for themselves
 source "$UTILS/colors.sh"
 source "$UTILS/icons.sh"
+source "$HOME/.config/sketchybar/.env"
 
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar, these are only some of the
