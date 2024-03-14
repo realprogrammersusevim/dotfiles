@@ -105,6 +105,5 @@ require('which-key').register({
     },
     t = { '<CMD>lua require("dapui").toggle()<CR>', 'DapUI [t]oggle' },
   },
-  y = { name = '[y]ank', { '"+y', 'Copy to clipboard' } },
-  p = { name = '[p]aste', { '"+p', 'Paste from clipboard' } },
+  y = { name = '[y]ank', { '<CMD>call setreg("+", @")<CR>', 'Copy to clipboard' } },
 }, { prefix = '<leader>' })
