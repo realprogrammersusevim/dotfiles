@@ -86,6 +86,7 @@ require('which-key').register({
       '<CMD>MarkdownFollowLink<CR>',
       'Follow Markdown Link',
     },
+    t = { '<CMD>ThesaurusReplace<CR>', '[t]hesaurus replace' },
   },
   r = {
     '[r]estore session',

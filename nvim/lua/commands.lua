@@ -109,3 +109,20 @@ vim.api.nvim_create_user_command('ZoteroCite', function()
   local ref = vim.fn.system('curl -s "' .. api_call .. '"')
   vim.cmd('normal! i' .. '[' .. ref .. ']')
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('ThesaurusReplace', function()
+  local word = vim.fn.expand('<cword>')
+  local results = vim.fn.system('rg -N -i ^' .. word .. ', ~/.config/nvim/utils/thesaurii.txt')
+  -- Split by commas and remove the first word
+  local synonyms = vim.fn.split(results, ',')
+  table.remove(synonyms, 1)
+  -- Show results
+  vim.ui.select(synonyms, {
+    prompt = 'Select a synonym',
+  }, function(choice)
+    if choice == nil then
+      return
+    end
+    vim.cmd('normal! ciw' .. choice)
+  end)
+end, { nargs = 0 })
