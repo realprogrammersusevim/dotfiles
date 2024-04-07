@@ -17,6 +17,8 @@ return {
                 local stripped_filename = entry.filename:match('^(.+)%..+$')
                 vim.api.nvim_put({ '[[' .. stripped_filename .. ']]' }, '', false, true)
               end,
+              ['<CR>'] = require('telescope.actions').select_default
+                + require('telescope.actions').center,
             },
           },
         },
