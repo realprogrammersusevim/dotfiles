@@ -16,7 +16,9 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 sudo nvram SystemAudioVolume=" "
 
 # AppleHighlightColor can be set to any color by getting the RGB values, dividing each by 255 and putting them in R G B
-defaults write NSGlobalDomain AppleHighlightColor -string "0.15686275 0.20392157 0.34117647"
+# 192 36 44
+defaults write NSGlobalDomain AppleHighlightColor -string "0.75294118 0.14117647 0.17254902"
+defaults write NSGlobalDomain AppleAccentColor -int 0
 
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
@@ -77,6 +79,6 @@ sudo chflags nohidden /Volumes
 
 # Kill affected applications
 
-for app in "Activity Monitor" "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
+for app in "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
     killall "${app}" &> /dev/null
 done
