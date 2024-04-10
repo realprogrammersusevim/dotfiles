@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cargo build --release
-fd . 'target/release' -t x -d 1 | xargs -J % cp % plugins/
-sketchybar --reload
