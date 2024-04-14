@@ -1,7 +1,6 @@
 -- Left items
 require('items.mission_control')
 require('items.front_app')
--- require('items.menus')
 
 -- Center items
 
