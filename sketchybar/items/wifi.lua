@@ -2,11 +2,20 @@ local icons = require('icons')
 local colors = require('colors')
 local settings = require('settings')
 
--- Execute the event provider binary which provides the event "network_update"
--- for the network interface "en9", which is fired every 2.0 seconds.
-Sbar.exec(
-  'killall network_load >/dev/null; /Users/jonathanmilligan/.config/sketchybar/helpers/event_providers/network_load/bin/network_load en9 network_update 2.0'
-)
+-- Get the active network interface
+Sbar.exec('scutil --nwi', function(result)
+  local interface = result:match('Network interfaces: (%l%l%d)')
+  local home = os.getenv('HOME')
+  -- Execute the event provider binary which provides the event "network_update"
+  -- for the network interface "en9", which is fired every 2.0 seconds.
+  Sbar.exec(
+    'killall network_load >/dev/null; '
+      .. home
+      .. '/.config/sketchybar/helpers/event_providers/network_load/bin/network_load '
+      .. interface
+      .. ' network_update 2.0'
+  )
+end)
 
 local popup_width = 250
 
@@ -18,6 +27,7 @@ local wifi_up = Sbar.add('item', 'widgets.wifi1', {
   label = {
     color = colors.red,
     string = '??? Bps',
+    font = settings.font.numbers,
   },
 })
 
@@ -29,6 +39,7 @@ local wifi_down = Sbar.add('item', 'widgets.wifi2', {
   label = {
     color = colors.blue,
     string = '??? Bps',
+    font = settings.font.numbers,
   },
 })
 
@@ -56,6 +67,7 @@ local ssid = Sbar.add('item', {
   label = {
     max_chars = 18,
     string = '????????????',
+    font = settings.font.numbers,
   },
 })
 
@@ -64,11 +76,13 @@ local hostname = Sbar.add('item', {
   icon = {
     align = 'left',
     string = 'Hostname:',
+    font = settings.font.numbers,
     width = popup_width / 2,
   },
   label = {
     max_chars = 20,
     string = '????????????',
+    font = settings.font.numbers,
     width = popup_width / 2,
     align = 'right',
   },
@@ -83,6 +97,7 @@ local ip = Sbar.add('item', {
   },
   label = {
     string = '???.???.???.???',
+    font = settings.font.numbers,
     width = popup_width / 2,
     align = 'right',
   },
@@ -97,6 +112,7 @@ local mask = Sbar.add('item', {
   },
   label = {
     string = '???.???.???.???',
+    font = settings.font.numbers,
     width = popup_width / 2,
     align = 'right',
   },
@@ -111,6 +127,7 @@ local router = Sbar.add('item', {
   },
   label = {
     string = '???.???.???.???',
+    font = settings.font.numbers,
     width = popup_width / 2,
     align = 'right',
   },
