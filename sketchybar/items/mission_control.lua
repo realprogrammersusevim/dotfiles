@@ -69,10 +69,10 @@ for i = 1, 10, 1 do
     space:set({
       icon = { highlight = selected },
       label = { highlight = selected },
-      background = { border_color = selected and colors.black or colors.bg2 },
+      background = { border_color = color },
     })
     space_bracket:set({
-      background = { border_color = selected and colors.grey or colors.bg2 },
+      background = { border_color = color },
     })
   end)
 
@@ -99,7 +99,7 @@ local space_window_observer = Sbar.add('item', {
 space_window_observer:subscribe('space_windows_change', function(env)
   local icon_line = ''
   local no_app = true
-  for app, count in pairs(env.INFO.apps) do
+  for app, _ in pairs(env.INFO.apps) do
     no_app = false
     local lookup = app_icons[app]
     local icon = ((lookup == nil) and app_icons['default'] or lookup)
