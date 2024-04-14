@@ -4,8 +4,11 @@ local settings = require('settings')
 
 -- Execute the event provider binary which provides the event "cpu_update" for
 -- the cpu load data, which is fired every 2.0 seconds.
+local home = os.getenv('HOME')
 Sbar.exec(
-  'killall cpu_load >/dev/null; /Users/jonathanmilligan/.config/sketchybar/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0'
+  'killall cpu_load >/dev/null; '
+    .. home
+    .. '/.config/sketchybar/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0'
 )
 
 local cpu = Sbar.add('graph', 'cpu', 42, {
