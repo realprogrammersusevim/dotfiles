@@ -21,6 +21,7 @@ local popup_width = 250
 
 local wifi_up = Sbar.add('item', 'widgets.wifi1', {
   position = 'right',
+  width = 90,
   background = {
     drawing = false,
   },
@@ -36,6 +37,7 @@ local wifi_up = Sbar.add('item', 'widgets.wifi1', {
 
 local wifi_down = Sbar.add('item', 'widgets.wifi2', {
   position = 'right',
+  width = 90,
   background = {
     drawing = false,
   },
