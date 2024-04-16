@@ -32,7 +32,7 @@ local remaining_time = Sbar.add('item', {
   },
 })
 
-battery:subscribe({ 'routine', 'power_source_change', 'system_woke' }, function()
+battery:subscribe({ 'forced', 'routine', 'power_source_change', 'system_woke' }, function()
   Sbar.exec('pmset -g batt', function(batt_info)
     local icon = '!'
     local label = '?'

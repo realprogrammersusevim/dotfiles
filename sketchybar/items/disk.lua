@@ -9,7 +9,7 @@ local disk = Sbar.add('item', 'disk', {
   update_freq = 60,
 })
 
-disk:subscribe('forced', 'routine', 'system_woke', function(env)
+disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   Sbar.exec('df -H', function(output)
     local disk_line = nil
     for line in output:gmatch('[^\n]+') do

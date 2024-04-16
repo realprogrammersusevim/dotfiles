@@ -10,7 +10,7 @@ local memory = Sbar.add('item', 'memory', {
   update_freq = 5,
 })
 
-memory:subscribe('forced', 'routine', 'system_woke', function(env)
+memory:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   Sbar.exec('memory_pressure -Q', function(res)
     print('reloaded memory')
     local percent_used = 100 - tonumber(res:match('(%d+)%%'))
