@@ -61,14 +61,3 @@ end)
 cpu:subscribe('mouse.clicked', function(env)
   Sbar.exec("open -a 'Activity Monitor'")
 end)
-
--- Background around the cpu item
--- Sbar.add('bracket', 'widgets.cpu.bracket', { cpu.name }, {
---   background = { color = colors.bg1 },
--- })
---
--- -- Background around the cpu item
--- Sbar.add('item', 'widgets.cpu.padding', {
---   position = 'right',
---   width = settings.group_paddings,
--- })

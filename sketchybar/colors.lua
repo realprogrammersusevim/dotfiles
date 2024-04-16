@@ -5,6 +5,7 @@ return {
   magenta = 0xffb39df3,
   grey = 0xff7f8490,
   transparent = 0x00000000,
+  label = 0xffc0caf5,
 
   base = 0xff24273a,
   mantle = 0xff1e2030,
