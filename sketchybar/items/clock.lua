@@ -8,6 +8,9 @@ end
 
 local clock = Sbar.add('item', 'clock', {
   position = 'right',
+  background = {
+    drawing = false,
+  },
   update_freq = 1,
 })
 

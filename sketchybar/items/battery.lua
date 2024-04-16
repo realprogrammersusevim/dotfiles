@@ -4,6 +4,9 @@ local settings = require('settings')
 
 local battery = Sbar.add('item', 'battery', {
   position = 'right',
+  background = {
+    drawing = false,
+  },
   icon = {
     font = {
       style = settings.font.style_map['Regular'],

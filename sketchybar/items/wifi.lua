@@ -21,6 +21,9 @@ local popup_width = 250
 
 local wifi_up = Sbar.add('item', 'widgets.wifi1', {
   position = 'right',
+  background = {
+    drawing = false,
+  },
   icon = {
     string = icons.wifi.upload,
   },
@@ -33,6 +36,9 @@ local wifi_up = Sbar.add('item', 'widgets.wifi1', {
 
 local wifi_down = Sbar.add('item', 'widgets.wifi2', {
   position = 'right',
+  background = {
+    drawing = false,
+  },
   icon = {
     string = icons.wifi.download,
   },
@@ -55,6 +61,9 @@ local wifi_bracket = Sbar.add('bracket', 'widgets.wifi.bracket', {
   wifi_down.name,
 }, {
   popup = { align = 'center', height = 30 },
+  background = {
+    drawing = false,
+  },
 })
 
 local ssid = Sbar.add('item', {
