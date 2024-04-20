@@ -19,5 +19,6 @@ Sbar.default({
     padding_right = 5,
     padding_left = 5,
     height = 25,
+    drawing = false,
   },
 })

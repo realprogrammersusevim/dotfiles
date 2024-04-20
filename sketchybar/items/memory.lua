@@ -3,9 +3,6 @@ local colors = require('colors')
 
 local memory = Sbar.add('item', 'memory', {
   position = 'right',
-  background = {
-    drawing = false,
-  },
   icon = { string = icons.memory, color = 0xff9ece6a },
   update_freq = 5,
 })

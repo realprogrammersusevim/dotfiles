@@ -2,9 +2,6 @@ local icons = require('icons')
 
 local disk = Sbar.add('item', 'disk', {
   position = 'right',
-  background = {
-    drawing = false,
-  },
   icon = { string = icons.disk, color = 0xffee99a0 },
   update_freq = 60,
 })

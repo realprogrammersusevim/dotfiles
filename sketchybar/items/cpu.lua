@@ -14,12 +14,6 @@ Sbar.exec(
 local cpu = Sbar.add('graph', 'cpu', 42, {
   position = 'right',
   graph = { color = colors.blue },
-  background = {
-    -- height = 22,
-    -- color = { alpha = 0 },
-    -- border_color = { alpha = 0 },
-    drawing = false,
-  },
   icon = { string = icons.cpu, color = 0xff7aa2f7 },
   label = {
     string = '??%',

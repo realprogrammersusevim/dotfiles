@@ -1,8 +1,5 @@
 local vpn = Sbar.add('alias', 'Mullvad VPN,Item-0', {
   position = 'right',
-  background = {
-    drawing = false,
-  },
   update_freq = 10,
 })
 
