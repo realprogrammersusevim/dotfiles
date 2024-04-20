@@ -11,23 +11,13 @@ Sbar.exec(
     .. '/.config/sketchybar/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0'
 )
 
-local cpu = Sbar.add('graph', 'cpu', 42, {
+local cpu = Sbar.add('graph', 'cpu', 30, {
   position = 'right',
   graph = { color = colors.blue },
   icon = { string = icons.cpu, color = 0xff7aa2f7 },
   label = {
     string = '??%',
-    font = {
-      family = settings.font.numbers,
-      style = settings.font.style_map['Bold'],
-      size = 11.0,
-    },
-    align = 'right',
-    padding_right = 0,
-    width = 0,
-    y_offset = 0,
   },
-  padding_right = settings.paddings,
 })
 
 cpu:subscribe('cpu_update', function(env)

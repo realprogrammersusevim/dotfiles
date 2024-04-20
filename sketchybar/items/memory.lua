@@ -1,7 +1,7 @@
 local icons = require('icons')
 local colors = require('colors')
 
-local memory = Sbar.add('item', 'memory', {
+local memory = Sbar.add('graph', 'memory', 30, {
   position = 'right',
   icon = { string = icons.memory, color = 0xff9ece6a },
   update_freq = 5,
@@ -19,6 +19,7 @@ memory:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
     elseif percent_used > 70 then
       color = colors.yellow
     end
-    memory:set({ label = { string = percent_used .. '%', color = color } })
+    memory:push({ percent_used / 100. })
+    memory:set({ label = { string = percent_used .. '%' }, graph = { color = color } })
   end)
 end)
