@@ -46,3 +46,7 @@ alias cbn="cargo bench"
 alias ct="cargo test"
 alias cf="cargo fmt"
 alias cff="cargo fix"
+
+alias nb="cd target; cmake --build . --config Debug; cd .."
+alias nbr="cd target; cmake --build . --config Release; cd .."
+alias ncl="cd target; for file in build-*.ninja; do; ninja -f \"\$file\" clean; done; cd .."
