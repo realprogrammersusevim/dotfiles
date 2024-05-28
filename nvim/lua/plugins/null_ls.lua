@@ -31,10 +31,8 @@ return {
         sources = {
           -- Code actions
           actions.proselint,
-          actions.shellcheck,
 
           -- Diagnostics
-          diagnostics.shellcheck,
           diagnostics.gitlint,
           diagnostics.checkmake,
           diagnostics.vint,
@@ -43,15 +41,11 @@ return {
           diagnostics.write_good.with({
             extra_args = { '--tooWordy', '--so', '--cliches' },
           }),
-          diagnostics.jsonlint,
-          -- diagnostics.ruff,
           diagnostics.codespell.with({
             extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
           }),
 
           -- Formatters
-          formatting.beautysh,
-          formatting.black,
           formatting.isort,
           formatting.stylua.with({
             extra_args = {
@@ -60,15 +54,12 @@ return {
             },
           }),
           formatting.prettier.with({
-            filetypes = { 'markdown', 'yaml', 'html' },
+            filetypes = { 'markdown', 'yaml', 'html', 'json' },
             extra_args = { '--prose-wrap', 'always' },
           }),
-          formatting.rustfmt,
           formatting.goimports,
           formatting.gofmt,
-          formatting.fixjson,
           formatting.clang_format,
-          -- formatting.swiftformat,
 
           -- Hover defs
           hover.dictionary,
