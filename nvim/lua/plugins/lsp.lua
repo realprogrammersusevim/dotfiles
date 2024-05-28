@@ -22,10 +22,6 @@ return {
             -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
           },
           setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-          -- for your Neovim config directory, the config.library settings will be used as is
-          -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
-          -- for any other directory, config.library.enabled will be set to false
-          override = function(root_dir, options) end,
           -- With lspconfig, Neodev will automatically setup your lua-language-server
           -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
           -- in your lsp start options
@@ -42,13 +38,14 @@ return {
       })
 
       local lsp = require('lspconfig')
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local capabilities =
+        require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       -- Setup lspconfig
       -- Python
-      lsp.pyright.setup({ capabilities = capabilities })
-      -- lsp.pylyzer.setup({ capabilities = capabilities })
+      lsp.ruff_lsp.setup({
+        capabilities = capabilities,
+      })
 
       -- Lua
       lsp.lua_ls.setup({
