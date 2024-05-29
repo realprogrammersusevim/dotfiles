@@ -46,7 +46,6 @@ return {
           }),
 
           -- Formatters
-          formatting.isort,
           formatting.stylua.with({
             extra_args = {
               '--config-path',

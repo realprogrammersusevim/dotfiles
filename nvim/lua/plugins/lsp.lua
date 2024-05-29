@@ -40,11 +40,32 @@ return {
       local lsp = require('lspconfig')
       local capabilities =
         require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local on_attach = function(client, bufnr)
+        if client.name == 'ruff_lsp' then
+          -- Use the pyright hover
+          client.server_capabilities.hoverProvider = false
+        end
+      end
 
       -- Setup lspconfig
       -- Python
       lsp.ruff_lsp.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      lsp.pyright.setup({
+        settings = {
+          pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              -- Ignore all files for analysis to exclusively use Ruff for linting
+              ignore = { '*' },
+            },
+          },
+        },
       })
 
       -- Lua
