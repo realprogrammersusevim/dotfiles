@@ -44,6 +44,7 @@ return {
           diagnostics.codespell.with({
             extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
           }),
+          diagnostics.mypy,
 
           -- Formatters
           formatting.stylua.with({
