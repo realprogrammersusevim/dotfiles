@@ -41,7 +41,7 @@ return {
       local capabilities =
         require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local on_attach = function(client, bufnr)
-        if client.name == 'ruff_lsp' then
+        if client.name == 'ruff' then
           -- Use the pyright hover
           client.server_capabilities.hoverProvider = false
         end
@@ -49,7 +49,7 @@ return {
 
       -- Setup lspconfig
       -- Python
-      lsp.ruff_lsp.setup({
+      lsp.ruff.setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })
@@ -130,6 +130,14 @@ return {
         local hl = 'DiagnosticSign' .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+
+      -- Format on save
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = buffer,
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
     end,
   },
 }
