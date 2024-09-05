@@ -1,5 +1,5 @@
 #!/bin/bash
 
 for folder in {yabai,skhd,sketchybar,zsh,nvim,kitty,gitui,lazygit}; do
-    stow -t "$HOME/.config/$folder" "$folder" --ignore "DS_Store"
+  stow -t "$HOME/.config/$folder" "$folder" --ignore "DS_Store"
 done
