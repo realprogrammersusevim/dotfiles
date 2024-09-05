@@ -124,6 +124,8 @@ return {
       -- C/C++
       lsp.clangd.setup({ capabilities = capabilities })
 
+      lsp.fennel_ls.setup({ capabilities = capabilities })
+
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
       for type, icon in pairs(signs) do
