@@ -17,7 +17,7 @@ disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
     end
 
     local percent_used = tonumber(disk_line:match('(%d+)%%'))
-    print('disk usage:', percent_used)
+    -- print('disk usage:', percent_used)
     disk:set({ label = { string = percent_used .. '%' } })
   end)
 end)
