@@ -60,6 +60,7 @@ The `ftplugin` folder holds the configuration files for special file types.
 | persistence.nvim            | f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d |
 | playground                  | ba48c6a62a280eefb7c85725b0915e021a1a0749 |
 | plenary.nvim                | 2d9b06177a975543726ce5c73fca176cedbffe9d |
+| rainbow-delimiters.nvim     | 5f73b24aeb94f5274c218955573153c69ce4d1ee |
 | telescope-fzf-native.nvim   | cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b |
 | telescope.nvim              | 175178e3889c13a840f036d464aee2d145157b9e |
 | todo-comments.nvim          | ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0 |
