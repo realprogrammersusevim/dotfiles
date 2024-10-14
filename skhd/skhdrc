@@ -1,3 +1,5 @@
+# YABAI
+
 # Navigation
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
@@ -57,3 +59,7 @@ alt - s : yabai -m window --toggle sticky
 
 # toggle window parent zoom
 alt - d : yabai -m window --toggle zoom-parent
+
+# NON-YABAI
+
+alt + cmd - n : /Applications/Zen Browser.app/Contents/MacOS/zen --new-window
