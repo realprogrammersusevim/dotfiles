@@ -29,6 +29,7 @@ The `ftplugin` folder holds the configuration files for special file types.
 | cmp-nvim-lsp                | 39e2eda76828d88b773cc27a3f61d2ad782c922d |
 | cmp-path                    | 91ff86cd9c29299a64f968ebb45846c485725f23 |
 | cmp_luasnip                 | 05a9ab28b53f71d1aece421ef32fee2cb857a843 |
+| codecompanion.nvim          | 6329698f9f98f59da079e179c8b81f43d8692cba |
 | copilot.lua                 | 1a237cf50372830a61d92b0adf00d3b23882e0e1 |
 | dressing.nvim               | 1b7921eecc65af1baf8ac1dc06f0794934cbcfb2 |
 | friendly-snippets           | 00ebcaa159e817150bd83bfe2d51fa3b3377d5c4 |
@@ -41,6 +42,7 @@ The `ftplugin` folder holds the configuration files for special file types.
 | mason-nvim-dap.nvim         | 8b9363d83b5d779813cdd2819b8308651cec2a09 |
 | mason.nvim                  | e2f7f9044ec30067bc11800a9e266664b88cda22 |
 | mini.comment                | 03c13e37318bdb18481311c0ac1adc9ed731caf1 |
+| nabla.nvim                  | 27a6ea9ed7452bb9e0b19eb0942b5bcf7d051b2f |
 | neodev.nvim                 | 46aa467dca16cf3dfe27098042402066d2ae242d |
 | noice.nvim                  | c1ba80ccf6b3bd8c7fc88fe2e61085131d44ad65 |
 | none-ls.nvim                | 9b98991e15dce8fc502993e23caac2528b8b667f |
