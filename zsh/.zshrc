@@ -54,6 +54,7 @@ zplug load
 
 source $HOME/.config/zsh/personal_commands.sh
 source ~/.config/zsh/aliases.sh
+source ~/.config/zsh/env.sh
 
 # Zoxide stuff
 eval "$(zoxide init zsh)"
