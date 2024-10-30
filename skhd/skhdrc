@@ -62,4 +62,4 @@ alt - d : yabai -m window --toggle zoom-parent
 
 # NON-YABAI
 
-alt + cmd - n : /Applications/Zen Browser.app/Contents/MacOS/zen --new-window
+alt + cmd - n : "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window
