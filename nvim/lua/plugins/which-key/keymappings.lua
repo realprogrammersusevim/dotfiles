@@ -280,4 +280,9 @@ require('which-key').add({
     '<CMD>call setreg("+", @")<CR>',
     desc = 'Copy to clipboard',
   },
+  {
+    '<leader>p',
+    '<CMD>lua require("nabla").popup({border="rounded"})<CR>',
+    desc = 'Nabla [p]opup',
+  },
 })
