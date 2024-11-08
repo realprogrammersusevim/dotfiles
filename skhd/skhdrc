@@ -60,6 +60,9 @@ alt - s : yabai -m window --toggle sticky
 # toggle window parent zoom
 alt - d : yabai -m window --toggle zoom-parent
 
+# name space
+alt - n : ~/code/dotfiles/skhd/label.sh
+
 # NON-YABAI
 
 alt + cmd - n : "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window
