@@ -5,6 +5,7 @@ path+=("$HOME/code/cli-tools/scripts")
 path+=("$HOME/.bin")
 export MODULAR_HOME="$HOME/.modular"
 path+=("$HOME/.modular/pkg/packages.modular.com_mojo/bin")
+path+=("$HOME/.local/bin")
 
 # Add Homebrew's executable directory to the front of the PATH
 path+=("/opt/homebrew/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin")
