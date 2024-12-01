@@ -60,6 +60,7 @@ return {
           --   extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
           -- }),
           diagnostics.mypy,
+          diagnostics.swiftlint,
 
           -- Formatters
           formatting.stylua.with({
@@ -75,6 +76,7 @@ return {
           formatting.goimports,
           formatting.gofmt,
           formatting.clang_format,
+          formatting.swiftformat,
 
           -- Hover defs
           hover.dictionary,
