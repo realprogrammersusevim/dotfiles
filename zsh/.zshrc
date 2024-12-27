@@ -24,7 +24,8 @@ setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
 
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' frequency 7
+zstyle ':omz:update' mode auto
 plugins=(
     python
     git
@@ -45,7 +46,7 @@ source $ZPLUG_HOME/init.zsh
 # zplug section
 zplug "hlissner/zsh-autopair", from:github, defer:2
 zplug "marlonrichert/zsh-autocomplete", from:github, defer:2
-zplug "jeffreytse/zsh-vi-mode"
+zplug "jeffreytse/zsh-vi-mode" defer:2
 zplug "MichaelAquilina/zsh-you-should-use" defer:2
 
 # Load plugins
@@ -53,7 +54,7 @@ zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source $HOME/.config/zsh/personal_commands.sh
+source ~/.config/zsh/personal_commands.sh
 source ~/.config/zsh/aliases.sh
 source ~/.config/zsh/env.sh
 
