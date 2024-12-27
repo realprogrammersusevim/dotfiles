@@ -87,12 +87,7 @@ return {
             before = function(entry, vim_item)
               -- Get the full snippet (and only keep first line)
               local word = entry:get_insert_text()
-              if
-                entry.completion_item.insertTextFormat
-                == require('cmp.types').lsp.InsertTextFormat.Snippet
-              then
-                word = vim.lsp.util.parse_snippet(word)
-              end
+              -- Used to parse word with vim.lsp.utils.parse_snippet but that's deprecated :(
               word = require('cmp.utils.str').oneline(word)
 
               if
