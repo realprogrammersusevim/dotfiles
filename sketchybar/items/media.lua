@@ -2,7 +2,7 @@ local icons = require('icons')
 local colors = require('colors')
 
 local media_cover = Sbar.add('item', {
-  position = 'right',
+  position = 'q',
   background = {
     image = {
       string = 'media.artwork',
@@ -21,7 +21,7 @@ local media_cover = Sbar.add('item', {
 })
 
 local media_artist = Sbar.add('item', {
-  position = 'right',
+  position = 'q',
   drawing = false,
   icon = { drawing = false },
   label = {
@@ -30,7 +30,7 @@ local media_artist = Sbar.add('item', {
 })
 
 local media_title = Sbar.add('item', {
-  position = 'right',
+  position = 'q',
   drawing = false,
   icon = { drawing = false },
   label = {

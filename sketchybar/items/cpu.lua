@@ -12,7 +12,7 @@ Sbar.exec(
 )
 
 local cpu = Sbar.add('graph', 'cpu', 30, {
-  position = 'right',
+  position = 'e',
   graph = { color = colors.blue },
   icon = { string = icons.cpu, color = 0xff7aa2f7 },
   label = {

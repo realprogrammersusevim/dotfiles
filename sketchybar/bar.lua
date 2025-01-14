@@ -1,7 +1,12 @@
+local colors = require('colors')
+
 Sbar.bar({
-  height = 25,
-  position = 'bottom',
+  height = 27,
+  position = 'top',
   sticky = 'off',
   y_offset = 5,
-  color = 0x00000000,
+  color = colors.bar.bg,
+  notch_width = 200,
+  corner_radius = 10,
+  margin = 10,
 })

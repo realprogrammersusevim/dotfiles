@@ -3,7 +3,7 @@ local colors = require('colors')
 -- local inspect = require('inspect')
 
 local memory = Sbar.add('graph', 'memory', 30, {
-  position = 'right',
+  position = 'e',
   icon = { string = icons.memory, color = 0xff9ece6a },
   update_freq = 5,
 })

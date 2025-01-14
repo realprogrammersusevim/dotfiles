@@ -48,6 +48,9 @@ for i = 1, 10, 1 do
     space = i,
     script = '',
     width = settings.group_paddings,
+    background = {
+      drawing = false,
+    },
   })
 
   local space_popup = Sbar.add('item', {

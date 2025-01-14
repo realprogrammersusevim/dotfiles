@@ -35,7 +35,7 @@ return {
   rosewater = 0xfff4dbd6,
 
   bar = {
-    bg = 0xf02c2e34,
+    bg = 0xff1a1b26,
     border = 0xff2c2e34,
   },
   popup = {
