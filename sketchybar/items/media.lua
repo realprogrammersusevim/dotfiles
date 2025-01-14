@@ -9,6 +9,7 @@ local media_cover = Sbar.add('item', {
       scale = 0.85,
     },
     color = colors.transparent,
+    padding_right = 8,
   },
   label = { drawing = false },
   icon = { drawing = false },
@@ -27,6 +28,9 @@ local media_artist = Sbar.add('item', {
   label = {
     max_chars = 18,
   },
+  background = {
+    drawing = false,
+  },
 })
 
 local media_title = Sbar.add('item', {
@@ -35,6 +39,9 @@ local media_title = Sbar.add('item', {
   icon = { drawing = false },
   label = {
     max_chars = 16,
+  },
+  background = {
+    drawing = false,
   },
 })
 
