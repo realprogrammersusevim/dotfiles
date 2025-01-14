@@ -11,6 +11,7 @@ local icons = {
 
     disk = '􀨪',
     memory = '􀧖',
+    gpu = '􀧻', -- no gpu icon so just using circle square
     network = '􀤆',
     network_down = '􀄩',
     network_up = '􀄨',

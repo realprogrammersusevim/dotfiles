@@ -12,7 +12,7 @@ Sbar.exec(
 local gpu = Sbar.add('graph', 'gpu', 30, {
   position = 'e',
   graph = { color = colors.blue },
-  icon = { string = icons.gpu, color = 0xff7aa2f7 },
+  icon = { string = icons.gpu, color = colors.teal },
   label = {
     string = '??%',
   },
