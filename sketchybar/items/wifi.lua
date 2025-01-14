@@ -17,27 +17,27 @@ Sbar.exec('scutil --nwi', function(result)
   )
 end)
 
-local wifi_up = Sbar.add('item', 'widgets.wifi1', {
-  position = 'e',
-  width = 90,
-  icon = {
-    string = icons.wifi.upload,
-  },
-  label = {
-    color = colors.red,
-    string = '??? Bps',
-    font = settings.font.numbers,
-  },
-})
-
 local wifi_down = Sbar.add('item', 'widgets.wifi2', {
-  position = 'e',
+  position = 'q',
   width = 90,
   icon = {
     string = icons.wifi.download,
   },
   label = {
     color = colors.blue,
+    string = '??? Bps',
+    font = settings.font.numbers,
+  },
+})
+
+local wifi_up = Sbar.add('item', 'widgets.wifi1', {
+  position = 'q',
+  width = 90,
+  icon = {
+    string = icons.wifi.upload,
+  },
+  label = {
+    color = colors.red,
     string = '??? Bps',
     font = settings.font.numbers,
   },
