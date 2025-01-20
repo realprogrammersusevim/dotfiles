@@ -3,3 +3,5 @@
 for folder in {yabai,skhd,sketchybar,zsh,nvim,kitty,gitui,lazygit}; do
   stow -t "$HOME/.config/$folder" "$folder" --ignore "DS_Store"
 done
+
+stow -t "$HOME/Library/Application Support/com.mitchellh.ghostty" "ghostty" --ignore "DS_Store"
