@@ -10,7 +10,7 @@ require('items.media')
 require('items.memory')
 require('items.cpu')
 require('items.gpu')
--- require('items.disk')
+require('items.disk')
 
 -- Right items
 require('items.clock')
