@@ -1,15 +1,16 @@
 return {
   {
     'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
-    enabled = true,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       suggestion = { auto_trigger = true, keymap = { accept = '<C-CR>' } },
     },
   },
+
   {
     'olimorris/codecompanion.nvim',
-    enabled = false,
+    enabled = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
@@ -22,34 +23,15 @@ return {
         opts = {
           log_level = 'DEBUG', -- or "TRACE"
         },
-        adapters = {
-          groq = function()
-            return require('codecompanion.adapters').extend('openai', {
-              name = 'groq',
-              schema = {
-                model = {
-                  default = 'llama-3.1-70b-versatile',
-                },
-                num_ctx = {
-                  default = 131072,
-                },
-              },
-              url = 'https://api.groq.com/openai/v1/chat/completions',
-              env = {
-                api_key = 'GROQ_API_KEY',
-              },
-            })
-          end,
-        },
         strategies = {
           chat = {
-            adapter = 'groq',
+            adapter = 'gemini',
           },
           inline = {
             adapter = 'copilot',
           },
           agent = {
-            adapter = 'groq',
+            adapter = 'gemini',
           },
         },
       })
