@@ -8,26 +8,7 @@ return {
         config = true,
       },
       { 'williamboman/mason-lspconfig.nvim', config = true },
-      {
-        'folke/neodev.nvim',
-        filetype = 'lua',
-        opts = {
-          library = {
-            enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-            -- these settings will be used for your Neovim config directory
-            runtime = true, -- runtime path
-            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-            plugins = true, -- installed opt or start plugins in packpath
-            -- you can also specify the list of plugins to make available as a workspace library
-            -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-          },
-          setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-          -- With lspconfig, Neodev will automatically setup your lua-language-server
-          -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-          -- in your lsp start options
-          lspconfig = true,
-        },
-      },
+      { 'saghen/blink.cmp' },
     },
     config = function()
       vim.diagnostic.config({
@@ -38,8 +19,7 @@ return {
       })
 
       local lsp = require('lspconfig')
-      local capabilities =
-        require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(client, bufnr)
         if client.name == 'ruff' then
           -- Use the pyright hover
@@ -144,7 +124,7 @@ return {
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = buffer,
         callback = function()
-          vim.lsp.buf.format({ async = false })
+          vim.lsp.buf.format({ async = true })
         end,
       })
     end,
