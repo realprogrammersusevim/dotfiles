@@ -156,6 +156,13 @@ require('which-key').add({
     desc = '[n]ext hunk',
   },
   {
+    '<leader>gl',
+    function()
+      Snacks.lazygit()
+    end,
+    desc = '[l]azy',
+  },
+  {
     '<leader>gb',
     '<CMD>Gitsigns prev_hunk<CR>',
     desc = '[back] hunk',
