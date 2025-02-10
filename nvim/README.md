@@ -23,7 +23,6 @@ The `ftplugin` folder holds the configuration files for special file types.
 
 | Plugin                      | Commit                                   |
 | --------------------------- | ---------------------------------------- |
-| alpha-nvim                  | de72250e054e5e691b9736ee30db72c65d560771 |
 | blink.cmp                   | b6f11a0aa33e601c469a126e3ed6e35208fe3ea3 |
 | bullets.vim                 | 2253f970e54320dbd76fd6bb4f5a0bf2436ce232 |
 | codecompanion.nvim          | 68464826515b764ebae5fdf28e4d3f8c01c80296 |
@@ -31,7 +30,6 @@ The `ftplugin` folder holds the configuration files for special file types.
 | dressing.nvim               | 56ef6a969a4990d938c5fed40c370f65e125fc97 |
 | friendly-snippets           | efff286dd74c22f731cdec26a70b46e5b203c619 |
 | gitsigns.nvim               | 4baa13519c2168cc9a7890a3580c50226ed018fb |
-| indent-blankline.nvim       | e10626f7fcd51ccd56d7ffc00883ba7e0aa28f78 |
 | lazy.nvim                   | f15a93907ddad3d9139aea465ae18336d87f5ce6 |
 | lazydev.nvim                | a1b78b2ac6f978c72e76ea90ae92a94edf380cfc |
 | lualine.nvim                | f4f791f67e70d378a754d02da068231d2352e5bc |
@@ -44,7 +42,6 @@ The `ftplugin` folder holds the configuration files for special file types.
 | none-ls.nvim                | aa1620be06f7a5158864a33be045229da67ff840 |
 | nui.nvim                    | 53e907ffe5eedebdca1cd503b00aa8692068ca46 |
 | nvim-autopairs              | 3d02855468f94bf435db41b661b58ec4f48a06b7 |
-| nvim-cmp                    | 12509903a5723a876abd65953109f926f4634c30 |
 | nvim-lspconfig              | d37812c49063eda10ad1f7c7695509365ac7bd47 |
 | nvim-surround               | ae298105122c87bbe0a36b1ad20b06d417c0433e |
 | nvim-treesitter             | da89532f036da9855f3105955696df36f583b919 |
