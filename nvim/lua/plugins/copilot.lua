@@ -1,16 +1,17 @@
 return {
   {
     'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
-    enabled = false,
+    enabled = true,
     event = 'InsertEnter',
     opts = {
-      suggestion = { auto_trigger = true, keymap = { accept = '<C-CR>' } },
+      suggestion = { enabled = false, auto_trigger = true, keymap = { accept = '<C-CR>' } },
+      panel = { enabled = false },
     },
   },
 
   {
     'olimorris/codecompanion.nvim',
-    enabled = true,
+    enabled = false,
     lazy = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
