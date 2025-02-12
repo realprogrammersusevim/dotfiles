@@ -1,5 +1,5 @@
 -- Left items
-require('items.mission_control')
+-- require('items.mission_control')
 require('items.front_app')
 
 -- Notch left
