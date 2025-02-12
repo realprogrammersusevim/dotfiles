@@ -113,6 +113,15 @@ return {
 
       lsp.ts_ls.setup({ capabilities = capabilities })
 
+      lsp.tinymist.setup({
+        capabilities = capabilities,
+        settings = {
+          formatterMode = 'typstyle',
+          exportPdf = 'onType',
+          semanticTokens = 'disable',
+        },
+      })
+
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
       for type, icon in pairs(signs) do
