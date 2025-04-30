@@ -8,7 +8,7 @@ alias n="/opt/homebrew/bin/nvim"
 alias nn="/usr/local/bin/nvim" # Neovim built from source
 alias rg="rg --hidden"
 help() {
-    "$@" --help 2>&1 | bat --plain --language=help
+  "$@" --help 2>&1 | bat --plain --language=help
 }
 alias pd="pandoc"
 alias pddm="pandoc -f docx -t markdown --markdown-headings atx"
@@ -50,3 +50,5 @@ alias cff="cargo fix"
 alias nb="cd target; cmake --build . --config Debug; cd .."
 alias nbr="cd target; cmake --build . --config Release; cd .."
 alias ncl="cd target; for file in build-*.ninja; do; ninja -f \"\$file\" clean; done; cd .."
+
+alias aider="aider --config ~/.aider.conf.yaml"
