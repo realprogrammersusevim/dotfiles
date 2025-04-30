@@ -122,6 +122,10 @@ return {
         },
       })
 
+      lsp.elixirls.setup({
+        cmd = { vim.fn.stdpath('data') .. '/mason/bin/elixir-ls' },
+      })
+
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
       for type, icon in pairs(signs) do
