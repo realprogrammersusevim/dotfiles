@@ -20,6 +20,11 @@ return {
       {
         'giuxtaposition/blink-cmp-copilot',
       },
+      {
+        dir = '~/code/copilot-arena.nvim',
+        enabled = true,
+        opts = {},
+      },
     },
 
     -- use a release tag to download pre-built binaries
@@ -58,7 +63,15 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'copilot' },
+        default = {
+          'lsp',
+          'path',
+          'snippets',
+          'buffer',
+          'lazydev',
+          'copilot',
+          'copilot-arena',
+        },
         providers = {
           lazydev = {
             name = 'LazyDev',
@@ -70,6 +83,12 @@ return {
             name = 'copilot',
             module = 'blink-cmp-copilot',
             score_offset = 100,
+            async = true,
+          },
+          ['copilot-arena'] = {
+            name = 'copilot-arena',
+            module = 'copilot-arena.blink_source',
+            score_offset = 70,
             async = true,
           },
         },
