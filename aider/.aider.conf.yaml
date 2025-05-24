@@ -1,0 +1,6 @@
+---
+options:
+model: openrouter/anthropic/claude-sonnet-4
+dark-mode: true
+auto-commits: false
+commit: false
