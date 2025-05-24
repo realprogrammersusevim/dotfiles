@@ -51,4 +51,4 @@ alias nb="cd target; cmake --build . --config Debug; cd .."
 alias nbr="cd target; cmake --build . --config Release; cd .."
 alias ncl="cd target; for file in build-*.ninja; do; ninja -f \"\$file\" clean; done; cd .."
 
-alias aider="aider --config ~/.aider.conf.yaml"
+alias aider="aider --config ~/.config/aider/.aider.conf.yaml --model-settings-file ~/.config/aider/.aider.model.settings.yml --model-metadata-file ~/.config/aider/.aider.model.metadata.json"
