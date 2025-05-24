@@ -26,7 +26,7 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 
 alias b="brew"
 alias bi="brew install"
-alias bun="brew uninstall"
+# alias bun="brew uninstall"
 alias bic="brew install --cask"
 alias bunc="brew uninstall --cask"
 alias bs="brew search"
