@@ -12,7 +12,7 @@ opt.linebreak = true
 opt.breakindent = true
 opt.scrolloff = 8 -- Set scroll offset
 opt.sidescrolloff = 8
-vim.api.nvim_set_option('mousescroll', 'hor:0')
+opt.mousescroll = 'hor:0'
 -- opt.clipboard = 'unnamedplus' -- Set clipboard to use system clipboard
 opt.cmdheight = 1 -- Keep the command height nice and low for more space
 opt.conceallevel = 0 -- Turn off conceal
