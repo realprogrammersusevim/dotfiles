@@ -1,6 +1,7 @@
 ---
 options:
-model: openrouter/anthropic/claude-sonnet-4
+model: openrouter/deepseek/deepseek-r1-0528
+weak-model: openrouter/google/gemini-2.5-flash-preview
 dark-mode: true
 auto-commits: false
 commit: false
