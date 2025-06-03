@@ -21,7 +21,6 @@ alias nd="neovide"
 alias :q="exit"
 alias exe="chmod +x"
 alias emailer="~/code/emailer/emailer"
-alias icat="kitten icat"
 alias love="/Applications/love.app/Contents/MacOS/love"
 
 alias b="brew"

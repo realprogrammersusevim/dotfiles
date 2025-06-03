@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # This script file is used to define all of my personal commands.
 # It is sourced by the main zshrc file.
 # If you want another command simply create a new function
@@ -58,7 +56,7 @@ ff() {
 
 nvims() {
   items=("personal" "plain" "lazy")
-  config=$(printf "%s\n" "${items[@]}" | /opt/homebrew/bin/fzf --prompt="  Neovim config > " --height=~50% --layout=reverse --border --exit-0)
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt="  Neovim config > " --height=~50% --layout=reverse --border --exit-0)
 
   if [[ -z $config ]]; then
     echo "Nothing selected"
@@ -78,12 +76,4 @@ flasher() {
     printf "\\e[?5l"
     read -r -s -t 1 -k && break
   done
-}
-
-# Change the kitty theme
-theme() {
-  items=("night" "day" "moon" "storm")
-  theme=$(printf "%s\n" "${items[@]}" | /opt/homebrew/bin/fzf --prompt=" Theme > " --height=~50% --layout=reverse --border --exit-0) # Use fzf as a theme picker
-  cp ~/.config/kitty/themes/tokyonight_"$theme".conf ~/.config/kitty/current.conf                                                    # The current.conf is included in the main kitty.conf
-  kill -SIGUSR1 $(pgrep -a kitty)                                                                                                    # Sending the SIGUSR1 signal to the kitty process reloads the config
 }
