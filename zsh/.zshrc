@@ -66,7 +66,6 @@ source $ZPLUG_HOME/init.zsh
 # zplug section
 zplug "hlissner/zsh-autopair", from:github, defer:2
 zplug "marlonrichert/zsh-autocomplete", from:github, defer:2
-zplug "jeffreytse/zsh-vi-mode" defer:2
 zplug "MichaelAquilina/zsh-you-should-use" defer:2
 
 # Load plugins
