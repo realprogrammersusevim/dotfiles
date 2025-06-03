@@ -2,3 +2,6 @@ theme = dark:tokyonight_night,light:tokyonight-day
 font-thicken = true
 adjust-cursor-thickness = 100%
 mouse-hide-while-typing = true
+cursor-style-blink = false
+cursor-style=block
+shell-integration-features = no-cursor
