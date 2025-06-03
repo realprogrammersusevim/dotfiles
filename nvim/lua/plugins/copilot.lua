@@ -1,7 +1,7 @@
 return {
   {
     'zbirenbaum/copilot.lua', -- Lua replacement for Copilot
-    enabled = true,
+    enabled = false,
     event = 'InsertEnter',
     opts = {
       suggestion = { enabled = false, auto_trigger = true, keymap = { accept = '<C-CR>' } },

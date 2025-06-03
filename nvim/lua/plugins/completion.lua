@@ -69,7 +69,7 @@ return {
           'snippets',
           'buffer',
           'lazydev',
-          'copilot',
+          -- 'copilot',
           'copilot-arena',
         },
         providers = {
