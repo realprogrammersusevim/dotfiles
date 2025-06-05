@@ -3,10 +3,13 @@
 after-login-command = []
 start-at-login = true
 
-after-startup-command = ['exec-and-forget sketchybar']
-  exec-on-workspace-change = ['/bin/bash', '-c',
+after-startup-command = ['exec-and-forget sketchybar', 'layout tiles']
+exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
+enable-normalization-flatten-containers = true
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
 # after-startup-command = [
 #     "enable-normalization-flatten-containers = true",
 #     "enable-normalization-opposite-orientation-for-nested-containers = true",
@@ -145,20 +148,11 @@ after-startup-command = ['exec-and-forget sketchybar']
     # alt-shift-c = 'rotate-tree 90'
 
     # Make window native fullscreen
-    # alt-f = 'layout floating tiling; move-node-to-monitor --wrap-around current; fullscreen'
+    alt-f = 'fullscreen'
     # alt-shift-f = 'layout floating tiling; move-node-to-monitor --wrap-around current; fullscreen'
 
     # float / unfloat window and restore position
-    # alt-t = 'layout floating tiling'
-
-    # toggle sticky (show on all spaces)
-    # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-
-    # toggle window parent zoom
-    # Not directly supported
-
-    # name space - Use exec-and-forget for external scripts
-    alt-n = 'exec-and-forget ~/code/dotfiles/skhd/label.sh'
+    alt-t = 'layout floating tiling'
 
     # NON-YABAI - Open Zen Browser in new window
     alt-cmd-n = 'exec-and-forget "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window'
