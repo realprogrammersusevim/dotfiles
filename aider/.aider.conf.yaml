@@ -5,3 +5,4 @@ weak-model: openrouter/google/gemini-2.5-flash-preview
 dark-mode: true
 auto-commits: false
 commit: false
+edit-format: diff-fenced
