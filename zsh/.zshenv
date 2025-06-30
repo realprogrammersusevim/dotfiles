@@ -5,7 +5,7 @@ path+=("$HOME/.modular/pkg/packages.modular.com_mojo/bin")
 path+=("$HOME/.local/bin")
 
 # Add Homebrew's executable directory to the front of the PATH
-path+=("/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin")
+PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin:$PATH"
 
 # Language specific path stuff
 eval $(/opt/homebrew/bin/luarocks path) # Lua needs to know where my rocks are
