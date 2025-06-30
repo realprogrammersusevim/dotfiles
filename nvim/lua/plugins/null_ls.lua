@@ -17,19 +17,6 @@ return {
       local helpers = require('null-ls.helpers')
       local methods = require('null-ls.methods')
 
-      -- local FORMATTING = methods.internal.FORMATTING
-      -- local cl_indent = {
-      --   name = 'cl_indent',
-      --   method = FORMATTING,
-      --   filetypes = { 'lisp' },
-      --   generator_opts = {
-      --     command = '~/.roswell/bin/cl-indentify',
-      --     args = { '$FILENAME' },
-      --   },
-      --   factory = helpers.formatter_factory,
-      -- }
-      -- helpers.make_builtin(cl_indent)
-
       null_ls.setup({
         on_attach = function(client, bufnr)
           if client.supports_method('textDocument/formatting') then
@@ -50,15 +37,7 @@ return {
           -- Diagnostics
           diagnostics.gitlint,
           diagnostics.checkmake,
-          diagnostics.vint,
           diagnostics.yamllint,
-          diagnostics.proselint,
-          diagnostics.write_good.with({
-            extra_args = { '--tooWordy', '--so', '--cliches' },
-          }),
-          -- diagnostics.codespell.with({
-          --   extra_args = { '-L', 'crate' }, -- Fix annoying Rust errors
-          -- }),
           diagnostics.mypy,
           diagnostics.swiftlint,
 
@@ -81,8 +60,6 @@ return {
           -- Hover defs
           hover.dictionary,
           hover.printenv,
-
-          -- formatting.cl_indent,
         },
         update_in_insert = false,
       })

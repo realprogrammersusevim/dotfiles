@@ -18,7 +18,6 @@ return {
         update_in_insert = false,
       })
 
-      local lsp = require('lspconfig')
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(client, bufnr)
         if client.name == 'ruff' then
@@ -29,11 +28,11 @@ return {
 
       -- Setup lspconfig
       -- Python
-      lsp.ruff.setup({
+      vim.lsp.config('ruff', {
         capabilities = capabilities,
         on_attach = on_attach,
       })
-      lsp.pyright.setup({
+      vim.lsp.config('pyright', {
         settings = {
           pyright = {
             -- Using Ruff's import organizer
@@ -49,7 +48,7 @@ return {
       })
 
       -- Lua
-      lsp.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -71,7 +70,7 @@ return {
             telemetry = { enable = false },
             semantic = {
               -- Treesitter highlighting is better
-              enable = false,
+              enable = true,
             },
             completion = {
               displayContext = true,
@@ -80,40 +79,27 @@ return {
         },
       })
 
-      -- Bash
-      lsp.bashls.setup({ capabilities = capabilities })
-
       -- Rust
-      lsp.rust_analyzer.setup({
+      vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
         settings = { ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } } },
       })
 
       -- Markdown
-      lsp.marksman.setup({
+      vim.lsp.config('marksman', {
         capabilities = capabilities,
         -- single_file_support = false,
       })
 
-      -- Go
-      lsp.gopls.setup({ capabilities = capabilities })
-
       -- HTML
-      lsp.html.setup({ capabilities = capabilities })
+      vim.lsp.config('html', { capabilities = capabilities })
 
       -- C/C++
-      lsp.clangd.setup({ capabilities = capabilities })
+      vim.lsp.config('clangd', { capabilities = capabilities })
 
-      lsp.fennel_ls.setup({ capabilities = capabilities })
+      vim.lsp.config('ts_ls', { capabilities = capabilities })
 
-      -- Swift
-      lsp.sourcekit.setup({ capabilities = capabilities })
-
-      lsp.jsonls.setup({ capabilities = capabilities })
-
-      lsp.ts_ls.setup({ capabilities = capabilities })
-
-      lsp.tinymist.setup({
+      vim.lsp.config('tinymist', {
         capabilities = capabilities,
         settings = {
           formatterMode = 'typstyle',
@@ -122,9 +108,7 @@ return {
         },
       })
 
-      lsp.elixirls.setup({
-        cmd = { vim.fn.stdpath('data') .. '/mason/bin/elixir-ls' },
-      })
+      vim.lsp.config('harper_ls', { capabilities = capabilities })
 
       -- Make sure the gutter diagnostic signs are nice symbols rather than letters
       local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
