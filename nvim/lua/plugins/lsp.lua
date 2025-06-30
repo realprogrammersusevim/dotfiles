@@ -130,14 +130,6 @@ return {
           },
         },
       })
-
-      -- Format on save
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        pattern = '*',
-        callback = function()
-          vim.lsp.buf.format({ async = false }) -- async reformatting can screw with other plugins like Markview
-        end,
-      })
     end,
   },
 }
