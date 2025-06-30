@@ -26,6 +26,8 @@ return {
       },
       formatters_by_ft = {
         markdown = { 'prettier' },
+        html = { 'prettier' },
+        javascript = { 'prettier' },
         yaml = { 'prettier' },
         bash = { 'shfmt' },
       }
