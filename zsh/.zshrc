@@ -42,7 +42,7 @@ precmd_functions+=(__set_beam_cursor)
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 zstyle ':omz:update' frequency 7
 zstyle ':omz:update' mode auto
@@ -100,6 +100,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+eval "$(starship init zsh)"
 
 # All done
 # Show a pretty bonsai tree
