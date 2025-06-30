@@ -3,11 +3,6 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      {
-        'williamboman/mason.nvim',
-        config = true,
-      },
-      { 'williamboman/mason-lspconfig.nvim', config = true },
       { 'saghen/blink.cmp' },
     },
     config = function()
@@ -70,34 +65,44 @@ return {
             telemetry = { enable = false },
             semantic = {
               -- Treesitter highlighting is better
-              enable = true,
+              enable = false,
             },
             completion = {
               displayContext = true,
             },
+            format = {
+              enable = true,
+              defaultConfig = {
+                indent_style = 'space',
+                indent_size = '2',
+                quote_style = 'single'
+              },
+            },
           },
         },
       })
+      vim.lsp.enable('lua_ls')
 
       -- Rust
       vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
         settings = { ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } } },
       })
+      vim.lsp.enable('rust_analyzer')
 
       -- Markdown
       vim.lsp.config('marksman', {
         capabilities = capabilities,
         -- single_file_support = false,
       })
-
-      -- HTML
-      vim.lsp.config('html', { capabilities = capabilities })
+      vim.lsp.enable('marksman')
 
       -- C/C++
       vim.lsp.config('clangd', { capabilities = capabilities })
+      vim.lsp.enable('clangd')
 
       vim.lsp.config('ts_ls', { capabilities = capabilities })
+      vim.lsp.enable('ts_ls')
 
       vim.lsp.config('tinymist', {
         capabilities = capabilities,
@@ -107,19 +112,28 @@ return {
           semanticTokens = 'disable',
         },
       })
+      vim.lsp.enable('tinymist')
 
       vim.lsp.config('harper_ls', { capabilities = capabilities })
+      vim.lsp.enable('harper_ls')
 
-      -- Make sure the gutter diagnostic signs are nice symbols rather than letters
-      local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
-      for type, icon in pairs(signs) do
-        local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
+      vim.diagnostic.config({
+        severity_sort = true,
+        float = { border = 'rounded', source = 'if_many' },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '󰅚 ',
+            [vim.diagnostic.severity.WARN] = '󰀪 ',
+            [vim.diagnostic.severity.INFO] = '󰋽 ',
+            [vim.diagnostic.severity.HINT] = '󰌶 ',
+          },
+        },
+      })
 
       -- Format on save
       vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = buffer,
+        pattern = '*',
         callback = function()
           vim.lsp.buf.format({ async = false }) -- async reformatting can screw with other plugins like Markview
         end,
