@@ -75,7 +75,8 @@ return {
               defaultConfig = {
                 indent_style = 'space',
                 indent_size = '2',
-                quote_style = 'single'
+                quote_style = 'single',
+                call_arg_parentheses = 'always'
               },
             },
           },
