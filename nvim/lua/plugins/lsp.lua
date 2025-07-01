@@ -27,6 +27,7 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
       })
+      vim.lsp.enable('ruff')
       vim.lsp.config('pyright', {
         settings = {
           pyright = {
@@ -41,6 +42,7 @@ return {
           },
         },
       })
+      vim.lsp.enable('pyright')
 
       -- Lua
       vim.lsp.config('lua_ls', {
