@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 source $ZDOTDIR/.zshenv
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -38,38 +40,25 @@ zle -N zle-keymap-select
 
 precmd_functions+=(__set_beam_cursor)
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="agnoster"
+DISABLE_AUTO_UPDATE="true"
 
-zstyle ':omz:update' frequency 7
-zstyle ':omz:update' mode auto
-plugins=(
-    python
-    git
-    brew
-    sudo
-    macos
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    vi-mode
-)
+# Set the root name of the plugins files (.txt and .zsh) antidote will use.
+zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
 
-source $ZSH/oh-my-zsh.sh
+# Lazy-load antidote from its functions directory.
+fpath=(/opt/homebrew/opt/antidote/share/antidote/functions $fpath)
+autoload -Uz antidote
 
-# zplug
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# Generate a new static file whenever .zsh_plugins.txt is updated.
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+fi
 
-# zplug section
-zplug "hlissner/zsh-autopair", from:github, defer:2
-zplug "marlonrichert/zsh-autocomplete", from:github, defer:2
-zplug "MichaelAquilina/zsh-you-should-use" defer:2
+# Source your static plugins file.
+source ${zsh_plugins}.zsh
 
-# Load plugins
-zplug load
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -86,23 +75,10 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 eval "$(starship init zsh)"
 
 # All done
 # Show a pretty bonsai tree
 cbonsai -p
+
+# zprof
