@@ -13,23 +13,17 @@ for i = 1, 10, 1 do
       padding_left = 15,
       padding_right = 8,
       color = colors.white,
-      highlight_color = colors.red,
+      highlight_color = colors.tokyo_night_red,
     },
-    label = {
-      padding_right = 20,
-      color = colors.grey,
-      highlight_color = colors.white,
-      font = 'sketchybar-app-font:Regular:16.0',
-      y_offset = -1,
-    },
+
     padding_right = 1,
     padding_left = 1,
     background = {
-      color = colors.bg1,
+      color = colors.tokyo_night_bg,
       border_width = 1,
-      border_color = colors.black,
+      border_color = colors.tokyo_night_border,
     },
-    popup = { background = { border_width = 5, border_color = colors.black } },
+    popup = { background = { border_width = 5, border_color = colors.tokyo_night_border } },
   })
 
   spaces[i] = space
@@ -37,7 +31,7 @@ for i = 1, 10, 1 do
   -- Single item bracket for space items to achieve double border on highlight
   local space_bracket = Sbar.add('bracket', { space.name }, {
     background = {
-      color = colors.transparent,
+      color = colors.tokyo_night_bg,
       border_color = colors.bg2,
       border_width = 2,
     },
@@ -60,7 +54,7 @@ for i = 1, 10, 1 do
     background = {
       drawing = true,
       image = {
-        corner_radius = 9,
+        corner_radius = 15,
         scale = 0.2,
       },
     },
@@ -68,7 +62,7 @@ for i = 1, 10, 1 do
 
   space:subscribe('space_change', function(env)
     local selected = env.SELECTED == 'true'
-    local color = selected and colors.grey or colors.bg2
+    local color = selected and colors.tokyo_night_red or colors.tokyo_night_border
     space:set({
       icon = { highlight = selected },
       label = { highlight = selected },
@@ -93,26 +87,3 @@ for i = 1, 10, 1 do
     space:set({ popup = { drawing = false } })
   end)
 end
-
-local space_window_observer = Sbar.add('item', {
-  drawing = false,
-  updates = true,
-})
-
-space_window_observer:subscribe('space_windows_change', function(env)
-  local icon_line = ''
-  local no_app = true
-  for app, _ in pairs(env.INFO.apps) do
-    no_app = false
-    local lookup = app_icons[app]
-    local icon = ((lookup == nil) and app_icons['default'] or lookup)
-    icon_line = icon_line .. ' ' .. icon
-  end
-
-  if no_app then
-    icon_line = ' —'
-  end
-  Sbar.animate('tanh', 10, function()
-    spaces[env.INFO.space]:set({ label = icon_line })
-  end)
-end)

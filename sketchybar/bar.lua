@@ -5,8 +5,7 @@ Sbar.bar({
   position = 'top',
   sticky = 'off',
   y_offset = 5,
-  color = colors.bar.bg,
+  color = colors.transparent,
   notch_width = 200,
-  corner_radius = 10,
   margin = 10,
 })
