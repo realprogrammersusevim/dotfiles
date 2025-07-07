@@ -53,18 +53,21 @@ Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.back },
   label = { drawing = false },
+  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to previous track'",
 })
 Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.play_pause },
   label = { drawing = false },
+  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to playpause'",
 })
 Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.forward },
   label = { drawing = false },
+  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to next track'",
 })
 
