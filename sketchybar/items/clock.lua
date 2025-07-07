@@ -9,7 +9,7 @@ local clock = Sbar.add('item', 'clock', {
   label = {
     padding_right = 12,
     padding_left = 2,
-  }
+  },
 })
 
 clock:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)

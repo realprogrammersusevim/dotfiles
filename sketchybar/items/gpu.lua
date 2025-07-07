@@ -5,8 +5,8 @@ local colors = require('colors')
 local home = os.getenv('HOME')
 Sbar.exec(
   'killall gpu_load >/dev/null; '
-    .. home
-    .. '/.config/sketchybar/helpers/event_providers/gpu_load/bin/gpu_load gpu_update 2.0'
+  .. home
+  .. '/.config/sketchybar/helpers/event_providers/gpu_load/bin/gpu_load gpu_update 2.0'
 )
 
 local gpu = Sbar.add('graph', 'gpu', 30, {

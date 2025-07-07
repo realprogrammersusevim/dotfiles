@@ -1,5 +1,5 @@
 return {
-  text = 'SF Pro:Bold:14.0', -- Used for text
+  text = 'SF Pro:Bold:14.0',     -- Used for text
   numbers = 'SF Mono:Bold:14.0', -- Used for numbers
 
   -- Unified font style map

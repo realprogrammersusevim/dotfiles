@@ -15,4 +15,3 @@ require('items.disk')
 -- Right items
 require('items.clock')
 require('items.battery')
--- require('items.vpn')
