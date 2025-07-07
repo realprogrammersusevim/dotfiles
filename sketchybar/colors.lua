@@ -8,6 +8,8 @@ return {
   magenta = 0xffbb9af7,
   cyan = 0xff7dcfff,
   transparent = 0x00000000,
+  orange = 0xffff9e64,
+  teal = 0xff7dcfff,
 
   -- Tokyo Night specific colors
   tokyo_night_bg = 0xff1a1b26,
