@@ -89,11 +89,10 @@ battery:subscribe('mouse.clicked', function(env)
   end
 end)
 
--- Sbar.add('bracket', 'battery.bracket', { battery.name }, {
---   background = { color = colors.bg1 },
--- })
---
--- Sbar.add('item', 'battery.padding', {
---   position = 'right',
---   width = settings.group_paddings,
--- })
+Sbar.add('bracket', 'clock_battery_bracket', { 'clock', 'battery' }, {
+  background = {
+    color = colors.tokyo_night_bg,
+    border_color = colors.tokyo_night_border,
+    border_width = 1,
+  },
+})

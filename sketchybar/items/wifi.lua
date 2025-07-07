@@ -10,14 +10,14 @@ Sbar.exec('scutil --nwi', function(result)
   -- for the network interface "en9", which is fired every 2.0 seconds.
   Sbar.exec(
     'killall network_load >/dev/null; '
-      .. home
-      .. '/.config/sketchybar/helpers/event_providers/network_load/bin/network_load '
-      .. interface
-      .. ' network_update 2.0'
+    .. home
+    .. '/.config/sketchybar/helpers/event_providers/network_load/bin/network_load '
+    .. interface
+    .. ' network_update 2.0'
   )
 end)
 
-local wifi_down = Sbar.add('item', 'widgets.wifi2', {
+local wifi_down = Sbar.add('item', 'wifi2', {
   position = 'q',
   width = 90,
   icon = {
@@ -30,7 +30,7 @@ local wifi_down = Sbar.add('item', 'widgets.wifi2', {
   },
 })
 
-local wifi_up = Sbar.add('item', 'widgets.wifi1', {
+local wifi_up = Sbar.add('item', 'wifi1', {
   position = 'q',
   width = 90,
   icon = {
@@ -61,3 +61,10 @@ wifi_up:subscribe('network_update', function(env)
     },
   })
 end)
+
+Sbar.add('bracket', 'wifi_bracket', { 'wifi1', 'wifi2' },
+  {
+    background = {
+      color = colors.tokyo_night_bg
+    }
+  })

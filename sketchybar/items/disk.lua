@@ -1,4 +1,6 @@
 local icons = require('icons')
+local colors = require('colors')
+local settings = require('settings')
 
 local disk = Sbar.add('item', 'disk', {
   position = 'e',
@@ -17,7 +19,14 @@ disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
     end
 
     local percent_used = tonumber(disk_line:match('(%d+)%%'))
-    -- print('disk usage:', percent_used)
     disk:set({ label = { string = percent_used .. '%' } })
   end)
 end)
+
+Sbar.add('bracket', 'system_stats_bracket', { 'memory', 'cpu', 'gpu', 'disk' }, {
+  background = {
+    color = colors.tokyo_night_bg,
+    border_color = colors.tokyo_night_border,
+    border_width = 1,
+  },
+})
