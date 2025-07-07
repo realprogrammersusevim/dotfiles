@@ -11,7 +11,7 @@ for i = 1, 10, 1 do
       font = { family = settings.font.numbers },
       string = i,
       padding_left = 15,
-      padding_right = 8,
+      padding_right = 5,
       color = colors.white,
       highlight_color = colors.tokyo_night_red,
     },
