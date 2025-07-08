@@ -78,7 +78,9 @@ return {
                 indent_style = 'space',
                 indent_size = '2',
                 quote_style = 'single',
-                call_arg_parentheses = 'always'
+                call_arg_parentheses = 'always',
+                max_line_length = '88',
+                break_all_list_when_line_exceed = 'true'
               },
             },
           },
