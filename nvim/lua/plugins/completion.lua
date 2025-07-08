@@ -18,13 +18,20 @@ return {
     dependencies = {
       { 'rafamadriz/friendly-snippets' },
       {
-        'giuxtaposition/blink-cmp-copilot',
-      },
-      {
         dir = '~/code/copilot-arena.nvim',
         enabled = true,
         opts = {},
       },
+      {
+        'echasnovski/mini.snippets',
+        config = function()
+          require('mini.snippets').setup({
+            snippets = {
+              require('mini.snippets').gen_loader.from_lang()
+            }
+          })
+        end
+      }
     },
 
     -- use a release tag to download pre-built binaries
@@ -59,6 +66,8 @@ return {
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
+
+      snippets = { preset = 'mini_snippets' },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`

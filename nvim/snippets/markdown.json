@@ -1,0 +1,3 @@
+{
+  "Blog": {"prefix": "bl", "body": "---\nid: $1\ntitle: $2\ndate: $3\ntags: $0\ndraft: true\n---"}
+}
