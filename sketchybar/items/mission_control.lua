@@ -1,15 +1,17 @@
 local colors = require('colors')
 local settings = require('settings')
 
+local space_labels = { 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ' }
+
 local spaces = {}
 local space_names = {}
 
-for i = 1, 10, 1 do
+for i, label in ipairs(space_labels) do
   local space = Sbar.add('space', 'space.' .. i, {
     space = i,
     icon = {
       font = { family = settings.font.numbers },
-      string = i,
+      string = label,
       padding_left = 15,
       padding_right = 5,
       color = colors.white,
@@ -21,7 +23,9 @@ for i = 1, 10, 1 do
     background = {
       color = colors.tokyo_night_bg,
     },
-    popup = { background = { border_width = 5, border_color = colors.tokyo_night_border } },
+    popup = {
+      background = { border_width = 5, border_color = colors.tokyo_night_border }
+    },
   })
 
   spaces[i] = space
