@@ -85,7 +85,7 @@ alt + cmd - f ; focus
 
 focus < b : open -a "Zen Browser" | skhd -k "escape"
 focus < t : open -a "Ghostty" | skhd -k "escape"
-focus < shift - T : open -a "Things3" | skhd -k "escape"
+focus < shift - t : open -a "Things3" | skhd -k "escape"
 focus < e : open -a "Mail" | skhd -k "escape"
 focus < m : open -a "Messages" | skhd -k "escape"
 focus < shift - m : open -a "Music" | skhd -k "escape"
