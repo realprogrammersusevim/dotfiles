@@ -1,0 +1,10 @@
+#!/usr/bin/env osascript
+
+tell application "Ghostty"
+  if it is not running then
+    launch
+  else
+    activate
+    tell application "System Events" to keystroke "n" using {command down}
+  end if
+end tell

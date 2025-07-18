@@ -65,4 +65,29 @@ alt - n : ~/code/dotfiles/skhd/label.sh
 
 # NON-YABAI
 
-alt + cmd - n : "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window
+# Launcher mode
+:: launcher
+
+# Activate launcher mode
+alt + cmd - n ; launcher
+
+# Launcher mode bindings
+launcher < b : "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window | skhd -k "escape"
+launcher < t : ~/code/dotfiles/skhd/ghostty_window | skhd -k "escape"
+
+# Escape sends us back to normal mode
+launcher < escape ; default
+
+# Focus app mode
+:: focus
+
+alt + cmd - f ; focus
+
+focus < b : open -a "Zen Browser" | skhd -k "escape"
+focus < t : open -a "Ghostty" | skhd -k "escape"
+focus < shift - T : open -a "Things3" | skhd -k "escape"
+focus < e : open -a "Mail" | skhd -k "escape"
+focus < m : open -a "Messages" | skhd -k "escape"
+focus < shift - m : open -a "Music" | skhd -k "escape"
+
+focus < escape ; default
