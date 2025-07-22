@@ -4,7 +4,11 @@ return {
     enabled = false,
     event = 'InsertEnter',
     opts = {
-      suggestion = { enabled = false, auto_trigger = true, keymap = { accept = '<C-CR>' } },
+      suggestion = {
+        enabled = false,
+        auto_trigger = true,
+        keymap = { accept = '<C-CR>' }
+      },
       panel = { enabled = false },
     },
   },
@@ -16,7 +20,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
-      'nvim-telescope/telescope.nvim', -- Optional: For using slash commands
+      'nvim-telescope/telescope.nvim',         -- Optional: For using slash commands
       { 'stevearc/dressing.nvim', opts = {} }, -- Optional: Improves the default Neovim UI
     },
     config = function()

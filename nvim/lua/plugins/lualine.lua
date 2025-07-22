@@ -10,7 +10,13 @@ return {
       component_separators = '|',
       section_separators = { left = '', right = '' },
       globalstatus = true,
-      disabled_filetypes = { 'netrw', 'alpha', 'lazy', 'TelescopePrompt', 'snacks_dashboard' },
+      disabled_filetypes = {
+        'netrw',
+        'alpha',
+        'lazy',
+        'TelescopePrompt',
+        'snacks_dashboard'
+      },
     },
     sections = {
       lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
@@ -22,9 +28,9 @@ return {
       lualine_x = {
         function()
           if
-            vim.bo.filetype == 'md'
-            or vim.bo.filetype == 'txt'
-            or vim.bo.filetype == 'markdown'
+              vim.bo.filetype == 'md'
+              or vim.bo.filetype == 'txt'
+              or vim.bo.filetype == 'markdown'
           then
             if vim.fn.wordcount().visual_words == 1 then
               return tostring(vim.fn.wordcount().visual_words)

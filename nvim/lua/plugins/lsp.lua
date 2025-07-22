@@ -91,7 +91,9 @@ return {
       -- Rust
       vim.lsp.config('rust_analyzer', {
         capabilities = capabilities,
-        settings = { ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } } },
+        settings = {
+          ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } }
+        },
       })
       vim.lsp.enable('rust_analyzer')
 

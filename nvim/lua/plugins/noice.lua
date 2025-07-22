@@ -6,7 +6,7 @@ return {
         command_palette = true,
       },
       popupmenu = {
-        enabled = true, -- enables the Noice popupmenu UI
+        enabled = true,  -- enables the Noice popupmenu UI
         ---@type 'nui'|'cmp'
         backend = 'nui', -- backend to use to show regular cmdline completions
       },
