@@ -1,14 +1,8 @@
 ---
 options:
-model: openrouter/google/gemini-2.5-pro
-edit-format: diff-fenced
-weak-model: openrouter/google/gemini-2.5-flash-preview
+model: openrouter/openai/o3
+reasoning-effort: high
+weak-model: openrouter/google/gemini-2.5-flash
 dark-mode: true
 auto-commits: false
 commit: false
-# model: openrouter/deepseek/deepseek-r1-0528:free
-# editor-model: openrouter/deepseek/deepseek-chat-v3-0324:free
-# edit-format: diff
-# editor-edit-format: diff
-# watch-files: true
-# architect: true
