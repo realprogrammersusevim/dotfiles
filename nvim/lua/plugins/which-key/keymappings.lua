@@ -235,53 +235,6 @@ require('which-key').add({
     '<CMD>ThesaurusReplace<CR>',
     desc = '[t]hesaurus replace',
   },
-  { '<leader>r', group = '[r]estore session' },
-  {
-    '<leader>rs',
-    '<CMD>lua require("persistence").load()<CR>',
-    desc = '[s]ession for current directory',
-  },
-  {
-    '<leader>rl',
-    '<CMD>lua require("persistence").load({ last = true })<CR>',
-    desc = '[l]ast session',
-  },
-  { '<leader>d', group = '[d]ebug' },
-  {
-    '<leader>dc',
-    '<CMD>lua require("dap").continue()<CR>',
-    desc = '[c]ontinue',
-  },
-  {
-    '<leader>di',
-    '<CMD>lua require("dap").step_into()<CR>',
-    desc = 'Step [i]nto',
-  },
-  {
-    '<leader>do',
-    '<CMD>lua require("dap").step_over()<CR>',
-    desc = 'Step [o]ver',
-  },
-  {
-    '<leader>dO',
-    '<CMD>lua require("dap").step_out()<CR>',
-    desc = 'Step [o]ut',
-  },
-  {
-    '<leader>db',
-    '<CMD>lua require("dap").toggle_breakpoint()<CR>',
-    desc = 'Toggle [b]reakpoint',
-  },
-  {
-    '<leader>dB',
-    '<CMD>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
-    desc = 'Set breakpoint',
-  },
-  {
-    '<leader>dt',
-    '<CMD>lua require("dapui").toggle()<CR>',
-    desc = 'DapUI [t]oggle',
-  },
   {
     '<leader>y',
     '<CMD>call setreg("+", @")<CR>',
