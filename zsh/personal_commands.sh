@@ -77,3 +77,31 @@ flasher() {
     read -r -s -t 1 -k && break
   done
 }
+
+# Start the claudex proxy server and run the claude command
+claude() {
+  local started_proxy=0
+
+  # Check if proxy is already running
+  if ! pgrep -f "claudex.main.*--port 8082" > /dev/null; then
+    # Start the proxy server in the background (within a subshell so env changes don't leak)
+    (
+      cd ~/code/claudex \
+      && source .venv/bin/activate \
+      && python -m claudex.main --host 0.0.0.0 --port 8082 --reload > /dev/null 2>&1
+    ) &
+    PROXY_PID=$!
+    started_proxy=1
+
+    # Give the server a moment to start
+    sleep 3
+  fi
+
+  # Run the claude command with the proxy
+  ANTHROPIC_BASE_URL=http://localhost:8082 DISABLE_PROMPT_CACHING=1 /opt/homebrew/bin/claude "$@"
+
+  # Stop the proxy server if we started it
+  if [[ $started_proxy -eq 1 ]] && kill -0 "$PROXY_PID" 2>/dev/null; then
+    kill "$PROXY_PID"
+  fi
+}
