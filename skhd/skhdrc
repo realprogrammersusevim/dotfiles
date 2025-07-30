@@ -91,3 +91,25 @@ focus < m : open -a "Messages" | skhd -k "escape"
 focus < shift - m : open -a "Music" | skhd -k "escape"
 
 focus < escape ; default
+
+# Mail mode for handling mail with Vim-like keybinds
+:: mail
+
+# Activate Mail mode
+alt + cmd - e ; mail
+
+# Navigation
+mail < j : skhd -k 'down'
+mail < k : skhd -k 'up'
+mail < g : skhd -k 'cmd - up'
+mail < shift - g : skhd -k 'cmd - down'
+
+# Actions
+mail < o : skhd -k 'return'                  # open message
+mail < d : skhd -k 'backspace'               # delete
+mail < y : skhd -k 'ctrl + cmd - a'          # archive
+mail < shift - d : skhd -k 'shift + cmd - j' # junk
+mail < r : skhd -k 'cmd - r'                 # reply
+
+# Exit Mail mode
+mail < escape ; default
