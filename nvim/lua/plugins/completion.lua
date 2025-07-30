@@ -17,21 +17,6 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
       { 'rafamadriz/friendly-snippets' },
-      {
-        dir = '~/code/copilot-arena.nvim',
-        enabled = true,
-        opts = {},
-      },
-      {
-        'echasnovski/mini.snippets',
-        config = function()
-          require('mini.snippets').setup({
-            snippets = {
-              require('mini.snippets').gen_loader.from_lang()
-            }
-          })
-        end
-      }
     },
 
     -- use a release tag to download pre-built binaries
@@ -67,8 +52,6 @@ return {
         nerd_font_variant = 'mono',
       },
 
-      snippets = { preset = 'mini_snippets' },
-
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
@@ -78,8 +61,6 @@ return {
           'snippets',
           'buffer',
           'lazydev',
-          -- 'copilot',
-          'copilot-arena',
         },
         providers = {
           lazydev = {
@@ -92,12 +73,6 @@ return {
             name = 'copilot',
             module = 'blink-cmp-copilot',
             score_offset = 100,
-            async = true,
-          },
-          ['copilot-arena'] = {
-            name = 'copilot-arena',
-            module = 'copilot-arena.blink_source',
-            score_offset = 70,
             async = true,
           },
         },

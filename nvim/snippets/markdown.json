@@ -1,4 +1,28 @@
 {
-  "Blog": {"prefix": "bl", "body": "---\nid: $1\ntitle: $2\ndate: $3\ntags: $0\ndraft: true\n---"},
-  "Link": {"prefix": "li", "body": "---\nid: $1\ntitle: $2\ndate: $3\nlink: $4\nvia: $5\ntags: $0\n---"}
+  "Blog Entry": {
+    "prefix": "blog",
+    "body": [
+      "---",
+      "id: ${1:id}",
+      "title: ${2:title}",
+      "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "tags: ${3:tags}",
+      "draft: true",
+      "---"
+    ]
+  }, 
+  "Link Entry": {
+    "prefix": "link",
+    "body": [
+      "---",
+      "id: ${1:id}",
+      "title: ${2:title}",
+      "link: ${3:link}",
+      "via: ${4:via}",
+      "date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "tags: ${5:tags}",
+      "draft: true",
+      "---"
+    ]
+  }
 }
