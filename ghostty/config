@@ -5,4 +5,3 @@ mouse-hide-while-typing = true
 cursor-style-blink = false
 cursor-style=block
 shell-integration-features = no-cursor
-keybind = shift+enter=text:\n
