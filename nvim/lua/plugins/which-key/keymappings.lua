@@ -104,21 +104,6 @@ require('which-key').add({
     desc = '[p]lanets',
   },
   { '<leader>t', group = '[t]rouble' },
-  {
-    '<leader>tt',
-    '<CMD>TroubleToggle<CR>',
-    desc = '[t]rouble',
-  },
-  {
-    '<leader>tn',
-    '<CMD>lua require("trouble").next({ skip_groups = true, jump = true })<CR>',
-    desc = '[n]ext',
-  },
-  {
-    '<leader>tp',
-    '<CMD>lua require("trouble").previous({ skip_groups = true, jump = true })<CR>',
-    desc = '[p]revious',
-  },
   { '<leader>g', group = '[g]it' },
   {
     '<leader>gc',
