@@ -4,36 +4,36 @@ return {
     opts = {},
     cmd = 'Trouble',
     keys = {
-      { '<leader>t', group = 'Trouble' },
+      { '<leader>t', group = '[t]rouble' },
       {
         '<leader>tt',
         '<cmd>Trouble diagnostics toggle<cr>',
-        desc = 'Diagnostics (Trouble)',
+        desc = '[t]oggle diagnostics',
       },
       {
         '<leader>tT',
         '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
+        desc = '[T]oggle buffer diagnostics',
       },
       {
         '<leader>ts',
         '<cmd>Trouble symbols toggle focus=false<cr>',
-        desc = 'Symbols (Trouble)',
+        desc = '[s]ymbols',
       },
       {
         '<leader>tl',
         '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-        desc = 'LSP Definitions / references / ... (Trouble)',
+        desc = '[l]sp definitions/references',
       },
       {
         '<leader>tL',
         '<cmd>Trouble loclist toggle<cr>',
-        desc = 'Location List (Trouble)',
+        desc = '[L]ocation list',
       },
       {
         '<leader>tq',
         '<cmd>Trouble qflist toggle<cr>',
-        desc = 'Quickfix List (Trouble)',
+        desc = '[q]uickfix list',
       },
     },
   }
