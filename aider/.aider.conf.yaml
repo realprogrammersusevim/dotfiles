@@ -5,3 +5,4 @@ weak-model: openrouter/google/gemini-2.5-flash
 dark-mode: true
 auto-commits: false
 commit: false
+vim: true
