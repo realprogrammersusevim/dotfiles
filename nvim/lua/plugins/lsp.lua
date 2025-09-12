@@ -115,8 +115,9 @@ return {
         capabilities = capabilities,
         settings = {
           formatterMode = 'typstyle',
-          exportPdf = 'onType',
           semanticTokens = 'disable',
+          formatterProseWrap = true,
+          formatterPrintWidth = 88
         },
       })
       vim.lsp.enable('tinymist')
