@@ -1,4 +1,4 @@
-theme = dark:tokyonight_night,light:tokyonight-day
+theme = dark:TokyoNight Night,light:TokyoNight Day
 font-thicken = true
 adjust-cursor-thickness = 100%
 mouse-hide-while-typing = true
