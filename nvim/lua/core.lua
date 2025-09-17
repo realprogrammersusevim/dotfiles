@@ -50,3 +50,5 @@ vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')
 opt.confirm = true -- Confirm before quitting
 vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_cursor_short_animation_length = 0.04
+vim.g.neovide_cursor_trail_size = 0.5
