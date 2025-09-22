@@ -5,5 +5,11 @@ return {
     opts = {
       dependencies_bin = { ['tinymist'] = 'tinymist' }, -- Use Mason installed binary
     },
+    keys = {
+      {
+        '<leader>p', group = '[p]review'
+      },
+      { '<leader>pt', '<CMD>TypstPreview<CR>' }
+    }
   },
 }
