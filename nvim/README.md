@@ -12,9 +12,6 @@ since it contains all the plugins and configuration for each of them that I use.
 All my plugins are managed by [lazy.nvim](https://github.com/folke/lazy.nvim)
 and are grouped in separate files.
 
-The `utils` folder has the configuration files for my Lua linters. I copied them
-from the Neovim repository.
-
 The `ftplugin` folder holds the configuration files for special file types.
 
 ## Plugins
