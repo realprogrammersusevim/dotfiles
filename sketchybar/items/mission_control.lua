@@ -21,7 +21,9 @@ for i = 1, 10, 1 do
     background = {
       color = colors.tokyo_night_bg,
     },
-    popup = { background = { border_width = 5, border_color = colors.tokyo_night_border } },
+    popup = {
+      background = { border_width = 5, border_color = colors.tokyo_night_border }
+    },
   })
 
   spaces[i] = space
