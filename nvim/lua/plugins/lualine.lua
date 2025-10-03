@@ -1,3 +1,9 @@
+local wc_fts = {
+  markdown = true,
+  text = true,
+  typst = true
+}
+
 return {
   'nvim-lualine/lualine.nvim', -- Status line
   event = 'VeryLazy',
@@ -27,21 +33,19 @@ return {
       lualine_c = { 'diagnostics' },
       lualine_x = {
         function()
-          if
-              vim.bo.filetype == 'md'
-              or vim.bo.filetype == 'txt'
-              or vim.bo.filetype == 'markdown'
-          then
-            if vim.fn.wordcount().visual_words == 1 then
-              return tostring(vim.fn.wordcount().visual_words)
-            elseif not (vim.fn.wordcount().visual_words == nil) then
-              return tostring(vim.fn.wordcount().visual_words)
-            else
-              return tostring(vim.fn.wordcount().words)
-            end
-          else
+          local ft = vim.bo.filetype
+          if not wc_fts[ft] then
             return ''
           end
+
+          local wc = vim.fn.wordcount()
+          local count = wc.visual_words or wc.words
+
+          if not count then
+            return ''
+          end
+
+          return tostring(count)
         end,
       },
       lualine_y = { 'filetype', 'progress' },
