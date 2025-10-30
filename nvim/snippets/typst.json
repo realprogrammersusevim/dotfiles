@@ -2,17 +2,11 @@
   "Class Notes": {
     "prefix": "notes",
     "body": [
-      "#import \"@preview/noteworthy:0.2.0\": *",
-      "#show: noteworthy.with(",
-      "  paper-size: \"a4\",",
-      "  font: \"New Computer Modern\",",
-      "  language: \"EN\",",
+      "#import \"@local/notable:0.1.0\": *",
+      "#show: notable.with(",
       "  title: \"${1:title}\",",
-      "  author: \"Jonathan Milligan\",",
-      "  contact-details: \"https://jonathansm.com\",",
-      "  toc-title: \"Table of Contents\",",
       ")"
     ],
-    "description": "Template for class notes using noteworthy package"
+    "description": "Template for class notes using my personal notable notes package"
   }
 }
