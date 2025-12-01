@@ -3,10 +3,34 @@ local settings = require('settings')
 
 local spaces = {}
 local space_names = {}
+local MAX_SPACES = 9
 
-for i = 1, 10, 1 do
-  local space = Sbar.add('space', 'space.' .. i, {
-    space = i,
+local function update_workspace_selection(focused_workspace)
+  if focused_workspace == nil then
+    return
+  end
+
+  local trimmed = tostring(focused_workspace):match('^%s*(.-)%s*$')
+  if trimmed == nil or trimmed == '' then
+    return
+  end
+
+  for index, space in ipairs(spaces) do
+    local selected = tostring(index) == trimmed
+    local bg_color = selected and colors.tokyo_night_red or colors.tokyo_night_bg
+
+    Sbar.animate('linear', 5, function()
+      space:set({
+        background = { color = bg_color },
+      })
+    end)
+  end
+end
+
+for i = 1, MAX_SPACES, 1 do
+  local space_index = i
+  local space = Sbar.add('item', 'space.' .. i, {
+    position = 'left',
     icon = {
       font = { family = settings.font.numbers },
       string = i,
@@ -30,9 +54,8 @@ for i = 1, 10, 1 do
   table.insert(space_names, space.name)
 
   -- Padding space
-  Sbar.add('space', 'space.padding.' .. i, {
-    space = i,
-    script = '',
+  Sbar.add('item', 'space.padding.' .. i, {
+    position = 'left',
     width = settings.group_paddings,
     background = {
       drawing = false,
@@ -53,24 +76,12 @@ for i = 1, 10, 1 do
     },
   })
 
-  space:subscribe('space_change', function(env)
-    local selected = env.SELECTED == 'true'
-    local bg_color = selected and colors.tokyo_night_red or colors.tokyo_night_bg
-
-    Sbar.animate('linear', 5, function()
-      space:set({
-        background = { color = bg_color },
-      })
-    end)
-  end)
-
   space:subscribe('mouse.clicked', function(env)
     if env.BUTTON == 'other' then
       space_popup:set({ background = { image = 'space.' .. env.SID } })
       space:set({ popup = { drawing = 'toggle' } })
     else
-      local op = (env.BUTTON == 'right') and '--destroy' or '--focus'
-      Sbar.exec('yabai -m space ' .. op .. ' ' .. env.SID)
+      Sbar.exec('aerospace workspace ' .. space_index)
     end
   end)
 
@@ -84,3 +95,34 @@ Sbar.add('bracket', 'spaces_bracket', space_names, {
     color = colors.tokyo_night_bg,
   },
 })
+
+local workspace_listener = Sbar.add('item', 'aerospace_workspace_listener', {
+  drawing = false,
+  position = 'left',
+  updates = true,
+})
+
+local function refresh_focused_workspace()
+  local cmd = "aerospace list-workspaces --focused --format '%{workspace}'"
+  Sbar.exec(cmd, function(result, exit_code)
+    if exit_code ~= 0 then
+      return
+    end
+
+    update_workspace_selection(result)
+  end)
+end
+
+workspace_listener:subscribe(
+  { 'aerospace_workspace_change' }, function(
+      env)
+    print('triggered')
+    if env.FOCUSED_WORKSPACE ~= nil then
+      update_workspace_selection(env.FOCUSED_WORKSPACE)
+      return
+    end
+
+    refresh_focused_workspace()
+  end)
+
+refresh_focused_workspace()
