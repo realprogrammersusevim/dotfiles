@@ -2,6 +2,7 @@ local colors = require('colors')
 local settings = require('settings')
 
 local spaces = {}
+local space_paddings = {}
 local space_names = {}
 local MAX_SPACES = 9
 
@@ -54,13 +55,14 @@ for i = 1, MAX_SPACES, 1 do
   table.insert(space_names, space.name)
 
   -- Padding space
-  Sbar.add('item', 'space.padding.' .. i, {
+  local padding_item = Sbar.add('item', 'space.padding.' .. i, {
     position = 'left',
     width = settings.group_paddings,
     background = {
       drawing = false,
     },
   })
+  space_paddings[i] = padding_item
   table.insert(space_names, 'space.padding.' .. i)
 
   local space_popup = Sbar.add('item', {
@@ -90,6 +92,37 @@ for i = 1, MAX_SPACES, 1 do
   end)
 end
 
+local function refresh_visible_workspaces(callback)
+  local cmd =
+  "aerospace list-workspaces --monitor all --empty no --format '%{workspace}'"
+  Sbar.exec(cmd, function(result, exit_code)
+    if exit_code ~= 0 then
+      return
+    end
+
+    local visible_workspaces = {}
+    for workspace in string.gmatch(result, '[^\r\n]+') do
+      local trimmed = workspace:match('^%s*(.-)%s*$')
+      if trimmed ~= nil and trimmed ~= '' then
+        visible_workspaces[trimmed] = true
+      end
+    end
+
+    for index, space in ipairs(spaces) do
+      local is_visible = visible_workspaces[tostring(index)] == true
+      space:set({ drawing = is_visible })
+      local padding = space_paddings[index]
+      if padding ~= nil then
+        padding:set({ drawing = is_visible })
+      end
+    end
+
+    if callback ~= nil then
+      callback()
+    end
+  end)
+end
+
 Sbar.add('bracket', 'spaces_bracket', space_names, {
   background = {
     color = colors.tokyo_night_bg,
@@ -116,7 +149,7 @@ end
 workspace_listener:subscribe(
   { 'aerospace_workspace_change' }, function(
       env)
-    print('triggered')
+    refresh_visible_workspaces()
     if env.FOCUSED_WORKSPACE ~= nil then
       update_workspace_selection(env.FOCUSED_WORKSPACE)
       return
@@ -125,4 +158,5 @@ workspace_listener:subscribe(
     refresh_focused_workspace()
   end)
 
+refresh_visible_workspaces()
 refresh_focused_workspace()
