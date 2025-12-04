@@ -26,7 +26,11 @@ on-focus-changed = ['exec-and-forget sketchybar --trigger aerospace_workspaces_u
 [gaps]
 inner.horizontal = 5
 inner.vertical = 5
-outer.top = 5
+outer.top = [
+  { monitor."built-in" = 10 },
+  { monitor."main" = 40 },
+  40
+]
 outer.bottom = 10
 outer.left = 10
 outer.right = 10
