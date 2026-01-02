@@ -105,3 +105,33 @@ claude() {
     kill "$PROXY_PID"
   fi
 }
+
+function viewtyp() {
+    # Check for argument
+    if [[ -z "$1" ]]; then
+        echo "Usage: viewtyp <filename.typ>" >&2
+        return 1
+    fi
+
+    local src="$1"
+    
+    # Verify source existence
+    if [[ ! -f "$src" ]]; then
+        echo "Error: File '$src' not found." >&2
+        return 1
+    fi
+
+    # Construct an ephemeral output path.
+    # We preserve the basename so the window title in Skim remains identifiable.
+    local base_name
+    base_name=$(basename "${src%.*}")
+    local pdf_dest="${TMPDIR:-/tmp}/${base_name}_view_$(date +%s).pdf"
+
+    # Compile and Open
+    if typst compile "$src" "$pdf_dest"; then
+        open -a Skim "$pdf_dest"
+    else
+        echo "Compilation failed." >&2
+        return 1
+    fi
+}
