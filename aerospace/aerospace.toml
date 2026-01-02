@@ -90,8 +90,8 @@ if.app-name-regex-substring = '^DarkSoulsRemastered\\.exe$'
 run = 'layout floating'
 
 [mode.main.binding]
-alt-b = 'split horizontal'
-alt-v = 'split vertical'
+# alt-b = 'split horizontal'
+# alt-v = 'split vertical'
 
 # Navigation
 alt-h = 'focus left'
