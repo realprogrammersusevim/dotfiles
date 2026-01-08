@@ -28,6 +28,10 @@ return {
         on_attach = on_attach,
       })
       vim.lsp.enable('ruff')
+      vim.lsp.config('ty', {
+        capabilities = capabilities
+      })
+      vim.lsp.enable('ty')
       vim.lsp.config('pyright', {
         settings = {
           pyright = {
