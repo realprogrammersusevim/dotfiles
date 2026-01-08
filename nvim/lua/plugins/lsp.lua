@@ -22,112 +22,89 @@ return {
       end
 
       -- Setup lspconfig
-      -- Python
-      vim.lsp.config('ruff', {
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
-      vim.lsp.enable('ruff')
-      vim.lsp.config('ty', {
-        capabilities = capabilities
-      })
-      vim.lsp.enable('ty')
-      vim.lsp.config('pyright', {
-        settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { '*' },
-            },
-          },
+      local servers = {
+        ruff = {
+          on_attach = on_attach,
         },
-      })
-      vim.lsp.enable('pyright')
-
-      -- Lua
-      vim.lsp.config('lua_ls', {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              -- Shut up about the vim global
-              globals = { 'vim' },
+        ty = {},
+        pyright = {
+          settings = {
+            pyright = {
+              -- Using Ruff's import organizer
+              disableOrganizeImports = true,
             },
-            runtime = {
-              -- Tell the language server where to look for Lua libraries
-              version = 'LuaJIT',
-              path = vim.split(package.path, ';'),
-            },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              -- library = vim.api.nvim_get_runtime_file('', true), -- Don't enable this, folke/neodev does this automatically and only for correct neovim files
-              checkThirdParty = false,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = { enable = false },
-            semantic = {
-              -- Treesitter highlighting is better
-              enable = false,
-            },
-            completion = {
-              displayContext = true,
-            },
-            format = {
-              enable = true,
-              defaultConfig = {
-                indent_style = 'space',
-                indent_size = '2',
-                quote_style = 'single',
-                call_arg_parentheses = 'always',
-                max_line_length = '88',
-                break_all_list_when_line_exceed = 'true'
+            python = {
+              analysis = {
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' },
               },
             },
           },
         },
-      })
-      vim.lsp.enable('lua_ls')
-
-      -- Rust
-      vim.lsp.config('rust_analyzer', {
-        capabilities = capabilities,
-        settings = {
-          ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } }
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                -- Shut up about the vim global
+                globals = { 'vim' },
+              },
+              runtime = {
+                -- Tell the language server where to look for Lua libraries
+                version = 'LuaJIT',
+                path = vim.split(package.path, ';'),
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                -- library = vim.api.nvim_get_runtime_file('', true), -- Don't enable this, folke/neodev does this automatically and only for correct neovim files
+                checkThirdParty = false,
+              },
+              -- Do not send telemetry data containing a randomized but unique identifier
+              telemetry = { enable = false },
+              semantic = {
+                -- Treesitter highlighting is better
+                enable = false,
+              },
+              completion = {
+                displayContext = true,
+              },
+              format = {
+                enable = true,
+                defaultConfig = {
+                  indent_style = 'space',
+                  indent_size = '2',
+                  quote_style = 'single',
+                  call_arg_parentheses = 'always',
+                  max_line_length = '88',
+                  break_all_list_when_line_exceed = 'true'
+                },
+              },
+            },
+          },
         },
-      })
-      vim.lsp.enable('rust_analyzer')
-
-      -- Markdown
-      vim.lsp.config('marksman', {
-        capabilities = capabilities,
-        -- single_file_support = false,
-      })
-      vim.lsp.enable('marksman')
-
-      -- C/C++
-      vim.lsp.config('clangd', { capabilities = capabilities })
-      vim.lsp.enable('clangd')
-
-      vim.lsp.config('ts_ls', { capabilities = capabilities })
-      vim.lsp.enable('ts_ls')
-
-      vim.lsp.config('tinymist', {
-        capabilities = capabilities,
-        settings = {
-          formatterMode = 'typstyle',
-          semanticTokens = 'disable',
-          formatterProseWrap = true,
-          formatterPrintWidth = 88
+        rust_analyzer = {
+          settings = {
+            ['rust-analyzer'] = { checkOnSave = true, check = { command = 'clippy' } }
+          },
         },
-      })
-      vim.lsp.enable('tinymist')
+        marksman = {},
+        clangd = {},
+        ts_ls = {},
+        tinymist = {
+          settings = {
+            formatterMode = 'typstyle',
+            semanticTokens = 'disable',
+            formatterProseWrap = true,
+            formatterPrintWidth = 88
+          },
+        },
+        harper_ls = {},
+      }
 
-      vim.lsp.config('harper_ls', { capabilities = capabilities })
-      vim.lsp.enable('harper_ls')
+      for name, config in pairs(servers) do
+        config.capabilities = config.capabilities or capabilities
+        vim.lsp.config(name, config)
+        vim.lsp.enable(name)
+      end
 
       vim.diagnostic.config({
         severity_sort = true,
