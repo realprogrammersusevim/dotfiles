@@ -1,20 +1,17 @@
 local icons = require('icons')
 local colors = require('colors')
+local utils = require('helpers.utils')
 
 Sbar.add('event', 'music_update', 'com.apple.Music.playerInfo')
 
 local media_cover = Sbar.add('item', {
   position = 'q',
+  width = 25,
+  align = 'center',
   background = {
-    image = {
-      string = 'media.artwork',
-      scale = 0.03,
-      corner_radius = 5,
-    },
     color = colors.transparent,
-    padding_right = 8,
   },
-  corner_radius = 8,
+  corner_radius = 20,
   label = { drawing = false },
   icon = { drawing = false },
   drawing = false,
@@ -86,74 +83,27 @@ local function animate_detail(detail)
   end)
 end
 
-local artwork_path = (os.getenv('TMPDIR') or '/tmp') .. '/sketchybar_media_artwork.jpg'
-
 media_cover:subscribe('music_update', function(env)
-  local script = [[
-    osascript -e '
-      on run argv
-        set artworkFile to (item 1 of argv)
-        tell application "Music"
-          if player state is not playing then return "not_playing"
-
-          set currentTrack to current track
-          set trackName to name of currentTrack
-          set trackArtist to artist of currentTrack
-          set hasArtwork to "false"
-
-          try
-            if (count of artworks of currentTrack) > 0 then
-              set artData to data of artwork 1 of currentTrack
-              set f to open for access artworkFile with write permission
-              set eof f to 0
-              write artData to f
-              close access f
-              set hasArtwork to "true"
-            end if
-          on error
-            -- ignore if artwork fails
-          end try
-
-          return trackArtist & "\n" & trackName & "\n" & hasArtwork
-        end tell
-      end run
-    ' "]] .. artwork_path .. [["
-  ]]
-
-  Sbar.exec(script, function(result)
-    if result == 'not_playing\n' or result == '' then
-      media_artist:set({ drawing = false })
-      media_title:set({ drawing = false })
-      media_cover:set({ drawing = false, popup = { drawing = false } })
-      animate_detail(false)
-      return
-    end
-
-    local parts = {}
-    for part in result:gmatch('([^\n]+)') do
-      table.insert(parts, part)
-    end
-
-    local artist = parts[1] or ''
-    local title = parts[2] or ''
-    local has_artwork = (parts[3] or 'false') == 'true'
-
-    media_artist:set({ drawing = true, label = artist })
-    media_title:set({ drawing = true, label = title })
-
-    if has_artwork then
-      media_cover:set({
-        drawing = true,
-        background = { image = { string = artwork_path } },
-      })
-    else
-      media_cover:set({ drawing = false })
-    end
+  if env['INFO']['Player State'] == 'Paused' then
+    media_artist:set({ drawing = false })
+    media_title:set({ drawing = false })
+    media_cover:set({ drawing = false, popup = { drawing = false } })
+    animate_detail(false)
+    return
+  elseif env['INFO']['Player State'] == 'Playing' then
+    media_artist:set({ drawing = true, label = env['INFO']['Artist'] })
+    media_title:set({ drawing = true, label = env['INFO']['Name'] })
+    media_cover:set({
+      drawing = true,
+      background = {
+        color = utils.string_to_color_rgba(env['INFO']['Genre'])
+      }
+    })
 
     animate_detail(true)
     interrupt = interrupt + 1
     Sbar.delay(5, animate_detail)
-  end)
+  end
 end)
 
 media_cover:subscribe('mouse.entered', function(env)
