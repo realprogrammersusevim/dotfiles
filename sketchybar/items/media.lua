@@ -85,9 +85,6 @@ end
 
 media_cover:subscribe('music_update', function(env)
   if env['INFO']['Player State'] == 'Paused' then
-    media_artist:set({ drawing = false })
-    media_title:set({ drawing = false })
-    media_cover:set({ drawing = false, popup = { drawing = false } })
     animate_detail(false)
     return
   elseif env['INFO']['Player State'] == 'Playing' then
