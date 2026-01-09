@@ -15,3 +15,6 @@ require('items.disk')
 -- Right items
 require('items.clock')
 require('items.battery')
+
+-- Logic items
+require('items.animator')
