@@ -2,18 +2,14 @@ local icons = require('icons')
 local colors = require('colors')
 local settings = require('settings')
 
--- Get the active network interface
-Sbar.exec('scutil --nwi', function(result)
-  local interface = result:match('Network interfaces: (%l%l%d)')
-  local home = os.getenv('HOME')
-  Sbar.exec(
-    'killall network_load >/dev/null; '
-    .. home
-    .. '/.config/sketchybar/helpers/event_providers/network_load/bin/network_load '
-    .. interface
-    .. ' network_update 2.0'
-  )
-end)
+-- Start the network_load helper
+local home = os.getenv('HOME')
+Sbar.exec(
+  'killall network_load >/dev/null; '
+  .. home
+  .. '/.config/sketchybar/helpers/event_providers/network_load/bin/network_load '
+  .. 'network_update 2.0'
+)
 
 local wifi_down = Sbar.add('item', 'wifi2', {
   position = 'q',
