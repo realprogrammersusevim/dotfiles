@@ -6,8 +6,6 @@ local settings = require('settings')
 Sbar.exec('scutil --nwi', function(result)
   local interface = result:match('Network interfaces: (%l%l%d)')
   local home = os.getenv('HOME')
-  -- Execute the event provider binary which provides the event "network_update"
-  -- for the network interface "en9", which is fired every 2.0 seconds.
   Sbar.exec(
     'killall network_load >/dev/null; '
     .. home

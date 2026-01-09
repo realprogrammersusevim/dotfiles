@@ -5,14 +5,14 @@ local colors = require('colors')
 local memory = Sbar.add('graph', 'memory', 30, {
   position = 'e',
   icon = { string = icons.memory, color = 0xff9ece6a },
+  graph = { color = colors.blue },
   update_freq = 5,
 })
 
 memory:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   Sbar.exec('memory_pressure -Q', function(res, code)
-    -- print('reloaded memory')
     local percent_used = 100 - tonumber(res:match('(%d+)%%'))
-    local color = colors.label
+    local color = colors.blue
     if percent_used > 90 then
       color = colors.red
     elseif percent_used > 80 then
