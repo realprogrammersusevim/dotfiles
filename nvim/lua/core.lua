@@ -19,6 +19,7 @@ opt.conceallevel = 0 -- Turn off conceal
 opt.fileencoding = 'utf-8'
 opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()' -- Use Treesitter for folding
+opt.foldlevel = 99
 opt.foldenable = false
 opt.hidden = true
 opt.hlsearch = true      -- Highlight all search matches
