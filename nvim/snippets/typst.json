@@ -8,5 +8,12 @@
       ")"
     ],
     "description": "Template for class notes using my personal notable notes package"
+  },
+  "Graph Weight": {
+    "prefix": "label",
+    "body": [
+      "[label=\\\"${1:label}\\\", weight=\\\"${2:weight}\\\"]"
+    ],
+    "description": "Add label and weight to graphviz graph"
   }
 }
