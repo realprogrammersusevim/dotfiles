@@ -16,5 +16,12 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    image = {
+      enabled = true,
+      doc = {
+        float = true,   -- show as floating window on hover
+        inline = false, -- disable inline rendering
+      },
+    },
   },
 }
