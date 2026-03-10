@@ -21,3 +21,5 @@ export BAT_THEME="OneHalfDark"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export GIT_EDITOR="nvim"
+
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000
