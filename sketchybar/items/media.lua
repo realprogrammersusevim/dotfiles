@@ -10,8 +10,8 @@ local media_cover = Sbar.add('item', {
   align = 'center',
   background = {
     color = colors.transparent,
+    corner_radius = 20,
   },
-  corner_radius = 20,
   label = { drawing = false },
   icon = { drawing = false },
   drawing = false,
