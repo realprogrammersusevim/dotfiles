@@ -4,8 +4,8 @@ function M.dump(o)
   if type(o) == 'table' then
     local s = '{ '
     for k, v in pairs(o) do
-      if type(k) ~= 'number' then k = '"' .. k .. '"' end
-      s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
+      local key = type(k) ~= 'number' and '"' .. k .. '"' or k
+      s = s .. '[' .. key .. '] = ' .. M.dump(v) .. ','
     end
     return s .. '} '
   else
