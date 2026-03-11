@@ -36,10 +36,10 @@ vim.api.nvim_create_user_command('Daily', function()
     table.insert(
       full_bar,
       name
-        .. ' │'
-        .. string.rep(filler, math.floor(unit * current))
-        .. string.rep(' ', length - math.floor(unit * current))
-        .. '│'
+      .. ' │'
+      .. string.rep(filler, math.floor(unit * current))
+      .. string.rep(' ', length - math.floor(unit * current))
+      .. '│'
     )
     table.insert(full_bar, spacer .. '╰' .. line .. '╯')
 
@@ -105,14 +105,16 @@ end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('ZoteroCite', function()
   local format = 'pandoc'
-  local api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format=' .. format .. '&brackets'
+  local api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format=' ..
+      format .. '&brackets'
   local ref = vim.fn.system('curl -s "' .. api_call .. '"')
   vim.cmd('normal! i' .. '[' .. ref .. ']')
 end, { nargs = 0 })
 
 vim.api.nvim_create_user_command('ThesaurusReplace', function()
   local word = vim.fn.expand('<cword>')
-  local results = vim.fn.system('rg -N -i ^' .. word .. ', ~/.config/nvim/utils/thesaurii.txt')
+  local results = vim.fn.system('rg -N -i ^' ..
+    word .. ', ~/.config/nvim/utils/thesaurii.txt')
   -- Split by commas and remove the first word
   local synonyms = vim.fn.split(results, ',')
   table.remove(synonyms, 1)
