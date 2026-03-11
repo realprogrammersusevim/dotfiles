@@ -128,3 +128,11 @@ vim.api.nvim_create_user_command('ThesaurusReplace', function()
     vim.cmd('normal! ciw' .. choice)
   end)
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command('TypstPdf', function()
+  local filepath = vim.api.nvim_buf_get_name(0)
+  if filepath:match('%.typ$') then
+    local pdf_path = filepath:gsub('%.typ$', '.pdf')
+    vim.system({ 'sioyek', pdf_path })
+  end
+end, {})

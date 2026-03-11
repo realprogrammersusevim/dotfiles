@@ -9,7 +9,8 @@ return {
       {
         '<leader>p', group = '[p]review'
       },
-      { '<leader>pt', '<CMD>TypstPreview<CR>' }
+      { '<leader>pt', '<CMD>TypstPreview<CR>' },
+      { '<leader>pT', '<CMD>TypstPdf<CR>' }
     }
   },
 }
