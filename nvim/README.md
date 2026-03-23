@@ -22,6 +22,7 @@ The `ftplugin` folder holds the configuration files for special file types.
 | --------------------------- | ---------------------------------------- |
 | blink.cmp                   | 4b18c32adef2898f95cdef6192cbd5796c1a332d |
 | bullets.vim                 | 89294b8930e660936374fb763ac48a1ac51dd29c |
+| claudecode.nvim             | 432121f0f5b9bda041030d1e9e83b7ba3a93dd8f |
 | conform.nvim                | c2526f1cde528a66e086ab1668e996d162c75f4f |
 | friendly-snippets           | 6cd7280adead7f586db6fccbd15d2cac7e2188b9 |
 | gitsigns.nvim               | 9f3c6dd7868bcc116e9c1c1929ce063b978fa519 |
