@@ -2,7 +2,7 @@
   "Class Notes": {
     "prefix": "notes",
     "body": [
-      "#import \"@local/notable:0.4.0\": *",
+      "#import \"@local/notable:0.6.0\": *",
       "#show: notable.with(",
       "  title: \"${1:title}\",",
       ")"
