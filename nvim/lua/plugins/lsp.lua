@@ -91,7 +91,6 @@ return {
         ts_ls = {},
         tinymist = {
           settings = {
-            exportPdf = 'onType',
             formatterMode = 'typstyle',
             semanticTokens = 'disable',
             formatterProseWrap = true,
