@@ -5,6 +5,7 @@ require('items.front_app')
 -- Notch left
 require('items.wifi')
 require('items.media')
+require('items.artemis')
 
 -- Notch right
 require('items.memory')
