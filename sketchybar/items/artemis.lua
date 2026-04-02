@@ -3,7 +3,6 @@ local colors    = require('colors')
 -- Artemis II / Orion "Integrity"
 -- Launched: April 1, 2026 22:35:12 UTC  (Unix: 1775082912)
 local LAUNCH_T  = 1775082912
-local CYCLE_SEC = 10 -- seconds per slide
 
 local PHASES    = {
   { 90480,     'Earth Orbit',      colors.blue },
@@ -59,69 +58,61 @@ local function get_next_event(elapsed)
   return nil, nil
 end
 
--- slides = list of { text, color } cycled by the display loop
-local slides      = {}
-local slide_index = 1
-local cycling     = false
+-- Three bar items
+local orion_phase = Sbar.add('item', 'orion_phase', {
+  position    = 'q',
+  update_freq = 60,
+  icon        = { drawing = false },
+  label       = { string = 'Orion ...' },
+})
 
-local function show_next_slide()
-  if #slides == 0 then
-    cycling = false
-    return
-  end
+local orion_traj = Sbar.add('item', 'orion_traj', {
+  position = 'q',
+  icon     = { drawing = false },
+  label    = { string = '...' },
+})
 
-  -- collapse width → swap text → expand width
-  orion:set({ label = { width = 0 } })
-  local s = slides[slide_index]
-  slide_index = (slide_index % #slides) + 1
-  orion:set({ label = { string = s.text, color = s.color, width = 'dynamic' } })
-  orion:set({ label = { width = 'dynamic' } })
-  Sbar.delay(CYCLE_SEC, show_next_slide)
-end
+local orion_event = Sbar.add('item', 'orion_event', {
+  position = 'q',
+  icon     = { drawing = false },
+  label    = { string = '...' },
+})
 
-local function start_cycle()
-  if cycling then return end
-  cycling = true
-  show_next_slide()
-end
+local cached_traj_text  = '...'
+local cached_traj_color = colors.tokyo_night_comment
 
-local function rebuild_local_slides(traj_slide)
+local function update_local()
   local elapsed = os.time() - LAUNCH_T
   if elapsed < 0 then return end
 
   local phase, phase_color     = get_phase(elapsed)
   local event_name, event_secs = get_next_event(elapsed)
 
-  local next_color             = colors.tokyo_night_comment
-  if event_secs then
-    next_color = event_secs < 3600 and colors.red
-        or event_secs < 14400 and colors.yellow
-        or colors.tokyo_night_comment
-  end
-
-  local new_slides = {
-    {
-      text  = string.format('%s  T+%s', phase, format_duration(elapsed)),
-      color = phase_color,
+  orion_phase:set({
+    label = {
+      string = string.format('%s  T+%s', phase, format_duration(elapsed)),
+      color  = phase_color,
     },
-  }
+  })
 
-  if traj_slide then
-    new_slides[#new_slides + 1] = traj_slide
-  end
+  orion_traj:set({
+    label = { string = cached_traj_text, color = cached_traj_color },
+  })
 
   if event_name then
-    new_slides[#new_slides + 1] = {
-      text  = string.format('%s in %s', event_name, format_duration(event_secs)),
-      color = next_color,
-    }
+    local next_color = event_secs < 3600 and colors.red
+        or event_secs < 14400 and colors.yellow
+        or colors.tokyo_night_comment
+    orion_event:set({
+      label = {
+        string = string.format('%s in %s', event_name, format_duration(event_secs)),
+        color  = next_color,
+      },
+    })
+  else
+    orion_event:set({ label = { string = '' } })
   end
-
-  slides = new_slides
 end
-
--- Cached traj slide so local refreshes don't lose it
-local cached_traj_slide = nil
 
 local function fetch_orion()
   local now    = os.date('!%Y-%m-%d %H:%M')
@@ -159,41 +150,30 @@ print(f"{dist:.0f},{speed:.3f},{rr:.4f}")
     rr                    = tonumber(rr)
     if not (dist and speed and rr) then return end
 
-    local approaching = rr < 0
-    local arrow       = approaching and '↓' or '↑'
-    local dist_str    = dist >= 10000
+    local approaching      = rr < 0
+    local arrow            = approaching and '↓' or '↑'
+    local dist_str         = dist >= 10000
         and string.format('%.0fk km', dist / 1000)
         or string.format('%.0f km', dist)
 
-    cached_traj_slide = {
-      text  = string.format('%s%s  %.2f km/s', dist_str, arrow, speed),
-      color = approaching and colors.yellow or colors.teal,
-    }
-    rebuild_local_slides(cached_traj_slide)
+    cached_traj_text  = string.format('%s%s  %.2f km/s', dist_str, arrow, speed)
+    cached_traj_color = approaching and colors.yellow or colors.teal
+    update_local()
   end)
 end
 
--- Single bar item
-orion = Sbar.add('item', 'orion', {
-  position    = 'q',
-  update_freq = 60,
-  icon        = { drawing = false },
-  label       = { string = 'Orion ...' },
-})
-
 local call_count = 0
-orion:subscribe({ 'routine', 'system_woke' }, function()
+orion_phase:subscribe({ 'routine', 'system_woke' }, function()
   call_count = call_count + 1
-  rebuild_local_slides(cached_traj_slide)
+  update_local()
   if call_count % 5 == 0 then fetch_orion() end -- API every 5 min
 end)
 
-orion:subscribe('forced', function()
-  rebuild_local_slides(cached_traj_slide)
+orion_phase:subscribe('forced', function()
+  update_local()
   fetch_orion()
 end)
 
 -- Initial load
-rebuild_local_slides(nil)
-start_cycle()
+update_local()
 fetch_orion()
