@@ -1,8 +1,21 @@
 local wc_fts = {
   markdown = true,
   text = true,
-  typst = true
+  typst = true,
 }
+
+local wc_cache = {}
+
+vim.api.nvim_create_autocmd(
+  { 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
+    callback = function(ev)
+      local ft = vim.bo[ev.buf].filetype
+      if wc_fts[ft] then
+        local wc = vim.fn.wordcount()
+        wc_cache[ev.buf] = wc.visual_words or wc.words
+      end
+    end,
+  })
 
 return {
   'nvim-lualine/lualine.nvim', -- Status line
@@ -34,18 +47,9 @@ return {
       lualine_x = {
         function()
           local ft = vim.bo.filetype
-          if not wc_fts[ft] then
-            return ''
-          end
-
-          local wc = vim.fn.wordcount()
-          local count = wc.visual_words or wc.words
-
-          if not count then
-            return ''
-          end
-
-          return tostring(count)
+          if not wc_fts[ft] then return '' end
+          local count = wc_cache[vim.api.nvim_get_current_buf()]
+          return count and tostring(count) or ''
         end,
       },
       lualine_y = { 'filetype', 'progress' },
