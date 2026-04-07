@@ -1,10 +1,10 @@
-local colors    = require('colors')
+local colors   = require('colors')
 
 -- Artemis II / Orion "Integrity"
 -- Launched: April 1, 2026 22:35:12 UTC  (Unix: 1775082912)
-local LAUNCH_T  = 1775082912
+local LAUNCH_T = 1775082912
 
-local PHASES    = {
+local PHASES   = {
   { 90480,     'Earth Orbit',      colors.blue },
   { 367680,    'Translunar Coast', colors.teal },
   { 433860,    'Lunar Approach',   colors.yellow },
@@ -14,7 +14,7 @@ local PHASES    = {
   { math.huge, 'Splashdown!',      colors.green },
 }
 
-local EVENTS    = {
+local EVENTS   = {
   { 90480,  'TLI burn' },
   { 173280, 'TCM-1' },
   { 263280, 'TCM-2' },
@@ -59,20 +59,20 @@ local function get_next_event(elapsed)
 end
 
 -- Three bar items
-local orion_phase = Sbar.add('item', 'orion_phase', {
+local orion_phase       = Sbar.add('item', 'orion_phase', {
   position    = 'q',
   update_freq = 60,
   icon        = { drawing = false },
   label       = { string = 'Orion ...' },
 })
 
-local orion_traj = Sbar.add('item', 'orion_traj', {
+local orion_traj        = Sbar.add('item', 'orion_traj', {
   position = 'q',
   icon     = { drawing = false },
   label    = { string = '...' },
 })
 
-local orion_event = Sbar.add('item', 'orion_event', {
+local orion_event       = Sbar.add('item', 'orion_event', {
   position = 'q',
   icon     = { drawing = false },
   label    = { string = '...' },
@@ -150,13 +150,10 @@ print(f"{dist:.0f},{speed:.3f},{rr:.4f}")
     rr                    = tonumber(rr)
     if not (dist and speed and rr) then return end
 
-    local approaching      = rr < 0
-    local arrow            = approaching and '↓' or '↑'
-    local dist_str         = dist >= 10000
-        and string.format('%.0fk km', dist / 1000)
-        or string.format('%.0f km', dist)
+    local approaching = rr < 0
+    local arrow       = approaching and '↓' or '↑'
 
-    cached_traj_text  = string.format('%s%s  %.2f km/s', dist_str, arrow, speed)
+    cached_traj_text  = string.format('%s%s  %.2f km/s', dist, arrow, speed)
     cached_traj_color = approaching and colors.yellow or colors.teal
     update_local()
   end)
