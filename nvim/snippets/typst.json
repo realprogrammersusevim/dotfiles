@@ -15,5 +15,26 @@
       "[label=\\\"${1:label}\\\", weight=\\\"${2:weight}\\\"]"
     ],
     "description": "Add label and weight to graphviz graph"
-  }
+  },
+  "Figure": {
+    "prefix": "fig",
+    "body": [
+       "#figure(",
+       " ${1:content} ,",
+       "caption : [${2:caption}]",
+       ")<${3:reference}>"
+    ],
+    "description": "Figure"
+ },
+ "Table": {
+  "prefix": "table",
+  "body": [
+     "#table(",
+     "  columns: ${1:columns},",
+     "  table.header([${2:header}]),",
+     "  [${3:data}]",
+     ")"
+  ],
+  "description": "Table"
+ }
 }
