@@ -3,8 +3,7 @@ require('items.mission_control')
 require('items.front_app')
 
 -- Notch left
--- require('items.wifi')
-require('items.artemis')
+require('items.wifi')
 require('items.media')
 
 -- Notch right
