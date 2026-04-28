@@ -129,6 +129,18 @@ alt-8 = 'workspace 8'
 alt-f = 'fullscreen'
 alt-t = 'layout floating tiling'
 
+# Tree reshaping — wrap the focused window with a neighbor into a sub-container
+alt-shift-comma  = 'join-with left'
+alt-shift-period = 'join-with right'
+alt-shift-minus  = 'join-with down'
+alt-shift-equal  = 'join-with up'
+
+# Toggle the parent container's orientation (horizontal <-> vertical)
+alt-slash = 'layout tiles horizontal vertical'
+
+# Equalize sibling sizes
+alt-equal = 'balance-sizes'
+
 # Rename the current workspace (matches skhd helper)
 alt-n = 'exec-and-forget ~/code/dotfiles/skhd/label.sh'
 
