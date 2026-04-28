@@ -32,7 +32,6 @@ return {
       require('nvim-treesitter').install({
         'lua',
         'rust',
-        'vim',
         'python',
         'markdown',
         'bash'
