@@ -34,13 +34,28 @@ return {
         'rust',
         'python',
         'markdown',
-        'bash'
+        'markdown_inline',
+        'bash',
+        'typescript',
+        'tsx',
+        'javascript'
       })
 
-      -- Highlighting: now native to Neovim; enable for all filetypes that have a parser
+      -- Highlighting: now native to Neovim; enable for any filetype that has a parser
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = { '<filetype>' },
-        callback = function() vim.treesitter.start() end,
+        pattern = '*',
+        callback = function(args)
+          local buf = args.buf
+          -- Skip special/non-file buffers (noice popups, snacks notifications, etc.)
+          if vim.bo[buf].buftype ~= '' then return end
+          local lang = vim.treesitter.language.get_lang(args.match) or args.match
+          -- language.add returns false (not error) when no parser exists, so
+          -- capture its result rather than relying on pcall success alone.
+          local ok, added = pcall(vim.treesitter.language.add, lang)
+          if ok and added then
+            vim.treesitter.start(buf, lang)
+          end
+        end,
       })
 
       -- Indentation (experimental)
