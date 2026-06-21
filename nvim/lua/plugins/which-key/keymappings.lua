@@ -34,6 +34,52 @@ require('which-key').add({
   },
   { '<leader>s', group = 'Search' },
   { '<leader>t', group = '[t]rouble' },
+  { '<leader>d', group = '[d]ebug' },
+  {
+    '<leader>dc',
+    function() require('dap').continue() end,
+    desc = '[c]ontinue',
+  },
+  {
+    '<leader>di',
+    function() require('dap').step_into() end,
+    desc = 'step [i]nto',
+  },
+  {
+    '<leader>do',
+    function() require('dap').step_over() end,
+    desc = 'step [o]ver',
+  },
+  {
+    '<leader>dO',
+    function() require('dap').step_out() end,
+    desc = 'step [O]ut',
+  },
+  {
+    '<leader>db',
+    function() require('dap').toggle_breakpoint() end,
+    desc = 'toggle [b]reakpoint',
+  },
+  {
+    '<leader>dB',
+    function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    desc = 'conditional [B]reakpoint',
+  },
+  {
+    '<leader>dt',
+    function() require('dapui').toggle() end,
+    desc = '[t]oggle UI',
+  },
+  {
+    '<leader>dq',
+    function() require('dap').terminate() end,
+    desc = '[q]uit session',
+  },
+  {
+    '<leader>dl',
+    function() require('dap').run_last() end,
+    desc = 'run [l]ast',
+  },
   { '<leader>g', group = '[g]it' },
   {
     '<leader>gc',
@@ -49,11 +95,6 @@ require('which-key').add({
     '<leader>gs',
     '<CMD>Gitsigns stage_hunk<CR>',
     desc = '[s]tage hunk',
-  },
-  {
-    '<leader>gu',
-    '<CMD>Gitsigns undo_stage_hunk<CR>',
-    desc = '[u]ndo stage hunk',
   },
   {
     '<leader>gr',
@@ -127,7 +168,11 @@ require('which-key').add({
   {
     '<leader>Li',
     function()
-      local type = require('nvim-treesitter.ts_utils').get_node_at_cursor():type()
+      local node = vim.treesitter.get_node()
+      if not node then
+        return
+      end
+      local type = node:type()
       type = type:gsub('^%l', string.upper)
       type = type:gsub('_', ' ')
       vim.lsp.util.open_floating_preview({ type })

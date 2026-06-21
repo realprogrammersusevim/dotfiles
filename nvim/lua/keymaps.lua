@@ -23,13 +23,13 @@ vim.keymap.set('n', '<M-Left>', ':vertical resize -2<CR>', { silent = true })
 vim.keymap.set('n', '<M-Right>', ':vertical resize +2<CR>', { silent = true })
 
 -- Tab switch buffer
-vim.keymap.set('n', '<S-l>', ':BufferLineCycleNext<CR>', { silent = true })
-vim.keymap.set('n', '<S-h>', ':BufferLineCyclePrev<CR>', { silent = true })
+vim.keymap.set('n', '<S-l>', ':bnext<CR>', { silent = true })
+vim.keymap.set('n', '<S-h>', ':bprevious<CR>', { silent = true })
 
 -- QuickFix
 vim.keymap.set('n', ']q', ':cnext<CR>', { silent = true })
 vim.keymap.set('n', '[q', ':cprev<CR>', { silent = true })
-vim.keymap.set('n', '<C-q>', ':call QuickFixToggle()<CR>', { silent = true })
+vim.keymap.set('n', '<C-q>', '<CMD>Trouble qflist toggle<CR>', { silent = true })
 
 -- Move visually
 -- vim.keymap.set('n', 'j', 'gj', { silent = true })
@@ -48,13 +48,6 @@ vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { silent = true })
 
 ------------------------------
 -- Visual mode	             |
-------------------------------
--- Move selected line / block of text in visual mode
-vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv", { silent = true })
-vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv", { silent = true })
-
-------------------------------
--- Visual block mode         |
 ------------------------------
 -- Move selected line / block of text in visual mode
 vim.keymap.set('x', 'K', ":move '<-2<CR>gv-gv", { silent = true })

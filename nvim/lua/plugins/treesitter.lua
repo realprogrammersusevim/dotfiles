@@ -8,20 +8,6 @@ return {
       {
         'nvim-treesitter/nvim-treesitter-textobjects',
         branch = 'main',
-        setup = {
-
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ['af'] = { query = '@function.outer', desc = 'Select around function' },
-              ['if'] = { query = '@function.inner', desc = 'Select inside function' },
-              ['ac'] = { query = '@class.outer', desc = 'Select around class' },
-              ['ic'] = { query = '@class.inner', desc = 'Select inside class' },
-            },
-            include_surrounding_whitespace = true,
-          },
-        }
       },
     },
     config = function()
@@ -64,6 +50,25 @@ return {
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
       })
+
+      require('nvim-treesitter-textobjects').setup({
+        select = {
+          lookahead = true,
+          include_surrounding_whitespace = true,
+        },
+      })
+      local select = require('nvim-treesitter-textobjects.select')
+      local textobjects = {
+        ['af'] = { '@function.outer', 'Select around function' },
+        ['if'] = { '@function.inner', 'Select inside function' },
+        ['ac'] = { '@class.outer', 'Select around class' },
+        ['ic'] = { '@class.inner', 'Select inside class' },
+      }
+      for key, spec in pairs(textobjects) do
+        vim.keymap.set({ 'x', 'o' }, key, function()
+          select.select_textobject(spec[1], 'textobjects')
+        end, { desc = spec[2] })
+      end
     end,
   },
 }

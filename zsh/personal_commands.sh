@@ -22,7 +22,7 @@ fif() {
       --disabled \
       --reverse \
       --bind "ctrl-a:select-all" \
-      --bind "f12:execute-silent:(subl -b {})" \
+      --bind "f12:execute-silent:(neovide {})" \
       --bind "change:reload:$RG_DEFAULT_COMMAND {q} || true" \
       --preview "rg -i --context 10 {q} {} | bat --file-name {} -f --plain -H 11 2>/dev/null"
   )
@@ -46,7 +46,7 @@ ff() {
       --disabled \
       --reverse \
       --bind "ctrl-a:select-all" \
-      --bind "f12:execute-silent:(subl -b {})" \
+      --bind "f12:execute-silent:(neovide {})" \
       --bind "change:reload:$FILES | $RG_DEFAULT_COMMAND {q} || true" \
       --preview "bat {} -f --plain 2>/dev/null"
   )
