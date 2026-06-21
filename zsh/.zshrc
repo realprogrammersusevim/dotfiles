@@ -1,12 +1,11 @@
 # zmodload zsh/zprof
 
-source $ZDOTDIR/.zshenv
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 HISTFILE=$ZDOTDIR/.zsh_history
-HISTZIZE=10000000
+HISTSIZE=10000000
 SAVEHIST=10000000
-HISTORY_IGNORE="(ls|cd|pwd|exit|cd|eza|z)"
+HISTORY_IGNORE="(ls|cd|pwd|exit|eza|z)"
 
 setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
@@ -72,8 +71,7 @@ eval "$(zoxide init zsh)"
 source $HOME/.config/broot/launcher/bash/br
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$GOPATH/bin
 
 eval "$(starship init zsh)"
 

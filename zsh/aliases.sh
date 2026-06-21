@@ -3,7 +3,7 @@ alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {
 alias ls="eza --all --long --git --header --icons"
 alias cd="z"
 alias lg="lazygit"
-alias src="source ~/.config/zsh/.zshrc ~/.config/.zshenv ~/.config/.zprofile"
+alias src="exec zsh"
 alias n="/opt/homebrew/bin/nvim"
 alias nn="/usr/local/bin/nvim" # Neovim built from source
 alias rg="rg --hidden"
