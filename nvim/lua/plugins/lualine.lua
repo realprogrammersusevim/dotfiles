@@ -6,23 +6,25 @@ local wc_fts = {
 
 local wc_cache = {}
 
-vim.api.nvim_create_autocmd(
-  { 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
-    callback = function(ev)
-      local ft = vim.bo[ev.buf].filetype
-      if wc_fts[ft] then
-        local wc = vim.fn.wordcount()
-        wc_cache[ev.buf] = wc.visual_words or wc.words
-      end
-    end,
-  })
-
 return {
   'nvim-lualine/lualine.nvim', -- Status line
   event = 'VeryLazy',
   dependencies = {
     'kyazdani42/nvim-web-devicons',
   },
+  config = function(_, opts)
+    vim.api.nvim_create_autocmd(
+      { 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
+        callback = function(ev)
+          local ft = vim.bo[ev.buf].filetype
+          if wc_fts[ft] then
+            local wc = vim.fn.wordcount()
+            wc_cache[ev.buf] = wc.visual_words or wc.words
+          end
+        end,
+      })
+    require('lualine').setup(opts)
+  end,
   opts = {
     options = {
       theme = 'auto', -- Needed so lazy loading isn't screwed up
