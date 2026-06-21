@@ -9,5 +9,6 @@ ohmyzsh/ohmyzsh path:plugins/vi-mode
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting
 hlissner/zsh-autopair
-marlonrichert/zsh-autocomplete
 MichaelAquilina/zsh-you-should-use
+
+~/code/fast_autocomplete
