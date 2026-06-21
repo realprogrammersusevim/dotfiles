@@ -28,6 +28,7 @@ animator:subscribe("unlock", function()
       y_offset = settings.bar.y_offset,
       margin = settings.bar.margin,
       notch_width = settings.bar.notch_width,
+      blur_radius = settings.bar.blur_radius,
       color = settings.bar.color,
     })
   end)

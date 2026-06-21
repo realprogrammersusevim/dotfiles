@@ -9,6 +9,7 @@ return {
     color = colors.transparent,
     notch_width = 200,
     margin = 10,
+    blur_radius = 0,
   },
   paddings = 3,
   group_paddings = 5,

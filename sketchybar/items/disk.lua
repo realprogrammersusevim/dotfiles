@@ -12,13 +12,22 @@ disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   Sbar.exec('df -H', function(output)
     local disk_line = nil
     for line in output:gmatch('[^\n]+') do
-      if line:match('/dev/disk3s5') then
+      -- Match the root mount (line ending in " /")
+      if line:match('%s/$') then
         disk_line = line
         break
       end
     end
 
-    local percent_used = tonumber(disk_line:match('(%d+)%%'))
+    if not disk_line then
+      return
+    end
+
+    local percent_used = disk_line:match('(%d+)%%')
+    if not percent_used then
+      return
+    end
+
     disk:set({ label = { string = percent_used .. '%' } })
   end)
 end)
