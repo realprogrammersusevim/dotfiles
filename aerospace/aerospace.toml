@@ -1,7 +1,5 @@
 config-version = 2
 
-# Keep the window manager side of my yabai/skhd setup when I run Aerospace.
-
 after-login-command = []
 start-at-login = true
 
@@ -140,9 +138,6 @@ alt-slash = 'layout tiles horizontal vertical'
 
 # Equalize sibling sizes
 alt-equal = 'balance-sizes'
-
-# Rename the current workspace (matches skhd helper)
-alt-n = 'exec-and-forget ~/code/dotfiles/skhd/label.sh'
 
 # Reload Aerospace and the bar, similar to shift+alt+r in skhd
 alt-shift-r = ['reload-config', 'exec-and-forget sketchybar --reload']
