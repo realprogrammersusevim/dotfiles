@@ -97,11 +97,6 @@ require('which-key').add({
     desc = '[s]tage hunk',
   },
   {
-    '<leader>gu',
-    '<CMD>Gitsigns undo_stage_hunk<CR>',
-    desc = '[u]ndo stage hunk',
-  },
-  {
     '<leader>gr',
     '<CMD>Gitsigns reset_hunk<CR>',
     desc = '[r]eset hunk',
@@ -173,7 +168,11 @@ require('which-key').add({
   {
     '<leader>Li',
     function()
-      local type = require('nvim-treesitter.ts_utils').get_node_at_cursor():type()
+      local node = vim.treesitter.get_node()
+      if not node then
+        return
+      end
+      local type = node:type()
       type = type:gsub('^%l', string.upper)
       type = type:gsub('_', ' ')
       vim.lsp.util.open_floating_preview({ type })

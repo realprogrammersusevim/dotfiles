@@ -84,7 +84,7 @@ return {
         defaults = {
           mappings = {
             i = {
-              ['<C-m>'] = function(prompt_bufnr)
+              ['<C-y>'] = function(prompt_bufnr)
                 local entry = require('telescope.actions.state').get_selected_entry()
                 require('telescope.actions').close(prompt_bufnr)
                 local stripped_filename = entry.filename:match('^(.+)%..+$')
