@@ -125,9 +125,9 @@ require('which-key').add({
   },
   { '<leader>l', group = 'LSP' },
   {
-    '<leader>lr',
+    '<leader>ln',
     '<CMD>lua vim.lsp.buf.rename()<CR>',
-    desc = '[r]ename',
+    desc = 'Re[n]ame',
   },
   {
     '<leader>li',
@@ -152,7 +152,7 @@ require('which-key').add({
   {
     '<leader>lq',
     '<CMD>lua vim.lsp.buf.references()<CR>',
-    desc = '[q]uickfix',
+    desc = '[r]eferences',
   },
   {
     '<leader>le',
