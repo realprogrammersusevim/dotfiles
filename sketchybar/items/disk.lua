@@ -1,6 +1,5 @@
 local icons = require('icons')
 local colors = require('colors')
-local settings = require('settings')
 
 local disk = Sbar.add('item', 'disk', {
   position = 'e',
@@ -9,11 +8,10 @@ local disk = Sbar.add('item', 'disk', {
 })
 
 disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
-  Sbar.exec('df -H', function(output)
+  Sbar.exec('df -H /System/Volumes/Data', function(output)
     local disk_line = nil
     for line in output:gmatch('[^\n]+') do
-      -- Match the root mount (line ending in " /")
-      if line:match('%s/$') then
+      if line:match('/System/Volumes/Data$') then
         disk_line = line
         break
       end
