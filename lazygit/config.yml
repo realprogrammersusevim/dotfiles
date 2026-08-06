@@ -1,5 +1,6 @@
 gui:
-  border: 'rounded'
+  border: "rounded"
+  skipDiscardChangeWarning: true
 git:
   pagers:
     - colorArg: always

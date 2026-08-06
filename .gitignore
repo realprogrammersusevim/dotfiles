@@ -8,3 +8,5 @@ sketchybar/plugins/media
 sketchybar/plugins/cpu
 sketchybar/.env
 zsh/env.sh
+windows/glazewm/errors.log
+windows/zebar/errors.log

@@ -3,7 +3,17 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- No `make` on Windows; drive CMake directly so the build produces
+        -- build/libfzf.dll instead of silently failing and leaving the
+        -- extension unloadable.
+        build = vim.fn.has('win32') == 1
+            and 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && '
+            .. 'cmake --build build --config Release && '
+            .. 'cmake --install build --prefix build'
+            or 'make',
+      },
     },
     cmd = 'Telescope',
     keys = {
@@ -107,7 +117,16 @@ return {
         },
       })
 
-      require('telescope').load_extension('fzf')
+      -- Guarded: if the native fzf sorter never got compiled, fall back to
+      -- Telescope's built-in sorter rather than erroring out of `config` and
+      -- taking every picker down with it.
+      if not pcall(require('telescope').load_extension, 'fzf') then
+        vim.notify(
+          'telescope-fzf-native is not built; using the default sorter. '
+          .. 'Install cmake + a C compiler, then :Lazy build telescope-fzf-native.nvim',
+          vim.log.levels.WARN
+        )
+      end
     end,
   },
 }

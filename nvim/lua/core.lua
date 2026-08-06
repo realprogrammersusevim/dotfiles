@@ -1,5 +1,17 @@
 local opt = vim.o
 local datapath = vim.fn.stdpath('data')
+
+-- On Windows, pin the internal shell to cmd.exe regardless of which terminal
+-- launched nvim. Launching from MSYS2/Git Bash exports $SHELL=/usr/bin/bash,
+-- which makes nvim set 'shell' to bash but keep the cmd.exe-style 'shellcmdflag'
+-- (/s /c), so every plugin that shells out fails with "bash: /s: No such file".
+if vim.fn.has('win32') == 1 then
+  opt.shell = 'cmd.exe'
+  opt.shellcmdflag = '/s /c'
+  opt.shellquote = ''
+  opt.shellxquote = ''
+end
+
 vim.cmd('filetype plugin on') -- Turn on file type detection
 opt.guifont = 'JetBrainsMono Nerd Font Mono:13'
 opt.number = true

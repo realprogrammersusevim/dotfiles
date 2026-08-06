@@ -34,6 +34,7 @@ require('which-key').add({
   },
   { '<leader>s', group = 'Search' },
   { '<leader>t', group = '[t]rouble' },
+  { '<leader>T', group = '[T]est' },
   { '<leader>d', group = '[d]ebug' },
   {
     '<leader>dc',
@@ -123,47 +124,10 @@ require('which-key').add({
     '<CMD>Gitsigns prev_hunk<CR>',
     desc = '[back] hunk',
   },
+  -- LSP maps (<leader>l*) are registered buffer-locally on LspAttach in
+  -- lua/plugins/lsp.lua so they only exist where a server is running. This is
+  -- just the which-key group label.
   { '<leader>l', group = 'LSP' },
-  {
-    '<leader>ln',
-    '<CMD>lua vim.lsp.buf.rename()<CR>',
-    desc = 'Re[n]ame',
-  },
-  {
-    '<leader>li',
-    '<CMD>lua vim.lsp.buf.hover()<CR>',
-    desc = '[i]nformation',
-  },
-  {
-    '<leader>ld',
-    '<CMD>lua vim.lsp.buf.definition()<CR>',
-    desc = '[d]efinition',
-  },
-  {
-    '<leader>lD',
-    '<CMD>lua vim.lsp.buf.declaration()<CR>',
-    desc = '[D]eclaration',
-  },
-  {
-    '<leader>lm',
-    '<CMD>lua vim.lsp.buf.implementation()<CR>',
-    desc = 'I[m]plementation',
-  },
-  {
-    '<leader>lq',
-    '<CMD>lua vim.lsp.buf.references()<CR>',
-    desc = '[r]eferences',
-  },
-  {
-    '<leader>le',
-    '<CMD>lua vim.diagnostic.open_float()<CR>',
-    desc = '[e]rrors',
-  },
-  {
-    '<leader>la',
-    '<CMD>lua vim.lsp.buf.code_action()<CR>',
-    desc = 'Code [a]ction',
-  },
   { '<leader>L', group = 'Treesitter [L]SP' },
   {
     '<leader>Li',
