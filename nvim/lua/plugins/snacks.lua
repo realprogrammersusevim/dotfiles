@@ -17,7 +17,7 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     image = {
-      enabled = true,
+      enabled = false,
       doc = {
         float = true,   -- show as floating window on hover
         inline = false, -- disable inline rendering
