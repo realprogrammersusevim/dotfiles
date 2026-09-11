@@ -14,6 +14,23 @@ return {
         end
       end
 
+      -- Roslyn's apphost hardcodes /usr/local/share/dotnet, which holds a stale x86_64
+      -- .NET 6, so it dies on arm64. Run the dll with Homebrew's host instead.
+      local function roslyn_cmd()
+        local host = '/opt/homebrew/opt/dotnet/libexec/dotnet'
+        local dlls = vim.fn.glob(
+          vim.fn.expand('~/.dotnet/tools/.store/roslyn-language-server')
+          .. '/*/*/*/tools/net*/*/Microsoft.CodeAnalysis.LanguageServer.dll',
+          false,
+          true
+        )
+        if vim.fn.executable(host) == 0 or #dlls == 0 then
+          return nil -- fall back to lspconfig's default cmd
+        end
+        table.sort(dlls)
+        return { host, dlls[#dlls], '--stdio' }
+      end
+
       -- Setup lspconfig
       local servers = {
         ruff = {
@@ -82,6 +99,10 @@ return {
         marksman = {},
         clangd = {},
         ts_ls = {},
+        -- Requires: dotnet tool install --global roslyn-language-server --prerelease
+        roslyn_ls = {
+          cmd = roslyn_cmd(),
+        },
         tinymist = {
           settings = {
             formatterMode = 'typstyle',
@@ -101,6 +122,7 @@ return {
 
       vim.diagnostic.config({
         severity_sort = true,
+        update_in_insert = false,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
         signs = {

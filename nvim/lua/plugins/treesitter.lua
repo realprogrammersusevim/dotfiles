@@ -20,7 +20,8 @@ return {
         'rust',
         'python',
         'markdown',
-        'bash'
+        'bash',
+        'c_sharp'
       })
 
       local group = vim.api.nvim_create_augroup('TreesitterStart', { clear = true })

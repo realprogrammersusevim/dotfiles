@@ -3,6 +3,7 @@ path+=("$HOME/.bin")
 export MODULAR_HOME="$HOME/.modular"
 path+=("$HOME/.modular/pkg/packages.modular.com_mojo/bin")
 path+=("$HOME/.local/bin")
+path+=("$HOME/.dotnet/tools") # /etc/paths.d/dotnet-cli-tools has an unexpanded ~, so it never resolves
 
 # Add Homebrew's executable directory to the front of the PATH
 PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin:$PATH"
