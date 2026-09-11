@@ -11,8 +11,7 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command('AutoCompile', function(opts)
   vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
     pattern = { '*' },
-    -- FIXME: This command crashes
-    command = 'call jobstart("' .. opts.command .. '")',
+    command = 'call jobstart("' .. opts.args .. '")',
   })
 end, { nargs = 1 })
 
@@ -53,7 +52,7 @@ vim.api.nvim_create_user_command('Daily', function()
   end
 
   -- Put text in opposite order it will appear in doc
-  put_text(bar(6, os.date('*t').wday, 'Week'))
+  put_text(bar(7, os.date('*t').wday, 'Week'))
   put_text(bar(365, os.date('*t').yday, 'Year'))
   put_text(bar(90, os.date('%Y') - 2006, 'Life'))
 end, { nargs = 0 })

@@ -15,6 +15,7 @@ return {
   config = function(_, opts)
     vim.api.nvim_create_autocmd(
       { 'BufEnter', 'BufWritePost', 'TextChanged', 'TextChangedI' }, {
+        group = vim.api.nvim_create_augroup('LualineWordCount', { clear = true }),
         callback = function(ev)
           local ft = vim.bo[ev.buf].filetype
           if wc_fts[ft] then

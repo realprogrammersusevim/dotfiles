@@ -6,13 +6,6 @@ return {
       { 'saghen/blink.cmp' },
     },
     config = function()
-      vim.diagnostic.config({
-        underline = true,
-        -- virtual_text = true,
-        signs = true,
-        update_in_insert = false,
-      })
-
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(client, bufnr)
         if client.name == 'ruff' then

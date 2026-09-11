@@ -45,7 +45,7 @@ opt.signcolumn =
 'yes'                     -- Always show the sign column so it doesn't jump back and forth
 opt.shadafile = datapath .. '/shada/main.shada'
 opt.updatetime = 300
-opt.thesaurus = datapath .. '/utils/thesaurii.txt' -- Get thesaurus word changes
+opt.thesaurus = vim.fn.stdpath('config') .. '/utils/thesaurii.txt' -- Get thesaurus word changes
 vim.opt.shortmess:append('c')
 vim.opt.shortmess:append('I')
 vim.opt.whichwrap:append('<,>,[,],h,l')

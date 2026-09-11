@@ -23,7 +23,9 @@ return {
         'bash'
       })
 
+      local group = vim.api.nvim_create_augroup('TreesitterStart', { clear = true })
       vim.api.nvim_create_autocmd('FileType', {
+        group = group,
         callback = function(ev)
           pcall(vim.treesitter.start, ev.buf)
         end,
@@ -31,6 +33,7 @@ return {
 
       -- Indentation (experimental)
       vim.api.nvim_create_autocmd('FileType', {
+        group = group,
         callback = function()
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
