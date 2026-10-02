@@ -2,10 +2,14 @@
   "Class Notes": {
     "prefix": "notes",
     "body": [
-      "#import \"@local/notable:0.9.0\": *",
+      "#import \"@local/notable:0.13.0\": *",
       "#show: notable.with(",
-      "  title: \"${1:title}\",",
-      ")"
+      "  title: \"Lecture Notes\",",
+      "  course: \"${1:CSCE 361}\",",
+      "  date: datetime(year: ${2:2026}, month: ${3:8}, day: ${4:26}),",
+      ")",
+      "",
+      "= $0"
     ],
     "description": "Template for class notes using my personal notable notes package"
   },
@@ -19,22 +23,118 @@
   "Figure": {
     "prefix": "fig",
     "body": [
-       "#figure(",
-       " ${1:content} ,",
-       "caption : [${2:caption}]",
-       ")<${3:reference}>"
+      "#figure(",
+      " ${1:content} ,",
+      "caption : [${2:caption}]",
+      ")<${3:reference}>"
     ],
     "description": "Figure"
- },
- "Table": {
-  "prefix": "table",
-  "body": [
-     "#table(",
-     "  columns: ${1:columns},",
-     "  table.header([${2:header}]),",
-     "  [${3:data}]",
-     ")"
-  ],
-  "description": "Table"
- }
+  },
+  "Table": {
+    "prefix": "table",
+    "body": [
+      "#table(",
+      "  columns: ${1:columns},",
+      "  table.header([${2:header}]),",
+      "  [${3:data}]",
+      ")"
+    ],
+    "description": "Table"
+  },
+  "Example": {
+    "prefix": "ex",
+    "body": [
+      "#example[",
+      "  ${1}",
+      "]"
+    ],
+    "description": "Example box"
+  },
+  "Note": {
+    "prefix": "nb",
+    "body": [
+      "#note[",
+      "  ${1}",
+      "]"
+    ],
+    "description": "Note box"
+  },
+  "Definition": {
+    "prefix": "df",
+    "body": [
+      "#definition[",
+      "  ${1}",
+      "]"
+    ],
+    "description": "Definition box"
+  },
+  "Exercise": {
+    "prefix": "exc",
+    "body": [
+      "#exercise[",
+      "  ${1}",
+      "]"
+    ],
+    "description": "Exercise box"
+  },
+  "Theorem": {
+    "prefix": "thm",
+    "body": [
+      "#theorem[",
+      "  ${1}",
+      "]"
+    ],
+    "description": "Theorem box"
+  },
+  "Aligned Equation": {
+    "prefix": "al",
+    "body": [
+      "\\$",
+      "  ${1:lhs} &= ${2:rhs} \\\\",
+      "  &= ${3:next}",
+      "\\$"
+    ],
+    "description": "Display equation with aligned = signs"
+  },
+  "Example (titled)": {
+    "prefix": "ext",
+    "body": [
+      "#example(title: \"${1:title}\")[",
+      "  ${2}",
+      "]"
+    ],
+    "description": "Example box with a title"
+  },
+  "Exercise (titled)": {
+    "prefix": "exct",
+    "body": [
+      "#exercise(title: \"${1:title}\")[",
+      "  ${2}",
+      "]"
+    ],
+    "description": "Exercise box with a title"
+  },
+  "Theorem (titled)": {
+    "prefix": "thmt",
+    "body": [
+      "#theorem(title: \"${1:title}\")[",
+      "  ${2}",
+      "]"
+    ],
+    "description": "Theorem box with a title"
+  },
+  "Marked Equation": {
+    "prefix": "mk",
+    "body": [
+      "mark(${1:expr}, color: #${2|oxford,slate,ochre,olive,taupe|}, tag: #<${3:t}>)"
+    ],
+    "description": "mannot: mark part of an equation (use inside math mode)"
+  },
+  "Annotation": {
+    "prefix": "an",
+    "body": [
+      "#annot(<${1:t}>, pos: ${2|bottom,top,bottom + left,top + right|})[${3:label}]"
+    ],
+    "description": "mannot: annotate a marked tag"
+  }
 }
