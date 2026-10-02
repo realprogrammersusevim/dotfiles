@@ -1,6 +1,6 @@
 alias activate="source venv/bin/activate"
 alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias ls="eza --all --long --git --header --icons"
+alias ls="eza --all --long --git --header --icons always"
 alias cd="z"
 alias lg="lazygit"
 alias src="exec zsh"
