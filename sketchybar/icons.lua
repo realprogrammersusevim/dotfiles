@@ -2,6 +2,13 @@ local settings = require('settings')
 
 local icons = {
   sf_symbols = {
+    -- Window manager icons
+    wm = {
+      niri = '􀏭',
+      dwindle = '􀧍',
+      float = '􀢌',
+    },
+
     plus = '􀅼',
     loading = '􀖇',
     apple = '􀣺',
@@ -108,12 +115,12 @@ local icons = {
     repeated = '􀊞',
     loved = '􀊵',
 
-    -- Yabai Icons
-    yabai_stack = '􀏭',
-    yabai_fullscreen_zoom = '􀏜',
-    yabai_parent_zoom = '􀥃',
-    yabai_float = '􀢌',
-    yabai_grid = '􀧍',
+    -- Window manager icons
+    wm = {
+      niri = '􀏭',
+      dwindle = '􀧍',
+      float = '􀢌',
+    },
 
     locked = '􀎡',
     unlocked = '􀎥',
