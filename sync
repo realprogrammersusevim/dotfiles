@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for folder in {yabai,skhd,sketchybar,zsh,nvim,gitui,lazygit,aider}; do
+for folder in {yabai,skhd,sketchybar,zsh,nvim,gitui,lazygit,aider,omniwm}; do
   stow -t "$HOME/.config/$folder" "$folder" --ignore "DS_Store"
 done
 
