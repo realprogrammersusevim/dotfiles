@@ -9,7 +9,16 @@ path+=("$HOME/.dotnet/tools") # /etc/paths.d/dotnet-cli-tools has an unexpanded 
 PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Library/Apple/usr/bin:$PATH"
 
 # Language specific path stuff
-eval $(/opt/homebrew/bin/luarocks path) # Lua needs to know where my rocks are
+# Lua needs to know where my rocks are. `luarocks path` costs ~85ms and .zshenv runs for
+# every zsh (scripts too), so cache it and regenerate only when luarocks is upgraded.
+_luarocks_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/luarocks-path.zsh"
+if [[ ! -s $_luarocks_cache || /opt/homebrew/bin/luarocks -nt $_luarocks_cache ]]; then
+  mkdir -p ${_luarocks_cache:h}
+  /opt/homebrew/bin/luarocks path | grep -E '^export LUA_C?PATH=' >| $_luarocks_cache
+fi
+source $_luarocks_cache
+unset _luarocks_cache
+path+=("$HOME/.luarocks/bin")
 source $HOME/.cargo/env # Cargo doing it's Rust stuff
 
 export PATH

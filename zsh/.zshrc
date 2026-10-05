@@ -41,6 +41,21 @@ precmd_functions+=(__set_beam_cursor)
 
 DISABLE_AUTO_UPDATE="true"
 
+# use-omz shells out to `scutil` for this (~5ms) if it's unset
+SHORT_HOST=${HOST%%.*}
+
+# Source the output of an init command, cached until the command's binary is upgraded.
+# Usage: _cached_eval <name> <command> [args...]
+function _cached_eval {
+  local name=$1; shift
+  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/init-$name.zsh
+  if [[ ! -s $cache || ${commands[$1]} -nt $cache ]]; then
+    mkdir -p ${cache:h}
+    "$@" >| $cache
+  fi
+  source $cache
+}
+
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
 
@@ -66,14 +81,25 @@ source ~/.config/zsh/aliases.sh
 source ~/.config/zsh/env.sh
 
 # Zoxide stuff
-eval "$(zoxide init zsh)"
+_cached_eval zoxide zoxide init zsh
 
 source $HOME/.config/broot/launcher/bash/br
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-eval "$(starship init zsh)"
+_cached_eval starship starship init zsh --print-full-init
+
+# use-omz otherwise runs a full compinit (git rev-parse + compaudit, ~20ms) in the first precmd.
+# Trust the dump while it's under a day old; rebuild it daily or with `rm $ZSH_COMPDUMP`.
+_fresh_dump=($ZSH_COMPDUMP(N.mh-24))
+if (( $#_fresh_dump )); then
+  compinit -C -d $ZSH_COMPDUMP
+else
+  compinit -i -d $ZSH_COMPDUMP
+  { zcompile $ZSH_COMPDUMP } &!
+fi
+unset _fresh_dump
 
 # All done
 # Show a pretty bonsai tree
