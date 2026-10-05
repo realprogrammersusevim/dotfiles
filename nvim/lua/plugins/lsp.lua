@@ -11,6 +11,23 @@ return {
         if client.name == 'ruff' then
           -- Use the pyright hover
           client.server_capabilities.hoverProvider = false
+        elseif client.name == 'r_language_server' then
+          -- R.nvim's built-in server covers these (and completes from the live R
+          -- session), so only keep languageserver for lintr diagnostics and styler
+          for _, cap in ipairs({
+            'completionProvider',
+            'hoverProvider',
+            'signatureHelpProvider',
+            'definitionProvider',
+            'referencesProvider',
+            'implementationProvider',
+            'documentHighlightProvider',
+            'documentSymbolProvider',
+            'workspaceSymbolProvider',
+            'renameProvider',
+          }) do
+            client.server_capabilities[cap] = false
+          end
         end
       end
 
@@ -112,6 +129,15 @@ return {
           },
         },
         harper_ls = {},
+        -- Requires: install.packages("languageserver") in R
+        r_language_server = {
+          on_attach = on_attach,
+          -- lspconfig falls back to $HOME outside a git repo, which makes languageserver
+          -- index the whole home directory; use the file's directory instead
+          root_dir = function(bufnr, on_dir)
+            on_dir(vim.fs.root(bufnr, '.git') or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
+          end,
+        },
       }
 
       for name, config in pairs(servers) do

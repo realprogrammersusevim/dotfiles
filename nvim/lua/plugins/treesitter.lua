@@ -21,7 +21,11 @@ return {
         'python',
         'markdown',
         'bash',
-        'c_sharp'
+        'c_sharp',
+        'r',
+        'markdown_inline',
+        'yaml',
+        'csv',
       })
 
       local group = vim.api.nvim_create_augroup('TreesitterStart', { clear = true })
