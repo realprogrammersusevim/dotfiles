@@ -6,3 +6,4 @@ cursor-style-blink = false
 cursor-style=block
 shell-integration-features = no-cursor
 shell-integration = zsh
+resize-overlay = never
