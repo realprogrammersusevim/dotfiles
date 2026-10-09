@@ -19,6 +19,11 @@ setopt APPEND_HISTORY        # append to history file (Default)
 setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 
+# Load Ghostty shell integration since we already reset the ZDOTDIR in /etc/zshenv
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
 # Disable blinking cursor in the shell
 # Prevent blinking cursor.
 function __set_beam_cursor {
