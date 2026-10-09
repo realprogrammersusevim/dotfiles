@@ -2,7 +2,7 @@
   "Class Notes": {
     "prefix": "notes",
     "body": [
-      "#import \"@local/notable:0.13.0\": *",
+      "#import \"@local/notable:0.14.0\": *",
       "#show: notable.with(",
       "  title: \"Lecture Notes\",",
       "  course: \"${1:CSCE 361}\",",
