@@ -20,7 +20,7 @@ return {
           local ft = vim.bo[ev.buf].filetype
           if wc_fts[ft] then
             local wc = vim.fn.wordcount()
-            wc_cache[ev.buf] = wc.visual_words or wc.words
+            wc_cache[ev.buf] = wc.words
           end
         end,
       })
@@ -51,8 +51,14 @@ return {
         function()
           local ft = vim.bo.filetype
           if not wc_fts[ft] then return '' end
-          local count = wc_cache[vim.api.nvim_get_current_buf()]
-          return count and tostring(count) or ''
+          if vim.fn.mode():find('^[vV\22]') then
+            return tostring(vim.fn.wordcount().visual_words or 0)
+          end
+          local buf = vim.api.nvim_get_current_buf()
+          if not wc_cache[buf] then
+            wc_cache[buf] = vim.fn.wordcount().words
+          end
+          return tostring(wc_cache[buf])
         end,
       },
       lualine_y = { 'filetype', 'progress' },
