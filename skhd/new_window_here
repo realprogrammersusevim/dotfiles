@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Open a new window for an app and keep it on the current OmniWM workspace.
+# Activating an app that already has windows makes OmniWM follow focus to
+# that window's workspace, so the new window opens there. This waits for the
+# new window to show up and pulls it (and focus) back.
+#
+# usage: new_window_here <bundle-id> <command> [args...]
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+bundle_id="$1"
+shift
+
+window_ids() {
+  omniwmctl query windows --bundle-id "$bundle_id" --fields id --format json |
+    jq -r '.result.payload.windows[].id'
+}
+
+workspace=$(omniwmctl query active-workspace --format json |
+  jq -r '.result.payload.workspace.rawName')
+before=$(window_ids)
+
+"$@" &
+
+for _ in $(seq 50); do
+  sleep 0.1
+  new_id=$(comm -13 <(sort <<<"$before") <(window_ids | sort) | head -n 1)
+  [[ -n "$new_id" ]] && break
+done
+
+[[ -z "$new_id" ]] && exit 0
+
+omniwmctl window move-to-workspace "$new_id" "$workspace"
+omniwmctl workspace focus-name "$workspace"
+omniwmctl window focus "$new_id"

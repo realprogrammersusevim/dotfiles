@@ -5,8 +5,8 @@
 alt + cmd - n ; launcher
 
 # Launcher mode bindings
-launcher < b : "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window | skhd -k "escape"
-launcher < t : ~/code/dotfiles/skhd/ghostty_window | skhd -k "escape"
+launcher < b : ~/.config/skhd/new_window_here app.zen-browser.zen "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window | skhd -k "escape"
+launcher < t : ~/.config/skhd/new_window_here com.mitchellh.ghostty ~/.config/skhd/ghostty_window | skhd -k "escape"
 
 # Escape sends us back to normal mode
 launcher < escape ; default
