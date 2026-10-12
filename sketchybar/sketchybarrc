@@ -1,5 +1,10 @@
 #!/usr/bin/env lua
 
+-- stdout goes to a log file, so it is fully buffered by default. Every
+-- Sbar.exec forks, and each child's exit() flushes its copy of whatever is
+-- still sitting in the buffer, duplicating it into the log on every exec
+io.stdout:setvbuf('line')
+
 print('starting')
 require('helpers')
 print('helpers loaded')

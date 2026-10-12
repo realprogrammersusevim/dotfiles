@@ -19,6 +19,11 @@ static inline void cpu_init(struct cpu *cpu) {
   cpu->host = mach_host_self();
   cpu->count = HOST_CPU_LOAD_INFO_COUNT;
   cpu->has_prev_load = false;
+  // The first update has no previous sample to diff against, so these would
+  // otherwise go out as uninitialized stack garbage on the first trigger
+  cpu->user_load = 0;
+  cpu->sys_load = 0;
+  cpu->total_load = 0;
 }
 
 static inline void cpu_update(struct cpu *cpu) {
