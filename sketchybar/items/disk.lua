@@ -1,9 +1,17 @@
 local icons = require('icons')
 local colors = require('colors')
+local settings = require('settings')
+local island = require('helpers.island')
 
 local disk = Sbar.add('item', 'disk', {
   position = 'e',
-  icon = { string = icons.disk, color = 0xffee99a0 },
+  icon = { string = icons.disk, color = colors.magenta, padding_left = 10 },
+  label = {
+    font = settings.number_font,
+    width = settings.number_width(4) + 5 + 10,
+    align = 'right',
+    padding_right = 10,
+  },
   update_freq = 60,
 })
 
@@ -30,10 +38,4 @@ disk:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   end)
 end)
 
-Sbar.add('bracket', 'system_stats_bracket', { 'memory', 'cpu', 'gpu', 'disk' }, {
-  background = {
-    color = colors.tokyo_night_bg,
-    border_color = colors.tokyo_night_border,
-    border_width = 1,
-  },
-})
+island('system_stats_bracket', { 'memory', 'cpu', 'gpu', 'disk' })

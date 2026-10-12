@@ -1,5 +1,6 @@
 local icons = require('icons')
 local colors = require('colors')
+local stat_graph = require('helpers.stat_graph')
 
 -- Execute the event provider binary which provides the event "cpu_update" for
 -- the cpu load data, which is fired every 2.0 seconds.
@@ -10,14 +11,8 @@ Sbar.exec(
   .. '/.config/sketchybar/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0'
 )
 
-local cpu = Sbar.add('graph', 'cpu', 30, {
-  position = 'e',
-  graph = { color = colors.tokyo_night_blue },
-  icon = { string = icons.cpu, color = colors.tokyo_night_blue },
-  label = {
-    string = '??%',
-  },
-})
+local cpu = Sbar.add('graph', 'cpu', stat_graph.width,
+  stat_graph.props(icons.cpu, colors.tokyo_night_blue))
 
 cpu:subscribe('cpu_update', function(env)
   -- Also available: env.user_load, env.sys_load
@@ -36,8 +31,8 @@ cpu:subscribe('cpu_update', function(env)
   end
 
   cpu:set({
-    graph = { color = color },
-    label = env.total_load .. '%',
+    graph = stat_graph.graph_colors(color),
+    label = load .. '%',
   })
 end)
 

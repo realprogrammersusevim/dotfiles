@@ -27,14 +27,29 @@ return {
   tokyo_night_teal = 0xff7dcfff,
   tokyo_night_purple = 0xffbb9af7,
 
-  bar = {
-    bg = 0xff1a1b26,
-    border = 0xff2c2e34,
+  -- The rest of the Tokyo Night palette
+  bg_dark = 0xff16161e,
+  bg_highlight = 0xff292e42,
+  terminal_black = 0xff414868,
+  fg_dark = 0xffa9b1d6,
+  fg_gutter = 0xff3b4261,
+  blue1 = 0xff2ac3de,
+  green1 = 0xff73daca,
+
+  label = 0xffc0caf5,
+  -- Storm's bg_dark: one step up from the terminal background, so islands
+  -- read as raised without leaving the palette
+  island = {
+    bg = 0xff1f2335,
+    border = 0xff292e42,
   },
   popup = {
-    bg = 0xc02c2e34,
-    border = 0xff7f8490,
+    bg = 0xf01f2335,
+    border = 0xff3b4261,
   },
-  bg1 = 0xff363944,
-  bg2 = 0xff414550,
+
+  -- Replace the alpha byte of a color, e.g. for graph fills
+  with_alpha = function(color, alpha)
+    return (color & 0x00ffffff) | (math.floor(alpha * 255.0) << 24)
+  end,
 }

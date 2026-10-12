@@ -1,5 +1,6 @@
 local icons = require('icons')
 local colors = require('colors')
+local stat_graph = require('helpers.stat_graph')
 
 -- Start the GPU binary which fires our events
 local home = os.getenv('HOME')
@@ -9,14 +10,8 @@ Sbar.exec(
   .. '/.config/sketchybar/helpers/event_providers/gpu_load/bin/gpu_load gpu_update 2.0'
 )
 
-local gpu = Sbar.add('graph', 'gpu', 30, {
-  position = 'e',
-  graph = { color = colors.blue },
-  icon = { string = icons.gpu, color = colors.teal },
-  label = {
-    string = '??%',
-  },
-})
+local gpu = Sbar.add('graph', 'gpu', stat_graph.width,
+  stat_graph.props(icons.gpu, colors.teal))
 
 gpu:subscribe('gpu_update', function(env)
   local load = tonumber(env.gpu_usage)
@@ -34,7 +29,7 @@ gpu:subscribe('gpu_update', function(env)
   end
 
   gpu:set({
-    graph = { color = color },
+    graph = stat_graph.graph_colors(color),
     label = load .. '%',
   })
 end)

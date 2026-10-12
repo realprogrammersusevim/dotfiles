@@ -1,6 +1,7 @@
 local icons = require('icons')
 local colors = require('colors')
 local settings = require('settings')
+local island = require('helpers.island')
 
 -- Reads a cache a launchd agent keeps warm; never touches the network, so
 -- a sleeping laptop greys out instead of blocking the bar on a timeout.
@@ -25,8 +26,15 @@ local crec = Sbar.add('item', 'crec', {
     string = GLYPH,
     color = colors.grey,
     font = { style = settings.font.style_map['Regular'], size = 15.0 },
+    padding_left = 10,
   },
-  label = { string = '--' },
+  -- Wide enough for 'offline' or '999/999'
+  label = {
+    string = '--',
+    font = settings.number_font,
+    width = settings.number_width(7) + 10,
+    align = 'right',
+  },
   update_freq = 60,
   popup = { align = 'center' },
 })
@@ -94,3 +102,6 @@ crec:subscribe('mouse.clicked', function(env)
     crec:set({ popup = { drawing = 'toggle' } })
   end
 end)
+
+-- crec is the last of the right-hand items, so the group's island lives here
+island('status_bracket', { 'crec', 'battery', 'clock' })

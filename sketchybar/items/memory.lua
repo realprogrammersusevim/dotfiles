@@ -1,13 +1,11 @@
 local icons = require('icons')
 local colors = require('colors')
+local stat_graph = require('helpers.stat_graph')
 -- local inspect = require('inspect')
 
-local memory = Sbar.add('graph', 'memory', 30, {
-  position = 'e',
-  icon = { string = icons.memory, color = 0xff9ece6a },
-  graph = { color = colors.blue },
-  update_freq = 5,
-})
+local memory_props = stat_graph.props(icons.memory, colors.green)
+memory_props.update_freq = 5
+local memory = Sbar.add('graph', 'memory', stat_graph.width, memory_props)
 
 memory:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
   Sbar.exec('memory_pressure -Q', function(res, code)
@@ -21,6 +19,6 @@ memory:subscribe({ 'forced', 'routine', 'system_woke' }, function(env)
       color = colors.yellow
     end
     memory:push({ percent_used / 100. })
-    memory:set({ label = { string = percent_used .. '%' }, graph = { color = color } })
+    memory:set({ label = { string = percent_used .. '%' }, graph = stat_graph.graph_colors(color) })
   end)
 end)

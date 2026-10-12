@@ -11,8 +11,11 @@ local wm_mode = Sbar.add('item', 'wm_mode', {
   icon = {
     string = icons.wm.niri,
     color = colors.tokyo_night_blue,
-    padding_left = 10,
-    padding_right = 10,
+    padding_left = 12,
+    padding_right = 6,
+    -- The layout glyphs differ in width; fix it so front_app doesn't shift
+    width = 12 + 23 + 6,
+    align = 'center',
   },
   label = { drawing = false },
 })

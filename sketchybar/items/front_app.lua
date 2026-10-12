@@ -1,20 +1,23 @@
 local app_icons = require('helpers.app_icons')
 local omniwm = require('helpers.omniwm')
+local island = require('helpers.island')
 
 local front_app = Sbar.add('item', 'front_app', {
   display = 'active',
   updates = true,
   icon = {
     font = 'sketchybar-app-font:Regular:16.0',
-    padding_left = 12,
+    padding_left = 2,
     padding_right = 0,
     y_offset = -1,
   },
   label = {
     max_chars = 24,
-    padding_right = 15,
+    padding_right = 12,
   }
 })
+
+island('front_app_bracket', { 'wm_mode', front_app.name })
 
 -- Name from the last front_app_switched, for apps OmniWM doesn't manage
 local fallback_app = ''

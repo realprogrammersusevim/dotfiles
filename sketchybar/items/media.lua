@@ -1,16 +1,20 @@
 local icons = require('icons')
 local colors = require('colors')
 local utils = require('helpers.utils')
+local island = require('helpers.island')
 
 Sbar.add('event', 'music_update', 'com.apple.Music.playerInfo')
 
 local media_cover = Sbar.add('item', {
   position = 'q',
-  width = 25,
+  width = 30,
   align = 'center',
+  -- A dot tinted by the track's genre
   background = {
+    drawing = true,
     color = colors.transparent,
-    corner_radius = 20,
+    height = 12,
+    corner_radius = 6,
   },
   label = { drawing = false },
   icon = { drawing = false },
@@ -28,9 +32,7 @@ local media_artist = Sbar.add('item', {
   icon = { drawing = false },
   label = {
     max_chars = 18,
-  },
-  background = {
-    drawing = false,
+    color = colors.fg_dark,
   },
 })
 
@@ -40,9 +42,7 @@ local media_title = Sbar.add('item', {
   icon = { drawing = false },
   label = {
     max_chars = 16,
-  },
-  background = {
-    drawing = false,
+    padding_right = 10,
   },
 })
 
@@ -50,23 +50,22 @@ Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.back },
   label = { drawing = false },
-  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to previous track'",
 })
 Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.play_pause },
   label = { drawing = false },
-  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to playpause'",
 })
 Sbar.add('item', {
   position = 'popup.' .. media_cover.name,
   icon = { string = icons.media.forward },
   label = { drawing = false },
-  background = { drawing = false },
   click_script = "osascript -e 'tell application \"Music\" to next track'",
 })
+
+island('media_bracket', { media_cover.name, media_artist.name, media_title.name })
 
 local interrupt = 0
 local function animate_detail(detail)

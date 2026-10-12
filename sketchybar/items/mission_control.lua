@@ -2,6 +2,7 @@ local colors = require('colors')
 local settings = require('settings')
 local app_icons = require('helpers.app_icons')
 local omniwm = require('helpers.omniwm')
+local island = require('helpers.island')
 
 local spaces = {}
 local space_paddings = {}
@@ -17,17 +18,19 @@ local function app_icon(app_name)
   return app_icons[app_name] or app_icons['Default']
 end
 
+-- The focused workspace gets a highlight pill inside the island; the rest
+-- fade back to the island's own background
 local function update_workspace_selection(focused_workspace)
-  for index, space in ipairs(spaces) do
-    local selected = tostring(index) == focused_workspace
-    local bg_color = selected and colors.tokyo_night_red or colors.tokyo_night_bg
-
-    Sbar.animate('linear', 5, function()
+  Sbar.animate('tanh', 15, function()
+    for index, space in ipairs(spaces) do
+      local selected = tostring(index) == focused_workspace
       space:set({
-        background = { color = bg_color },
+        background = { color = selected and colors.bg_highlight or colors.with_alpha(colors.bg_highlight, 0) },
+        icon = { color = selected and colors.blue or colors.grey },
+        label = { color = selected and colors.white or colors.fg_dark },
       })
-    end)
-  end
+    end
+  end)
 end
 
 -- One icon per app on the workspace, in OmniWM's order
@@ -65,7 +68,7 @@ local function show_window_popup(index)
         icon = {
           string = app_icon(app.appName),
           font = 'sketchybar-app-font:Regular:16.0',
-          color = window.isFocused and colors.tokyo_night_red or colors.white,
+          color = window.isFocused and colors.blue or colors.white,
           padding_left = 10,
         },
         label = {
@@ -73,7 +76,6 @@ local function show_window_popup(index)
           max_chars = 50,
           padding_right = 10,
         },
-        background = { drawing = false },
       })
 
       row:subscribe('mouse.clicked', function(_)
@@ -91,18 +93,21 @@ for i = 1, MAX_SPACES, 1 do
   local space = Sbar.add('item', 'space.' .. i, {
     position = 'left',
     icon = {
-      font = { family = settings.font.numbers },
+      font = {
+        family = settings.font.numbers,
+        style = settings.font.style_map['Semibold'],
+        size = settings.number_font.size,
+      },
       string = i,
-      padding_left = 15,
-      padding_right = 15,
-      color = colors.white,
-      highlight_color = colors.tokyo_night_red,
+      padding_left = 10,
+      padding_right = 10,
+      color = colors.grey,
     },
     label = {
       font = 'sketchybar-app-font:Regular:16.0',
-      color = colors.white,
+      color = colors.fg_dark,
       padding_left = 0,
-      padding_right = 15,
+      padding_right = 10,
       y_offset = -1,
       drawing = false,
     },
@@ -110,10 +115,10 @@ for i = 1, MAX_SPACES, 1 do
     padding_right = 1,
     padding_left = 1,
     background = {
-      color = colors.tokyo_night_bg,
-    },
-    popup = {
-      background = { border_width = 5, border_color = colors.tokyo_night_border }
+      drawing = true,
+      color = colors.with_alpha(colors.bg_highlight, 0),
+      height = settings.island_height - 6,
+      corner_radius = (settings.island_height - 6) / 2,
     },
   })
 
@@ -129,7 +134,6 @@ for i = 1, MAX_SPACES, 1 do
     },
   })
   space_paddings[i] = padding_item
-  table.insert(space_names, 'space.padding.' .. i)
 
   space:subscribe('mouse.clicked', function(env)
     if env.BUTTON == 'right' or env.BUTTON == 'other' then
@@ -145,11 +149,9 @@ for i = 1, MAX_SPACES, 1 do
   end)
 end
 
-Sbar.add('bracket', 'spaces_bracket', space_names, {
-  background = {
-    color = colors.tokyo_night_bg,
-  },
-})
+-- Only the spaces: the trailing padding item stays outside, as the gap
+-- before the next island
+island('spaces_bracket', space_names)
 
 local workspace_listener = Sbar.add('item', 'omniwm_workspace_listener', {
   drawing = false,
@@ -180,7 +182,7 @@ local function refresh_workspaces()
 
       space:set({
         drawing = is_visible,
-        icon = { padding_right = has_windows and 8 or 15 },
+        icon = { padding_right = has_windows and 6 or 10 },
         label = {
           drawing = has_windows,
           string = has_windows and workspace_app_icons(workspace) or '',

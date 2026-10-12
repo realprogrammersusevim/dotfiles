@@ -7,10 +7,15 @@ local battery = Sbar.add('item', 'battery', {
   icon = {
     font = {
       style = settings.font.style_map['Regular'],
-      size = 19.0,
+      size = 18.0,
     },
   },
-  -- label = { font = { family = settings.font.numbers } },
+  -- Wide enough for '100%', so 9% -> 10% -> 100% never resizes the island
+  label = {
+    font = settings.number_font,
+    width = settings.number_width(4) + 10,
+    align = 'right',
+  },
   update_freq = 180,
   popup = { align = 'center' },
 })
@@ -62,17 +67,12 @@ battery:subscribe({ 'forced', 'routine', 'power_source_change', 'system_woke' },
         end
       end
 
-      local lead = ''
-      if found and charge < 10 then
-        lead = '0'
-      end
-
       battery:set({
         icon = {
           string = icon,
           color = color,
         },
-        label = { string = lead .. label },
+        label = { string = label },
       })
     end)
   end)
@@ -89,11 +89,3 @@ battery:subscribe('mouse.clicked', function(env)
     end)
   end
 end)
-
-Sbar.add('bracket', 'clock_battery_bracket', { 'clock', 'battery' }, {
-  background = {
-    color = colors.tokyo_night_bg,
-    border_color = colors.tokyo_night_border,
-    border_width = 1,
-  },
-})
