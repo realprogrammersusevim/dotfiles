@@ -128,14 +128,17 @@ return {
             formatterPrintWidth = 88
           },
         },
-        harper_ls = {},
+        harper_ls = {
+          settings = { ['harper-ls'] = vim.empty_dict() },
+        },
         -- Requires: install.packages("languageserver") in R
         r_language_server = {
           on_attach = on_attach,
           -- lspconfig falls back to $HOME outside a git repo, which makes languageserver
           -- index the whole home directory; use the file's directory instead
           root_dir = function(bufnr, on_dir)
-            on_dir(vim.fs.root(bufnr, '.git') or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
+            on_dir(vim.fs.root(bufnr, '.git') or
+              vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
           end,
         },
       }
