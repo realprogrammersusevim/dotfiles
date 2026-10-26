@@ -13,7 +13,7 @@ sudo scutil --set HostName "0x6a736d0a"
 sudo scutil --set LocalHostName "0x6a736d0a"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6a736d0a"
 
-sudo nvram SystemAudioVolume=" "
+sudo nvram StartupMute=%01
 
 # AppleHighlightColor can be set to any color by getting the RGB values, dividing each by 255 and putting them in R G B
 # 192 36 44
@@ -26,6 +26,7 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
@@ -61,6 +62,4 @@ sudo chflags nohidden /Volumes
 
 # Kill affected applications
 
-for app in "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
-    killall "${app}" &> /dev/null
-done
+killall Finder
