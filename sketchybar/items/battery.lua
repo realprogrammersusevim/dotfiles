@@ -2,6 +2,12 @@ local icons = require('icons')
 local colors = require('colors')
 local settings = require('settings')
 
+local draw_colors = {
+  { watts = 35, color = colors.red },
+  { watts = 25, color = colors.orange },
+  { watts = 15, color = colors.yellow },
+}
+
 local battery = Sbar.add('item', 'battery', {
   position = 'right',
   icon = {
@@ -16,7 +22,7 @@ local battery = Sbar.add('item', 'battery', {
     width = settings.number_width(4) + 10,
     align = 'right',
   },
-  update_freq = 180,
+  update_freq = 60,
   popup = { align = 'center' },
 })
 
@@ -33,6 +39,43 @@ local remaining_time = Sbar.add('item', {
     align = 'right',
   },
 })
+
+local power_draw = Sbar.add('item', {
+  position = 'popup.' .. battery.name,
+  icon = {
+    string = 'Power draw:',
+    width = 100,
+    align = 'left',
+  },
+  label = {
+    string = '?? W',
+    width = 100,
+    align = 'right',
+  },
+})
+
+local last_total, last_count, watts
+
+local function sample_power(callback)
+  Sbar.exec('ioreg -rn AppleSmartBattery', function(ioreg)
+    local load = tonumber(ioreg:match('"SystemLoad"=(%d+)'))
+    local total = tonumber(ioreg:match('"AccumulatedSystemLoad"=(%d+)'))
+    local count = tonumber(ioreg:match('"SystemLoadAccumulatorCount"=(%d+)'))
+    if not (load and total and count) then
+      return callback(nil)
+    end
+
+    if last_count and count > last_count then
+      watts = (total - last_total) / (count - last_count) / 1000
+    elseif not last_count or count < last_count then
+      -- First sample, or the counters reset: fall back to the latest reading
+      watts = load / 1000
+    end
+    -- Otherwise the gauge hasn't refreshed yet, so keep the previous average
+    last_total, last_count = total, count
+    callback(watts)
+  end)
+end
 
 battery:subscribe({ 'forced', 'routine', 'power_source_change', 'system_woke' },
   function()
@@ -67,13 +110,32 @@ battery:subscribe({ 'forced', 'routine', 'power_source_change', 'system_woke' },
         end
       end
 
-      battery:set({
-        icon = {
-          string = icon,
-          color = color,
-        },
-        label = { string = label },
-      })
+      sample_power(function(draw)
+        local label_color = colors.label
+        if draw then
+          power_draw:set({ label = string.format('%.1f W', draw) })
+
+          if not charging then
+            for _, level in ipairs(draw_colors) do
+              if draw >= level.watts then
+                label_color = level.color
+                break
+              end
+            end
+          end
+        end
+
+        battery:set({
+          icon = {
+            string = icon,
+            color = color,
+          },
+          label = {
+            string = label,
+            color = label_color,
+          },
+        })
+      end)
     end)
   end)
 
