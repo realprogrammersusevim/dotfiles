@@ -180,6 +180,7 @@ require('which-key').add({
     desc = '[i]nformation',
   },
   { '<leader>m', group = 'Markdown' },
+  { '<leader>p', group = '[p]review' },
   {
     '<leader>mz',
     '<CMD>ZoteroCite<CR>',
