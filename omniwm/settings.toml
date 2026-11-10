@@ -1157,6 +1157,12 @@ id = "toggleOverview"
 binding = "Unassigned"
 id = "toggleSystemStats"
 
+[[monitorGapOverrides]]
+id = "AA25B829-184B-4787-89C5-BB23B051507B"
+monitorDisplayUUID = "0940B4FA-4531-4AAE-9327-6415A05F9709"
+monitorName = "XZ270 Z"
+outerGapTop = 25.0
+
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
 layoutType = "niri"
