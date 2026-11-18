@@ -1,48 +1,26 @@
-# Launcher mode
-:: launcher
+# ---------------------------------------------------------------------------
+# Right Command + letter: one chord per app (left Command is untouched).
+# Launch-or-focus; press again to cycle that app's windows. Shift = variant.
+# ---------------------------------------------------------------------------
+rcmd - b         : ~/.config/skhd/focus_app app.zen-browser.zen
+rcmd + shift - b : ~/.config/skhd/new_window_here app.zen-browser.zen "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window
+rcmd - t         : ~/.config/skhd/focus_app com.mitchellh.ghostty
+rcmd + shift - t : ~/.config/skhd/new_window_here com.mitchellh.ghostty ~/.config/skhd/ghostty_window
+rcmd - g         : ~/.config/skhd/focus_app com.apple.Safari.WebApp.0FFE273A-C34A-495D-A735-77201FC8BF1D # GitHub web app
+rcmd - u         : ~/.config/skhd/focus_app com.apple.Safari.WebApp.E4A4E123-F75C-4B85-B398-5132412E756A # Canvas web app
+rcmd - k         : ~/.config/skhd/focus_app net.ankiweb.launcher
+rcmd + shift - m : ~/.config/skhd/focus_app com.apple.Music
 
-# Activate launcher mode
-alt + cmd - n ; launcher
+# Quick-check apps: floating scratchpad overlay, same key hides it.
+# Right Command + Return promotes the focused one into the workspace (or back).
+rcmd - m         : ~/.config/skhd/peek 1 com.apple.MobileSMS
+rcmd - c         : ~/.config/skhd/peek 2 com.hnc.Discord
+rcmd - d         : ~/.config/skhd/peek 3 com.culturedcode.ThingsMac
+rcmd - e         : ~/.config/skhd/peek 4 com.apple.mail
+rcmd - return    : ~/.config/skhd/promote
 
-# Launcher mode bindings
-launcher < b : ~/.config/skhd/new_window_here app.zen-browser.zen "/Applications/Zen Browser.app/Contents/MacOS/zen" --new-window | skhd -k "escape"
-launcher < t : ~/.config/skhd/new_window_here com.mitchellh.ghostty ~/.config/skhd/ghostty_window | skhd -k "escape"
-
-# Escape sends us back to normal mode
-launcher < escape ; default
-
-# Focus app mode
-:: focus
-
-alt + cmd - f ; focus
-
-focus < b : open -a "Zen Browser" | skhd -k "escape"
-focus < t : open -a "Ghostty" | skhd -k "escape"
-focus < shift - t : open -a "Things3" | skhd -k "escape"
-focus < e : open -a "Mail" | skhd -k "escape"
-focus < m : open -a "Messages" | skhd -k "escape"
-focus < shift - m : open -a "Music" | skhd -k "escape"
-
-focus < escape ; default
-
-# Mail mode for handling mail with Vim-like keybinds
-:: mail
-
-# Activate Mail mode
-alt + cmd - e ; mail
-
-# Navigation
-mail < j : skhd -k 'down'
-mail < k : skhd -k 'up'
-mail < g : skhd -k 'cmd - up'
-mail < shift - g : skhd -k 'cmd - down'
-
-# Actions
-mail < o : skhd -k 'return'                  # open message
-mail < d : skhd -k 'backspace'               # delete
-mail < y : skhd -k 'ctrl + cmd - a'          # archive
-mail < shift - d : skhd -k 'shift + cmd - j' # junk
-mail < r : skhd -k 'cmd - r'                 # reply
-
-# Exit Mail mode
-mail < escape ; default
+# Claude Code agents as normal tiled windows.
+rcmd - a         : ~/.config/skhd/agent
+rcmd + shift - a : ~/.config/skhd/agent new
+rcmd - s         : ~/.config/skhd/agent shot
+rcmd + shift - s : ~/.config/skhd/agent shot-new

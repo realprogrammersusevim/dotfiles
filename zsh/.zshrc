@@ -107,6 +107,9 @@ fi
 unset _fresh_dump
 
 # All done
+# Agent windows (skhd/agent) are Claude Code app windows: quitting it closes the window.
+[[ -n $CLAUDE_AGENT_WINDOW ]] && { unset CLAUDE_AGENT_WINDOW; exec claude; }
+
 # Show a pretty bonsai tree
 cbonsai -p
 

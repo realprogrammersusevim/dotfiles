@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Launch-or-focus: jump to an app's most recent window (switching workspace if
+# needed). Pressing again while it's focused cycles through the app's windows.
+# Windows parked in a scratchpad are skipped.
+#
+# usage: focus_app <bundle-id>
+
+source "$(dirname "$0")/wm.sh"
+
+bundle_id=$1
+ids=($(wm_windows "$bundle_id" --no-scratchpad))
+
+wm_focus_or_cycle "${ids[@]}" || open -b "$bundle_id"

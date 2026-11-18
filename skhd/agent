@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+# Claude Code windows: ordinary tiled Ghostty windows, so a running agent never
+# covers what you're doing. .zshrc execs claude in them (CLAUDE_AGENT_WINDOW),
+# so quitting Claude Code closes the window. Agent windows carry an OmniWM mark
+# "agent-<ghostty terminal id>".
+#
+# usage: agent           focus the most recent agent window (again: cycle); new one if none
+#        agent new       new agent window in the current workspace
+#        agent shot      screenshot a region, paste it into the most recent agent
+#        agent shot-new  screenshot a region, paste it into a new agent
+
+source "$(dirname "$0")/wm.sh"
+
+GHOSTTY=com.mitchellh.ghostty
+
+# Agent windows as "<window id> <terminal id>", most recently used first.
+agents() {
+  awk 'NR == FNR { t[$1] = $2; next } $1 in t { print $1, t[$1] }' \
+    <(wm_marked agent-) <(wm_windows "$GHOSTTY")
+}
+
+# Directory for a new agent: the focused Ghostty terminal's cwd, else ~/agent.
+# ~/agent stands in for $HOME: Claude Code never saves trust for the home folder,
+# so ~/agent is trusted instead and adds $HOME as a working directory.
+agent_cwd() {
+  local dir
+  dir=$(osascript -e 'tell application "Ghostty"
+    if frontmost then return working directory of focused terminal of selected tab of front window
+  end tell' 2>/dev/null)
+  [[ -d $dir && $dir != "$HOME" ]] && echo "$dir" || echo "$HOME/agent"
+}
+
+# Open an agent window in the current workspace; prints its terminal id.
+new_agent() {
+  local dir workspace before terminal id
+  dir=$(agent_cwd)
+  workspace=$(wm_active_workspace)
+  before=$(wm_windows "$GHOSTTY")
+  terminal=$(osascript - "$dir" <<'EOF'
+on run argv
+  tell application "Ghostty"
+    set cfg to new surface configuration
+    set initial working directory of cfg to item 1 of argv
+    set environment variables of cfg to {"CLAUDE_AGENT_WINDOW=1"}
+    set w to new window with configuration cfg
+    return id of focused terminal of selected tab of w
+  end tell
+end run
+EOF
+  ) || return 1
+  id=$(wm_wait_new_window "$GHOSTTY" "$before") || return 1
+  # Ghostty activating can drag focus to another workspace; keep the agent here.
+  omniwmctl window move-to-workspace "$id" "$workspace" >/dev/null
+  omniwmctl workspace focus-name "$workspace" >/dev/null
+  omniwmctl window focus "$id" >/dev/null
+  omniwmctl window mark set "agent-$terminal" >/dev/null
+  echo "$terminal"
+}
+
+# Wait until Claude Code's UI is up (it titles the terminal "✳ Claude Code";
+# this also waits out a folder-trust prompt). Fails if the window closes.
+wait_for_claude() {
+  local title
+  for _ in $(seq 400); do
+    title=$(osascript -e "tell application \"Ghostty\" to return name of terminal id \"$1\"" 2>/dev/null) ||
+      return 1
+    [[ $title == *"Claude Code"* ]] && { sleep 0.5; return 0; }
+    sleep 0.3
+  done
+  return 1
+}
+
+# Region screenshot, saved and put on the clipboard. Fails if cancelled.
+screenshot() {
+  local file
+  file="$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H.%M.%S).png"
+  mkdir -p "${file%/*}"
+  screencapture -i "$file"
+  [[ -s $file ]] || return 1
+  osascript -e "set the clipboard to (read (POSIX file \"$file\") as «class PNGf»)"
+}
+
+case ${1:-focus} in
+  focus)
+    wm_focus_or_cycle $(agents | cut -d' ' -f1) || new_agent >/dev/null
+    ;;
+  new)
+    new_agent >/dev/null
+    ;;
+  shot | shot-new)
+    screenshot || exit 0
+    read -r id terminal < <(agents)
+    if [[ $1 == shot && -n $id ]]; then
+      omniwmctl window focus "$id" >/dev/null
+    else
+      terminal=$(new_agent) && wait_for_claude "$terminal" || exit 0
+    fi
+    # Claude Code pastes clipboard images on Ctrl+V.
+    osascript -e "tell application \"Ghostty\" to send key \"v\" modifiers \"control\" to terminal id \"$terminal\""
+    ;;
+esac

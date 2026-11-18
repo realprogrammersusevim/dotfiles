@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Quick-check apps: one window of the app lives in a numbered OmniWM scratchpad
+# and toggles as a floating overlay on whatever workspace you're on. `promote`
+# turns it into a tiled window (this key then just focuses it) and back.
+#
+# usage: peek <slot 1-10> <bundle-id>
+
+source "$(dirname "$0")/wm.sh"
+
+slot=$1
+bundle_id=$2
+
+read -r id visible focused < <(omniwmctl query windows --bundle-id "$bundle_id" --scratchpad \
+  --fields id,scratchpad-index,is-visible,is-focused --format json |
+  jq -r --argjson s "$slot" '.result.payload.windows[]
+    | select(.scratchpadIndex == $s) | "\(.id) \(.isVisible) \(.isFocused)"' | head -n 1)
+
+if [[ -n $id ]]; then
+  # Shown: bring it forward, or hide it if it's already in front. Hidden: show
+  # it; OmniWM puts it back in its spot, focuses it, and hides any other one.
+  if [[ $visible != true ]]; then
+    wm_scratchpad_show "$slot" "$id"
+  elif [[ $focused != true ]]; then
+    omniwmctl window focus "$id" >/dev/null
+  else
+    omniwmctl command scratchpad toggle "$slot" >/dev/null
+  fi
+elif ! omniwmctl window mark focus "peek-$slot" >/dev/null 2>&1; then # promoted: focus it
+  # First use: adopt the app's most recent window, launching the app if needed.
+  id=$(wm_windows "$bundle_id" | head -n 1)
+  if [[ -z $id ]]; then
+    open -b "$bundle_id"
+    id=$(wm_wait_new_window "$bundle_id" "") || exit 1
+  fi
+  omniwmctl window assign-to-scratchpad "$id" "$slot" >/dev/null
+  wm_scratchpad_show_centered "$slot" "$id" "$bundle_id"
+fi
