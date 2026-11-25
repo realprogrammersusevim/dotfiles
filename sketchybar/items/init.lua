@@ -19,7 +19,10 @@ require('items.disk')
 -- Right items
 require('items.clock')
 require('items.battery')
-require('items.crec')
+-- require('items.crec')  -- disabled; it also owned the island below
+require('items.claude_agents')
+
+require('helpers.island')('status_bracket', { 'claude_agents', 'battery', 'clock' })
 
 -- Logic items
 require('items.animator')
