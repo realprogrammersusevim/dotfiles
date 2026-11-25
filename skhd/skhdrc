@@ -10,6 +10,7 @@ rcmd - g         : ~/.config/skhd/focus_app com.apple.Safari.WebApp.0FFE273A-C34
 rcmd - u         : ~/.config/skhd/focus_app com.apple.Safari.WebApp.E4A4E123-F75C-4B85-B398-5132412E756A # Canvas web app
 rcmd - k         : ~/.config/skhd/focus_app net.ankiweb.launcher
 rcmd + shift - m : ~/.config/skhd/focus_app com.apple.Music
+rcmd - l         : ~/.config/skhd/focus_app com.anthropic.claudefordesktop
 
 # Quick-check apps: floating scratchpad overlay, same key hides it.
 # Right Command + Return promotes the focused one into the workspace (or back).
@@ -17,6 +18,7 @@ rcmd - m         : ~/.config/skhd/peek 1 com.apple.MobileSMS
 rcmd - c         : ~/.config/skhd/peek 2 com.hnc.Discord
 rcmd - d         : ~/.config/skhd/peek 3 com.culturedcode.ThingsMac
 rcmd - e         : ~/.config/skhd/peek 4 com.apple.mail
+rcmd + shift - d : ~/.config/skhd/peek 5 com.apple.iCal
 rcmd - return    : ~/.config/skhd/promote
 
 # Claude Code agents as normal tiled windows.
